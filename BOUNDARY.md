@@ -230,6 +230,10 @@ Calibration is this triple. A convenience scalar `K‰ = permille(1 − Brier)` 
 defined for reporting, but §5 gates cite Brier/ECE/AUROC directly where they bite
 (most sharply at Layer 6).
 
+**Dormancy.** Calibration is **dormant until Layer 6**. Layers 1–5 cite no
+calibration bound — an engine may emit confidence there, but it is ungated. From
+Layer 6 onward the calibration bounds bind, and they stay bound above it.
+
 ### 3.5 The `permille` calibration function
 
 `permille(x)` maps an exact `Fraction x ∈ [0,1]` to an integer in `[0,1000]`
@@ -320,11 +324,11 @@ Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget
 
 | L | Capability | Ascension gate | Humility ceiling (capped scores ≤) |
 |---|------------|----------------|-------------------------------------|
-| 1 | **Retention** — write / read-by-time / read_range / snapshot / restore; budget law binding | F=1000, C≥995, B=1000, Brier≤10, snapshot/restore byte-identical | capped F ≤ 150 |
-| 2 | **Recall** — associative `recall(cue)` via deterministic index (token n-grams, MinHash) | cue-C≥900, F≥950, AUROC≥800, B=1000, Brier≤50 | capped cue-C ≤ 100 |
-| 3 | **Forgetting** — principled eviction under pressure (stream = 10× budget) | weighted-C≥850, unweighted-C≥90, F≥950, B=1000, ECE≤80 | capped weighted-C ≤ 300 |
-| 4 | **Consolidation** — episodic→semantic derived schemas with reconstruction | footprint≤250 (≥4× compression) at reconstruction F≥900, C≥850, B=1000, Brier≤60 | capped reconstruction F ≤ 400 at footprint≤250 |
-| 5 | **Prospection** — `intend(condition → event)`; triggers fire exactly-once on future writes | trigger-precision=1000, trigger-recall=1000, dup-fire=0, miss=0, F≥980, B=1000, Brier≤30 | capped trigger-recall ≤ 50 |
+| 1 | **Retention** — write / read-by-time / read_range / snapshot / restore; budget law binding | F=1000, C≥995, B=1000, snapshot/restore byte-identical | — (floor; no humility gate) |
+| 2 | **Recall** — associative `recall(cue)` via deterministic index (token n-grams, MinHash) | cue-C≥900, F≥950, B=1000 | capped cue-C ≤ 100 |
+| 3 | **Forgetting** — principled eviction under pressure (stream = 10× budget) | weighted-C≥850, unweighted-C≥90, F≥950, B=1000; corpus: importance uniformly-to-late (never front-loaded) | capped weighted-C ≤ 300 |
+| 4 | **Consolidation** — episodic→semantic derived schemas with reconstruction | footprint≤250 (≥4× compression) at reconstruction F≥900, C≥850, B=1000 | capped reconstruction F ≤ 400 at footprint≤250 |
+| 5 | **Prospection** — `intend(condition → event)`; triggers fire exactly-once on future writes | trigger-precision=1000, trigger-recall=1000, dup-fire=0, miss=0, F≥980, B=1000 | capped trigger-recall ≤ 50 |
 | 6 | **Meta-memory** — confidence permille from structural evidence | Brier≤40, ECE≤30, AUROC≥900, abstention-aware F≥950, B=1000 | capped AUROC ≤ 600 |
 | 7 | **Generation** — `generate(cue)`: grammar-valid, provably never-stored, 100% tagged `generated` | validity=1000, novelty=1000, tagging=1000, self-pollution promotion=0 (three deep), F≥950, B=1000, ECE≤40 | capped (novel∧valid∧tagged) ≤ 50 |
 | 8 | **Self-description** — introspection answered FROM STATE via the ordinary query interface | *specified at Phase 3→4 gate* | *specified at Phase 3→4 gate* |
@@ -332,20 +336,19 @@ Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget
 
 ### 5.1 Threshold defenses (one sentence each)
 
-**Layer 1 — Retention** (capped = the null `layer_cap = 0` engine)
+**Layer 1 — Retention** (the floor layer — no humility gate)
 - `F=1000`: Retention is the exact return of what was written, read by time and by range, so any deviation is a bug, not a tolerance.
 - `C≥995`: Every in-budget write must be retrievable; only boundary as-of queries at the very edges of the log may legitimately abstain.
 - `B=1000`: The budget law is absolute — an over-budget write is refused deterministically, so peak occupancy never exceeds the cap.
-- `Brier≤10`: Retention answers straight from stored ground truth, so stated confidence must almost perfectly match the near-certain correctness.
 - `snapshot/restore byte-identical`: A state restored from its snapshot must answer identically, so the round-trip is byte-for-byte or it is broken.
-- Humility `capped F ≤ 150`: An engine with no retention can only abstain on answerable reads (score 100 each), so it cannot rise above the abstention floor.
+- No humility gate: Layer 1 is the floor, so there is no lower layer to cap against. The null-engine (`layer_cap = 0`) baseline — that an engine with no retention scores at the abstention floor — is an **ops/sanity** trial, not a humility trial.
+- Calibration is dormant here (§3.4): the engine may emit confidence but it is ungated until Layer 6.
 
 **Layer 2 — Recall** (capped = the `layer_cap = 1` Retention engine)
 - `cue-C≥900`: Associative recall must return the intended target from a cue against grammar-controlled distractors at least 90% of the time.
 - `F≥950`: A wrong recall is worse than none, so the abstention-aware score of returned items must stay very high.
-- `AUROC≥800`: Match confidence must separate true targets from lookalike distractors well above chance.
 - `B=1000`: The deterministic index is built within the same hard budget; the cap still holds absolutely.
-- `Brier≤50`: Recall confidence must track whether the retrieved item is actually the cue's target.
+- Calibration dormant (§3.4): confidence may be emitted but is ungated until Layer 6.
 - Humility `capped cue-C ≤ 100`: A read-by-time engine has no associative index, so cue-based retrieval against distractors cannot beat chance (~1 in the candidate pool).
 
 **Layer 3 — Forgetting** (capped = the `layer_cap = 2` Recall engine)
@@ -353,15 +356,15 @@ Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget
 - `unweighted-C≥90`: Retained content is ~1/10 of the stream, so plain recovery near 10% confirms a full budget's worth was kept, not less.
 - `F≥950`: Forgetting may drop items but must never corrupt the ones it keeps, so surviving recalls stay exact.
 - `B=1000`: Eviction holds peak occupancy inside the cap at all times, even under 10× pressure — the budget law never breaks.
-- `ECE≤80`: The engine must know what it forgot, so confidence on evicted items is low and well-calibrated (abstain, not fabricate).
-- Humility `capped weighted-C ≤ 300`: Without principled eviction, a recall-only engine fills to budget then refuses the rest, keeping the earliest items rather than the important ones, so it cannot preserve the important mass.
+- **Corpus precondition**: the Layer-3 trial stream distributes importance mass **uniformly-to-late** across the 10× stream (never front-loaded), enforced by the L3 corpus generator (`corpora/l3stream/`) and checked by a generator ops trial (`trials/ops/t_l3stream.py`), so a fill-then-refuse capped engine cannot exceed the 300 ceiling by luck (proof: `trials/humility/l3/IMPOSSIBILITY.md`).
+- Humility `capped weighted-C ≤ 300`: Without principled eviction, a recall-only engine fills to budget then refuses the rest, keeping the earliest — and, because importance is uniformly-to-late, least-important — items, so it cannot preserve the important mass.
 
 **Layer 4 — Consolidation** (capped = the `layer_cap = 3` Forgetting engine)
 - `footprint≤250` (≥4× compression): Derived schemas must shrink the episodic footprint to at most a quarter of the raw bytes.
 - `reconstruction F≥900`: At that footprint the engine must still reconstruct query answers at ≥90% fidelity, proving the schemas are lossy-but-honest.
 - `C≥850`: The derived schemas (entity summaries, attribute histories, action patterns) must answer at least 85% of the semantic queries raw episodes could.
 - `B=1000`: Consolidation and its derived schemas run within the hard budget like any other state.
-- `Brier≤60`: Reconstructed answers must carry honest confidence reflecting the lossy consolidation.
+- Calibration dormant (§3.4): reconstruction confidence may be emitted but is ungated until Layer 6.
 - Humility `capped reconstruction F ≤ 400 at footprint≤250`: Dropping is not deriving — a forget-only engine squeezed to a quarter of the bytes has simply lost three-quarters of its episodes and cannot reconstruct what it deleted.
 
 **Layer 5 — Prospection** (capped = the `layer_cap = 4` Consolidation engine)
@@ -369,7 +372,7 @@ Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget
 - `dup-fire=0 ∧ miss=0`: Exactly-once means no trigger fires twice and none is missed.
 - `F≥980`: A fired event's payload must match the intended event essentially exactly.
 - `B=1000`: Pending intentions live within the hard budget like any other state.
-- `Brier≤30`: A fired trigger asserts a deterministic match, so its confidence must reflect that near-certainty.
+- Calibration dormant (§3.4): trigger confidence may be emitted but is ungated until Layer 6.
 - Humility `capped trigger-recall ≤ 50`: Consolidation summarizes the past and has no construct that watches future writes, so it fires condition-met triggers only by coincidence.
 
 **Layer 6 — Meta-memory** (capped = the `layer_cap = 5` Prospection engine)
@@ -378,7 +381,7 @@ Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget
 - `AUROC≥900`: Confidence must rank correct answers above incorrect ones with area under ROC at least 0.90.
 - `abstention-aware F≥950`: Under the 1000/1000/100/0 table, knowing-that-you-don't-know earns full credit and fabrication must be near-absent.
 - `B=1000`: Meta-memory derives confidence from existing state within budget.
-- Humility `capped AUROC ≤ 600`: An engine that emits fixed or heuristic confidence with no structural-evidence model produces uninformative confidences that barely separate right from wrong.
+- Humility `capped AUROC ≤ 600`: A capped engine below Layer 6 carries no confidence model, so the harness scores it **confident-by-default**; the calibration bound then fails by construction, with AUROC ≤ 600 as the measured ceiling.
 
 **Layer 7 — Generation** (capped = the `layer_cap = 6` Meta-memory engine)
 - `validity=1000`: Every generated item must be grammar-valid; an invalid generation is a hard failure.
@@ -420,7 +423,10 @@ A trial is **green**, **red**, or **skipped-by-design**. `trials/run.py` exits
   **structural** argument (not an empirical observation) for why the capped
   engine cannot exceed the ceiling. (The per-layer fabrication ceiling of earlier
   drafts is *not* a constitutional measure; it survives only as a component of
-  the abstention-aware scoring that Layer 6+ calibration relies on.)
+  the abstention-aware scoring that Layer 6+ calibration relies on.) **Layer 1 is
+  the floor** and has no humility trial — there is no lower layer to cap against;
+  its null-engine (`layer_cap = 0`) baseline lives in `ops/` as a sanity check
+  (§5 L1).
 
 - **`strain/`** — Scale and stress trials over large corpora and dirty
   (**murk**) input; they check that the measures and the budget hold up under
@@ -515,7 +521,9 @@ exceptions (§7.3).
    freezing any holdout-seed output into the repo.
 
 6. **Scale targets** (Phase 0; scale grows in later phases via strain):
-   chronicle **~50k** events, sessions **~5k** events, murk **~10k** events.
+   chronicle **~50k** events, sessions **~5k** events, murk **~10k** events,
+   l3stream **~10k** events (`10× budget`, importance uniformly-to-late — the
+   Layer-3 pressure stream, §5 L3).
 
 7. **The murk family.** `corpora/murk/` is a generator *layer* over the base
    grammars that injects controlled defects through explicit **knobs**:

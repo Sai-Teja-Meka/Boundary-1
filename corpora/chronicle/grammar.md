@@ -1,8 +1,9 @@
 # Chronicle grammar
 
 The **chronicle** corpus is a log of a small, self-consistent world of
-**entities** changing over logical time. It is the primary substrate for Recall,
-Range, Aggregation, and Association capabilities (Layers 1–4).
+**entities** changing over logical time. It is a primary substrate for the
+Retention, Recall, and Consolidation capabilities (entity summaries, attribute
+histories, and action patterns all live here).
 
 Each line of a frozen chronicle file is one **event payload** (canonical JSON,
 §2.4), with no `t` field — the ingestion order (0-based line index) *is* the

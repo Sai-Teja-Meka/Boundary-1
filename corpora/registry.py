@@ -13,8 +13,9 @@ Each REAL entry is: {"name": str, "path": str (absolute), "sha256": hex str}.
 from corpora.chronicle import generator as chronicle_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
+from corpora.l3stream import generator as l3stream_gen
 
-GENERATED = [chronicle_gen, sessions_gen, murk_gen]
+GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen]
 
 MURK = murk_gen
 

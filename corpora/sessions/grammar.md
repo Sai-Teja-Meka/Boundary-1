@@ -2,8 +2,8 @@
 
 The **sessions** corpus is a log of interleaved user/agent **sessions** — the
 kind of data memtrials will eventually dogfood on. Multiple sessions are open at
-once and their events interleave. It is a substrate for Recency/Range,
-Association (by `sid`), and later DOGFOOD moves.
+once and their events interleave. It is a substrate for Retention and Recall over
+interleaved streams (grouped by `sid`) and for later DOGFOOD moves.
 
 Each line is one **event payload** (canonical JSON, §2.4), no `t` field — the
 0-based line index is the logical time `t`. Payloads use only integers and
