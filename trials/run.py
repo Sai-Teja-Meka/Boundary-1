@@ -41,13 +41,22 @@ def _load_module(path):
 
 
 def _discover(klass_dir):
-    """Yield (file_path, func_name, func) for every trial in a class dir."""
+    """Yield (file_path, func_name, func) for every trial in a class dir tree.
+
+    Recurses into per-layer subdirectories (e.g. `ops/l1/`, `ascension/l1/`) so
+    layers can group their trials; files directly in the class dir still run, in
+    the same order as before. Discovery is deterministic (paths sorted); files
+    starting with `_` are skipped everywhere (shared helpers, `__init__.py`).
+    """
     if not os.path.isdir(klass_dir):
         return
-    for fname in sorted(os.listdir(klass_dir)):
-        if not fname.endswith(".py") or fname.startswith("_"):
-            continue
-        path = os.path.join(klass_dir, fname)
+    paths = []
+    for dirpath, _dirs, files in os.walk(klass_dir):
+        for fname in files:
+            if not fname.endswith(".py") or fname.startswith("_"):
+                continue
+            paths.append(os.path.join(dirpath, fname))
+    for path in sorted(paths):
         module = _load_module(path)
         for attr in sorted(vars(module)):
             if attr.startswith("trial_"):

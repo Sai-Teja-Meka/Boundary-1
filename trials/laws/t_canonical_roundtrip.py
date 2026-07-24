@@ -5,7 +5,7 @@ sort, floats are rejected. The engine's own serializer is cross-checked against
 this contract once it exists.
 """
 
-from _harness import require, require_equal, skip
+from _harness import require, require_equal, try_import
 from corpora import canon
 
 _SAMPLES = [
@@ -74,6 +74,27 @@ def trial_jsonl_roundtrip():
 
 
 def trial_engine_serializer_crosscheck():
-    # Engages when core exposes its own canonical serializer: it must agree with
-    # this reference byte-for-byte on every allowed value.
-    skip("no engine serializer yet; cross-check engages at Layer 1")
+    # Engaged at Layer 1: core exposes its OWN canonical serializer
+    # (core/serialize.py, re-implemented under the whitelist, importing neither
+    # this reference nor corpora/). It must agree with this reference
+    # byte-for-byte on every allowed value — both the fixed battery above and a
+    # slice of every frozen base corpus.
+    core_serialize = try_import(
+        "core.serialize",
+        "no engine serializer yet; cross-check engages at Layer 1",
+    )
+    for x in _SAMPLES:
+        require(core_serialize.encode(x) == canon.canon_encode(x),
+                f"engine serializer disagrees with the reference on {x!r}")
+        # And the engine serializer must round-trip identically to the reference.
+        require_equal(core_serialize.decode(core_serialize.encode(x)), x,
+                      "engine serializer round-trip changed value")
+
+    from corpora.chronicle import generator as chronicle_gen
+    from corpora.sessions import generator as sessions_gen
+    from corpora.murk import generator as murk_gen
+    for gen, seed in ((chronicle_gen, 1001), (sessions_gen, 2002), (murk_gen, 3003)):
+        for ev in gen.generate(seed, 400):
+            require(core_serialize.encode(ev) == canon.canon_encode(ev),
+                    f"engine serializer disagrees with the reference on a "
+                    f"{gen.__name__} event: {ev!r}")
