@@ -6,7 +6,7 @@ a corpus through the generic interface (INTERFACE.md) and assert:
   * every reported cost is an integer (never a float);
   * cost accounting is pure and reproducible — the same input yields the same
     total cost across two independent runs;
-  * the Economy measure (§3.4) is computed from integer cost and integer budget.
+  * the budget measure (§3.3) is computed from integer cost and integer budget.
 
 Until `core.engine` exists this reports SKIPPED-BY-DESIGN. The harness is written
 now so ascension cannot silently bypass the budget law later.

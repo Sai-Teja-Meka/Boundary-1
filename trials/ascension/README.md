@@ -5,5 +5,7 @@ Capability trials. Passing a layer's ascension trials at or above its
 four measures (§3).
 
 Empty at Phase 0 — populated by `ASCEND` moves, one layer at a time. Each
-ascension trial is paired with a humility trial (`trials/humility/`) posing the
-same task through the same generic interface (§6 fairness rule).
+layer's ascension trials are paired with a humility trial (`trials/humility/`)
+that runs the **same tasks** against `make_engine(layer_cap = N−1)` and asserts
+the capped engine scores at or below the layer's humility ceiling (§6), proving
+the gate requires the new capability.

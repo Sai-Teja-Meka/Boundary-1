@@ -136,9 +136,10 @@ trials are tooling; `core/` imports neither.
 
 ## §3. The Four Measures
 
-Every capability claim is scored by four measures. All measure arithmetic is
-done in exact `fractions.Fraction`; the final calibration to an integer is in
-**permille** (parts per thousand, `0..1000`).
+Four measures, and only four: **fidelity, coverage, budget, calibration**. Every
+capability claim is scored by them. All measure arithmetic is done in exact
+`fractions.Fraction`; the final calibration to an integer is in **permille**
+(parts per thousand, `0..1000`) via the `permille` function of §3.5.
 
 ### 3.0 The abstention-aware per-query score
 
@@ -172,42 +173,62 @@ where `N` is the number of queries and `s_i` the per-query score (§3.0).
 
 ### 3.2 Coverage (C)
 
-Fraction of queries the engine chose to answer (did not abstain):
+Importance-weighted recovery of the target set. Each target item `i` carries an
+integer importance weight `w_i ≥ 1` (default `1`); an item is **recovered** when
+the engine answers it correctly (score 1000 under §3.0):
 
 ```
-C = A / N                            A = count of answered queries
+C = ( Σ_{i recovered} w_i ) / ( Σ_i w_i )      a Fraction in [0, 1]
 C‰ = permille(C)
 ```
 
-### 3.3 Calibration (K)
+With uniform weights this is the fraction of answerable targets correctly
+answered. The weighted form is what Layer 3 requires: importance-weighted
+coverage that must survive eviction under 10× pressure.
+
+### 3.3 Budget (B)
+
+Adherence to the integer budget cap. The budget law (§4.1) refuses any write that
+would exceed the cap, so a lawful engine's peak occupancy never exceeds it. With
+integer budget cap `Bcap > 0` and integer **peak occupancy** `peak`:
+
+```
+B = 1                if peak ≤ Bcap
+B = Bcap / peak      if peak > Bcap       (a Fraction in (0,1))
+B‰ = permille(B)
+```
+
+A lawful engine scores `B‰ = 1000`; any value below 1000 is a breach of the
+budget law and is disqualifying. Budget is the measure that certifies the cap
+held under a trial. Cost accounting is pure and integer (§4.1).
+
+### 3.4 Calibration (K) — Brier, ECE, AUROC, all exact
 
 The engine attaches to every answer an integer **confidence in permille**
-(`conf_i ∈ [0, 1000]`). Over the `A` answered queries, with
-`correct_i ∈ {0, 1}`:
+(`conf_i ∈ [0, 1000]`) derived from structural evidence, never a float. Over the
+`A` answered queries with `correct_i ∈ {0, 1}`, three quantities are computed in
+exact `Fraction`:
 
 ```
-G = ( Σ_i |conf_i − 1000·correct_i| ) / A     mean L1 reliability gap, in permille
-K‰ = permille( 1 − G/1000 ) = 1000 − permille(G/1000)
+Brier = (1/A) · Σ_i (conf_i/1000 − correct_i)^2            in [0,1], lower better
+ECE   = Σ_b (n_b/A) · | mean_conf_b − acc_b |              in [0,1], lower better
+AUROC = U / (n_pos · n_neg)                                in [0,1], higher better
 ```
 
-`K‰ = 1000` means stated confidence matched outcome exactly on every answered
-query; lower means confidence and correctness diverged. If `A = 0`, `K` is
-defined as `1000` (a fully abstaining engine is vacuously calibrated) but note
-that Coverage will be `0`.
+- **Brier** is the mean squared gap between stated confidence and outcome.
+- **ECE** bins the answered queries into the ten fixed permille bins `[0,100)`,
+  `[100,200)`, …, `[900,1000]` (last bin closed); `mean_conf_b` and `acc_b` are
+  the mean confidence and mean correctness within bin `b`, `n_b` its count, and
+  empty bins contribute 0.
+- **AUROC** is the Mann–Whitney statistic: `U` counts, over all
+  correct×incorrect answer pairs, those whose correct answer carried the higher
+  confidence (ties count ½); `n_pos` / `n_neg` are the counts of correct /
+  incorrect answers. It is **undefined** when `n_pos = 0` or `n_neg = 0` (report
+  `n/a`; any gate that cites AUROC requires both classes present).
 
-### 3.4 Economy (E)
-
-Budget adherence (see §4). With integer total cost `cost` and integer budget
-`B > 0`:
-
-```
-E = 1                if cost ≤ B
-E = B / cost         if cost > B          (a Fraction in (0,1))
-E‰ = permille(E)
-```
-
-Meeting or beating budget is full marks; overrun is penalized in exact
-proportion.
+Calibration is this triple. A convenience scalar `K‰ = permille(1 − Brier)` is
+defined for reporting, but §5 gates cite Brier/ECE/AUROC directly where they bite
+(most sharply at Layer 6).
 
 ### 3.5 The `permille` calibration function
 
@@ -232,19 +253,22 @@ No float ever appears in this computation.
 
 ### 4.1 The Budget Law — binding from Layer 1
 
-1. Every `ingest` and every `query` consumes a declared, **integer** cost, in
-   abstract *work units*. One work unit is one primitive state access (the read
-   or write of one logical cell). The engine defines its unit consistently and
-   accounts for it in explicit state (a counter), never by measuring the OS,
-   the clock, or process memory.
+1. Each engine state carries an integer **budget cap `Bcap`** and an integer
+   **occupancy** (current resource cost, in *work units* — one unit is one
+   primitive state cell). Occupancy and all cost accounting are pure, integer,
+   and reproducible: identical inputs yield identical costs, and no float ever
+   enters the budget. Cost is accounted in explicit state (a counter), never by
+   measuring the OS, the clock, or process memory.
 
-2. Cost accounting is **pure and reproducible**: identical inputs yield
-   identical costs. Costs are integers; no float ever enters the budget.
+2. From **Layer 1 onward the law binds**: a write that would raise occupancy
+   above `Bcap` is **REFUSED, deterministically** — the engine returns a
+   refusal, performs no partial write, and does **not** evict (eviction is a
+   Layer 3 capability, not a budget side-effect). The accept/refuse decision is a
+   pure function of the input, identical on every run.
 
-3. A trial grants the engine an integer **budget `B`** per episode. From
-   **Layer 1 onward**, the Economy measure (§3.4) gates ascension, and the
-   per-layer humility ceilings bound worst-case behavior under budget. Below
-   Layer 1 the budget is measured and reported but does not gate.
+3. The **budget measure** (§3.3) certifies the cap held: a lawful engine never
+   exceeds `Bcap` and scores `B‰ = 1000`. Below Layer 1 the budget is measured
+   and reported but does not gate.
 
 ### 4.2 The Provenance Law — dormant until Layer 7, binding forever after
 
@@ -278,77 +302,91 @@ No float ever appears in this computation.
 
 ## §5. The Nine-Layer Ladder
 
-Each layer is a capability the engine may claim only by passing its **ascension**
-trials at or above the ascension gate, while never breaching its **humility
-failure ceiling**. Measures are in permille (§3). `H` is the humility ceiling:
-the maximum permille of humility-trial queries the engine may answer *wrongly*
-(a wrong value, or any non-abstaining answer to an unanswerable query).
+Each layer is a capability claimed only by passing its **ascension** trials at or
+above the ascension gate. Each gate is stated in the metric that layer is about —
+the four measures of §3, plus the capability-specific quantities named in §5.1.
+Every layer also declares a **humility failure ceiling**: the maximum score an
+engine capped one layer below — `make_engine(layer_cap = N−1)` — may reach on
+layer `N`'s own ascension tasks, run through the same generic interface (§7). The
+humility trial class (§6) asserts the capped engine scores **at or below** that
+ceiling, proving the gate cannot be cleared without the new capability; each
+layer ships an `IMPOSSIBILITY.md` structural argument for its ceiling.
 
 Layers 8–9 receive laws but **not thresholds** yet — thresholds are
 **specified at the Phase 3→4 gate**.
 
-| L | Capability | Ascension gate (min ‰) | Humility ceiling `H` (max ‰) |
-|---|------------|------------------------|------------------------------|
-| 1 | **Recall** — exact store / point fetch | F≥950, C≥900, K≥800, E≥700 | 50 |
-| 2 | **Recency & Range** — ordered / as-of / range reads | F≥950, C≥900, K≥820, E≥720 | 45 |
-| 3 | **Aggregation** — exact integer aggregates | F≥940, C≥880, K≥840, E≥740 | 40 |
-| 4 | **Association** — links / joins / adjacency | F≥930, C≥860, K≥850, E≥760 | 35 |
-| 5 | **Summarization** — bounded honest compression | F≥920, C≥820, K≥870, E≥820 | 30 |
-| 6 | **Contradiction & Dedup** — detect / resolve / abstain | F≥930, C≥800, K≥890, E≥780 | 25 |
-| 7 | **Provenance** — every answer cites its support | F≥940, C≥800, K≥900, E≥780 | 20 |
-| 8 | **Revision & Forgetting** — bounded retention, reported forgetting | *specified at Phase 3→4 gate* | *specified at Phase 3→4 gate* |
-| 9 | **Self-Audit & Adversarial Robustness** — audits own provenance under adversarial murk | *specified at Phase 3→4 gate* | *specified at Phase 3→4 gate* |
+Legend (all permille unless noted): **F** fidelity, **C** coverage, **B** budget,
+**K** calibration (Brier / ECE / AUROC). "capped" = the `layer_cap = N−1` engine.
+
+| L | Capability | Ascension gate | Humility ceiling (capped scores ≤) |
+|---|------------|----------------|-------------------------------------|
+| 1 | **Retention** — write / read-by-time / read_range / snapshot / restore; budget law binding | F=1000, C≥995, B=1000, Brier≤10, snapshot/restore byte-identical | capped F ≤ 150 |
+| 2 | **Recall** — associative `recall(cue)` via deterministic index (token n-grams, MinHash) | cue-C≥900, F≥950, AUROC≥800, B=1000, Brier≤50 | capped cue-C ≤ 100 |
+| 3 | **Forgetting** — principled eviction under pressure (stream = 10× budget) | weighted-C≥850, unweighted-C≥90, F≥950, B=1000, ECE≤80 | capped weighted-C ≤ 300 |
+| 4 | **Consolidation** — episodic→semantic derived schemas with reconstruction | footprint≤250 (≥4× compression) at reconstruction F≥900, C≥850, B=1000, Brier≤60 | capped reconstruction F ≤ 400 at footprint≤250 |
+| 5 | **Prospection** — `intend(condition → event)`; triggers fire exactly-once on future writes | trigger-precision=1000, trigger-recall=1000, dup-fire=0, miss=0, F≥980, B=1000, Brier≤30 | capped trigger-recall ≤ 50 |
+| 6 | **Meta-memory** — confidence permille from structural evidence | Brier≤40, ECE≤30, AUROC≥900, abstention-aware F≥950, B=1000 | capped AUROC ≤ 600 |
+| 7 | **Generation** — `generate(cue)`: grammar-valid, provably never-stored, 100% tagged `generated` | validity=1000, novelty=1000, tagging=1000, self-pollution promotion=0 (three deep), F≥950, B=1000, ECE≤40 | capped (novel∧valid∧tagged) ≤ 50 |
+| 8 | **Self-description** — introspection answered FROM STATE via the ordinary query interface | *specified at Phase 3→4 gate* | *specified at Phase 3→4 gate* |
+| 9 | **Birth** — emit a functioning L1 successor from the self-model alone; successor passes the entire frozen L1 suite | *specified at Phase 3→4 gate* | *specified at Phase 3→4 gate* |
 
 ### 5.1 Threshold defenses (one sentence each)
 
-**Layer 1 — Recall**
-- `F≥950`: Exact key-value recall is the simplest capability, so near-perfection is the minimum bar to claim it works at all.
-- `C≥900`: Every stored key is answerable here, so the engine should answer at least 90% rather than hide behind abstention.
-- `K≥800`: Confidence need only roughly track correctness this early, so an 800‰ reliability (≤200‰ mean gap) is a lenient but non-trivial floor.
-- `E≥700`: A naive exact store may be wasteful, so we require only 70% budget efficiency while the engine is young.
-- `H≤50`: Even the first layer must almost never fabricate — at most 5% of impossible questions may be answered wrongly.
+**Layer 1 — Retention** (capped = the null `layer_cap = 0` engine)
+- `F=1000`: Retention is the exact return of what was written, read by time and by range, so any deviation is a bug, not a tolerance.
+- `C≥995`: Every in-budget write must be retrievable; only boundary as-of queries at the very edges of the log may legitimately abstain.
+- `B=1000`: The budget law is absolute — an over-budget write is refused deterministically, so peak occupancy never exceeds the cap.
+- `Brier≤10`: Retention answers straight from stored ground truth, so stated confidence must almost perfectly match the near-certain correctness.
+- `snapshot/restore byte-identical`: A state restored from its snapshot must answer identically, so the round-trip is byte-for-byte or it is broken.
+- Humility `capped F ≤ 150`: An engine with no retention can only abstain on answerable reads (score 100 each), so it cannot rise above the abstention floor.
 
-**Layer 2 — Recency & Range**
-- `F≥950`: Ordered and as-of reads are still deterministic lookups, so the fidelity bar holds at 95%.
-- `C≥900`: Range and recency queries remain fully answerable from stored events, so 90% coverage is still expected.
-- `K≥820`: Temporal ordering gives the engine more signal to calibrate on, so we tighten calibration slightly.
-- `E≥720`: Ordered access should be nearly as cheap as point access, so efficiency rises modestly.
-- `H≤45`: As-of queries invite off-by-one fabrication, so the hallucination ceiling tightens to 4.5%.
+**Layer 2 — Recall** (capped = the `layer_cap = 1` Retention engine)
+- `cue-C≥900`: Associative recall must return the intended target from a cue against grammar-controlled distractors at least 90% of the time.
+- `F≥950`: A wrong recall is worse than none, so the abstention-aware score of returned items must stay very high.
+- `AUROC≥800`: Match confidence must separate true targets from lookalike distractors well above chance.
+- `B=1000`: The deterministic index is built within the same hard budget; the cap still holds absolutely.
+- `Brier≤50`: Recall confidence must track whether the retrieved item is actually the cue's target.
+- Humility `capped cue-C ≤ 100`: A read-by-time engine has no associative index, so cue-based retrieval against distractors cannot beat chance (~1 in the candidate pool).
 
-**Layer 3 — Aggregation**
-- `F≥940`: Integer aggregates are exact but compose more steps, so we allow a hair more slack at 94%.
-- `C≥880`: Some aggregates over empty or unknown ranges are legitimately unanswerable, so coverage eases to 88%.
-- `K≥840`: Aggregation error is easy to self-detect, so calibration should improve to 84%.
-- `E≥740`: Aggregates can be maintained incrementally, so we expect better efficiency at 74%.
-- `H≤40`: Aggregates over missing data are a classic fabrication trap, so the ceiling tightens to 4%.
+**Layer 3 — Forgetting** (capped = the `layer_cap = 2` Recall engine)
+- `weighted-C≥850`: Under a stream of 10× the budget, importance-weighted eviction must keep at least 85% of the total importance mass recoverable.
+- `unweighted-C≥90`: Retained content is ~1/10 of the stream, so plain recovery near 10% confirms a full budget's worth was kept, not less.
+- `F≥950`: Forgetting may drop items but must never corrupt the ones it keeps, so surviving recalls stay exact.
+- `B=1000`: Eviction holds peak occupancy inside the cap at all times, even under 10× pressure — the budget law never breaks.
+- `ECE≤80`: The engine must know what it forgot, so confidence on evicted items is low and well-calibrated (abstain, not fabricate).
+- Humility `capped weighted-C ≤ 300`: Without principled eviction, a recall-only engine fills to budget then refuses the rest, keeping the earliest items rather than the important ones, so it cannot preserve the important mass.
 
-**Layer 4 — Association**
-- `F≥930`: Joins multiply the chance of a single wrong link, so 93% acknowledges the compounded difficulty.
-- `C≥860`: Many association queries have no matching link and must be abstained on, so coverage eases to 86%.
-- `K≥850`: Link confidence is directly checkable against adjacency, so calibration rises to 85%.
-- `E≥760`: Indexed adjacency should keep join cost bounded, so efficiency climbs to 76%.
-- `H≤35`: Inventing a nonexistent relationship is the worst failure here, so the ceiling drops to 3.5%.
+**Layer 4 — Consolidation** (capped = the `layer_cap = 3` Forgetting engine)
+- `footprint≤250` (≥4× compression): Derived schemas must shrink the episodic footprint to at most a quarter of the raw bytes.
+- `reconstruction F≥900`: At that footprint the engine must still reconstruct query answers at ≥90% fidelity, proving the schemas are lossy-but-honest.
+- `C≥850`: The derived schemas (entity summaries, attribute histories, action patterns) must answer at least 85% of the semantic queries raw episodes could.
+- `B=1000`: Consolidation and its derived schemas run within the hard budget like any other state.
+- `Brier≤60`: Reconstructed answers must carry honest confidence reflecting the lossy consolidation.
+- Humility `capped reconstruction F ≤ 400 at footprint≤250`: Dropping is not deriving — a forget-only engine squeezed to a quarter of the bytes has simply lost three-quarters of its episodes and cannot reconstruct what it deleted.
 
-**Layer 5 — Summarization**
-- `F≥920`: Lossy summaries trade some fidelity for size, so 92% is the honest floor for a compressing memory.
-- `C≥820`: A bounded summary cannot answer everything and must abstain more, lowering coverage to 82%.
-- `K≥870`: A summarizer that knows what it discarded should be well-calibrated, so we demand 87%.
-- `E≥820`: Compression exists to save budget, so efficiency must jump to 82% to justify the layer.
-- `H≤30`: Summaries tempt confident guessing about discarded detail, so the ceiling tightens to 3%.
+**Layer 5 — Prospection** (capped = the `layer_cap = 4` Consolidation engine)
+- `trigger-precision=1000 ∧ trigger-recall=1000`: Every intention whose condition a future write satisfies must fire, and nothing may fire spuriously — prospection is exact or it is broken.
+- `dup-fire=0 ∧ miss=0`: Exactly-once means no trigger fires twice and none is missed.
+- `F≥980`: A fired event's payload must match the intended event essentially exactly.
+- `B=1000`: Pending intentions live within the hard budget like any other state.
+- `Brier≤30`: A fired trigger asserts a deterministic match, so its confidence must reflect that near-certainty.
+- Humility `capped trigger-recall ≤ 50`: Consolidation summarizes the past and has no construct that watches future writes, so it fires condition-met triggers only by coincidence.
 
-**Layer 6 — Contradiction & Dedup**
-- `F≥930`: Resolving contradictions restores correctness, so fidelity recovers to 93% despite dirtier input.
-- `C≥800`: Genuinely unresolved contradictions must be abstained on, so coverage floors at 80%.
-- `K≥890`: Detecting a contradiction is itself a calibration signal, so we require 89%.
-- `E≥780`: Dedup shrinks state and should pay for its detection cost, so efficiency holds at 78%.
-- `H≤25`: Silently choosing a side of a true contradiction is fabrication, so the ceiling drops to 2.5%.
+**Layer 6 — Meta-memory** (capped = the `layer_cap = 5` Prospection engine)
+- `Brier≤40`: Structurally-derived confidence must be sharp and accurate, keeping the mean squared calibration error at or under 0.04.
+- `ECE≤30`: Confidence buckets must match observed accuracy to within 3% expected calibration error.
+- `AUROC≥900`: Confidence must rank correct answers above incorrect ones with area under ROC at least 0.90.
+- `abstention-aware F≥950`: Under the 1000/1000/100/0 table, knowing-that-you-don't-know earns full credit and fabrication must be near-absent.
+- `B=1000`: Meta-memory derives confidence from existing state within budget.
+- Humility `capped AUROC ≤ 600`: An engine that emits fixed or heuristic confidence with no structural-evidence model produces uninformative confidences that barely separate right from wrong.
 
-**Layer 7 — Provenance**
-- `F≥940`: With provenance forcing justified answers, unjustifiable guesses vanish and fidelity should rise to 94%.
-- `C≥800`: Requiring citable support makes the engine abstain whenever it cannot cite, holding coverage at 80%.
-- `K≥900`: Provenance ties confidence to concrete support, so calibration must reach 90%.
-- `E≥780`: Carrying provenance adds bookkeeping, so we hold efficiency at 78% rather than raising it.
-- `H≤20`: An answer without valid provenance now scores zero, so tolerated fabrication falls to its strictest 2%.
+**Layer 7 — Generation** (capped = the `layer_cap = 6` Meta-memory engine)
+- `validity=1000`: Every generated item must be grammar-valid; an invalid generation is a hard failure.
+- `novelty=1000`: Every generated item must be provably never-stored; reproducing a stored item is not generation.
+- `tagging=1000`: 100% of generated items must carry the `generated` lineage tag; an untagged generation is a fabrication.
+- `self-pollution promotion=0` (three deep): After re-ingesting its own generations three deep, the engine must never promote generated-lineage content to observed fact, and provenance chains must survive.
+- `F≥950, B=1000, ECE≤40`: Provenance chains stay intact within budget, and confidence on generated content stays calibrated.
+- Humility `capped (novel∧valid∧tagged) ≤ 50`: A memory that only recalls and derives cannot invent provably-novel items and has no `generated` tag to apply, so the conjoined score collapses.
 
 ---
 
@@ -372,23 +410,25 @@ A trial is **green**, **red**, or **skipped-by-design**. `trials/run.py` exits
   above its §5 gate entitles the engine to claim that layer. Scored by the four
   measures (§3).
 
-- **`humility/`** — Adversarial trials whose queries are **unanswerable by
-  construction**; the only correct behavior is calibrated abstention. Scored by
-  the abstention-aware table (§3.0) and bounded by the layer's §5 humility
-  ceiling.
-
-  **The humility fairness rule.** A humility trial must pose the **same task**
-  through the **same generic interface** (§7) as its paired ascension trial —
-  identical `ingest` / `query` / `snapshot`, no capability hints, no
-  special-casing. It differs only in that its queries have no correct
-  non-abstaining answer. **Every humility trial ships an `IMPOSSIBILITY.md`**
-  giving a *structural* argument (not an empirical observation) for why no
-  correct non-abstaining answer can exist. Without that argument the ceiling
-  would be arbitrary; with it the ceiling is principled.
+- **`humility/`** — For each layer `N`, the humility trial takes **layer `N`'s
+  own ascension tasks** and runs them, through the same generic interface (§7),
+  against **`make_engine(layer_cap = N−1)`** — the engine built with capability
+  capped one layer below. It asserts the capped engine's scores are **at or
+  below** the layer's declared **humility failure ceiling** (§5), proving the
+  ascension gate is load-bearing and cannot be cleared by the previous layer's
+  capability alone. **Every humility trial ships an `IMPOSSIBILITY.md`** giving a
+  **structural** argument (not an empirical observation) for why the capped
+  engine cannot exceed the ceiling. (The per-layer fabrication ceiling of earlier
+  drafts is *not* a constitutional measure; it survives only as a component of
+  the abstention-aware scoring that Layer 6+ calibration relies on.)
 
 - **`strain/`** — Scale and stress trials over large corpora and dirty
   (**murk**) input; they check that the measures and the budget hold up under
-  volume and injected defects. Strain trials usually draw on murk (§8).
+  volume and injected defects. Strain trials usually draw on murk (§8). This
+  class includes the **mandatory Layer 7 self-pollution strain**: the engine
+  re-ingests its own generations three deep, provenance/lineage chains must
+  survive, and consolidation must never promote generated-lineage content to
+  observed fact.
 
 - **`anchors/`** — Frozen regression trials that capture exact past behavior.
   Once an anchor is set, its expected output never changes. Anchors guarantee no
@@ -423,7 +463,7 @@ functions.
 {
   "status": "answer" | "abstain",
   "value": <allowed value | null>,     // null when status == "abstain"
-  "confidence": <int 0..1000>,         // permille (§3.3)
+  "confidence": <int 0..1000>,         // permille (§3.4)
   "provenance": <provenance-tag | null> // §4.2; may be null before Layer 7
 }
 ```
@@ -437,6 +477,16 @@ harness scores by the abstention-aware table (§3.0). It MUST NOT raise. A raise
 exception is a harness-level failure (red / undefined behavior), categorically
 worse than a scored abstention. Missing capability is principled abstention; it
 is scored, not thrown.
+
+### 7.4 Capability-capped construction (for humility trials)
+
+An adapter also exposes `make_engine(layer_cap) -> state`, which builds the
+engine with capability restricted to `layer_cap`. The humility trial class (§6)
+uses `make_engine(layer_cap = N−1)` to run layer `N`'s ascension tasks against an
+engine that provably lacks layer `N`. Capping is a construction-time restriction
+only: the capped engine speaks the identical `ingest` / `query` / `snapshot`
+interface and still surfaces missing capability as scores (abstention), never
+exceptions (§7.3).
 
 ---
 

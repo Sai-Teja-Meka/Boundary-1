@@ -20,15 +20,15 @@ A cultivator who fabricates an answer has already fallen, however clever the lie
 
 ## The Nine Realms (map to `BOUNDARY.md §5`)
 
-1. **Recall** — the first breath: to hold a thing and hand it back unchanged.
-2. **Recency & Range** — to feel the order of time by logical `t` alone.
-3. **Aggregation** — to count and total without a single float to corrupt the sum.
-4. **Association** — to see the threads between things.
-5. **Summarization** — to forget honestly: to compress and still confess what was dropped.
-6. **Contradiction & Dedup** — to hold two truths that cannot both stand, and not pretend.
-7. **Provenance** — to speak no answer it cannot cite; the realm where every word carries its witnesses.
-8. **Revision & Forgetting** — *sealed until the Phase 3→4 gate.*
-9. **Self-Audit & Adversarial Robustness** — *sealed until the Phase 3→4 gate.*
+1. **Retention** — the first breath: to hold a thing and hand it back unchanged, and to refuse honestly what will not fit the vessel.
+2. **Recall** — to find a memory by its scent (a cue), not its address — a deterministic index, never a neural whisper.
+3. **Forgetting** — to let go under pressure without losing what mattered; the flood is ten times the vessel.
+4. **Consolidation** — to distill a thousand episodes into a few true schemas, and reconstruct from them without lying.
+5. **Prospection** — to lay an intention across the future, and have it fire once, exactly, when its hour comes.
+6. **Meta-memory** — to weigh one's own certainty from the shape of the evidence, neither proud nor timid.
+7. **Generation** — to dream new-but-valid things, mark every dream `generated`, and never mistake a dream for a memory — even after drinking one's own dreams three cups deep.
+8. **Self-description** — *sealed until the Phase 3→4 gate:* to answer what one is, from one's own state alone.
+9. **Birth** — *sealed until the Phase 3→4 gate:* to bring forth a working child from the self-model, and watch it pass the first realm's every trial.
 
 ## Tribulations (map to the trial classes, `BOUNDARY.md §6`)
 
@@ -36,13 +36,15 @@ A cultivator who fabricates an answer has already fallen, however clever the lie
   *illegal*; no ascension is possible while a law is red.
 - **Ops** are basic forms — the footwork drilled before any duel.
 - **Ascension** is the breakthrough trial at the edge of each realm.
-- **Humility** is the **heart-demon tribulation**: it whispers questions with no
-  answers, and the only way through is to say *"I do not know."* Every humility
-  tribulation carries an `IMPOSSIBILITY.md` — the proof that the demon's
-  question was truly unanswerable, so that abstaining was wisdom and not
-  cowardice.
+- **Humility** is the **heart-demon tribulation**: your own former self — the
+  cultivator capped one realm below — is made to attempt this realm's trial.
+  If the lesser self could pass it, the breakthrough was an illusion. Every
+  humility tribulation carries an `IMPOSSIBILITY.md` — the structural proof that
+  the lesser self *cannot* pass, so the new realm is real and not vanity.
 - **Strain** is the **body-refining tribulation**: mountains of dirty fuel
-  (murk), to see whether the realm holds under weight.
+  (murk), to see whether the realm holds under weight — including drinking one's
+  own dreams three deep (the Layer 7 self-pollution trial) without mistaking them
+  for memory.
 - **Anchors** are **dao-foundation stones**: once set, they never move. To edit
   an anchor is to crack your own foundation.
 

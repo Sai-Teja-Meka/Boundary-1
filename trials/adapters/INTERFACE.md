@@ -28,7 +28,7 @@ these three pure functions.
 {
   "status": "answer" | "abstain",
   "value": <allowed value | null>,     // null when status == "abstain"
-  "confidence": <int 0..1000>,         // permille (§3.3)
+  "confidence": <int 0..1000>,         // permille (§3.4)
   "provenance": <provenance-tag | null> // §4.2; may be null before Layer 7
 }
 ```
@@ -43,21 +43,33 @@ exception is a harness-level failure (red / undefined behavior), categorically
 worse than a scored abstention. Missing capability is principled abstention; it
 is scored, not thrown.
 
+## 7.4 Capability-capped construction (for humility trials)
+
+An adapter also exposes `make_engine(layer_cap) -> state`, which builds the
+engine with capability restricted to `layer_cap`. The humility trial class (§6)
+uses `make_engine(layer_cap = N−1)` to run layer `N`'s ascension tasks against an
+engine that provably lacks layer `N`. Capping is a construction-time restriction
+only: the capped engine speaks the identical `ingest` / `query` / `snapshot`
+interface and still surfaces missing capability as scores (abstention), never
+exceptions (§7.3).
+
 ---
 
 ## Adapter contract (for trial authors)
 
-An **adapter** is the thin shim that presents a concrete engine as the three
-functions above. Adapters live under `trials/adapters/`. Until an engine exists
-there are no adapters, and every engine-gated trial reports
-`SKIPPED-BY-DESIGN`. An adapter is expected to expose, at minimum:
+An **adapter** is the thin shim that presents a concrete engine as the operations
+above. Adapters live under `trials/adapters/`. Until an engine exists there are no
+adapters, and every engine-gated trial reports `SKIPPED-BY-DESIGN`. An adapter is
+expected to expose, at minimum:
 
 ```
-empty() -> state                 # a fresh empty state
+empty() -> state                     # a fresh empty state
+make_engine(layer_cap) -> state      # a fresh state capped at layer_cap (§7.4)
 ingest(state, payload) -> (state, t)
-query(state, q) -> answer        # the Answer object of §7.2
-snapshot(state) -> bytes         # canonical JSON (§2.4)
+query(state, q) -> answer            # the Answer object of §7.2
+snapshot(state) -> bytes             # canonical JSON (§2.4)
 ```
 
 and, once the budget law binds (Layer 1, §4.1), an integer cost accessor such as
-`last_cost(state) -> int` so the budget-law harness can score Economy.
+`last_cost(state) -> int` so the budget-law harness can score the budget measure
+(§3.3).
