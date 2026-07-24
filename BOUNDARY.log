@@ -1,0 +1,1 @@
+[L0] [FORGE] constitution (BOUNDARY.md/LORE.md/CLAUDE.md) + corpora (prng, chronicle 50k, sessions 5k, murk 10k + ground_truth) + trial harness (laws, ops) <suite: 37/37 green, 3 skipped-by-design> <anchors: intact>

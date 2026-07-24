@@ -1,0 +1,16 @@
+# core/ stdlib import whitelist — FROZEN (see BOUNDARY.md §2.5)
+# One module per line. Comments (#) and blank lines are ignored.
+# This list is frozen: there is no amendment mechanism. It MUST agree
+# verbatim with BOUNDARY.md §2.5, and the import-whitelist law trial
+# enforces both that agreement and that every import in core/ is listed here.
+# `math` is permitted for INTEGER USE ONLY; any float-returning use is still
+# forbidden by the no-float prohibition (BOUNDARY.md §2.2).
+json
+fractions
+itertools
+functools
+collections
+hashlib
+math
+typing
+dataclasses
