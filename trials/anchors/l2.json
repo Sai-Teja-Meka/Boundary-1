@@ -1,0 +1,33 @@
+{
+  "layer": 2,
+  "move": "ASCEND",
+  "note": "Layer-2 anchors. Each entry is the canonical-state SHA-256 (core.layers.l2_recall.state_checksum: sha256 over the canonical encoding of the FULL state body, INDEX INCLUDED, BOUNDARY.md §2.4) after replaying a frozen base corpus into a fresh recall engine at layer_cap=2, DEFAULT_BUDGET. These are NEW anchors, not a change to anchors/l1.json: L1's anchors record replay under make_engine(layer_cap=1) and stay byte-identical forever; L2's index changes post-replay state, so it is anchored separately under layer_cap=2. The capped constructor is what makes old anchors eternal. Anchors are frozen: never edited after this session (BOUNDARY.md §9, CLAUDE.md §5).",
+  "default_budget": 1000000000,
+  "minhash_k": 16,
+  "corpora": {
+    "chronicle": {
+      "seed": 1001,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 65039,
+      "index_atoms": 6792,
+      "state_sha256": "9a57e6bd8931a31273495a49cfba27585b04731f9d224b67866d77c5f5be32fc"
+    },
+    "sessions": {
+      "seed": 2002,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 66028,
+      "index_atoms": 5573,
+      "state_sha256": "7bcb6d36f1f4b001f392e75e0a688c943cd87c83e34c4fc764667c262c3b4c95"
+    },
+    "murk": {
+      "seed": 3003,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 65127,
+      "index_atoms": 6336,
+      "state_sha256": "b970f0def97ed715bf2614dfddb93d17b93c8cbb884c380b449bb417b487205d"
+    }
+  }
+}
