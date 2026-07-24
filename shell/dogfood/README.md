@@ -1,0 +1,200 @@
+# shell/dogfood — the engine as its own memory
+
+`[L2] [DOGFOOD]`, first run. This is the adapter that makes Boundary-1 the memory
+of the project that is building it. One session is one event; the whole store is
+this project's history, held by the engine the history is about.
+
+The shell does the I/O and the engine stays pure (§2.2, §2.6): `shell/` imports
+`core/`, `core/` never imports `shell/`. Persistence lives here, as a state file.
+No engine code was changed to make this work.
+
+```
+python3 -m shell.dogfood remember --move DOGFOOD --log-line "[L2] [DOGFOOD] …"
+python3 -m shell.dogfood remember --json -        # a summary as JSON on stdin
+python3 -m shell.dogfood recall graphiti bitemporal
+python3 -m shell.dogfood status
+```
+
+Exit codes: `0` success — **including an abstention**, which is a correct answer
+(§3.0); `1` usage/schema error; `2` the state file failed its integrity check;
+`3` the write was refused by the budget law (§4.1). `remember` prints the
+engine-assigned `t` on stdout and its bookkeeping on stderr, so
+`t=$(… remember …)` is legal.
+
+## The event
+
+The schema follows the `corpora/sessions` grammar's shape — a `kind`-tagged
+object of integers and strings — with the session-summary fields:
+
+```json
+{"kind":"session_summary","project":"…","move":"…","decisions":["…"],
+ "files_touched":["…"],"open_questions":["…"],"log_line":"…","tok":{"…":1}}
+```
+
+`t` is never in the payload: it is engine-assigned and engine-owned (§1.3).
+
+`tok` is the **cue surface**, and it is the one piece of shaping the shell does.
+Layer 2 answers only when one stored event contains the whole cue probe, and a
+probe is a partial payload — so a free-token cue like `graphiti bitemporal` is not
+expressible against prose fields, because nothing in the payload is keyed by a
+bare word. `tok` gives it one: the set of normalized tokens of every text field.
+Two details are forced by the engine, not chosen:
+
+* **an object, not a list** — the index flattener index-qualifies list items
+  (`tok.0=graphiti`), which would make a cue position-dependent; an object yields
+  the position-free atom `tok.graphiti=1`;
+* **a constant `1`, not a count** — a cue carries `1`, so an event carrying `3`
+  would be a different atom and would miss. `tok` is a set, and says so.
+
+A cue is then exactly what the engine already implements — the conjunction of its
+atoms — and the shell computes no scores of its own.
+
+Normalization is deterministic and library-free (no `re`, no stemmer): lowercase,
+split on every character outside `[a-z0-9]`, keep runs of ≥ 2 characters. The
+same function runs on both sides, so what a summary was written with is exactly
+what it can be found by.
+
+`move` is validated as a non-empty string, **not** against the §9.1 move set:
+`BOUNDARY.log` carries `FORGE-CORRECTION` and `THEORY`, which that set does not
+list. A store that refused its own project's history would be the wrong kind of
+strict.
+
+## Decision 1 — the budget
+
+`DOGFOOD_BUDGET = 2**24 = 16,777,216` work units, chosen once at store creation
+and thereafter part of the state (`shell/dogfood/store.py`). The engine's own
+`DEFAULT_BUDGET` is a trial-scale number; a store meant to outlive the project
+deserves a considered one.
+
+The arithmetic. Measured over the 13 backfilled log events — payload cells plus
+index cells, the accounting of §4.1 — one event costs **min 68, mean 258, max 490**
+work units. Budget a deliberately fat **4,096 units per event**, eight times the
+largest real one, room for a session summary many times longer than any written
+so far:
+
+```
+16,777,216 / 4,096 = 4,096 events   ≈ 11.2 years at one session per day
+16,777,216 /   490 = 34,239 events  ≈ 93 years at the observed worst case
+16,777,216 /   258 = 65,027 events  ≈ 178 years at the observed mean
+```
+
+At the actual cadence of this project — a few sessions a week — the fat estimate
+alone is a lifetime of headroom. The cap is a power of two, exact, integer, and
+never a float.
+
+When it does bind, it binds honestly: the budget law **refuses** the write and
+evicts nothing (§4.1). The CLI exits `3` and says so. Layer 3 will be the layer
+that can do something better than refuse; until then, refusal is the honest
+answer, and a store that fills is a signal to ascend, not to quietly drop the
+oldest session.
+
+## Decision 2 — where the state file lives, and what it is
+
+`shell/dogfood/store/store.json`, inside the repository. The project's own memory
+belongs in the project's own history: it is reviewable in a diff, it travels with
+a clone, and a session that reads it needs nothing but the checkout.
+
+**It is not a frozen artifact.** §9.2 freezes old layers, frozen trials, frozen
+corpora, anchors, and `BOUNDARY.md`. The store is none of those. It **grows by
+use** and is committed with each session, and its bytes change every time.
+
+**It is engine-owned.** The file is exactly `snapshot(state)` — canonical JSON,
+sorted keys, no trailing newline — so `sha256(file)` is a checksum of the state
+itself. It is written only by `remember`, only through the engine, and it is
+**never hand-edited**. There is no need for that rule to be enforced socially: a
+hand edit changes the body without changing the envelope checksum, and the next
+command refuses to run (below). Nor is it a corpus — §8's byte-match and
+real-data doctrines govern corpora, and the store is neither generated from a
+seed nor a frozen snapshot of anything.
+
+One property worth keeping: because the backfill walked `BOUNDARY.log` in order
+and every session from now on remembers its own line before committing, **event
+`t` equals the log line index**. The store does not enforce that — the ritual
+does. If a session ever commits without remembering, the alignment is gone and
+the store is still correct; it is a convenience, not an invariant.
+
+## Decision 3 — corruption fails loudly
+
+`restore` raises `CorruptSnapshot` on any corruption — a flipped bit, a
+truncation, a tampered payload, an index that diverges from the log (README-l1,
+README-l2). The shell surfaces that as `StoreCorrupt` and the CLI stops:
+
+```
+FATAL: the dogfood state file failed its integrity check.
+  path:   shell/dogfood/store/store.json
+  reason: snapshot checksum mismatch (corruption detected)
+The Layer-1 checksum law fails loudly (README-l1): a store that does not verify
+is never silently re-initialized, repaired, or ignored. Restore it from git
+history (git checkout -- shell/dogfood/store/store.json) or delete it deliberately.
+```
+
+Exit code `2`, nothing written, nothing answered. **There is no silent re-init
+path in the code** — not a fallback, not a `--force`, not a repair mode. A
+memory that quietly starts over when it cannot read itself is worse than one that
+stops, because it looks identical to one that never had anything to say.
+
+A **missing** store is not a corrupt store: `remember` initializes a new one and
+announces it on stderr; `recall` and `status` say there is nothing yet and exit
+`1`. Only a file that exists and does not verify is fatal.
+
+## recall, and why it abstains so often
+
+`recall` asks the engine and prints what it says. A hit prints the match with its
+`t`, its confidence in permille, its provenance tag, and the summary formatted to
+paste into a session preamble. Everything else prints an **explicit abstention**
+— never empty silence (§7.3) — diagnosed into the two honest Layer-2 boundaries:
+
+* *no stored event carries `<token>`* — the cue misses;
+* *N stored events carry the whole cue, and Layer 2 answers only when exactly one
+  does* — the cue is ambiguous, and all N are listed.
+
+Both cases also print the per-token document frequencies, and the miss case
+prints the nearest events by cue overlap. Those listings are labelled **"context,
+not an answer"**, and they are not the engine's answer: the engine abstained, and
+the shell does not launder that into a guess. The diagnosis itself is
+engine-derived — a single-token cue's `recall_ranking` *is* that token's posting
+list — so the shell re-implements no index logic.
+
+Abstention is not failure here. Under §3.0, knowing that you do not know is worth
+exactly as much as knowing; the CLI exits `0`.
+
+## Backfill
+
+`python3 -m shell.dogfood.backfill` parses `BOUNDARY.log` into one summary per
+line and prints them as JSON; the operator pipes each into `remember`, so
+`remember` stays the only writer and a backfilled event travels the same schema
+validation, the same tokenizer, and the same budget law as a live one. What is
+derived and how honestly is documented in that module's docstring; the short
+version is that `log_line` is verbatim, `decisions` is a mechanical `;`-split of
+the prose, `files_touched` is a conservative path extraction, and
+`open_questions` is **always empty**, because the log never recorded them and
+inventing them would be fabrication.
+
+## The ritual gains a step
+
+From the next session onward, the closing step of every session is:
+
+```
+python3 -m shell.dogfood remember --move <MOVE> --log-line "<the BOUNDARY.log line>" \
+    [--decision …] [--file …] [--question …]
+```
+
+before the commit, so the store and the log stay in step and the next session can
+recall what this one decided. `git add shell/dogfood/store/store.json` — the
+store is committed with the move it records.
+
+## Files
+
+| file | what it is |
+|------|------------|
+| `event.py`    | the session-summary schema, the tokenizer, the cue surface |
+| `store.py`    | the budget, the state-file location, load/save, corruption |
+| `cli.py`      | `remember` / `recall` / `status`, and all rendering |
+| `backfill.py` | `BOUNDARY.log` → session summaries (writes nothing) |
+| `store/store.json` | the state file: engine-owned, committed, never hand-edited |
+| `FIELD.md`    | what chafed, in use |
+
+Trials: `trials/ops/dogfood/` — schema validation, a round trip through a real
+temp state file, abstention output shape, corruption → loud failure, and a
+read-only check that the committed store still restores. Shell code is testable;
+it is only `core/` that must stay pure.
