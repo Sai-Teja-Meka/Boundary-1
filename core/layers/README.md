@@ -1,11 +1,15 @@
 # core/layers/
 
-Per-layer engine code, one subdirectory per claimed layer (`layer1/`, `layer2/`,
-…), each with its own `README.md`. Added one layer at a time by `ASCEND` moves.
+Per-layer engine code, one module per claimed layer (`l1_retention.py`, …), each
+with its own `README-lN.md`. A layer is laid down by the `FORGE` that first
+builds it and claimed by the `ASCEND` that clears its gate.
 
-Empty at Phase 0 — the engine does not exist yet. Once a layer is claimed its
-code is **frozen**: it is never edited (§9). A newer layer builds on the frozen
-layers beneath it.
+Claimed layers:
+- **Layer 1 — Retention** — `l1_retention.py` (`README-l1.md`). The honest floor:
+  write / read-by-time / read_range / snapshot / restore, budget law binding.
 
-Per `CLAUDE.md §1`, every session reads the most recent layer's `README.md`
-before acting.
+Once a layer is claimed its code is **frozen**: it is never edited (§9). A newer
+layer builds on the frozen layers beneath it.
+
+Per `CLAUDE.md §1`, every session reads the most recent layer's README
+(currently `README-l1.md`) before acting.

@@ -1,0 +1,29 @@
+{
+  "layer": 1,
+  "move": "FORGE",
+  "note": "The first anchors of the project. Each entry is the canonical-state SHA-256 (core.engine.state_checksum: sha256 over the canonical encoding of the state body, BOUNDARY.md §2.4) after replaying a frozen Phase-0 corpus into a fresh full Layer-1 engine at DEFAULT_BUDGET. Anchors are frozen: never edited after this session (BOUNDARY.md §9, CLAUDE.md §5).",
+  "default_budget": 1000000000,
+  "corpora": {
+    "chronicle": {
+      "seed": 1001,
+      "n": 50000,
+      "next_t": 50000,
+      "occupancy": 395632,
+      "state_sha256": "5a70ea7d27b899ab564a10dd6dc5a18de345a13e8f4e43840ca44d0fb67ddee0"
+    },
+    "sessions": {
+      "seed": 2002,
+      "n": 5000,
+      "next_t": 5000,
+      "occupancy": 42600,
+      "state_sha256": "ee5332288af1889622c6df0c052f55587ed2ad8ef527cd63d4349fb27f7e67c4"
+    },
+    "murk": {
+      "seed": 3003,
+      "n": 10000,
+      "next_t": 10000,
+      "occupancy": 79446,
+      "state_sha256": "685ec46d91e8cdea556eadc06b831c5be0dc2523a4e4decb5d9e7f94e41ebe0e"
+    }
+  }
+}
