@@ -1,0 +1,57 @@
+{
+  "layer": 3,
+  "move": "ASCEND",
+  "note": "Layer-3 anchors. Each entry is the canonical-state SHA-256 (core.layers.l3_forgetting.state_checksum: sha256 over the canonical encoding of the FULL state body — retained records, handle index, and aggregated forgetting record, BOUNDARY.md §2.4) after replaying a frozen corpus into a fresh forgetting engine at layer_cap=3. These are NEW anchors, not a change to anchors/l1.json or anchors/l2.json: those record replay under make_engine(layer_cap=1) and make_engine(layer_cap=2) through their own engines and stay byte-identical forever; the capped constructor is what makes old anchors eternal. The base corpora entries anchor Layer-3 retention and its cheaper handle index at DEFAULT_BUDGET (no eviction: evicted=0). The l3streamb_under_pressure entry anchors what this layer is actually for — the exact post-eviction state at the gate's own 11000-unit cap, so a drift in the importance law, the eviction order, the tie-break, the forgetting record's coarsening, the cost model, or the serializer moves the hash and turns the suite red. Anchors are frozen: never edited after this session (BOUNDARY.md §9, CLAUDE.md §5).",
+  "default_budget": 1000000000,
+  "handle_fields": ["tag", "id", "entity", "sid", "src", "dst"],
+  "forget_buckets": 16,
+  "forget_width0": 64,
+  "corpora": {
+    "chronicle": {
+      "seed": 1001,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 17785,
+      "retained": 2000,
+      "index_atoms": 597,
+      "evicted": 0,
+      "state_sha256": "5e260fa1de68ca0595b3375b6e707a73e92c248773b3b75a10b8fa8c7f90b1d0"
+    },
+    "sessions": {
+      "seed": 2002,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 19017,
+      "retained": 2000,
+      "index_atoms": 288,
+      "evicted": 0,
+      "state_sha256": "3e76b890c7a7ea5b878feb01eeae218be7a0db2b0a2d99c1eeb6103ef91bbf06"
+    },
+    "murk": {
+      "seed": 3003,
+      "n": 2000,
+      "next_t": 2000,
+      "occupancy": 17769,
+      "retained": 2000,
+      "index_atoms": 560,
+      "evicted": 0,
+      "state_sha256": "6d9aff74a5897c0ed0e2d8def9c5d8e9db2a93ee839a32ec27a56c42f36d1276"
+    }
+  },
+  "pressure": {
+    "l3streamb_under_pressure": {
+      "seed": 5005,
+      "n": 10000,
+      "budget_cap": 11000,
+      "next_t": 10000,
+      "occupancy": 10991,
+      "retained": 914,
+      "index_atoms": 914,
+      "evicted": 9086,
+      "evicted_mass": 18207,
+      "forget_width": 1024,
+      "forget_buckets": 10,
+      "state_sha256": "35be6714dc08364df60f40d6ec4630d0624e820bd377b7fa96669be38208f933"
+    }
+  }
+}
