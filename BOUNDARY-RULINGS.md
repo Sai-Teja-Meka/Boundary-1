@@ -473,3 +473,318 @@ beyond what eviction accounts for, the diagnostic is where it will show.
 - `trials/ascension/l3/ATTAINABILITY.md` — the 198‰ arithmetic, on the record.
 - `trials/laws/t_rulings.py` — that this ruling exists and is cited by the trials
   that apply it.
+
+---
+
+# R4 — The Layer 4 ascension gate binds on `corpora/l4stream`
+
+**Status:** FROZEN on commit.
+**Binds:** the Layer-4 ascension trials (`trials/ascension/l4/`) and the Layer-4
+humility trial (`trials/humility/l4/`), when it exists; clauses 2, 3 and 5 bind
+wider, and say so in their own text.
+**Authority:** `BOUNDARY.md §5 L4`, `§5.1 L4`, `§3` (the permille unit and §3.5's
+rounding rule), `§4.1` (the budget law and its cost model), `§8` (the corpora
+doctrine); `BOUNDARY-RULINGS.md R1` (the precedent for binding a stated threshold
+to a corpus), `R2` (which required the arithmetic this ruling rests on to exist
+first), `R3` (whose scope this ruling deliberately does **not** extend). Resolves
+the three questions put for decision in `trials/ascension/l4/ATTAINABILITY.md §6`
+and drafted in `trials/ascension/l4/RULING-R4-DRAFT.md`.
+**Holding:** the ratified L4 thresholds stand **unchanged**; `footprint ≤ 250` is
+read in **permille of the raw episodic footprint**; state is priced under
+**rule P**, one cell per grammar atom; the gate binds on **`corpora/l4stream`**;
+`corpora/chronicle` and `corpora/murk` are scored as **ungated diagnostics**;
+`F` at Layer 4 binds under the **literal §3.0 table**, no extension of R3 taken.
+
+## The question
+
+`BOUNDARY.md §5 L4` states the Layer-4 ascension gate as
+
+```
+footprint≤250 (≥4× compression) at reconstruction F≥900, C≥850, B=1000
+```
+
+and leaves three things open, each of the kind this document's own preamble names
+as legitimately rulable — *which reading of a ratified defense sentence the trials
+implement*, *which corpus a stated gate binds on*, and *what procedure binds
+future gates*:
+
+1. **In what unit is `250`?** The constitution gives a bare number.
+2. **On which corpus?** §5 L4 names none, exactly as §5 L3 named none.
+3. **How is a state priced?** §4.1 charges one cell per scalar and per key and
+   says nothing about what a scalar may *contain*, so an unconstrained state
+   could pack a corpus into one integer and price it at one cell.
+
+The Layer-4 `ASCEND` session answered all three in arithmetic before any engine
+existed — R2's obligation, discharged in the order R2 fixed — found that **the
+frozen chronicle family cannot admit the ratified gate under any policy
+whatsoever**, froze `corpora/l4stream` on the append-only path `l3streamb` took,
+stopped at the Stage-A boundary, and deliberately did **not** append its own
+ruling. This is that ruling.
+
+## The ruling
+
+### 1. The thresholds stand, and the gate binds on `corpora/l4stream`
+
+**The ratified thresholds stand, unchanged.** `footprint ≤ 250`,
+`reconstruction F ≥ 900`, `C ≥ 850`, `B = 1000`, and the humility ceiling
+`capped reconstruction F ≤ 400 at footprint ≤ 250` are ratified text and are not
+touched, softened, rescaled, or read as a fraction of anything.
+
+**The Layer-4 ascension gate binds on `corpora/l4stream`** (seed `6006`,
+`n = 20 000`, `raw_cells = 173 200`, `budget_cap = 43 300`), where the
+discrimination R2 requires holds on both sides — and the upper side is
+**exhibited, not argued**: a concrete state (the exact interval table, the global
+counters, and 854 of the 1 212 irreducible `note` events) fills 43 299 of the
+43 300 cells the footprint allows and answers the whole battery.
+
+| policy | C | reconstruction F |
+|---|---|---|
+| **exhibited oracle state** (43 299 cells, footprint 250‰) | **1000** | **984** |
+| **the ratified gate** | **850** | **900** |
+| verbatim-truncation at 250‰, keep-latest | 247 | 325 |
+| verbatim-truncation at 250‰, keep-first | 249 | 327 |
+| current-value-table-only (6 102 cells, 35‰) | 155 | 100 |
+| `make_engine(layer_cap = 3)` at 250‰, arithmetic upper bound | 200 | **325** |
+
+- **Strictly below the oracle** (R2 obligation 1): `850 < 1000`, `900 < 984`.
+- **Strictly above every named baseline** (R2 obligation 2): `850 > 249`,
+  `900 > 327`.
+- **The §5 L4 humility ceiling is honest and not vacuous**: the capped engine's
+  arithmetic bound is **325**, under the ratified **400** and above the 100
+  abstention floor. The ceiling binds without being unreachable.
+
+`F = 984` and not 1000 because the corpus declares an **irreducible tier**: 1 212
+`note` events carrying globally unique `text_id`s, which no schema regenerates and
+which the footprint cannot wholly afford. The `F ≥ 900` gate therefore measures
+honest lossy compression rather than a corpus with nothing to lose.
+
+**`corpora/chronicle` and `corpora/murk` remain, and are scored as ungated
+diagnostics**, on the conditional-arithmetic-skip mechanism R1 clause 5 endorsed
+as permanent: their ceilings are computed, recorded and drift-checked; a Layer-4
+gate trial on them skips **only while** the ceiling lies below the gate, and
+engages by itself if that ever changes. Neither corpus is retired, neither's
+bytes change, and murk keeps its Layer-4 obligation in full — its **305 recorded
+contradictions** (`corpora/murk/ground_truth.json`) are the answer key against
+which consolidation must resolve or abstain per §3.0, which is a **strain**
+obligation and not a gate. A corpus can be the right dirt without being the right
+ruler.
+
+### The two causes, recorded verbatim
+
+> Chronicle's exact history schema costs **151 780 cells = 384‰** against a
+> **98 908**-cell budget — short by **52 872** — because **identification does not
+> compress**: **35 947 of its 41 785 `(entity, key)` pairs are asserted exactly
+> once and never superseded**, so `9 985 + 41 785 = 51 770` cells of any exact
+> history schema go on naming pairs rather than on their values. **AND** chronicle
+> cannot tell consolidation from a table of last-writes: **a current-value table
+> with no history whatsoever scores 697 against a 735 optimum — 95%** (on murk,
+> 647 against 754, 86%). **Either cause alone voids a gate bound there.**
+
+Each half is load-bearing and neither is a restatement of the other, so each is
+stated again in its own right:
+
+- **The footprint arithmetic is a bound over all policies, not a difficulty.**
+  Consolidation buys compression from **redundancy**, and chronicle has
+  **1.197×** where the gate demands **4×**; `836‰` of its assertions are their
+  pair's latest. Its oracle ceiling at 250‰ is `C ≤ 735` against an 850 gate and
+  `F ≤ 683` against a 900 gate — short by 115‰ and 217‰. This is R1's category:
+  not a gate an engine might fail, but a gate the arithmetic forbids anything from
+  passing. Murk inherits chronicle's grammar and therefore its shape: 364‰,
+  `C ≤ 754`, `F ≤ 711`, short by 9 088 cells.
+
+- **The discrimination failure is independent of it, and would survive its
+  repair.** Even if chronicle's ceiling somehow reached the gate, R2 obligation 2
+  would void a gate bound there, because a policy containing **no consolidation at
+  all** — no history, no as-of, no interval, no pattern fold — comes within 38‰ of
+  the best any state in the family can do. That is R1's `l3stream` finding
+  arriving one layer up: there a keep-latest ring buffer *tied* the optimum, so
+  the corpus could not distinguish an importance ordering from an arrival
+  ordering. On `l4stream` that same history-free policy is pinned at **155 against
+  a 1000 ceiling — 16%**.
+
+Recording both is not belt-and-braces. A later session that repairs the first
+cause — a denser chronicle, a re-forged grammar — must not read this entry as
+licensing a Layer-4 gate there, because the second cause is untouched by that
+repair and voids the binding on its own.
+
+### 2. `footprint ≤ 250` is 250 permille of the raw episodic footprint
+
+```
+raw_cells   = Σ_t event_cost(payload_t)        the episodic footprint (§4.1)
+footprint‰  = permille(state_cells / raw_cells)
+the gate    = footprint‰ ≤ 250   ==   state_cells ≤ raw_cells // 4
+budget_cap  = raw_cells // 4                   (§4.1, the same number)
+```
+
+This is **the only reading under which three ratified sentences agree**, and each
+of the three says something different under any absolute reading:
+
+- §5 L4's own parenthetical, `(≥4× compression)`: `1000 / 250 = 4`.
+- §5.1 L4's defense: *"shrink the episodic footprint to at most a quarter of the
+  raw bytes"* — a quarter is 250‰.
+- §5.1 L4's humility defense: *"a forget-only engine squeezed to a quarter of the
+  bytes has simply **lost three-quarters of its episodes**."* Measured, the
+  `layer_cap = 3` engine at this cap holds **250‰ of `l4stream`'s episodes**
+  (5 010 of 20 000) — three-quarters lost, exactly as defended. Under an absolute
+  reading of `250` *units* the same engine holds `250 // 12 = 20` episodes of
+  20 000, has lost 99.9% of them, and the ratified defense sentence describes
+  nothing that happens.
+
+§3 is also the constitution's own answer to *"in what unit"*: every measure it
+defines is calibrated to an integer **in permille**, and §3.5 supplies the one
+rounding rule. Under this reading the footprint gate and the §4.1 budget cap are
+one number certified twice — `B = 1000` after every write (§3.3, §4.1.2),
+`footprint ≤ 250` on the final state — and the two ratified clauses stop being
+redundant beside each other.
+
+**The erratum.** `core/layers/README-l3.md §4` reads the same clause as
+*"`≤ 250` units"* and derives `250 // 12 = 20` items from it. That README is
+frozen (§9.2). Its **historical text is not edited**; a **dated erratum note** is
+placed above it recording that this ruling supersedes the parenthetical, in the
+form the `PULSE` session established for the `autopsy/*/ANATOMY.md` errata. The
+seam that section actually draws is untouched and in fact sharper under this
+reading: a forget-only engine at 250‰ retains 5 010 of `l4stream`'s episodes and
+still cannot reconstruct the other 14 990.
+
+### 3. Pricing rule P — one cell, one grammar atom
+
+> **Rule P.** Every stored cell holds exactly one **grammar atom** — an entity id,
+> a vocabulary token, an attribute value, or a logical `t`. A composite key
+> (`"7:status"`), a bit-packed integer, or any concatenation carrying more than
+> one atom is priced at the **number of atoms it carries**, not at one cell.
+
+Without rule P no footprint number means anything: §4.1's cost model charges per
+scalar and per key without constraining what a scalar contains, so a state could
+serialize a corpus into a single integer and claim a footprint of one cell, and
+every ceiling in `ATTAINABILITY.md` would be a wish rather than a bound.
+
+Rule P is ruled as a **general** pricing rule, not a Layer-4 one: it makes every
+footprint and occupancy figure in the project mean what it has always been read to
+mean. It is the smallest constraint that closes the hole while changing no
+ratified sentence — it does not alter `payload_cost`, it states what a *lawful*
+state may put in a cell, and it is checkable structurally rather than by
+inspection. Layers 1–3 already satisfy it (they store grammar values verbatim), so
+this clause changes no existing score, and the Layer-4 engine is to be held to it
+structurally when it is written.
+
+### 4. `F` at Layer 4 binds under the literal §3.0 table — the concession is declined
+
+R3 excludes Layer 4 in its own text: *"Layers 1, 2, 4, 5, 6 and 7 score F under
+the literal §3.0 table unless and until a later ruling says otherwise about a
+specific one of them."* **This ruling is not that ruling and does not ask to be.**
+At Layer 4 an honest abstention on an answerable reconstruction scores **100**, so
+
+```
+F ≥ 9/10   ⟺   at least 8/9 of all events reconstructed EXACTLY
+```
+
+exactly on the `Fraction`, which is where §3.1 defines `F`; §3.5's permille
+calibration concedes half a permille point on top — 11 events of 20 000 on
+`l4stream` — and that concession is asserted **in the measure** rather than
+rounded past.
+
+The exhibited witness clears that gate under the literal table — **984 ≥ 900** —
+**without any extension**. The layer does not need the friendlier reading, so it
+does not take it. The corruption reading is computed alongside as the ungated
+diagnostic `F_corruption` (1000 on the witness): **R3's pairing inverted**, so the
+**stricter** number binds and the looser one is merely on display.
+
+**No slack was taken here, and none is available to re-litigate.** A later session
+that finds Layer 4 hard must not cite this entry as a precedent for extending R3
+to it: the record shows the concession was available, examined, and declined
+because the gate was attainable without it. Reopening it would require a new
+ruling arguing that the arithmetic changed — not that the engine did.
+
+### 5. Methodology: exhibit the ceiling where a witness can be built
+
+**Forward-binding alongside R2, at every layer, including `BOUNDARY-HIGH.md` when
+it is written.** Where a concrete witness state can be constructed, a Stage-A
+oracle ceiling is to be **EXHIBITED, not merely argued**: the `ATTAINABILITY.md`
+must name a state, price it against the budget, score it, and assert that state in
+the drift trial — not only bound what some declared family of states could reach.
+
+The Layer-4 form **supersedes the Layer-3 form as preferred practice.** R1's
+918‰ ceiling is a maximization over a family of retain-or-drop policies: sound,
+and it remains sound. Layer 4's is a state that exists, whose cells are counted,
+and whose scores are computed. The difference matters twice over. An argued
+ceiling is only as good as the family it quantifies over, and a mis-declared
+family is a silent error that flatters the corpus; an exhibited one needs no
+family assumption on the side where R2 obligation 1 bites. And a family
+maximization that *agrees* with an exhibited witness — as it does here, `C ≤ 1000`
+and `F ≤ 984` — is a check on the maximization rather than a substitute for it.
+
+The obligation is conditional by design, and the condition is the honest part:
+where no witness can be constructed — because the gate is unattainable there, as
+on the chronicle family, or because the construct family is genuinely infinite —
+the argued form remains legitimate and R2 is satisfied by it. What is ruled out is
+arguing a ceiling when a witness was available and simply not built.
+
+## Rationale
+
+The repair belongs at the binding, not at the number, and for the same reason as
+in R1: nothing in §5 L4 or §5.1 L4 mandates a write-once world. The conflict was
+never between the gate and the constitution — it was between the gate and one
+generator's free choice of *history shape*, made before anyone computed what that
+choice implied. Chronicle was forged at Phase 0 to be a large, plausible event
+log; nobody asked it to be redundant, and it is not. `footprint ≤ 250` demands 4×
+redundancy and chronicle supplies 1.197×.
+
+**No engine's inability motivated this.** `core/layers/l4_consolidation.py` does
+not exist. The Layer-4 ASCEND session withheld it at the sanctioned Stage-A
+boundary precisely so that this ruling would be decided against arithmetic rather
+than against a score, and the ordering R2 fixed — *attainability arithmetic →
+trials → engine* — is what made that withholding a rule rather than a virtue. As
+in R1: had an engine existed, this ruling should have been harder to obtain.
+
+**And this ruling is harder to obtain than R1 was, deliberately.** R1 rebound a
+gate whose binding corpus made it unreachable. Here the reachability finding is
+**paired with an exhibited witness on the new corpus** and with a second,
+independent ground — the discrimination failure — that would void the old binding
+even if the first were repaired. Clause 5 makes that pairing the standing
+expectation rather than this session's good manners.
+
+The two readings ratified in clauses 2 and 3 are of a different character from the
+binding, and are stated separately for that reason. Neither is a choice between
+defensible alternatives: clause 2 is the only reading under which three ratified
+sentences are one sentence, and clause 3 is the difference between a footprint
+measure and a number that can be driven to 1 by encoding. Ratifying them settles
+what the trials implement; it does not add to what the constitution demands.
+
+## What this ruling does not do
+
+- It does **not** amend `BOUNDARY.md`. No ratified sentence is edited or reread.
+- It does **not** change any threshold, in either direction, on any layer.
+- It does **not** retire `corpora/chronicle` or `corpora/murk`, weaken their ops
+  trials, or touch their frozen bytes; murk's Layer-4 strain obligation is
+  unchanged and its 305 contradictions still bind as an answer key.
+- It does **not** edit `core/layers/README-l3.md`'s historical text. Clause 2
+  supersedes one parenthetical in a frozen document by stating the better reading
+  on the record and placing a dated erratum note above it; the historical text
+  stays as it is, wrong on that point, forever.
+- It does **not** extend R3 to Layer 4, or to anything (clause 4).
+- It does **not** license "score it on an easier corpus". R1 refused that reading
+  of itself and the refusal is repeated here: the §5 corpus preconditions bind
+  first, the arithmetic is a check applied to a corpus already admissible, and
+  `l4stream` is *harder* in the sense that matters — chronicle cannot distinguish
+  consolidation from a table of last-writes, and `l4stream` pins that same policy
+  at 155 against a 1000 ceiling.
+- It does **not** claim Layer 4, grant a Layer-4 capability, or license an engine.
+  It settles what the Layer-4 trials measure and on what. Stage B onward —
+  `trials/ascension/l4/t_consolidation.py`, `trials/humility/l4/` and its
+  mandatory `IMPOSSIBILITY.md` (§6), and only then the engine — is unwritten, and
+  R2's standing step still orders it.
+
+## Enforcement
+
+- `trials/ascension/l4/ATTAINABILITY.md` — the recorded arithmetic this ruling
+  rests on, now citing R4 as the authority that ratified its three questions.
+- `trials/ascension/l4/t_attainability.py` — the exhibited witness, the
+  discrimination check on `l4stream`, the chronicle-family finding stated as the
+  condition that lifts its own deferral, and the drift check over every recorded
+  number.
+- `trials/ops/l4/t_l4stream.py` — the corpus properties the discrimination rests
+  on: bounded population, declared redundancy, the irreducible tier, and the
+  contrast with the chronicle family.
+- `trials/laws/t_rulings.py` — the gate registry, where the five Layer-4 constants
+  now carry this entry beside their §5 L4 clauses, and the completeness check that
+  forbids an unregistered gate constant anywhere under `trials/`.

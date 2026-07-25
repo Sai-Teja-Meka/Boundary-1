@@ -1,5 +1,29 @@
 # Layer 3 — Forgetting (principled eviction under pressure)
 
+> **Erratum — 2026-07-25 (`[L3] [RULING]`, directed by `BOUNDARY-RULINGS.md
+> R4 clause 2`).** **§4** below reads the Layer-4 footprint gate as an
+> **absolute** quantity — *"the Layer-4 gate's own footprint (`≤ 250` units, ≥4×
+> compression) this engine holds `250 // 12 = 20` items"*. That reading is
+> **superseded**: `footprint ≤ 250` is **250 permille of the raw episodic
+> footprint**, the only reading under which §5 L4's own `(≥4× compression)`,
+> §5.1's *"at most a quarter of the raw bytes"*, and §5.1's humility defense
+> *"lost three-quarters of its episodes"* say one thing rather than three.
+>
+> This document is **frozen** (§9.2) and **nothing beneath this note is
+> rewritten** — the erratum stands above the historical text, in the form the
+> `[L3] [PULSE]` session established for the `autopsy/*/ANATOMY.md` errata.
+>
+> **What the erratum does not reach.** The **seam** §4 draws is untouched and is
+> in fact sharper under the ratified reading: a forget-only engine at 250‰ of
+> `corpora/l4stream` retains **5 010 of 20 000** episodes rather than twenty, and
+> still cannot reconstruct the other **14 990**, because what it dropped left no
+> trace in state at all (the byte-identical-snapshot witness §4 cites). The
+> `20`-item figure was the *illustration*; the impossibility was never resting on
+> it. Everything else in this README — §0's state-composition arithmetic, §1's
+> importance law, §2's strain findings, §3 — concerns the **Layer-3** budget of
+> 11 000 work units, is unaffected by a Layer-4 unit question, and is correct as
+> written. Arithmetic on the record: `trials/ascension/l4/ATTAINABILITY.md §1`.
+
 `[L3] [ASCEND]`. The third capability of Boundary-1: Memory. Layer 1 retained and
 refused; Layer 2 recalled by content and still refused. Layer 3 **drops** — under
 a stream ten times the budget it keeps what matters and forgets the rest, on a
