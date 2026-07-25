@@ -15,7 +15,10 @@ exists (the trials-first discipline of the ASCEND sequence).
 | `l3streamb` | uniformly interleaved, decorrelated from position | `tag` | recency is not a usable proxy — a keep-latest buffer is pinned near 100‰ |
 
 Both are `10 × BUDGET_ITEMS` long and both cost **the same** per retained item
-under the frozen §4.1 cost model, so one budget formula serves both.
+under the frozen §4.1 cost model, so one budget formula serves both. Under
+**BOUNDARY-RULINGS.md R1** the ascension gate binds on `l3streamb`; `l3stream`
+stays the humility corpus and is scored in ascension as an ungated diagnostic.
+Both are built here identically — the ruling binds the gate, not the tasks.
 
 ## The budget: one thousand items' worth of retention
 

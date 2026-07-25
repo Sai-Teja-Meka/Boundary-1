@@ -6,12 +6,33 @@ against the ratified gate:
 
     weighted-C >= 850,  unweighted-C >= 90,  F >= 950,  B = 1000
 
-Both streams must pass. `B = 1000` is asserted **after every write** during the
-replay, not merely at the end (`_l3score.replay`), so a mid-stream breach is red
-even if occupancy recovers.
+`B = 1000` is asserted **after every write** during the replay, not merely at the
+end (`_l3score.replay`), so a mid-stream breach is red even if occupancy recovers.
 
 Engine-gated: these SKIP until `core/layers/l3_forgetting.py` exists (the
 trials-first step of the ASCEND sequence), then must clear the gate.
+
+## The rulings this file applies (BOUNDARY-RULINGS.md)
+
+**R1 — the gate binds on `l3streamb`.** The ratified thresholds above stand
+unchanged; what R1 settled is the corpus they bind on, which §5 L3 states a
+threshold for but never names. On `l3streamb` the oracle ceiling is **918‰**, the
+gate **850‰** (≈92.6% of the oracle), and both capability-free baselines are
+pinned at **100‰** — so the gate discriminates. `l3stream` remains the humility
+corpus (`humility/l3/IMPOSSIBILITY.md` still stands on it) and is scored here as
+an **ungated diagnostic**: its ceiling is recorded and drift-checked, `B = 1000`
+still binds on it, and its gate trial reports its measured numbers in a skip.
+R1 additionally endorses the conditional arithmetic-skip below as the permanent
+mechanism for a gate deferred on arithmetic grounds.
+
+**R3 — the reading of `F`.** `F >= 950` is applied as `§5.1 L3` defends it — the
+corruption measure, over retained/answerable items — with the literal §3.0
+reading computed alongside as the ungated `F_strict` diagnostic. The scorer is
+`_l3score`; its docstring carries the table. R3 makes reporting `F_strict` a
+condition of the reading, not a courtesy.
+
+Neither ruling changes a number, and neither changed a score in this file. They
+record the authority for what it already did.
 
 ## The anti-gaming checks run today, and forever
 
@@ -54,10 +75,12 @@ def _run_gate(name):
     """Replay one stream under layer_cap=3 and assert the ratified gate."""
     ceiling = _l3tasks.attainable_weighted_c_permille(name)
     if ceiling < GATE_WEIGHTED_C:
-        skip("%s: the gate is unreachable by ANY retain-or-drop policy — the "
-             "budget-worth of heaviest items holds %d‰ of the mass against a %d‰ "
-             "gate (ATTAINABILITY.md). Awaiting a human ruling; this skip lifts "
-             "by itself if the ceiling ever reaches the gate."
+        skip("%s: ungated diagnostic (BOUNDARY-RULINGS.md R1) — the gate is "
+             "unreachable here by ANY retain-or-drop policy: the budget-worth of "
+             "heaviest items holds %d‰ of the mass against a %d‰ gate "
+             "(ATTAINABILITY.md), so R1 binds the gate on l3streamb and leaves "
+             "this stream scored but ungated. The skip is conditional on that "
+             "arithmetic and lifts by itself if the ceiling ever reaches the gate."
              % (name, ceiling, GATE_WEIGHTED_C))
 
     l3 = _engine()
@@ -92,15 +115,16 @@ def _run_gate(name):
 # ---- the gate, per stream (engine-gated) -----------------------------------
 
 def trial_forgetting_meets_the_layer3_gate_on_l3streamb():
-    # The anti-recency-proxy stream: importance decorrelated from position, so
-    # clearing the gate here requires ranking by importance and nothing else can
-    # substitute for it.
+    # THE binding gate (BOUNDARY-RULINGS.md R1). The anti-recency-proxy stream:
+    # importance decorrelated from position, so clearing the gate here requires
+    # ranking by importance and nothing else can substitute for it.
     _run_gate("l3streamb")
 
 
 def trial_forgetting_meets_the_layer3_gate_on_l3stream():
-    # The monotone stream. Skips while its attainable ceiling (190‰) lies below
-    # the 850‰ gate — see ATTAINABILITY.md for the measurement and the objection.
+    # The monotone stream, ungated under R1. Skips while its attainable ceiling
+    # (190‰) lies below the 850‰ gate — see ATTAINABILITY.md for the measurement
+    # and R1 for the ruling that resolved it.
     _run_gate("l3stream")
 
 

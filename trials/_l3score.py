@@ -20,9 +20,12 @@ write**, not once at the end, and `peak` is the running maximum. `B = 1000` iff
 the cap held throughout. A breach is disqualifying (§3.3).
 
 **Fidelity (§3.1)** — read as §5.1 L3 defends it: *"Forgetting may drop items but
-must never corrupt the ones it keeps, so surviving recalls stay exact."* F is
-therefore the **corruption** measure, over a query set of every item cue plus
-`N_UNANSWERABLE` never-ingested cues:
+must never corrupt the ones it keeps, so surviving recalls stay exact."* That
+reading is ruled, not assumed: **BOUNDARY-RULINGS.md R3** binds F as the defense
+sentence states it wherever eviction is compulsory, and makes reporting
+`F_strict` alongside it a condition of the reading. F is therefore the
+**corruption** measure, over a query set of every item cue plus `N_UNANSWERABLE`
+never-ingested cues:
 
   * item cue, exact stored event returned         → 1000  (and *recovered*)
   * item cue, engine abstains                     → 1000  (honest forgetting:
@@ -32,14 +35,18 @@ therefore the **corruption** measure, over a query set of every item cue plus
   * never-ingested cue, engine answers            →    0  (fabrication)
 
 Abstaining is never a way to *gain*: every abstention on an item is a target
-lost from coverage, and coverage is the gated measure that carries the loss.
+lost from coverage, and coverage is the gated measure that carries the loss. R3
+names that property as what makes the reading safe here, and warns that it must
+be re-checked before the reading is carried anywhere else.
 
 `F_strict` is also computed and reported: the literal §3.0 table applied to the
 same query set with **every** ingested item counted answerable, so an abstention
 scores 100 rather than 1000. It is reported, not gated, because at a 10× stream
-and a 1-in-10 budget it is arithmetically capped near 190‰ for *any* engine —
+and a 1-in-10 budget it is arithmetically capped near 198‰ for *any* engine —
 see `trials/ascension/l3/ATTAINABILITY.md`. Reporting both keeps the choice of
-reading visible instead of silent.
+reading visible instead of silent; under R3 the diagnostic is **mandatory**
+wherever F binds under eviction, so that a reading which improves a score always
+shows the number it replaced.
 
 ## The keep-latest baseline is a fixture, never engine code
 

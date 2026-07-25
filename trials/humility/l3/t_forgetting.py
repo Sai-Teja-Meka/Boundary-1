@@ -13,6 +13,13 @@ primary check runs against the Layer-2 adapter (always present); an engine-gated
 confirmation against the Layer-3 engine *built and then capped to 2* SKIPS until
 that engine exists, then holds forever.
 
+**BOUNDARY-RULINGS.md R1** leaves this file exactly as it was and says so
+explicitly: `l3stream` **remains the humility corpus**, its `IMPOSSIBILITY.md`
+argument is sound and untouched, and the 300‰ ceiling is ratified §5 L3 text that
+no ruling reaches. R1 rebound the *ascension* gate only. The ceiling is measured
+on both streams here regardless of which one gates, because a humility ceiling
+that held on only one substrate would be a weaker claim than the one §5 makes.
+
 Both streams are checked, because the ceiling has a different structural reason
 on each:
 
