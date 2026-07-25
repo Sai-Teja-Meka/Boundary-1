@@ -14,8 +14,9 @@ from corpora.chronicle import generator as chronicle_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
 from corpora.l3stream import generator as l3stream_gen
+from corpora.l3streamb import generator as l3streamb_gen
 
-GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen]
+GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen]
 
 MURK = murk_gen
 
