@@ -1,5 +1,21 @@
 # ANATOMY — Mem0
 
+> **Erratum — 2026-07-25 (`[L3] [PULSE]`).** The text below uses **pre-ratification
+> layer names**. It is left exactly as written; this note maps it, and nothing
+> beneath it is rewritten.
+>
+> | as written below | ratified ladder (`BOUNDARY.md §5`) |
+> |---|---|
+> | "Layer 6 (Contradiction & Dedup)" / "Layer 6 (contradiction/dedup)" / "what Layer 6 certifies" | **there is no standalone Contradiction layer.** Supersession, contradiction and "the current value among conflicts" are facets of **L4 Consolidation** (attribute histories: newest entry = current value, conflicting entries = the contradiction, as-of query = L4 reconstruction) |
+> | ratified **L6** | **Meta-memory** — so the one correct L6 reference below is *"calibration (Layer 6)"*, which stands |
+>
+> `"the provenance law (Layer 7)"` also stands: §4.2 is dormant until Layer 7 and
+> binding forever after, though ratified **L7 is Generation**, not "Provenance".
+>
+> Reconciled in `autopsy/GAPMAP.md` ("Naming reconciliation", read before the
+> matrix), which flagged this as an erratum in non-frozen documentation to be
+> fixed at the next doc pass. This is that pass.
+
 Subject of `[L0] [AUTOPSY]`. Traced from source (call paths, not READMEs) in a
 read-only clone outside this repo, scoped to the **core open-source `Memory`
 class** (`mem0/memory/main.py`) — not SDKs, integrations, or platform client

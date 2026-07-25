@@ -1,5 +1,26 @@
 # ANATOMY — Zep / Graphiti
 
+> **Erratum — 2026-07-25 (`[L3] [PULSE]`).** The text below uses **pre-ratification
+> layer names**. It is left exactly as written; this note maps it, and nothing
+> beneath it is rewritten.
+>
+> | as written below | ratified ladder (`BOUNDARY.md §5`) |
+> |---|---|
+> | "Layer 6 (Contradiction & Dedup)" / "what Layer 6 certifies" / "what Layer 6 should institutionalize" | **there is no standalone Contradiction layer.** Supersession, contradiction and "the current value among conflicts" are facets of **L4 Consolidation** (attribute histories: newest entry = current value, conflicting entries = the contradiction, as-of query = L4 reconstruction) |
+> | "Layer 8 (Revision & Forgetting)" | **there is no standalone Revision layer.** Commanded, principled forgetting is **L3 Forgetting** (eviction under pressure), with as-of audit supplied by **L4**. Ratified **L8 is Self-description** |
+> | ratified **L6** | **Meta-memory** |
+>
+> `"what Layer 7 demands"` (provenance) stands: §4.2 is dormant until Layer 7 and
+> binding forever after, though ratified **L7 is Generation**, not "Provenance".
+>
+> Graphiti's bitemporal *invalidate-not-delete* is carried into the steal list as
+> **GAPMAP S3 → L4**, informing L3 — the same remapping, recorded there against the
+> frozen names.
+>
+> Reconciled in `autopsy/GAPMAP.md` ("Naming reconciliation", read before the
+> matrix), which flagged this as an erratum in non-frozen documentation to be
+> fixed at the next doc pass. This is that pass.
+
 Subject of `[L0] [AUTOPSY]`. Traced from source (call paths, not READMEs) in a
 read-only clone outside this repo, scoped to the **core graph memory library**
 (`graphiti_core/`) — not `server/`, `mcp_server/`, drivers, or embedder/LLM

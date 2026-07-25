@@ -1,5 +1,23 @@
 # ANATOMY — Letta (formerly MemGPT)
 
+> **Erratum — 2026-07-25 (`[L3] [PULSE]`).** The text below uses **pre-ratification
+> layer names**. It is left exactly as written; this note maps it, and nothing
+> beneath it is rewritten.
+>
+> | as written below | ratified ladder (`BOUNDARY.md §5`) |
+> |---|---|
+> | "Layer 6 (Contradiction & Dedup)" / "the observed record (Layer 6)" / "Layer 6/7" | **there is no standalone Contradiction layer.** Supersession, contradiction and "the current value among conflicts" are facets of **L4 Consolidation** (attribute histories: newest entry = current value, conflicting entries = the contradiction, as-of query = L4 reconstruction) |
+> | "Layer 7 (Provenance)" | ratified **L7 is Generation**. The *provenance law* (§4.2) is dormant until Layer 7 and binding forever after, so the layer **number** is right and only the **name** is pre-ratification |
+> | ratified **L6** | **Meta-memory** |
+>
+> Letta's hot/cold demotion is carried into the steal list as **GAPMAP S4**, and
+> `core/layers/README-l3.md §0.4` records which of its two constitutional forms
+> Layer 3 chose (**form B**, true eviction) and why the other is deferred to L4.
+>
+> Reconciled in `autopsy/GAPMAP.md` ("Naming reconciliation", read before the
+> matrix), which flagged this as an erratum in non-frozen documentation to be
+> fixed at the next doc pass. This is that pass.
+
 Subject of `[L0] [AUTOPSY]`. Traced from source (call paths, not READMEs) in a
 read-only clone outside this repo, scoped to the **core agent-memory machinery**
 (tiers, self-editing tools, overflow, sleeptime) — not server/API plumbing beyond
