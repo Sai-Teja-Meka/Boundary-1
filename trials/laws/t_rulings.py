@@ -129,6 +129,27 @@ AUTHORIZED_GATES = (
     ("humility/l3/t_forgetting.py", "CEILING_WEIGHTED_C", 300,
      (_s5("capped weighted-C ≤ 300"),),
      "§5 L3 humility ceiling; no ruling reaches it"),
+
+    # Layer 4. These are the ratified §5 L4 thresholds, registered because
+    # `t_attainability.py` names them to ask whether a corpus ADMITS them (R2
+    # obligations 1 and 2) — no Layer-4 gate is applied to an engine yet, and
+    # none is until the corpus binding is settled. Authority is §5 L4 alone: a
+    # ruling binds a threshold to a corpus without touching it (R1), and the
+    # Layer-4 binding is proposed, unratified, in
+    # trials/ascension/l4/RULING-R4-DRAFT.md.
+    ("ascension/l4/t_attainability.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"),),
+     "§5 L4 footprint; read in permille per ATTAINABILITY.md §1"),
+    ("ascension/l4/t_attainability.py", "GATE_RECONSTRUCTION_F", 900,
+     (_s5("reconstruction F≥900"),),
+     "§5 L4 reconstruction fidelity, under the literal §3.0 table (R3 excludes L4)"),
+    ("ascension/l4/t_attainability.py", "GATE_C", 850, (_s5("C≥850"),),
+     "§5 L4 coverage over the Q1-Q3 battery"),
+    ("ascension/l4/t_attainability.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "§5 L4 budget; the same number as the footprint cap, certified after every write"),
+    ("ascension/l4/t_attainability.py", "CEILING_RECONSTRUCTION_F", 400,
+     (_s5("capped reconstruction F ≤ 400 at footprint≤250"),),
+     "§5 L4 humility ceiling; no ruling reaches it"),
 )
 
 

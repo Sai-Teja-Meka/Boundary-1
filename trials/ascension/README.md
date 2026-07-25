@@ -15,6 +15,15 @@ Present:
 - `l1/t_retention.py` — Layer 1, Retention.
 - `l2/t_recall.py` — Layer 2, Recall.
 - `l3/t_forgetting.py` — Layer 3, Forgetting, with `l3/ATTAINABILITY.md`.
+- `l4/` — Layer 4, Consolidation, **Stage A only**: `ATTAINABILITY.md`,
+  `t_attainability.py` and `RULING-R4-DRAFT.md`. There is **no ascension battery
+  and no engine** here. The arithmetic found the ratified gate unattainable on
+  the frozen chronicle family under any policy (oracle `C ≤ 735`, `F ≤ 683`
+  against `850` / `900`), froze `corpora/l4stream` as the corpus that admits it
+  (an *exhibited* state scores `C = 1000`, `F = 984` at footprint `250‰`, against
+  a best baseline of `249` / `327`), and stopped — the corpus binding is a
+  human's to settle, and the proposed holding is the R4 draft. Until a ruling
+  exists, no Layer-4 gate binds on anything.
 
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
