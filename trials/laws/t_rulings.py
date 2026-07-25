@@ -157,6 +157,51 @@ AUTHORIZED_GATES = (
      (_s5("capped reconstruction F ≤ 400 at footprint≤250"), _ruling("R4")),
      "§5 L4 humility ceiling, unchanged; R4 binds the Layer-4 humility trial to "
      "corpora/l4stream, where the capped arithmetic bound is 325"),
+
+    # Layer 4, Stage B: the same ratified numbers, now applied to an ENGINE
+    # rather than asked of a corpus. `t_consolidation.py` (ascension) is
+    # engine-gated and skips until Stage C; `humility/l4` measures the capped
+    # forget-only engine today. The duplication of a *value* across files is
+    # what this registry is for — both copies are bound to one §5 clause and one
+    # ruling here, so they cannot drift apart silently.
+    ("ascension/l4/t_consolidation.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; R4 clause 2 reads it in permille of the "
+     "raw episodic footprint and clause 3 prices the cells it counts"),
+    ("ascension/l4/t_consolidation.py", "GATE_RECONSTRUCTION_F", 900,
+     (_s5("reconstruction F≥900"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; R4 clause 4 keeps it on the literal §3.0 "
+     "table — the concession was examined and declined"),
+    ("ascension/l4/t_consolidation.py", "GATE_C", 850,
+     (_s5("C≥850"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; R4 clause 1 binds it to corpora/l4stream"),
+    ("ascension/l4/t_consolidation.py", "GATE_B", 1000,
+     (_s5("B=1000"), _ruling("R4")),
+     "§5 L4 budget; under R4 clause 2 the same number as the footprint cap, "
+     "certified after every write rather than on the final state"),
+    ("humility/l4/t_consolidation.py", "CEILING_RECONSTRUCTION_F", 400,
+     (_s5("capped reconstruction F ≤ 400 at footprint≤250"), _ruling("R4")),
+     "§5 L4 humility ceiling, unchanged; measured against make_engine(3) at "
+     "footprint 250 on corpora/l4stream per R4"),
+    ("humility/l4/t_consolidation.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"), _ruling("R4")),
+     "the footprint the §5 L4 ceiling is stated AT — the capped engine is "
+     "squeezed to it before the ceiling means anything"),
+
+    # The inheritance class (trials/inheritance/README.md). It introduces no
+    # threshold of its own: every gate it applies is a ratified §5 clause of a
+    # layer BELOW the one being ascended to, re-applied to the current engine at
+    # cap N on an in-budget substrate. Where an inherited claim is exactness
+    # rather than a threshold (nothing is under pressure, so everything must be
+    # recalled), it is asserted as an identity and is deliberately not a gate.
+    ("inheritance/l4/t_inheritance.py", "GATE_L2_CUE_C", 900,
+     (_s5("cue-C≥900"),),
+     "§5 L2 cue coverage, re-applied at layer_cap = 4"),
+    ("inheritance/l4/t_inheritance.py", "GATE_L2_F", 950, (_s5("F≥950"),),
+     "§5 L2 fidelity, re-applied at layer_cap = 4"),
+    ("inheritance/l4/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "the budget law, absolute at every layer (§4.1); asserted in budget, where "
+     "a breach cannot be a pressure consequence"),
 )
 
 

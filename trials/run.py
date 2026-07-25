@@ -7,6 +7,13 @@ Discovery: for each trial class directory, import every `*.py` file that does
 not start with `_`, find every top-level `trial_*` callable (sorted by name),
 and run it. Outcomes: GREEN / SKIPPED-BY-DESIGN / RED (see _harness.py).
 
+`inheritance/` is the one class directory `BOUNDARY.md §6` does not name. It was
+added by the Layer-4 Stage-B `ASCEND` session as an **additive** class: it
+introduces no measure and no threshold of its own, and re-applies the ratified
+§5 gates of the layers *below* the current one to the current engine. Its
+charter, and why the §6 classes do not already cover it, is
+`trials/inheritance/README.md`.
+
 Exit code: 0 iff there are no RED trials. Skips are legal.
 """
 
@@ -25,7 +32,8 @@ for p in (HERE, ROOT):
 
 from _harness import SkipTrial  # noqa: E402
 
-TRIAL_CLASSES = ("laws", "ops", "ascension", "humility", "strain", "anchors")
+TRIAL_CLASSES = ("laws", "ops", "ascension", "humility", "inheritance",
+                 "strain", "anchors")
 
 GREEN = "GREEN"
 SKIP = "SKIPPED-BY-DESIGN"

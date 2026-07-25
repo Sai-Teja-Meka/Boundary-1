@@ -26,6 +26,17 @@ Populated alongside ascension trials, one layer at a time. Present:
   against Layer 2's cue tasks (ceiling: cue-C ≤ 100).
 - `l3/t_forgetting.py` + `l3/IMPOSSIBILITY.md` — the capped `layer_cap = 2` engine
   against Layer 3's pressure tasks (ceiling: weighted-C ≤ 300).
+- `l4/t_consolidation.py` + `l4/IMPOSSIBILITY.md` — the capped `layer_cap = 3`
+  engine against Layer 4's Q1–Q4 battery at footprint 250‰ (ceiling:
+  reconstruction F ≤ 400). Measured **0 / 302** where the ceiling allows 400 and
+  the gate demands `C ≥ 850`, `F ≥ 900`. Its `IMPOSSIBILITY.md` is the first to
+  carry an **information-theoretic** argument beside the behavioral one: the
+  frozen Layer-3 `l4-seam` strain witnesses two streams differing only in
+  evicted content producing byte-identical states, so thousands of evicted
+  payloads map into a ≤ 35-cell aggregate record and reconstruction over the
+  evicted set is unanswerable by pigeonhole — not merely unaffordable. §4 of
+  that document records where each number was measured, including the one
+  whole-stream run the suite does not carry and why.
 
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
