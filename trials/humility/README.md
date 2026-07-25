@@ -20,4 +20,13 @@ The per-layer fabrication ceiling of earlier drafts is **not** a constitutional
 measure; it survives only as a component of the abstention-aware scoring
 (`§3.0`) that Layer 6+ calibration relies on.
 
-Empty at Phase 0 — populated alongside ascension trials, one layer at a time.
+Populated alongside ascension trials, one layer at a time. Present:
+
+- `l2/t_recall.py` + `l2/IMPOSSIBILITY.md` — the capped `layer_cap = 1` engine
+  against Layer 2's cue tasks (ceiling: cue-C ≤ 100).
+- `l3/t_forgetting.py` + `l3/IMPOSSIBILITY.md` — the capped `layer_cap = 2` engine
+  against Layer 3's pressure tasks (ceiling: weighted-C ≤ 300).
+
+**Layer 1 has no humility trial** and never will: it is the floor, so there is no
+lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
+`trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).

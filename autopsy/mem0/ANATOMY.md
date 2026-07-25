@@ -1,5 +1,26 @@
 # ANATOMY — Mem0
 
+> **Erratum — 2026-07-25 (`[L3] [PULSE]`).** The text below uses **pre-ratification
+> layer names**. It is left exactly as written; this note maps it, and nothing
+> beneath it is rewritten.
+>
+> | as written below | ratified ladder (`BOUNDARY.md §5`) |
+> |---|---|
+> | "Layer 6 (Contradiction & Dedup)" (`:205`), "Layer 6 (contradiction/dedup)" (`:233`), "what Layer 6 certifies" (`:228`), "targets Layer 6" (`:210`) | **there is no standalone Contradiction layer.** Supersession, contradiction and "the current value among conflicts" are facets of **L4 Consolidation** (attribute histories: newest entry = current value, conflicting entries = the contradiction, as-of query = L4 reconstruction) |
+> | ratified **L6** | **Meta-memory** |
+>
+> **What was already correct, so the erratum does not over-reach:**
+> *"calibration (Layer 6)"* (`:237`) is right on both number and sense — ratified
+> L6 **is** the calibration layer. *"the provenance law (Layer 7)"* (`:235`) has
+> the right **number** — §4.2 is dormant until Layer 7 and binding forever after —
+> though ratified **L7 is Generation**, not "Provenance". And *"Layer 2 (Recall)"*
+> (`:192`) and *"Layer 3 forgetting + the budget law"* (`:234`) are correct as
+> written.
+>
+> Reconciled in `autopsy/GAPMAP.md` ("Naming reconciliation", read before the
+> matrix), which flagged this as an erratum in non-frozen documentation to be
+> fixed at the next doc pass. This is that pass.
+
 Subject of `[L0] [AUTOPSY]`. Traced from source (call paths, not READMEs) in a
 read-only clone outside this repo, scoped to the **core open-source `Memory`
 class** (`mem0/memory/main.py`) — not SDKs, integrations, or platform client
