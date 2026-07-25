@@ -1,5 +1,17 @@
 # RULING-R4-DRAFT.md — proposed, **not** ratified, **not** in force
 
+> **RATIFIED — 2026-07-25.** A `RULING` session appended **`R4`** to
+> `BOUNDARY-RULINGS.md` from this draft. **The frozen entry is the binding text
+> and this file is not**; where the two differ, R4 governs, and R4 carries two
+> things this draft does not: the two causes for refusing the chronicle family
+> recorded verbatim as *independently sufficient*, and clause 5's methodology
+> note making an **exhibited** Stage-A ceiling the preferred practice alongside
+> R2. This file is retained, unedited below this note, as the draft of record —
+> the proposal a human ratified, kept so the decision can be read against what
+> was put up for it.
+>
+> The header that follows was true when written and is superseded.
+
 > **This is a draft.** It is deliberately **not** appended to
 > `BOUNDARY-RULINGS.md`, because appending is what freezes an entry
 > (`BOUNDARY-RULINGS.md` header; `laws/t_rulings.py` check 2), and a session has

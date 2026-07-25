@@ -6,14 +6,20 @@ goes red if any recorded number drifts, **before** the gate is treated as
 binding."* This is that trial. It is the ascension-side counterpart of
 `humility/*/IMPOSSIBILITY.md`, and it runs today, with no engine in existence.
 
-**No gate is applied to any engine here.** The §5 L4 thresholds appear below
-because the question this file answers is *whether a corpus admits them*, which
-is R2 obligation 1 and 2 in exact arithmetic. Which corpus they bind on is a
-question the constitution leaves open in precisely the way R1 answered it for
-Layer 3, and it is a human's to settle: `RULING-R4-DRAFT.md` proposes the holding
-and this session does not freeze it. Until then there is no Layer-4 ascension
-battery, no humility battery, and no engine — the ASCEND directive's own
-instruction on a failed discrimination check.
+**BOUNDARY-RULINGS.md R4 has since ratified what this file computed**, on all
+three questions Stage A put up: `footprint ≤ 250` is permille of the raw episodic
+footprint (clause 2), state is priced under rule P (clause 3), and the Layer-4
+ascension gate binds on `corpora/l4stream` with chronicle and murk scored as
+ungated diagnostics (clause 1). The thresholds themselves are untouched, as R1
+left Layer 3's. `RULING-R4-DRAFT.md` is retained as the draft of record and is
+superseded by the frozen entry.
+
+**No gate is applied to any engine here even so.** The §5 L4 thresholds appear
+below because the question *this file* answers is whether a corpus admits them —
+R2 obligations 1 and 2 in exact arithmetic — and it answers it with no engine in
+existence. The Stage-B battery that applies them to one
+(`t_consolidation.py`, `humility/l4/`) is unwritten, in the order R2's standing
+step fixes: attainability arithmetic → trials → engine.
 
 ## What is asserted
 
@@ -40,8 +46,9 @@ from fractions import Fraction
 import _l4tasks
 from _harness import require, require_equal
 
-# The ratified §5 L4 thresholds. Registered in `laws/t_rulings.py` against the
-# clauses they are quoted from; see `AUTHORIZED_GATES`.
+# The ratified §5 L4 thresholds, unchanged, bound to `corpora/l4stream` by
+# BOUNDARY-RULINGS.md R4. Registered in `laws/t_rulings.py` against the §5 L4
+# clauses they are quoted from and against R4; see `AUTHORIZED_GATES`.
 GATE_FOOTPRINT = 250
 GATE_RECONSTRUCTION_F = 900
 GATE_C = 850
@@ -133,7 +140,8 @@ def trial_the_footprint_gate_is_the_budget_cap():
     """`footprint ≤ 250` read in permille of the raw episodic footprint (§1).
 
     The reading is defended in `ATTAINABILITY.md §1` from three ratified
-    sentences and proposed for ratification in `RULING-R4-DRAFT.md`. What is
+    sentences and **ratified by BOUNDARY-RULINGS.md R4 clause 2**, together with
+    rule P (clause 3), without which a cell count means nothing at all. What is
     asserted here is only its arithmetic consequence: the gate and the §4.1
     budget cap are the same number, so `B = 1000` and `footprint ≤ 250` are one
     constraint certified twice — once after every write, once on the final state.
@@ -154,11 +162,14 @@ def trial_the_footprint_gate_is_the_budget_cap():
 def trial_the_reconstruction_gate_is_the_literal_section_3_0_table():
     """`F ≥ 900` under the literal table ⟺ 8/9 of events reconstructed exactly.
 
-    R3 does not reach Layer 4 (its own text says so), so no ruling is needed to
-    score `F` this way and none is requested. The equivalence is asserted rather
-    than asserted-in-prose so that a later session cannot quietly adopt the
-    friendlier reading without a ruling: under the corruption reading an honest
-    abstention scores 1000 and this identity would fail at once.
+    R3 does not reach Layer 4 (its own text says so), so no ruling was needed to
+    score `F` this way and none was requested — **R4 clause 4 records that the
+    concession was available, examined and declined**, because the exhibited
+    witness clears the gate under the literal table (984 ≥ 900) without it. The
+    equivalence is asserted rather than asserted-in-prose so that a later session
+    cannot quietly adopt the friendlier reading without a ruling: under the
+    corruption reading an honest abstention scores 1000 and this identity would
+    fail at once.
 
     The identity is exact on the **Fraction**, which is where §3.1 defines `F`.
     The §5 gate is applied to the permille *calibration* of it (§3.5), and
@@ -207,6 +218,12 @@ def trial_l4stream_admits_the_gate_with_an_exhibited_state():
     irreducible events as the remaining cells buy — fits inside the 250‰ budget
     and scores C and F strictly above the gate. No modelling assumption about
     what a policy *could* do is needed for this half of R2.
+
+    **R4 clause 5 makes this form the preferred practice**, forward-binding
+    alongside R2: where a concrete witness state can be constructed, a Stage-A
+    oracle ceiling is to be exhibited rather than merely argued, and the family
+    maximization that agrees with it (`C ≤ 1000`, `F ≤ 984`) is thereby a check
+    on the maximization rather than a substitute for the witness.
     """
     w = _l4tasks.witness(BINDING_CANDIDATE)
     require(w is not None,
@@ -287,6 +304,12 @@ def trial_the_chronicle_family_cannot_admit_the_layer4_gate():
     deferral states the condition that lifts it, in code (R1 clause 5): if
     either corpus ever became redundant enough to admit the gate, this goes red
     and the Layer-4 corpus choice is reopened without any session's permission.
+
+    **R4 clause 1 ratified this as the first of two causes**, and the second —
+    the discrimination failure asserted by the trial below — is independent of
+    it. A repair that made this trial go red would not by itself license a
+    Layer-4 gate on the chronicle family; R4 says so in the entry rather than
+    leaving it to be inferred here.
     """
     for name in DIAGNOSTIC_CANDIDATES:
         o = _l4tasks.oracle(name)
@@ -321,6 +344,12 @@ def trial_chronicle_cannot_tell_consolidation_from_a_table_of_last_writes():
     The contrast with `l4stream`, where the same policy reaches 155 against a
     1000 ceiling — **16%** — is asserted alongside so the finding is a
     comparison rather than an isolated number.
+
+    **R4 clause 1 records this as the second cause, recorded verbatim beside the
+    first and voiding a gate bound there on its own** — *"either cause alone
+    voids a gate bound there"*. It is the cause that survives a repair of the
+    footprint arithmetic, which is why it is a separate trial and not a remark
+    inside the one above.
     """
     for name in DIAGNOSTIC_CANDIDATES:
         o = _l4tasks.oracle(name)
@@ -344,11 +373,32 @@ def trial_chronicle_cannot_tell_consolidation_from_a_table_of_last_writes():
 # ---- 4. every recorded number ------------------------------------------
 
 def trial_recorded_attainability_numbers_do_not_drift():
+    """R2 obligation 3, and the arithmetic BOUNDARY-RULINGS.md R4 rests on.
+
+    R4 records two independent causes for refusing a Layer-4 gate on the
+    chronicle family, and both are numbers in this table: the footprint
+    arithmetic (chronicle's exact history schema at `151 780` cells = `384‰`
+    against a `98 908`-cell budget, because `35 947` of `41 785` pairs are
+    asserted once and identification does not compress) and the discrimination
+    failure asserted by
+    `trial_chronicle_cannot_tell_consolidation_from_a_table_of_last_writes`.
+    A ruling is only as frozen as the figures it cites, so every one of them is
+    re-derived from the frozen corpora here and a drift in any is red.
+    """
     for name in _l4tasks.CORPORA:
         _check_recorded(name)
 
 
 def trial_recorded_baseline_scores_do_not_drift():
+    """The named-baseline half of the same obligation (R2 obligation 2, R4).
+
+    R4 clause 1 tabulates these scores as the ground on which the gate binds to
+    `corpora/l4stream` — 249/327 for the strongest verbatim truncation, 155/100
+    for the history-free current-value table, 200/325 for the capped
+    `layer_cap = 3` bound under the ratified 400 ceiling. Each is a trial fixture
+    in `_l4tasks`, never engine code, so the policies the gate guards against
+    never exist in `core/`.
+    """
     for name in _l4tasks.CORPORA:
         want = RECORDED_BASELINES[name]
         got = {r["policy"]: (r["coverage_permille"], r["F_permille"])

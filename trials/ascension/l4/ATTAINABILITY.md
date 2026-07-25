@@ -1,5 +1,34 @@
 # ATTAINABILITY.md — what the Layer-4 gate can and cannot reach, per corpus
 
+> **RATIFIED — 2026-07-25, `BOUNDARY-RULINGS.md R4`.** This document was written
+> at Stage A, before any ruling existed, and asked a human to decide three things
+> (§6). All three are now decided, and the decisions are frozen in **R4**, not
+> here:
+>
+> * **the footprint reading** (§1) — `250` is permille of the raw episodic
+>   footprint: **R4 clause 2**, which also directs the dated erratum note now
+>   standing above `core/layers/README-l3.md §4`, its historical text unedited;
+> * **pricing rule P** (§1) — one cell, one grammar atom: **R4 clause 3**, ruled
+>   as a general pricing rule rather than a Layer-4 one;
+> * **the corpus binding** (§4, §5) — the Layer-4 ascension gate binds on
+>   `corpora/l4stream`, with `chronicle` and `murk` scored as ungated
+>   diagnostics on R1 clause 5's conditional-arithmetic-skip: **R4 clause 1**,
+>   which records **both** causes for refusing the chronicle family — the
+>   footprint arithmetic *and* the discrimination failure — as independently
+>   sufficient.
+>
+> Two things R4 settled that this document raised in passing: `F` at Layer 4
+> stays on the literal §3.0 table, the R3 concession examined and **declined**
+> (**clause 4**); and the exhibited form of §4's ceiling is made **preferred
+> practice** for every future Stage A where a witness can be constructed, ranking
+> above the argued form R1 used at Layer 3 (**clause 5**, forward-binding
+> alongside R2).
+>
+> The text below is **unedited** and stands as the Stage-A record — including its
+> forward-looking sentences (*"no gate binds yet"*, *"a human's to settle"*),
+> which were true when written and are answered by R4 rather than rewritten. The
+> thresholds it tests against never moved.
+
 **BOUNDARY-RULINGS.md R2** put attainability before authority: *"a gate must lie
 strictly below the oracle ceiling and strictly above every capability-free
 baseline on its binding corpus, and that arithmetic must be computed and recorded
@@ -337,6 +366,12 @@ right dirt without being the right ruler.
 ---
 
 ## §6. The verdict, and what is *not* being done here
+
+> **Answered, 2026-07-25 — `BOUNDARY-RULINGS.md R4`.** The three questions this
+> section puts to a human are decided; see the ratification note at the head of
+> this document. What remains true of this section as written: no gate is applied
+> to any engine by `t_attainability.py`, and `trials/humility/l4/` still does not
+> exist. Stage B is what writes them, in R2's order.
 
 **The discrimination check fails on the chronicle family and passes on
 `l4stream`.** Per the ASCEND directive — *"do not proceed past a failed
