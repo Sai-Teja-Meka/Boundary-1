@@ -160,8 +160,17 @@ def _payloads(name):
         return [json.loads(line) for line in fh if line.strip()]
 
 
-def _build(name):
-    payloads = _payloads(name)
+def build(name, payloads):
+    """The Layer-4 bundle over an explicit payload list.
+
+    Extracted from the whole-corpus builder so that the same construction serves a
+    whole corpus and a declared prefix of one (`prefix`, used by the Layer-4
+    humility trial). One fixture, one truth: a prefix battery that was built by
+    a second copy of this code could drift away from the battery the gate is
+    defined over. Nothing about the whole-corpus numbers changed in the
+    extraction, and `ascension/l4/t_attainability.py` re-derives every one of
+    them from here on every run, so a change would be red rather than quiet.
+    """
     n = len(payloads)
     raw_cells = sum(event_cost(p) for p in payloads)
 
@@ -195,6 +204,7 @@ def _build(name):
 
     return {
         "name": name,
+        "payloads": payloads,
         "n": n,
         "raw_cells": raw_cells,
         "budget_cap": raw_cells // 4,        # footprint <= 250permille (§5 L4)
@@ -215,8 +225,24 @@ def _build(name):
 def corpus(name):
     """The deterministic Layer-4 bundle for one corpus (built once, cached)."""
     if name not in _CACHE:
-        _CACHE[name] = _build(name)
+        _CACHE[name] = build(name, _payloads(name))
     return _CACHE[name]
+
+
+def prefix(name, m):
+    """The same bundle over the first `m` events of `name` (built once, cached).
+
+    A prefix of a frozen corpus is still the frozen corpus's bytes — no new
+    corpus, no byte-match question — and the footprint gate reads the same on
+    it, because `budget_cap` is computed from whatever raw episodic footprint it
+    is given (R4 clause 2: 250‰ of the raw footprint, not an absolute cell
+    count). `humility/l4/IMPOSSIBILITY.md` records why the ceiling is measured
+    at declared prefix scales and what carries the whole-stream claim.
+    """
+    key = (name, m)
+    if key not in _CACHE:
+        _CACHE[key] = build(name, _payloads(name)[:m])
+    return _CACHE[key]
 
 
 # ---- the exact minimal-sufficient state (priced under rule P) --------------
