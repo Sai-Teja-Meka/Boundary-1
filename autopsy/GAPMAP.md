@@ -161,6 +161,26 @@ in its architecture. Our humility trial class (`make_engine(layer_cap = N−1)` 
 score ≤ ceiling, §5/§6) is a construct the field's leading benchmark structurally
 lacks. **This axis stands on a traced finding.**
 
+> **2026-07-25 (`[L3] [PULSE]`) — sharpened by the WRIT autopsy
+> (`autopsy/writ/ANATOMY.md`, Verdict 1).** WRIT is the second independent
+> evaluator to lack impossibility-gating (flat 16-way union, `types.ts:16–32`;
+> grouping never ordering, `runner.ts:77–112`; no cap, prerequisite or ceiling
+> anywhere), and the **first found to contain a mechanism pointing the other way**.
+> `AdapterCapabilities` (`adapter.ts:69–78`) is eight self-declared booleans;
+> declaring one `false` sets that score `null`, and `aggregateScores` filters
+> `null` out of **both numerator and denominator** (`evaluator.ts:545–548`), a
+> policy `docs/metrics.md:204` states outright — *"they do not penalize or inflate
+> scores."* `BaselineAdapter` declares all eight `false` (`baseline.ts:79–90`) and
+> is therefore **not scored** on history, temporal replay or provenance rather than
+> scored 0 on them. That is the **exact inverse** of §6/§7.4: a system **exempts
+> itself** from a capability by declaring it absent, where our capped engine is run
+> through the identical interface on layer N's own tasks, must abstain rather than
+> raise (§7.3), and has its abstentions **scored** against a declared ceiling — L3
+> measured `layer_cap = 2` at **34‰** against its 300 ceiling, while WRIT's
+> equivalent system reports `null` and vanishes from the denominator. The contrast
+> is now capability opt-out **dropped from the denominator** vs a scored capped
+> engine, not merely flat-vs-ordered. **Axis (a) holds, strengthened.**
+
 **(b) Self-tagged recall-vs-generation provenance.** *Provisional — flagged.* Our
 design makes self-tagging a **law**: L7 requires `tagging = 1000` and
 `self-pollution promotion = 0` (three deep), enforced by a deterministic check, and
@@ -175,6 +195,28 @@ finds WRIT already specifies a self-tagging *law* with a gated/deterministic che
 axis (b) weakens from "novel framing" to "we operationalize WRIT's proposal" —
 still a contribution, but a **re-scope, not a quiet reword.** The positioning does
 **not collapse** without (b): it stands on (a), (c), and the removal-untested axis.
+
+> **2026-07-25 (`[L3] [PULSE]`) — the verification dependency is DISCHARGED, and
+> discharged firsthand.** `[L3] [AUTOPSY] writ` read WRIT from source at commit
+> `3c0900a` (v0.2.0) — schema, evaluator, adapter interface and the whole
+> 77-scenario corpus — so this axis no longer rests on a supplied
+> characterization: **`autopsy/writ/ANATOMY.md`**. The action this section's
+> phase-gate check names below — *"fetch/verify WRIT, not to reword"* — was taken,
+> and **no re-scope is required.** Provenance in WRIT is a property of the **store**, probed
+> out-of-band via `getProvenance(memory_events[0])` and integer-compared to
+> authored ground truth (`evaluator.ts:128–135`) on **5 of 77** scenarios, and it
+> is **opt-out-able** via `supports_provenance` (`evaluator.ts:123–124`); the
+> answer's own `cited_sources` (`types.ts:183`, populated at `neotoma.ts:273, 306`)
+> is read by **zero** lines of scoring. Ours is a property of the **answer**: from
+> Layer 7 an untagged answer scores 0 however correct (§4.2.2), un-optable, per
+> answer, forever. Novelty is absent repo-wide (0 grep hits) and the **sign is
+> inverted** — `checkHallucination` (`evaluator.ts:347–350`) flags any non-empty
+> answer restating no stored value, so *tagged generation is scored as a defect*,
+> not merely left unscored. **Axis (b) is CONFIRMED and promoted from
+> provisional.** Attribution, for the record: WRIT is the independent project of
+> **Mark Hendrickson** (`markmhendrickson/writ`, all 10 commits his), posted in the
+> comments of Penfield Labs' proposal as a *complementary* benchmark — the two are
+> separate work, and no reference in this file conflates them.
 
 **(c) Prospective memory as a scored capability.** *Verified.* No subject
 implements it; **Letta is certified ABSENT** with the precise distinction —
@@ -215,6 +257,66 @@ thing that would justify a column is structural novelty (a *typed* provenance, a
 already contain; there is no evidence LangMem has any of those. Decision: adapter
 stub at PACKAGE, and revisit **only** if a later DOGFOOD/ASCEND session finds
 LangMem doing something the matrix has not already saturated.
+
+---
+
+## 6. THE LADDER ↔ COGNITIVE-THEORY MAPPING
+
+*Lifted 2026-07-25 (`[L3] [PULSE]`) from `autopsy/theory-actr-soar/BRIEF.md §5`,
+which wrote it **"liftable into GAPMAP / README"**. The brief remains the source of
+record — its §§1–4 carry the derivations, the citations and the
+deterministic-floor note that this crosswalk only summarizes. Nothing in the brief
+is edited; this is a copy with the naming substitution noted below.*
+
+Use it to justify layer boundaries, and to head each layer's README with its
+intellectual pedigree — as `core/layers/README-l3.md` already does for ACT-R
+base-level activation.
+
+| Our construct | Cognitive-theory ancestor | What we take / what we drop |
+|---|---|---|
+| **L1 Retention** | Episodic vs. semantic memory (Tulving, 1972; 1983) — the raw, time-stamped record | Take: exact time-indexed storage. Drop: reconstructive distortion (ours is lossless at L1). |
+| **L2 Recall** | Encoding-specificity / cue-dependent retrieval (Tulving & Thomson, 1973); spreading activation & fan (Anderson, 1974) | Take: cue→target retrieval. Drop: learned *semantic* spread (deterministic floor, BRIEF §2). |
+| **L3 Forgetting** | Base-level activation & power-law forgetting (Anderson & Schooler, 1991; Wixted & Ebbesen, 1991); power law of practice (Newell & Rosenbloom, 1981) | Take: recency×frequency *ordering* under pressure. Drop: the float `d`; only ordering + threshold bind (BRIEF §1). |
+| **L4 Consolidation** | Episodic→semantic split & episodic reconstruction in Soar (Nuxoll & Laird, 2007; 2012); semantic abstraction (Tulving, 1972) | Take: derive schemas from episodes; reconstruct under a fidelity floor. Drop: Soar chunking / procedural learning (BRIEF §4). |
+| **L5 Prospection** | Prospective memory — event- vs time-based; multiprocess framework (Einstein & McDaniel, 1990; McDaniel & Einstein, 2000); constructive simulation of the future (Schacter & Addis, 2007; Tulving, 1985, autonoetic "mental time travel") | Take: `intend(condition→event)`, event-cued triggers firing on future writes. Drop: subjective "autonoesis"; ours is exactly-once code. |
+| **L6 Meta-memory** | Activation→retrieval-probability mapping (ACT-R; Anderson & Lebiere, 1998); metamemory / feeling-of-knowing | Take: confidence = f(structural evidence). Drop: fit-to-human parameters — we calibrate to trial truth (BRIEF §3). |
+| **L7 Generation** | Constructive memory / imagination reuses episodic machinery (Schacter & Addis, 2007) | Take: generation is a first-class, *tagged* act. Drop: blurring generated and remembered — provenance forbids it. |
+| **Strain classes** | **Schacter's Seven Sins of Memory** (Schacter, 1999; 2001) | Each "sin" is a strain to induce and *score*, not a bug to hide. |
+
+**Schacter's Seven Sins → strain classes** (the strain doctrine's pedigree):
+
+- **Transience** (fading over time) → **L3** strain: importance-weighted coverage
+  must survive 10× pressure.
+- **Absent-mindedness** (encoding/attention lapse) → ingestion / budget strain:
+  what is refused under budget must be refused *honestly*.
+- **Blocking** (retrieval failure, tip-of-the-tongue) → **L2** recall strain: a
+  valid cue that fails to retrieve is a scored failure, not a shrug.
+- **Misattribution** (right content, wrong source) → **L7 provenance strain** — the
+  exact failure our engine autopsies kept finding (source recorded, never bound).
+- **Suggestibility** (implanted / externally-seeded memories) → **L7
+  self-pollution strain**: re-ingested generated content must never be promoted to
+  observed fact.
+- **Bias** (present beliefs reshape the past) → **L6** calibration: stated
+  confidence must track truth, not the engine's current summary.
+- **Persistence** (intrusive memories that will not leave) → **L3 Forgetting**:
+  the inverse failure — commanded, honest forgetting.
+
+> **Naming substitution on lift.** The brief's Persistence bullet reads *"L8
+> Revision & Forgetting"*, a **pre-ratification** name. Per the naming
+> reconciliation above, commanded forgetting is **L3 Forgetting** and ratified
+> **L8 is Self-description**; the row is lifted under the frozen name. The brief
+> itself is unedited — the same erratum, and the same treatment, as the three
+> ANATOMY files.
+
+**One-line takeaways, restated against §4's axes.** (a) L3's importance model is
+ACT-R base-level with the float replaced by exact recency×frequency ordering —
+now *implemented*, not merely mapped (`core/layers/README-l3.md §1`). (b) L2 is
+deliberately the *base-level/surface* half of activation, never semantic spread.
+(c) L6 inherits activation→probability but calibrates to truth, not to humans.
+(d) L4 is Soar's episodic→semantic split; chunking (procedural) is out of scope.
+(e) L5 is event/time-based prospective memory made exactly-once. (f) Schacter's
+seven sins are a ready-made taxonomy for the strain class — one strain family per
+sin.
 
 ---
 

@@ -1,5 +1,34 @@
 # ANATOMY — Letta (formerly MemGPT)
 
+> **Erratum — 2026-07-25 (`[L3] [PULSE]`).** The text below uses **pre-ratification
+> layer names**. It is left exactly as written; this note maps it, and nothing
+> beneath it is rewritten.
+>
+> | as written below | ratified ladder (`BOUNDARY.md §5`) |
+> |---|---|
+> | "Layer 6 (Contradiction & Dedup)" (`:193`), "targets Layer 6 + Layer 7" (`:198`), "the observed record (Layer 6)" (`:217`), "our **Layer 6/7**" (`:225`) | **there is no standalone Contradiction layer.** Supersession, contradiction and "the current value among conflicts" are facets of **L4 Consolidation** (attribute histories: newest entry = current value, conflicting entries = the contradiction, as-of query = L4 reconstruction) |
+> | "Layer 7 (Provenance)" (`:194`), "citable support (Layer 7)" (`:218`) | ratified **L7 is Generation**. The *provenance law* (§4.2) is dormant until Layer 7 and binding forever after, so the layer **number** is right and only the **name** is pre-ratification |
+> | ratified **L6** | **Meta-memory** |
+>
+> **What was already correct, so the erratum does not over-reach:** every **Layer
+> 3** reference (`:181`, `:185`, `:224` — the hard budget, the recoverability
+> invariant, what L3 should adopt) is right on both number and name. Ratified L3
+> **is** Forgetting under a binding budget, and `core/layers/README-l3.md §0.4`
+> shows the adoption actually happened.
+>
+> Letta's hot/cold demotion is carried into the steal list as **GAPMAP S4**, which
+> ruled it unconstitutional as-is and left the choice of form to `ASCEND`.
+> `core/layers/README-l3.md §0.4` records the disposition: the **two-budget** form
+> is priced out as arithmetically vestigial at this budget (a hot tier of 8 items
+> at the bare gate, 0 at the occupancy actually reached), Layer 3 takes **true
+> eviction** with the L4 co-design intent recorded, and
+> **demotion-into-consolidated-form** is deliberately deferred to **Layer 4**
+> because a cold entry can only cost less than an event once consolidation exists.
+>
+> Reconciled in `autopsy/GAPMAP.md` ("Naming reconciliation", read before the
+> matrix), which flagged this as an erratum in non-frozen documentation to be
+> fixed at the next doc pass. This is that pass.
+
 Subject of `[L0] [AUTOPSY]`. Traced from source (call paths, not READMEs) in a
 read-only clone outside this repo, scoped to the **core agent-memory machinery**
 (tiers, self-editing tools, overflow, sleeptime) — not server/API plumbing beyond

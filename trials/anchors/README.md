@@ -8,5 +8,17 @@ across sessions.
 anchor is forbidden (§9). The `BOUNDARY.log` line for a move records whether
 anchors were left `intact` or `extended`.
 
-Empty at Phase 0 — the first anchors are set when the first engine behavior
-exists to freeze.
+Present — one anchor file and one replay trial per claimed layer:
+
+- `l1.json` / `t_l1.py` — replay through the L1 adapter, whose `empty()` is the
+  `layer_cap = 1` construction: index-free, and therefore byte-identical forever.
+- `l2.json` / `t_l2.py` — replay at `layer_cap = 2`, index included. Layer 2's
+  index legitimately changes post-replay state, so L2 records **new** anchors
+  rather than folding itself into `l1.json`; `t_l2.py` guards that separation.
+- `l3.json` / `t_l3.py` — replay at `layer_cap = 3`, carrying a **post-eviction**
+  entry as well as retention entries, so a drift in the importance law, the
+  eviction order, the tie-break or the forgetting record's coarsening turns the
+  suite red **even when every score still clears the gate**.
+
+The capped constructor (§7.4) is what makes an older layer's anchors eternal: each
+layer replays at its own `layer_cap`, so a new layer never perturbs the ones below.
