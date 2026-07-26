@@ -188,6 +188,24 @@ AUTHORIZED_GATES = (
      "the footprint the §5 L4 ceiling is stated AT — the capped engine is "
      "squeezed to it before the ceiling means anything"),
 
+    # Layer 4, Stage C: the ratified footprint again, in the two files the
+    # ENGINE brought with it. Neither applies it as a gate an engine must clear
+    # on a corpus R4 binds — `ops/l4` prices a design the engine did not choose
+    # against it, and `strain/l4` states the footprint murk's dirt is thrown at,
+    # murk having been kept as dirt and retired as a ruler by R4 clause 1. They
+    # are registered all the same, because the registry's rule is that a §5
+    # number cannot appear in a trial without a recorded authority, whatever the
+    # trial does with it.
+    ("ops/l4/t_l4_composition.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; used to price the two-way indexed schema "
+     "the engine could not afford (R4 clause 2's permille reading, clause 3's "
+     "pricing rule)"),
+    ("strain/l4/t_consolidation_strain.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; the footprint the murk strain is stated "
+     "at, per R4 clause 1's keeping of murk as dirt rather than as a ruler"),
+
     # The inheritance class (trials/inheritance/README.md). It introduces no
     # threshold of its own: every gate it applies is a ratified §5 clause of a
     # layer BELOW the one being ascended to, re-applied to the current engine at

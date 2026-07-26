@@ -73,4 +73,4 @@ passed one.
 
 | path | layer | contents |
 |---|---|---|
-| `l4/t_inheritance.py` | Layer 4 | the Layer-1 verbs, the Layer-2 cue battery and the Layer-3 retention battery at `layer_cap = 4`, in budget — engine-gated until Stage C, plus the engine-free wiring check |
+| `l4/t_inheritance.py` | Layer 4 | the Layer-1 verbs, the Layer-2 cue battery and the Layer-3 retention battery at `layer_cap = 4`, in budget — **engaged at Stage C and green**: the consolidation engine returns byte-exact events, clears `cue-C ≥ 900` / `F ≥ 950`, and recalls both frozen pressure streams at `weighted-C = unweighted-C = 1000` when nothing forces a drop — plus the engine-free wiring check |

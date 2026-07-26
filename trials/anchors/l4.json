@@ -1,0 +1,79 @@
+{
+  "assertion_kinds": [
+    "attr",
+    "link",
+    "move",
+    "retire",
+    "spawn"
+  ],
+  "consolidated": {
+    "l4stream_at_the_gate": {
+      "assertions": 18788,
+      "budget_cap": 43300,
+      "covers_from": 0,
+      "damaged": 0,
+      "demotions": 18788,
+      "episodes": 498,
+      "forget_buckets": 10,
+      "forget_width": 2048,
+      "forgotten": 714,
+      "index_atoms": 91,
+      "keys": 16,
+      "n": 20000,
+      "next_t": 20000,
+      "occupancy": 43295,
+      "pairs": 2951,
+      "seed": 6006,
+      "state_sha256": "1381c52890eacf49128658c076f5fe36b6632e95b055912ea3d00b8781086ab8"
+    }
+  },
+  "corpora": {
+    "l4stream": {
+      "assertions": 18788,
+      "demotions": 0,
+      "episodes": 20000,
+      "forgotten": 0,
+      "index_atoms": 400,
+      "keys": 16,
+      "n": 20000,
+      "next_t": 20000,
+      "occupancy": 138206,
+      "pairs": 2951,
+      "seed": 6006,
+      "shapes": 5,
+      "state_sha256": "cebe8de6dd5d35387e7c1c54ec00a4d4e5dab60ceb35a3f8e82c8154e2603595"
+    },
+    "murk": {
+      "assertions": 9810,
+      "demotions": 0,
+      "episodes": 10000,
+      "forgotten": 0,
+      "index_atoms": 2652,
+      "keys": 18,
+      "n": 10000,
+      "next_t": 10000,
+      "occupancy": 74981,
+      "pairs": 7519,
+      "seed": 3003,
+      "shapes": 8,
+      "state_sha256": "5e25fc75f55a3e93194d4670c29be713e212cff5446b509eaf0be8447d351751"
+    },
+    "sessions": {
+      "assertions": 0,
+      "demotions": 0,
+      "episodes": 5000,
+      "forgotten": 0,
+      "index_atoms": 712,
+      "keys": 0,
+      "n": 5000,
+      "next_t": 5000,
+      "occupancy": 24538,
+      "pairs": 0,
+      "seed": 2002,
+      "shapes": 4,
+      "state_sha256": "766f84a5698701a3aa93a26ef0faf33ee077cef71c68ff4a093b341cbf56a8e8"
+    }
+  },
+  "default_budget": 1000000000,
+  "layer": 4
+}

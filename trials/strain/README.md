@@ -23,3 +23,14 @@ sessions ~5k, murk ~10k, l3stream / l3streamb ~10k each):
   pressure, determinism through ~9 000 evictions, the declared-safe permutation and
   the lawful order-dependence, and the Layer-4 seam **witness**: two streams
   differing only in the content of an evicted item snapshot byte-identically.
+- `l4/t_consolidation_strain.py` — the two Schacter sins consolidation is heir to
+  (**misattribution**: a derived answer must cite the assertion that carries it;
+  **bias**: as-of must honour supersession rather than reading the present
+  backwards), both on murk's 305 recorded contradictions and again under murk's
+  full dirt at the footprint the gate is stated at; the **absent-mindedness**
+  seed from `autopsy/GAPMAP.md §6` as a closing ledger (`demotions + forgotten +
+  episodes held = events ingested`, and `forgotten` = exactly the events the
+  engine cannot reconstruct); the **Form B** assertion, the ladder's thesis as a
+  single trial — the cap-4 engine strictly beats the frozen cap-3 engine on
+  `l3streamb` at Layer 3's own pressure cap; the inflation guard re-proved over
+  the row codec; and determinism through demotion and forgetting.

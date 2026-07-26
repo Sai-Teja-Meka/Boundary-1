@@ -19,6 +19,12 @@ Present — one anchor file and one replay trial per claimed layer:
   entry as well as retention entries, so a drift in the importance law, the
   eviction order, the tie-break or the forgetting record's coarsening turns the
   suite red **even when every score still clears the gate**.
+- `l4.json` / `t_l4.py` — replay at `layer_cap = 4`, carrying a **consolidated**
+  entry (`l4stream` at the gate's own 43 300-cell cap, after 18 788 demotions and
+  714 losses) as well as derivation entries at `DEFAULT_BUDGET`, so a drift in
+  the facet map, the invertibility rule, the row codec's field order, the
+  key-major nesting, the demotion order or the shedding rule turns the suite red
+  **even when every score still clears the gate**.
 
 The capped constructor (§7.4) is what makes an older layer's anchors eternal: each
 layer replays at its own `layer_cap`, so a new layer never perturbs the ones below.
