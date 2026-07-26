@@ -12,6 +12,8 @@ No engine code was changed to make this work.
 python3 -m shell.dogfood remember --move DOGFOOD --log-line "[L2] [DOGFOOD] …"
 python3 -m shell.dogfood remember --json -        # a summary as JSON on stdin
 python3 -m shell.dogfood recall graphiti bitemporal
+python3 -m shell.dogfood consolidate              # the Layer-4 derived view
+python3 -m shell.dogfood consolidate --budget 8000 --cue "graphiti bitemporal"
 python3 -m shell.dogfood status
 ```
 
@@ -187,6 +189,83 @@ list — so the shell re-implements no index logic.
 Abstention is not failure here. Under §3.0, knowing that you do not know is worth
 exactly as much as knowing; the CLI exits `0`.
 
+## consolidate — the Layer-4 derived view (`[L4] [DOGFOOD]`)
+
+`remember` writes episodes and `recall` finds one of them. `consolidate` answers
+the third question a memory owes its owner — *what does all of it add up to?* —
+by folding the store's session summaries through
+`core/layers/l4_consolidation.py` and reading the result back through the
+**ordinary query interface** (§7.1): `current`, `asof`, `profile`, `count`,
+`consolidation`, `forgetting`, `read`, `recall`. The shell computes no answer of
+its own; it asks, labels, and formats for pasting into a session preamble.
+
+Three sections, and each is a §5 L4 capability rather than a rendering choice:
+
+* **per-project summary** — `profile(entity)` and `count(kind)`: how many
+  sessions the project has, and how many facts they asserted. The profile is the
+  fold Layer 4 calls Q3, and it **abstains** rather than undercounting if a chain
+  of that entity was ever shed (`README-l4 §0.3`).
+* **decision history** — `current(entity, key)` for the value in force, and
+  `asof(entity, key, t)` walked forward for where it changed. The chain is read
+  out of each answer's own **provenance `support`**, so the history is the
+  sequence of assertions the engine says carry it, not a sequence the shell
+  reconstructed. Consecutive equal values are folded into the `t` they were first
+  decided at, with the restatements counted rather than dropped.
+* **open-question aggregate** — the same `asof` walk over the `open_question`
+  chain, which is every question every session left open, in order.
+
+### The shell declares a reading, exactly as the engine does
+
+Layer 4 folds an event into a supersession chain only when its payload reads as
+an `(entity, key, value)` assertion under the frozen `ASSERTION_FORMS` — *"a
+declared reading of the frozen chronicle-family grammars"* (`README-l4 §1`). A
+session summary is not in that grammar and never will be: it is prose, and the
+facet map is frozen (§9.2). So the reading of a **session** into assertions is
+declared in `consolidate.py`, in the shell, which is where a reading of a human
+grammar belongs (§2.6) — the same move `tok` already makes for the cue surface.
+
+One session becomes its own episode plus one `attr` assertion per fact it states
+about its project: `layer` (from the `[L<n>]` tag), `move`, `suite` and `anchors`
+(from the `<…: …>` tags), the three field counts, and one `open_question` per
+question. Each is emitted in exactly the engine's own form —
+`{"kind":"attr","entity":<int>,"key":<str>,"val":<scalar>}` and nothing else —
+which is what makes it **invertible**, so `read(t)` regenerates it byte-exactly
+after its episode is gone and `profile` attributes it to a grammar kind instead
+of abstaining. A fact the summary does not carry is not asserted: a log line with
+no `<suite: …>` tag states no suite, and none is invented for it.
+
+### Nothing derived is ever written back
+
+The derived stream is built on demand and thrown away. It is **not** ingested
+into the store, and `remember` is still the store's only writer. That is a
+deliberate refusal, and the autopsies are the reason: `autopsy/mem0/ANATOMY.md`
+records a store in which an inferred fact and a user-stated fact are
+indistinguishable once written, and §5 L7's self-pollution law exists because a
+memory that promotes its own derivations to observed fact has stopped being a
+record. A view recomputed from the episodes cannot drift from them; a derived
+event committed beside them can.
+
+The price is stated rather than hidden: **the store's own state file stays a
+Layer-2 ledger** (`status` still prints `layer_cap 2`), so consolidation is
+something the project's memory *can be asked for* and not something it *is*.
+`FIELD.md` records that as this run's chafe.
+
+### `--budget`: the only way to see demotion here
+
+The store is 23 events against a 2²⁴-unit cap, so nothing is ever evicted and the
+derived view at the default cap shows `demotions 0`. `--budget UNITS` replays the
+same episodes under a smaller cap, which is how the demotion seam is measured
+out-of-suite (the command and the numbers are in `FIELD.md`):
+
+```
+python3 -m shell.dogfood consolidate --budget 8000
+```
+
+The report then separates the two channels using the engine's own provenance —
+`kind == "recall"` when an episode is still held, `"derive"` when it was
+regenerated from a chain — which is `README-l4 §4`'s non-capability turned into a
+number.
+
 ## Backfill
 
 `python3 -m shell.dogfood.backfill` parses `BOUNDARY.log` into one summary per
@@ -218,12 +297,17 @@ store is committed with the move it records.
 |------|------------|
 | `event.py`    | the session-summary schema, the tokenizer, the cue surface |
 | `store.py`    | the budget, the state-file location, load/save, corruption |
-| `cli.py`      | `remember` / `recall` / `status`, and all rendering |
+| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-4 fold, the derived-view report |
+| `cli.py`      | `remember` / `recall` / `consolidate` / `status`, and all rendering |
 | `backfill.py` | `BOUNDARY.log` → session summaries (writes nothing) |
 | `store/store.json` | the state file: engine-owned, committed, never hand-edited |
 | `FIELD.md`    | what chafed, in use |
 
-Trials: `trials/ops/dogfood/` — schema validation, a round trip through a real
-temp state file, abstention output shape, corruption → loud failure, and a
-read-only check that the committed store still restores. Shell code is testable;
-it is only `core/` that must stay pure.
+Trials: `trials/ops/dogfood/` — `t_dogfood.py` covers schema validation, a round
+trip through a real temp state file, abstention output shape, corruption → loud
+failure, and a read-only check that the committed store still restores;
+`t_consolidate.py` covers the declared reading's invertibility against the frozen
+facet map, the derived battery through `query` alone, as-of under supersession,
+the demotion measurement (content kept, cue lost, session summaries never
+demoted), and that `consolidate` is read-only on the store. Shell code is
+testable; it is only `core/` that must stay pure.
