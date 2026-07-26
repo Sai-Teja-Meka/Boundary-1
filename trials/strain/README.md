@@ -34,3 +34,18 @@ sessions ~5k, murk ~10k, l3stream / l3streamb ~10k each):
   single trial — the cap-4 engine strictly beats the frozen cap-3 engine on
   `l3streamb` at Layer 3's own pressure cap; the inflation guard re-proved over
   the row codec; and determinism through demotion and forgetting.
+- `l4/t_demotion_seam.py` — the demotion seam, two strains designed from measured
+  field notes (`shell/dogfood/FIELD.md`) rather than from the layer's own prose.
+  **Blocking** (the gap `PULSE`, `BOUNDARY.log` line 24, found in the seven-sin
+  audit): at the ratified footprint on the binding corpus, demoted content is
+  `t`-addressable and **not** cue-addressable — all 18 788 demoted events return
+  byte-exact from `read(t)` while the cue channel reaches only the 498 held
+  episodes, every blocked cue **abstains** and none is answered wrongly, and the
+  held episodes are still recalled exactly so the loss is a channel and not a
+  broken index. **Recorded-but-never-binding** (`autopsy/GAPMAP.md §2`'s engine
+  thesis, turned on our own engine): a fold that does not invert regenerates
+  nothing, so releasing its episode is a **loss** and never a demotion — the
+  field note's reproduction, a key whose inversion dies after episodes under it
+  were already released, and a mixed stream at and below the footprint where
+  demotion, forgetting and chain-shedding all run. Red first, on all three
+  sections; the engine fix that followed is `atlas_after`.

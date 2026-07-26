@@ -78,6 +78,19 @@ reading, two implementations, checked rather than assumed.
 
 ## Eviction, in four phases, most-lossless first
 
+**The demotion invariant is invertibility.** An episode may be released as a
+demotion only where a chain actually rebuilds its payload — which is
+`atlas_after(...) is not None` and *not* `facet(payload) is not None`. An
+assertion under a key seen twice, or under a payload the rebuild cannot
+reproduce, answers Q1 and Q2 exactly and regenerates **nothing**: it is kept
+where the forgetting law can see it, and released into the record as a loss. Add
+the case where a key's inversion dies *after* episodes under it were released
+(`_reconcile_lost_key`), and the ledger of `README-l4.md §2.3` is true of the
+code rather than of the corpora it was measured on:
+
+    demotions + forgotten + episodes held  ==  events ingested
+    forgotten                              ==  exactly the `t` `read` abstains on
+
 1. **Demotion.** Release an episode whose content a chain regenerates. Nothing is
    lost; the count is reported as `demotions` and is *not* forgetting.
 2. **Forgetting.** Release an irreducible episode — one no schema regenerates —
@@ -225,6 +238,37 @@ def invertible(payload, kind, entity, key, value):
     """
     got = rebuild(kind, entity, key, value)
     return got is not None and encode(got) == encode(payload)
+
+
+_UNSEEN = object()
+
+
+def atlas_after(atlas, payload, fact):
+    """The atlas entry `fact`'s key carries **after** this event is folded.
+
+    `None` is the answer that matters: the key's inversion is not a function, so
+    assertions under it answer Q1 and Q2 exactly and **regenerate nothing**.
+
+    This is the **one** reading of the atlas transition. `_apply_schema` applies
+    it and `write` demotes by it, because those two deciding by different rules
+    is precisely the defect `strain/l4/t_demotion_seam.py` was written against: a
+    write path that reads "this event has a facet" as "a chain regenerates it"
+    releases an episode nothing can rebuild and books the loss as compression.
+    **The demotion invariant is invertibility**, and this predicate is where the
+    engine says so.
+    """
+    if fact is None:
+        return None
+    entity, key, value = fact
+    kind = payload.get("kind") if isinstance(payload, dict) else None
+    prior = atlas.get(key, _UNSEEN)
+    if prior is None:
+        return None                    # already ambiguous, and never recovers
+    if prior is not _UNSEEN and prior != kind:
+        return None                    # a second grammar form under one key
+    if not invertible(payload, kind, entity, key, value):
+        return None
+    return kind
 
 
 # ---- the derived row: the grammar factored out of the instance ---------------
@@ -554,6 +598,85 @@ def _drop_row(state, tier, t):
     return state, 0, None
 
 
+def _held_stamps(state):
+    """The `t` of every episode still stored, in any tier."""
+    out = set()
+    for rows in (state.demotable, state.kept):
+        for group in rows.values():
+            out.update(group)
+    out.update(state.verbatim)
+    return out
+
+
+def _move_to_kept(state, t):
+    """Move one episode from the demotable tier to the kept tier.
+
+    Cell-neutral in the row itself and not in its shape header, which rule P
+    charges **per tier** (`_record_delta`): the demotable tier may give one up and
+    the kept tier may take one on. The handle index is untouched — the episode is
+    still an episode and is still reachable by cue; what changed is only that
+    nothing regenerates it any more, so releasing it would be a loss.
+    """
+    for shape, group in state.demotable.items():
+        if t not in group:
+            continue
+        width = len(shape[1])
+        delta = 0
+        smaller = _dict_del(group, t)
+        if smaller:
+            demotable = _dict_set(state.demotable, shape, smaller)
+        else:
+            demotable = _dict_del(state.demotable, shape)
+            delta -= 1 + width                        # the shape goes with it
+        kept = state.kept
+        if shape not in kept:
+            delta += 1 + width                        # and is paid for here
+            kept = _dict_set(kept, shape, {t: group[t]})
+        else:
+            kept = _dict_set(kept, shape, _dict_set(kept[shape], t, group[t]))
+        return replace(state, demotable=demotable, kept=kept,
+                       occupancy=state.occupancy + delta), delta
+    return state, 0
+
+
+def _reconcile_lost_key(state, key):
+    """The key's inversion is about to die — make the ledger say so first.
+
+    Called on the write that marks `key` ambiguous (`atlas_after` -> `None`).
+    Every assertion already folded under `key` stops being regenerable in that
+    same instant, and the state is holding two claims that have just become
+    false:
+
+      * an episode in the **demotable** tier is not demotable any more, because
+        no chain rebuilds it — it moves to the kept tier, where releasing it is a
+        recorded loss rather than a free compression;
+      * an episode already **released** was booked as a demotion, and that
+        booking is now a lie: `read(t)` abstains on it forever. It becomes a
+        recorded loss and the demotion counter gives it back.
+
+    The mass is `1`, the same constant `_shed_until` uses and for the same
+    reason: the weight is declared inside a payload this engine can no longer
+    produce, so `1` is the only honest thing left to say about it.
+    """
+    per = state.chains.get(key)
+    if not per:
+        return state
+    held = _held_stamps(state)
+    record = state.forgetting
+    demotions = state.demotions
+    given = 0
+    out = state
+    for stamp in sorted(t for chain in per.values() for t in chain):
+        if stamp in held:
+            out, _delta = _move_to_kept(out, stamp)
+            continue
+        record, grew = _forget(record, stamp, 1)
+        given += grew
+        demotions -= 1
+    return replace(out, occupancy=out.occupancy + given, demotions=demotions,
+                   forgetting=record)
+
+
 def _demote_until(state, need):
     """Release demotable episodes, oldest first, until `need` cells are free.
 
@@ -792,9 +915,29 @@ def _shed_until(state, need, now):
         freed = 1 + 2 * len(chain)
         record = state.forgetting
         given = 0
+        demotions = state.demotions
+        # What a shed assertion costs the ledger depends on what the ledger has
+        # already said about it, and there are exactly three cases. An episode
+        # still held is not a loss at all — `read(t)` answers it from its row —
+        # but nothing regenerates it now, so it leaves the demotable tier. An
+        # assertion under a key whose inversion already died was recorded as lost
+        # when it died, and recording it twice would inflate the very count that
+        # is supposed to equal the set of `t` the engine abstains on. Everything
+        # else was released as a demotion, and shedding its chain is what makes
+        # that booking false: it becomes a recorded loss and the demotion counter
+        # gives it back.
+        held = _held_stamps(state)
+        already_lost = state.atlas.get(key) is None
         for stamp in chain:
+            if stamp in held:
+                state, _delta = _move_to_kept(state, stamp)
+                continue
+            if already_lost:
+                continue
             record, delta = _forget(record, stamp, 1)
             given += delta
+            demotions -= 1
+        per = state.chains[key]
         smaller = _dict_del(per, entity)
         if smaller:
             chains = _dict_set(state.chains, key, smaller)
@@ -817,14 +960,21 @@ def _shed_until(state, need, now):
         state = replace(state,
                         occupancy=state.occupancy - freed + cost + given,
                         chains=chains, irreducible=irreducible,
-                        damaged=damaged, forgetting=record)
+                        damaged=damaged, demotions=demotions,
+                        forgetting=record)
     return state
 
 
 # ---- applying a write -------------------------------------------------------
 
-def _apply_schema(state, payload, fact, t):
-    """Fold one event into the derived schemas; return `(state', cells spent)`."""
+def _apply_schema(state, payload, fact, t, kind_after):
+    """Fold one event into the derived schemas; return `(state', cells spent)`.
+
+    `kind_after` is `atlas_after(state.atlas, payload, fact)`, computed once by
+    `write` and passed in rather than recomputed here — one reading, one call
+    site, so the entry the atlas ends up carrying and the entry the write path
+    demoted by cannot be two different answers.
+    """
     spent = _schema_delta(state, payload, fact)
     kind = payload.get("kind") if isinstance(payload, dict) else None
     counts = state.counts
@@ -844,19 +994,15 @@ def _apply_schema(state, payload, fact, t):
         chain = _dict_set(chain, t, value)
         per = _dict_set({} if per is None else per, entity, chain)
         chains = _dict_set(chains, key, per)
-        if key not in atlas:
-            atlas = _dict_set(
-                atlas, key, kind if invertible(payload, kind, entity, key, value)
-                else None)
-        elif atlas[key] is not None and (
-                atlas[key] != kind
-                or not invertible(payload, kind, entity, key, value)):
-            # The key has been seen under a second grammar form, or under a
-            # payload this engine cannot rebuild. Either way the inversion is no
-            # longer a function, so the engine stops claiming it: assertions
-            # under this key still answer Q1/Q2 exactly and reconstruct not at
-            # all. Honest loss, never a wrong payload.
-            atlas = _dict_set(atlas, key, None)
+        if key not in atlas or atlas[key] != kind_after:
+            # `kind_after` is `None` where the key has been seen under a second
+            # grammar form, or under a payload this engine cannot rebuild. Either
+            # way the inversion is no longer a function, so the engine stops
+            # claiming it: assertions under this key still answer Q1/Q2 exactly
+            # and reconstruct not at all. Honest loss, never a wrong payload —
+            # and, since this write path is what `write` demoted by, never a loss
+            # booked as a demotion either.
+            atlas = _dict_set(atlas, key, kind_after)
     else:
         who = _actor(payload)
         if who is not None and who not in state.damaged:
@@ -889,15 +1035,24 @@ def _apply_record(state, payload, t, demotable):
     return replace(state, index=index), spent
 
 
-def _accept(state, payload, fact, t, keep_episode):
-    """Fold, optionally retain, and charge exactly what was spent."""
-    out, spent = _apply_schema(state, payload, fact, t)
+def _accept(state, payload, fact, t, keep_episode, kind_after):
+    """Fold, optionally retain, and charge exactly what was spent.
+
+    Regenerability — `kind_after is not None`, and **not** `fact is not None` —
+    decides both the tier an episode is stored in and which ledger a released
+    episode is written to. An event with a facet whose key does not invert is
+    folded like any other assertion and answers Q1 and Q2 exactly, but **no chain
+    rebuilds its payload**, so it is kept where the forgetting law can see it
+    and, if it is released, it is released as a loss.
+    """
+    regenerable = kind_after is not None
+    out, spent = _apply_schema(state, payload, fact, t, kind_after)
     if keep_episode:
-        out, extra = _apply_record(out, payload, t, demotable=fact is not None)
+        out, extra = _apply_record(out, payload, t, demotable=regenerable)
         spent += extra
         return replace(out, occupancy=state.occupancy + spent,
                        next_t=t + 1, last_cost=spent), t
-    if fact is not None:
+    if regenerable:
         # Demotion at the door: the episode is redundant the moment the chain
         # holds it, so releasing it is counted, not mourned.
         return replace(out, occupancy=state.occupancy + spent, next_t=t + 1,
@@ -921,20 +1076,37 @@ def write(state, payload):
     t = state.next_t
     fact = facet(payload)
     cap = state.budget_cap
-    schema_room = _schema_delta(state, payload, fact, worst=True)
-    record_room = _record_delta(state, payload, worst=True)["cost"]
+    kind_after = atlas_after(state.atlas, payload, fact)
+    regenerable = kind_after is not None
+
+    # Phase 0 — the ledger before the fold. If this event is what makes its key
+    # ambiguous, every assertion already folded under that key stops being
+    # regenerable in the same instant, and two claims the state is holding become
+    # false at once (a demotable episode that nothing demotes, and a demotion that
+    # is really a loss). Reconciling here rather than later keeps the invariant
+    # true at every observable instant; it runs on a local state, so a write that
+    # goes on to refuse leaves the key — and the ledger — exactly as it found them.
+    working = state
+    if fact is not None and not regenerable \
+            and state.atlas.get(fact[1]) is not None:
+        working = _reconcile_lost_key(working, fact[1])
+
+    schema_room = _schema_delta(working, payload, fact, worst=True)
+    record_room = _record_delta(working, payload, demotable=regenerable,
+                                worst=True)["cost"]
 
     def drop_room(st):
         """Room for a write whose episode is not kept.
 
-        A dropped **assertion** is a demotion and costs nothing beyond the fold.
-        A dropped **irreducible** event is a loss, and recording a loss can grow
-        the aggregated record — by up to a full coarsening step the first time,
-        and by nothing at all once the record is full. Reserving exactly the
-        growth it has left is what stops the act of recording a loss from
-        breaching the very cap it is a consequence of.
+        A dropped **regenerable** assertion is a demotion and costs nothing
+        beyond the fold. Everything else — an irreducible event, or an assertion
+        whose key does not invert — is a loss, and recording a loss can grow the
+        aggregated record: by up to a full coarsening step the first time, and by
+        nothing at all once the record is full. Reserving exactly the growth it
+        has left is what stops the act of recording a loss from breaching the
+        very cap it is a consequence of.
         """
-        if fact is not None:
+        if regenerable:
             return schema_room
         return schema_room + 3 + 2 * FORGET_BUCKETS - forget_cost(st.forgetting)
 
@@ -942,32 +1114,37 @@ def write(state, payload):
         return state, None            # no eviction could ever make room (§4.1.2)
 
     # Phase 1 — lossless demotion: release episodes a chain already regenerates.
-    working = _demote_until(state, schema_room + record_room)
+    working = _demote_until(working, schema_room + record_room)
     if working.occupancy + schema_room + record_room <= cap:
-        return _accept(working, payload, fact, t, keep_episode=True)
+        return _accept(working, payload, fact, t, keep_episode=True,
+                       kind_after=kind_after)
 
-    # Phase 2 — an irreducible arrival is the only witness to its own content, so
-    # it competes for room against the retained irreducibles on the inherited
-    # Layer-3 law, and displaces nothing weaker than itself.
-    if fact is None:
+    # Phase 2 — an arrival nothing can regenerate is the only witness to its own
+    # content, so it competes for room against the retained irreducibles on the
+    # inherited Layer-3 law, and displaces nothing weaker than itself.
+    if not regenerable:
         working, keep = _forget_until(working, schema_room + record_room, t, payload)
         if keep and working.occupancy + schema_room + record_room <= cap:
-            return _accept(working, payload, fact, t, keep_episode=True)
+            return _accept(working, payload, fact, t, keep_episode=True,
+                           kind_after=kind_after)
 
-    # Phase 3 — the episode is not kept. For an assertion that costs nothing at
-    # all: the chain regenerates it. For an irreducible event it is a real loss,
-    # and `_accept` writes it into the forgetting record.
+    # Phase 3 — the episode is not kept. For a regenerable assertion that costs
+    # nothing at all: the chain rebuilds it. Otherwise it is a real loss, and
+    # `_accept` writes it into the forgetting record.
     if working.occupancy + drop_room(working) <= cap:
-        return _accept(working, payload, fact, t, keep_episode=False)
+        return _accept(working, payload, fact, t, keep_episode=False,
+                       kind_after=kind_after)
 
     working, _keep = _forget_until(working, drop_room(working), t, None)
     if working.occupancy + drop_room(working) <= cap:
-        return _accept(working, payload, fact, t, keep_episode=False)
+        return _accept(working, payload, fact, t, keep_episode=False,
+                       kind_after=kind_after)
 
     # Phase 4 — the derived schema itself does not fit: shed supersession chains.
     working = _shed_until(working, drop_room(working), t)
     if working.occupancy + drop_room(working) <= cap:
-        return _accept(working, payload, fact, t, keep_episode=False)
+        return _accept(working, payload, fact, t, keep_episode=False,
+                       kind_after=kind_after)
 
     return state, None                                # a deterministic refusal
 

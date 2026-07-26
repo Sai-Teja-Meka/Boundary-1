@@ -23,7 +23,8 @@ from core.layers.l4_consolidation import (
     write, read, read_range, recall, retained, new_state,
     current, asof, profile, covers_from,
     # the derived schemas and their pricing
-    L4State, facet, rebuild, invertible, row_shape, row_values, row_payload,
+    L4State, facet, rebuild, invertible, atlas_after,
+    row_shape, row_values, row_payload,
     accounted_occupancy, chain_cells, irreducible_cells, rows_cells, index_cells,
     ASSERTION_FORMS,
     # constants & snapshot integrity
@@ -35,7 +36,8 @@ __all__ = [
     "last_cost", "state_checksum", "DEFAULT_BUDGET",
     "write", "read", "read_range", "recall", "retained", "new_state",
     "current", "asof", "profile", "covers_from",
-    "L4State", "facet", "rebuild", "invertible", "row_shape", "row_values",
+    "L4State", "facet", "rebuild", "invertible", "atlas_after",
+    "row_shape", "row_values",
     "row_payload", "accounted_occupancy", "chain_cells", "irreducible_cells",
     "rows_cells", "index_cells", "ASSERTION_FORMS",
     "CorruptSnapshot", "MAGIC", "LAYER",
