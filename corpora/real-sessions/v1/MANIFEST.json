@@ -1,0 +1,31 @@
+{
+  "bytes": 158828,
+  "corpus": "real-sessions",
+  "events": 25,
+  "file": "real-sessions.v1.n25.jsonl",
+  "grammar": "shell/dogfood/event.py :: session_summary",
+  "raw_cells": 12257,
+  "rule": "BOUNDARY.md §8.8 — real data: exempt from byte-match, bound by this checksum",
+  "scrub": {
+    "families": [
+      "email",
+      "url",
+      "absolute_path",
+      "windows_path",
+      "credential",
+      "long_hex",
+      "ipv4"
+    ],
+    "findings": [],
+    "removed": 0
+  },
+  "sha256": "ee9529c5cba539747e9254b2fc25c0c2cd5c17c31dc4def3ceedde2594cfd109",
+  "source": {
+    "frozen_at_commit": "595851edacb8e96cbd74462ccd59111d2c573532",
+    "store": "shell/dogfood/store/store.json",
+    "store_next_t": 25,
+    "store_sha256": "be595ec15a83d393b9f08d2cbfb7231a645f06dba05b754fac3760b6f5151409",
+    "store_state_checksum": "3e8d81fb5d95cae617facc2e44f44b21624f4c13001a42f3b2957c027242cb6b"
+  },
+  "version": "v1"
+}
