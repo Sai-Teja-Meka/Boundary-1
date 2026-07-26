@@ -107,6 +107,35 @@ command refuses to run (below). Nor is it a corpus — §8's byte-match and
 real-data doctrines govern corpora, and the store is neither generated from a
 seed nor a frozen snapshot of anything.
 
+> **2026-07-26 note (`[L4] [PULSE]`) — the alignment below has lapsed, exactly as
+> the paragraph said it could. It is recorded, not repaired.**
+>
+> `BOUNDARY.log` line 20 — `[L3] [ASCEND] layer-4 consolidation, STAGE A` — was
+> committed without a `remember`, so the store has no event for it. Measured this
+> session: 23 log lines, 22 stored events. `t = line − 1` holds for `t ≤ 18`
+> (log lines 1–19); from `t = 19` onward the offset is **2** (`t=19` ↔ line 21,
+> `t=21` ↔ line 23).
+>
+> **The resolution is documentation, and the paragraph below already contains
+> it:** `t` counts **remembered sessions**, and only ever did. The equality with
+> the log line index was a *ritual convenience* — true while the ritual held,
+> never enforced, never an invariant, and never depended upon by any trial or by
+> `recall`. Nothing is wrong with the store and nothing is wrong with the log:
+> the store is a complete, correct record of what it was told, and the log is a
+> complete, correct record of what was done. They are simply two ledgers with two
+> different counts, and no code has ever assumed otherwise.
+>
+> **What is NOT done, deliberately.** The gap is not backfilled. Writing a
+> Stage-A event now would give it a `t` above the sessions that followed it,
+> making the store's one real ordering guarantee — ingestion order — a lie in
+> order to rescue a convenience that was never load-bearing. §1.3 owns `t`, and a
+> late insert is not something the engine can express. The lapse stays visible.
+>
+> **What a reader should do instead:** join on the `log_line` field, which
+> carries the line's own text, not on arithmetic between two counters. The bolded
+> equality below should be read as history — true from `t=0` to `t=18` — and not
+> as a property of the store.
+
 One property worth keeping: because the backfill walked `BOUNDARY.log` in order
 and every session from now on remembers its own line before committing, **event
 `t` equals the log line index**. The store does not enforce that — the ritual
