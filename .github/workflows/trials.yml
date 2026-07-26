@@ -1,0 +1,102 @@
+# trials.yml — the one gate, run on the merge preview, before a human merges.
+#
+# BOUNDARY.md §9.3 / CLAUDE.md §3: `trials/run.py` must exit 0 before any
+# commit. A session runs it on its own branch. What no session can run it on is
+# the *merge result* — the tree that will exist on the default branch after the
+# button is pressed — and that is precisely where the failure recorded at
+# BOUNDARY.log line 19 lived: PR #7 was cut from a main lacking PR #6, and the
+# append-only ledgers (`BOUNDARY.log`, `BOUNDARY-RULINGS.md`, and the dogfood
+# store beside them) collided on merge. Both branches were green on their own.
+#
+# GitHub builds a merge preview for every open PR at `refs/pull/N/merge`, and
+# `actions/checkout` checks it out by default on the `pull_request` event. So
+# this workflow runs the frozen suite against the tree the merge would produce.
+# `trials/laws/t_rulings.py::trial_append_only_ledgers_are_append_only_in_git_history`
+# then walks every committed version of each ledger and requires it to be a
+# byte-exact prefix of the merged file — a collision that reorders or interleaves
+# appended lines breaks the prefix and goes RED on the PR, before the merge.
+#
+# What this workflow does NOT do, deliberately: it does not merge, it does not
+# enable auto-merge, it does not comment, label, or push. It reports. The human
+# decides — §9 gives the machine one move per session and this is not one of them.
+#
+# Scaffolding only: nothing here is frozen, nothing here is a trial, and no
+# constitutional number appears in this file.
+
+name: trials
+
+on:
+  pull_request:
+
+# Read-only. No auto-merge, no PR-watching, no writes of any kind.
+permissions:
+  contents: read
+
+# A superseded run on the same PR is cancelled; the default branch is never
+# cancelled by this workflow because this workflow never runs on it.
+concurrency:
+  group: trials-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  suite:
+    name: trials/run.py on the merge preview
+    runs-on: ubuntu-latest
+    # The suite is ~5 minutes locally, most of it Layer 4's reconstruction sweep
+    # over chronicle (core/layers/README-l4.md §0.1 states that bill). A hosted
+    # runner is slower; this ceiling is generous rather than tight.
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out the merge preview, with full history
+        uses: actions/checkout@v4
+        with:
+          # REQUIRED, not a default worth keeping. t_rulings.py settles
+          # append-only against `git log -- <ledger>`; a shallow clone would
+          # leave that walk with nothing to walk, and the check would either
+          # go red for the wrong reason or pass over an empty set. The whole
+          # point of this workflow is that check, so it gets real history.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      # No dependency step: BOUNDARY.md §2.5 — zero third-party packages, and
+      # `core/` imports only the frozen stdlib whitelist. If a `pip install`
+      # ever appears necessary here, the design is wrong, not this file.
+
+      - name: Report what is actually being tested
+        run: |
+          echo "checked-out commit: $(git rev-parse HEAD)"
+          echo "parents:            $(git rev-parse HEAD^@ | tr '\n' ' ')"
+          echo "PR head:            ${{ github.event.pull_request.head.sha }}"
+          echo "PR base:            ${{ github.event.pull_request.base.sha }}"
+          if [ "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}" ]; then
+            echo "NOTE: this is the PR head, not a merge preview."
+          else
+            echo "This is the merge preview (head merged into base)."
+          fi
+
+      - name: The append-only check must not run vacuously
+        # t_rulings.py skips when git is unavailable and requires BOUNDARY.log to
+        # have committed history. Both are honest behaviours for a source export;
+        # neither is acceptable *here*, because that check is the reason this
+        # workflow exists. So its precondition is asserted rather than assumed:
+        # a checkout that could only produce a vacuous green fails loudly first.
+        run: |
+          test -d .git || { echo "no .git — the history walk cannot run"; exit 1; }
+          for ledger in BOUNDARY.log BOUNDARY-RULINGS.md; do
+            n="$(git log --format=%H -- "$ledger" | wc -l)"
+            echo "$ledger: $n committed version(s) visible"
+            if [ "$ledger" = "BOUNDARY.log" ] && [ "$n" -lt 2 ]; then
+              echo "shallow or truncated history: the prefix walk would be vacuous"
+              exit 1
+            fi
+          done
+
+      - name: python3 trials/run.py
+        run: python3 trials/run.py
+        # Exit 0 iff no trial is RED. Skips are legal (§6). The run.py summary
+        # line and any RED detail are in this step's log; nothing is posted back
+        # to the PR.
