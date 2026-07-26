@@ -1,8 +1,9 @@
-"""shell/dogfood/cli.py — `python3 -m shell.dogfood`: remember / recall / status.
+"""shell/dogfood/cli.py — `python3 -m shell.dogfood`: remember / recall / consolidate / status.
 
-    remember   ingest one session summary; print the engine-assigned `t`
-    recall     associative recall over the store from free cue tokens
-    status     event count, budget occupancy, checksum, the last three events
+    remember     ingest one session summary; print the engine-assigned `t`
+    recall       associative recall over the store from free cue tokens
+    consolidate  the store's Layer-4 derived view, for a session preamble
+    status       event count, budget occupancy, checksum, the last three events
 
 Exit codes:
 
@@ -20,6 +21,7 @@ import json
 import sys
 
 from core.layers import l2_recall as engine
+from shell.dogfood import consolidate as co
 from shell.dogfood import event as ev
 from shell.dogfood import store as st
 
@@ -245,6 +247,37 @@ def cmd_recall(args, out, err):
     return EXIT_OK
 
 
+def cmd_consolidate(args, out, err):
+    """The derived view: fold the store through Layer 4, ask, and format.
+
+    The fold is recomputed from the episodes every time and never written back
+    (`consolidate.py`'s module docstring says why), so this command is read-only
+    on the store — it opens the file, and nothing it derives can outlive the
+    process. `--budget` replays the same episodes under a smaller cap, which is
+    the only way to observe demotion on a store that is nowhere near its own.
+    """
+    state, code = _load(args.store, err)
+    if state is None:
+        return code
+    records = engine.read_range(state, 0, state.next_t - 1)
+    if not records:
+        print("the store holds no session summaries yet — nothing to consolidate.",
+              file=err)
+        return EXIT_USAGE
+    budget = args.budget if args.budget is not None else co.DERIVED_BUDGET
+    if budget <= 0:
+        print("usage: --budget must be a positive integer (§4.1)", file=err)
+        return EXIT_USAGE
+    derived, origin, sessions, entities, refused = co.derive(records, budget_cap=budget)
+    for line in co.report(derived, origin, sessions, entities, records,
+                          refused=refused, cues=args.cue,
+                          all_questions=args.questions):
+        print(line, file=out)
+    print("derived %d events from %d stored summaries at a %d-unit cap"
+          % (derived.next_t, len(records), budget), file=err)
+    return EXIT_OK
+
+
 def cmd_status(args, out, err):
     state, code = _load(args.store, err)
     if state is None:
@@ -277,6 +310,19 @@ def build_parser():
     recall = subs.add_parser("recall", help="associative recall from cue tokens")
     recall.add_argument("tokens", nargs="+", metavar="TOKEN")
 
+    consolidate = subs.add_parser(
+        "consolidate", help="the store's Layer-4 derived view of this project")
+    consolidate.add_argument("--budget", type=int, metavar="UNITS",
+                             help="replay the fold under a reduced cap "
+                                  "(default %d) to observe demotion"
+                                  % co.DERIVED_BUDGET)
+    consolidate.add_argument("--cue", action="append", default=[], metavar="TOKENS",
+                             help="probe the derived state with a cue "
+                                  "(repeatable; quote multi-token cues)")
+    consolidate.add_argument("--questions", action="store_true",
+                             help="print every open question in the chain, not "
+                                  "only the latest session's")
+
     subs.add_parser("status", help="event count, budget, checksum, last three")
     return parser
 
@@ -290,6 +336,8 @@ def main(argv=None, out=None, err=None):
         return cmd_remember(args, out, err)
     if args.command == "recall":
         return cmd_recall(args, out, err)
+    if args.command == "consolidate":
+        return cmd_consolidate(args, out, err)
     if args.command == "status":
         return cmd_status(args, out, err)
     parser.print_help(err)
