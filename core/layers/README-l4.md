@@ -404,6 +404,56 @@ still clears the gate.
   have something to say: the engine can already tell *demoted* (content survives,
   cue does not) from *forgotten* (content gone, counted) from *never ingested*.
 
+  > **Note added 2026-07-26 (`[L4] [STRAIN]`, the demotion seam).** The paragraph
+  > above states this price in prose and nowhere in a number, which `PULSE`
+  > (`BOUNDARY.log` line 24) recorded as the one genuine gap in the seven-sin
+  > strain audit: **blocking**, the sin of a memory that is present and
+  > unreachable, is the sin this layer's own compression commits. It is now
+  > measured, on the binding corpus at the ratified footprint, by
+  > `trials/strain/l4/t_demotion_seam.py`'s first strain
+  > (`trial_a_demoted_assertion_keeps_its_content_and_loses_its_cue`). Nothing
+  > above is corrected; the numbers the prose never carried are these, and they
+  > bind from here:
+  >
+  > **Demoted content is `t`-addressable, not cue-addressable.** At footprint
+  > 250‰ on `corpora/l4stream`: all **18 788** demoted events return byte-exact
+  > from `read(t)` and **not one of them** answers a cue built from its own
+  > payload — the cue channel reaches the **498** held episodes and nothing else,
+  > **26‰** of the 19 286 events still answerable by `t`. Every blocked cue
+  > **abstains**; none is answered wrongly, so the narrowing costs 100 per query
+  > under §3.0 and never 0. All 498 held episodes are still recalled exactly, so
+  > what is asserted is a channel the budget closed and not an index that broke.
+  >
+  > This is a **non-capability by arithmetic, not by omission**, and §0.1 is where
+  > it comes from: at 250‰ exactly one access path is affordable, the schema
+  > carries the `(entity, key) → history` one, and the associative path is the one
+  > the budget does not buy. The two channels are also separable from outside —
+  > `read(t)`'s provenance kind is `derive` for a regenerated event and `recall`
+  > for a stored one — so a future layer can price the difference rather than
+  > discover it. The trial pins the behaviour so it cannot change silently in
+  > either direction; this note says why it is what it is.
+
+- **No demotion of what the schema cannot rebuild** *(added 2026-07-26,
+  `[L4] [STRAIN]`)*. §1's derivation law says consolidation is invertible or it
+  does not happen; the eviction path now says the same thing in the ledger. An
+  attribute key seen under two grammar forms — or under a payload the rebuild
+  cannot reproduce — is marked `None` in the atlas and **regenerates nothing**,
+  and releasing such an episode is therefore a **loss**, not a demotion. A field
+  note found the engine booking it as the latter (`shell/dogfood/FIELD.md`,
+  2026-07-26, *the atlas-None seam*: eight such writes at a 40-cell cap gave
+  `demotions 7, forgetting count 0, read(0) None`), which is `autopsy/GAPMAP.md
+  §2`'s *recorded but never binding* thesis holding against our own engine: the
+  one structure whose job is to say what is gone said nothing. **The demotion
+  invariant is invertibility** (`l4_consolidation.atlas_after`), so what a chain
+  cannot rebuild is kept where the forgetting law can see it, released into the
+  record with its count and its mass, or refused outright (§4.1.2) — and when a
+  key's inversion dies *after* episodes under it were released, the bookings made
+  before it are corrected in the same write. §2.3's closing ledger consequently
+  holds on states with **shed chains** too, where it previously could not be
+  stated at all. No frozen corpus reaches the path (murk 18 atlas keys, chronicle
+  17, `l4stream` 16, all `None`-free), so no score, no ceiling and no anchor
+  moves; `trials/strain/l4/t_demotion_seam.py` carries the fixtures that do.
+
 - **No inference beyond the declared grammar.** The facet map is a **declared
   reading** of frozen grammars, not a learner. An event outside it is irreducible
   to this engine however regular it looks, and an attribute key seen under two

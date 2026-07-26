@@ -205,6 +205,12 @@ AUTHORIZED_GATES = (
      (_s5("footprint≤250"), _ruling("R4")),
      "threshold from §5 L4, unchanged; the footprint the murk strain is stated "
      "at, per R4 clause 1's keeping of murk as dirt rather than as a ruler"),
+    ("strain/l4/t_demotion_seam.py", "GATE_FOOTPRINT", 250,
+     (_s5("footprint≤250"), _ruling("R4")),
+     "threshold from §5 L4, unchanged; the pressure the demotion-seam strains "
+     "are stated at rather than a gate they apply — the blocking surface exists "
+     "BECAUSE of it (README-l4 §0.1: at 250 permille exactly one access path is "
+     "affordable), so the number is the strain's premise"),
 
     # The inheritance class (trials/inheritance/README.md). It introduces no
     # threshold of its own: every gate it applies is a ratified §5 clause of a
