@@ -145,7 +145,7 @@ no threshold was touched, and both failures are in the log with their numbers.
 
 Now the other side of the ledger.
 
-**The corpora are ours.** Five of the six synthetic corpora were written by the
+**The corpora are ours.** All seven synthetic corpora were written by the
 same project that wrote the engine, and two of them (`l3streamb`, `l4stream`)
 were frozen *specifically* because an earlier corpus could not discriminate. That
 is defensible — a corpus that cannot tell a capability from its absence is

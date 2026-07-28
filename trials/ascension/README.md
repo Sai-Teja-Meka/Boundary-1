@@ -40,6 +40,20 @@ Present:
     The design arithmetic is `ops/l4/t_l4_composition.py`; the strains are
     `strain/l4/`; the state is anchored in `anchors/l4.json`.
 
+- `l5/` — Layer 5, Prospection, **Stage A only; no gate binds and no engine
+  exists.** (`ATTAINABILITY.md`, `t_attainability.py`, `RULING-R5-DRAFT.md`,
+  with `corpora/l5stream` frozen and pinned by `ops/l5/t_l5stream.py`.) The
+  arithmetic exhibits a witness ATTAINING the ratified identity
+  (`trigger-precision = trigger-recall = 1000`, `dup-fire = miss = 0`, `F = 1000`)
+  at 230‰ of the raw footprint with a 3 687-cell margin, against a best
+  capability-free baseline of `375 / 379 / F 397`. It stops for a human on a
+  **constitutional collision**: four of `§5 L5`'s six clauses are identities, so
+  the oracle ceiling **is** the gate and R2's *"strictly below"* is undischargeable
+  by the Layer-3/Layer-4 method; and two of them are **minimizing**, so R2's
+  *"strictly above"* is undischargeable clause-wise and holds only over the
+  conjunction. `RULING-R5-DRAFT.md` proposes how both are read. Until a human
+  ratifies it, no Layer-5 gate binds on anything.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be
