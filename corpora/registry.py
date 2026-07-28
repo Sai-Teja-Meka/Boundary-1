@@ -4,8 +4,12 @@ GENERATED : modules exposing FROZEN_PATH + frozen_bytes() (byte-match law, §8.3
 MURK      : the murk module, additionally exposing GROUND_TRUTH_PATH +
             ground_truth_bytes() (its answer key is frozen and byte-matched too).
 REAL      : real-data corpora, exempt from byte-match, bound by SHA-256 checksum
-            (the real-data rule, §8.8). Still empty as of L3; the byte-match trial
-            already handles the checksum branch so it is ready when one arrives.
+            (the real-data rule, §8.8). Empty from Phase 0 to Layer 4; the
+            byte-match trial carried the checksum branch ready the whole time,
+            and the `[L4] [PACKAGE]` session filled it with the first entry —
+            `corpora/real-sessions/v1`, a frozen snapshot of this project's own
+            accumulated dogfood store (`corpora/real_sessions.py` is its loader
+            and its scrub; the hyphenated data directory is not importable).
 
 GENERATED currently holds six: chronicle, sessions, murk, l3stream, l3streamb,
 l4stream.
@@ -26,6 +30,7 @@ changing its bytes.
 Each REAL entry is: {"name": str, "path": str (absolute), "sha256": hex str}.
 """
 
+from corpora import real_sessions
 from corpora.chronicle import generator as chronicle_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
@@ -38,4 +43,4 @@ GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen,
 
 MURK = murk_gen
 
-REAL = []
+REAL = real_sessions.real_entries()
