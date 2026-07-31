@@ -66,6 +66,24 @@ Present:
   > gate binds on `corpora/l5stream` or on anything else, and Stage B is still
   > unwritten.
 
+  > **Note added 2026-07-31 (`[L4] [ASCEND]`, Stage B).** Stage B is now
+  > written: `STAGE-B.md` (the record), `t_prospection.py` (the gate battery,
+  > **engine-gated skips** plus two engine-free trials) and
+  > `RULING-R6-DRAFT.md`, beside `trials/humility/l5/` (green) and
+  > `trials/inheritance/l5/` (skips). **The sentence above still holds** — no
+  > Layer-5 gate binds on anything, because `R6` is a draft and appending is what
+  > freezes. What Stage B settles is the question `R5` left open: `STAGE-B.md §1`
+  > derives from `§1.3`, `§1.4`, `§2.2`, `§5 L5` and `§7.1` that **a firing is an
+  > event and occupies a logical `t` of its own**, so one caller `ingest` advances
+  > `next_t` by `1 + f` — with `f = 0`, and therefore Layers 1–4 unmoved, on
+  > every corpus that carries no intention, asserted over the bytes of all seven.
+
+- `l5/STAGE-B.md` — the Stage-B record: the `t` decision and its derivation
+  (§1, with the contradiction check against every text that could object), the
+  declared query vocabulary the battery asks (§2), what the battery binds and
+  what it defers to Stage A (§3), and the four questions `RULING-R6-DRAFT.md`
+  puts to a human (§7).
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

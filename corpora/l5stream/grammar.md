@@ -128,6 +128,35 @@ it.
 
 ## The declared properties of the frozen instance
 
+> **ERRATUM added 2026-07-31 (`[L4] [ASCEND]` prospection, Stage B).** The block
+> below claims every number in it is a `DECLARED_*` constant in `generator.py`
+> and is asserted by `trials/ops/l5/t_l5stream.py`. **Not one of them is.** The
+> frozen instance is `945` intentions / `765` fireable / `180` never-fires, `34`
+> multi-satisfaction caller indices at a largest fan-out of `3`, `169`
+> conditions naming `count_ge`, `110` with `sigma == k0 + 1`, a peak pending set
+> of `184` entries, `182 555` raw cells with `budget_cap 45 638`, `2 228` notes,
+> `16 827` assertions and `2 924` pairs; the latency spread is `110` at the next
+> write / `270` within ten / `188` within a hundred / `197` beyond / `180`
+> never, and `fire-immediately` reaches `144‰` recall, not `297‰`.
+>
+> **The record is `generator.py`'s `DECLARED_*` constants**, which
+> `trials/ops/l5/t_l5stream.py` asserts one by one, and
+> `trials/ascension/l5/ATTAINABILITY.md`, which computes from the frozen bytes.
+> The cause is on the record in `BOUNDARY.log` line 28: Stage A's first corpus
+> draft was **not guarded**, its own ops trial went red on `iid 6`, and *"the
+> CORPUS was changed, not the trial"* — the prose was re-derived and this closing
+> block was not. **No corpus byte is touched and no number moves**: the frozen
+> stream was always the one the constants describe, and it is this block that was
+> describing something else.
+>
+> Everything else in this document — the kinds table, the condition grammar, the
+> GUARDEDNESS argument, the satisfaction rule and the no-cancellation clause —
+> describes the frozen bytes correctly and is unaffected. The historical text
+> below is **not edited**, in the form `R4` clause 2 used for `README-l3 §4` and
+> the `PULSE` session used for the `ANATOMY.md` errata.
+> `trials/ascension/l5/RULING-R6-DRAFT.md` clause 3 asks for the standing rule
+> this note applies.
+
 Seed `7007`, `n = 20 000`, 200 entities. Every number below is a
 `DECLARED_*` constant in `generator.py` and is asserted by
 `trials/ops/l5/t_l5stream.py`, so a regeneration that stayed byte-identical while

@@ -38,6 +38,20 @@ Populated alongside ascension trials, one layer at a time. Present:
   that document records where each number was measured, including the one
   whole-stream run the suite does not carry and why.
 
+- `l5/t_prospection.py` + `l5/IMPOSSIBILITY.md` — the capped `layer_cap = 4`
+  engine against Layer 5's own P1/P2 battery (ceiling: `trigger-recall ≤ 50`).
+  Measured **0**, on the whole 20 000-event stream through the generic interface
+  — no prefix ladder is declared or needed, the capped engine here being the
+  frozen Layer-4 one rather than Layer 3's `O(retained)` eviction path. Its
+  `IMPOSSIBILITY.md` argues an **absence of machinery** rather than an absence of
+  information, and says so: the `l4` pigeonhole is *not* borrowed, because in
+  budget the capped engine holds all 945 intentions byte-exact and still scores
+  0. The sharpest form is read off `§1.3` alone — a firing consumes a logical
+  `t`, so an engine that fired anything ends past the caller stream, and this one
+  ends exactly on it. **The corpus (`corpora/l5stream`) is PENDING**: no ruling
+  binds it to the humility side any more than to the ascension side, and
+  `ascension/l5/RULING-R6-DRAFT.md` clause 1 asks for both bindings together.
+
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 `trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).
