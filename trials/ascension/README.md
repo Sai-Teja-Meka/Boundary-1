@@ -54,6 +54,18 @@ Present:
   conjunction. `RULING-R5-DRAFT.md` proposes how both are read. Until a human
   ratifies it, no Layer-5 gate binds on anything.
 
+  > **Note added 2026-07-31 (`[L4] [RULING]`).** The draft is ratified as
+  > **`BOUNDARY-RULINGS.md R5`**, which settles both readings — an identity
+  > clause discharges R2 obligation 1 by an exhibited **attainment** (clause 1);
+  > a minimizing clause is read direction-aware and over the **conjunction**
+  > (clause 2) — and adds two forward-binding methodology clauses (a ceiling
+  > declares its **policy class**, clause 3; a priced state prices its
+  > **bookkeeping and loss reserves**, clause 4). **The last sentence above still
+  > holds**: R5 authorizes a reading, not a substrate, and the corpus binding
+  > (`ATTAINABILITY.md §6` question 4) was deliberately not taken — so no Layer-5
+  > gate binds on `corpora/l5stream` or on anything else, and Stage B is still
+  > unwritten.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

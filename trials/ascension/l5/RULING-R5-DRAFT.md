@@ -1,5 +1,21 @@
 # RULING-R5-DRAFT.md — proposed, **not** ratified, **not** in force
 
+> **RATIFIED — 2026-07-31.** A `RULING` session appended **`R5`** to
+> `BOUNDARY-RULINGS.md` from this draft, **as drafted**: all four clauses, in
+> this order, with their normative text unaltered. **The frozen entry is the
+> binding text and this file is not**; where the two differ, R5 governs, and R5
+> carries three things this draft states only in passing — the historical
+> instances (`B = 1000` since Layer 1; `footprint ≤ 250` at Layer 4) named in a
+> section of their own as **REGULARIZED and not errata**, since nothing earlier
+> stated was false and what ends is the omission; the exact figure
+> `t_attainability.py` enforces for the `capped-4` baseline's `F`; and the
+> engine-`t` question restated in R5's own *"what this ruling does not do"* as
+> left open for Stage B. This file is retained, unedited below this note, as the
+> draft of record — the proposal a human ratified, kept so the decision can be
+> read against what was put up for it.
+>
+> The header that follows was true when written and is superseded.
+
 > **This is a draft.** It is deliberately **not** appended to
 > `BOUNDARY-RULINGS.md`, because appending is what freezes an entry
 > (`BOUNDARY-RULINGS.md` header; `laws/t_rulings.py` check 2), and a session has

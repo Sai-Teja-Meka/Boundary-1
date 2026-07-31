@@ -1,5 +1,44 @@
 # ATTAINABILITY.md — what the Layer-5 gate can and cannot reach on `corpora/l5stream`
 
+> **RATIFIED IN PART — 2026-07-31, `BOUNDARY-RULINGS.md R5`.** This document was
+> written at Stage A, before any ruling existed, and asked a human to decide four
+> things (§6). **Two are now decided, and the decisions are frozen in `R5`, not
+> here:**
+>
+> * **how R2 obligation 1 is discharged for an identity gate** (§5, question 1) —
+>   by an **exhibited witness ATTAINING** it, a named policy priced against the
+>   budget, scored, and asserted in the drift trial: **R5 clause 1**, which
+>   expressly excludes `F ≥ 980` because it discharges the obligation by the
+>   ordinary Layer-3/Layer-4 method;
+> * **how R2 obligation 2 reads for a minimizing clause** (§5, question 2) —
+>   direction-aware (*strictly better*) and over the gate's **conjunction**, with
+>   every clause's arithmetic recorded either way: **R5 clause 2**.
+>
+> Two clauses of R5 bind this document's method forward rather than answering a
+> question it asked: §3's declaration of the **policy class** a ceiling is exact
+> over is made a standing obligation at every layer (**clause 3**), and §4's
+> pricing of **operational bookkeeping** and a **loss-accounting reserve** is
+> made one too (**clause 4**) — both alongside R2 and R4 clause 5.
+>
+> **Two questions are NOT decided and stay open.** The budget reading of §1
+> (`budget_cap = raw_cells // 4`) is not ruled on: R5 records this document's
+> arithmetic under it as evidence, and — as §1 says of itself — a looser reading
+> would move only the recorded margin. **The corpus binding (question 4) is not
+> taken**, so no Layer-5 gate binds on `corpora/l5stream` or on anything else,
+> and the constants in `trials/laws/t_rulings.py` carry R5 for a *reading* and
+> not for a substrate.
+>
+> The text below is **unedited** and stands as the Stage-A record — including its
+> forward-looking sentences (*"no gate binds"*, *"a human's to settle"*), which
+> were true when written and are answered by R5 rather than rewritten. No
+> threshold it tests against moved, and no number it records was corrected: R5
+> **regularizes** the practice §5 found unexamined and declares nothing earlier
+> false. One figure is stated exactly in R5 because that entry freezes it — §5's
+> table records the `capped-4` baseline's `F` as **270** and
+> `t_attainability.py`, which is what a drift turns red, pins it at **271**; the
+> difference is one permille of a policy that clears one clause of five either
+> way, and this document is left as written.
+
 **BOUNDARY-RULINGS.md R2** put attainability before authority: *"a gate must lie
 strictly below the oracle ceiling and strictly above every capability-free
 baseline on its binding corpus, and that arithmetic must be computed and recorded
