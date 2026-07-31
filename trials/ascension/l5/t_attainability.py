@@ -9,24 +9,36 @@ gate is treated as binding."* This is that trial.
 exist and `trials/humility/l5/` does not exist. The `§5 L5` constants below are
 named so that this file can ask *whether the corpus admits them* (R2 obligations 1
 and 2), which is the only thing Stage A is for; `trials/laws/t_rulings.py` binds
-each of them to its `§5 L5` clause.
+each of them to its `§5 L5` clause and, since **R5**, to that entry.
+
+**`R5` is the ruling this file enforces**, and it settles a reading rather than a
+substrate: no Layer-5 gate binds on any corpus (`ATTAINABILITY.md §6` question 4
+is not taken). What R5 decides is how R2's obligations are discharged here —
+**clause 1**, an identity over discrete correctness is discharged by an exhibited
+witness ATTAINING it; **clause 2**, a minimizing clause is read direction-aware
+and over the gate's CONJUNCTION; **clause 3**, a ceiling declares the policy class
+it is exact over; **clause 4**, a priced state prices its operational bookkeeping
+and its loss-accounting reserve or disclaims them with reasons. Each trial below
+names the clause it carries.
 
 What is asserted here, and why each assertion exists:
 
-1. **The exhibited witness attains the identity.** R4 clause 5 made an exhibited
-   ceiling preferred practice wherever a witness can be built. One can be built
-   here, so the ceiling is a schedule that exists rather than a bound over a
-   declared family — and for the four identity clauses the ceiling is a *logical*
-   maximum over every policy whatsoever, which the Layer-3 Form-B pass-through
+1. **The exhibited witness attains the identity** (**R5 clause 1**; R4 clause 5
+   made an exhibited ceiling preferred practice wherever a witness can be built).
+   One can be built here, so the ceiling is a schedule that exists rather than a
+   bound over a declared family — and for the four identity clauses the ceiling is
+   a *logical* maximum over every policy whatsoever (**R5 clause 3**: the class is
+   declared, and here it is all policies), which the Layer-3 Form-B pass-through
    could not have been.
 2. **The witness fits, priced under rule P**, with the operational bookkeeping and
-   the loss-accounting reserve counted rather than disclaimed — the two lessons
-   `BOUNDARY.log` lines 23 and 26 paid for at Layer 4.
+   the loss-accounting reserve counted rather than disclaimed — **R5 clause 4**,
+   the two lessons `BOUNDARY.log` lines 23 and 26 paid for at Layer 4.
 3. **Every named baseline is scored**, and the two obligations are stated as they
    actually come out: obligation 2 holds over the conjunction and ties on the two
-   minimizing clauses; obligation 1 fails a strict reading on five of six clauses
-   and is discharged, if at all, by the attainment in (1). Both are asserted as
-   findings so that a later session cannot quietly restate them.
+   minimizing clauses (**R5 clause 2**); obligation 1 fails a strict reading on
+   five of six clauses and is discharged by the attainment in (1) (**R5 clause
+   1**). Both are asserted as findings so that a later session cannot quietly
+   restate them — R5 ratified the reading, not a licence to stop measuring it.
 4. **The engine-`t` drift** — one caller ingest advancing `next_t` by more than
    one — as a number rather than a warning.
 """
@@ -71,11 +83,18 @@ RECORDED = {
 def trial_the_exhibited_witness_attains_the_identity():
     """The schedule of ATTAINABILITY.md §4, scored. The ceiling is a state, not a bound.
 
+    **R5 clause 1** — this is the trial that clause names: an identity clause of
+    `§5` discharges R2 obligation 1 through *"a concrete witness that ATTAINS it:
+    a named policy, priced against the budget, scored, and asserted in the layer's
+    drift trial."* This is that assertion, and it is why the clause is a stronger
+    evidentiary burden than a strict inequality rather than a weaker one.
+
     R2 obligation 1 asks for the best score any policy the layer's capability
     permits can reach. For four of the six `§5 L5` clauses that is a logical
     maximum — precision and recall are ratios of a subset to its superset,
     `dup-fire` and `miss` are cardinalities — so no declared policy family is
-    needed and none is declared. What IS needed is a policy that reaches it, and
+    needed and none is declared (**R5 clause 3**: the class is stated, and here it
+    is every policy whatsoever). What IS needed is a policy that reaches it, and
     this is that policy: fire each intention exactly at its satisfaction point, in
     `iid` order where several fall at one caller index.
     """
@@ -134,6 +153,13 @@ def trial_the_battery_and_its_f_slack_are_as_recorded():
 # ---- 2. the witness fits, priced under rule P ------------------------------
 
 def trial_the_witness_fits_the_budget_priced_under_rule_p():
+    """R4 clause 3's pricing, and **R5 clause 3**'s declared class, in one check.
+
+    W2's 41 951 cells are a price for ONE design — the class `ATTAINABILITY.md §3`
+    declares — and W1 is the state outside it that attains the same identity for a
+    ninth of the cells. Asserting both is what keeps the class from being a
+    formality.
+    """
     b = _l5tasks.corpus()
     w1 = _l5tasks.witness_minimal()
     w2 = _l5tasks.witness_full()
@@ -166,7 +192,12 @@ def trial_the_witness_fits_the_budget_priced_under_rule_p():
 
 
 def trial_both_layer4_lessons_are_priced_rather_than_disclaimed():
-    """The 656 unpriced cells (BOUNDARY.log line 23) and the loss reserve (line 26).
+    """**R5 clause 4**: the 656 unpriced cells (BOUNDARY.log line 23) and the loss reserve (line 26).
+
+    That clause is what this trial enforces — a priced state prices its own
+    operational bookkeeping and any reserve the loss-accounting discipline
+    requires, or says which item is unpriced and why, because *"an unpriced item
+    is not a saving; it is a margin that has already been spent."*
 
     Layer 4's Stage A declared a 2 563-cell margin and Stage C then found 656 cells
     of operational bookkeeping inside it. The same four items are carried here by
@@ -200,7 +231,7 @@ def trial_both_layer4_lessons_are_priced_rather_than_disclaimed():
 
 
 def trial_the_prospection_price_is_a_bound_and_the_bound_is_stated():
-    """4 493 is peak-pending plus FINAL fired rows: two maxima, not one moment.
+    """**R5 clause 4**: 4 493 is peak-pending plus FINAL fired rows — two maxima, not one moment.
 
     The bound is what a budget must respect. The measurement is what actually
     happens. Recording only the first would overstate the cost; recording only the
@@ -221,6 +252,14 @@ def trial_the_prospection_price_is_a_bound_and_the_bound_is_stated():
 # ---- 3. the two R2 obligations, as they actually come out ------------------
 
 def trial_every_named_baseline_is_scored_and_is_far_below_the_gate():
+    """The table **R5 clause 2** reproduces, and R2 obligation 2's naming rule.
+
+    *"Baselines must be named and scored, not waved at; an unnamed baseline is an
+    unchecked one."* The set is asserted before the scores, so a baseline cannot
+    leave the table by being quietly dropped from it. The three MAXIMIZING clauses
+    are then checked the ordinary way; the two minimizing ones are R5 clause 2's,
+    and are asserted in the trial below.
+    """
     got = _l5tasks.baselines()
     expected = {
         "capped-4 (no trigger machinery)":
@@ -311,6 +350,11 @@ def trial_r2_obligation_1_is_not_dischargeable_by_a_strict_reading():
     What holds instead is the thing R2's rationale actually names — the gate is not
     void, because a policy that reaches it exists and is exhibited above. This
     trial pins both halves: the strict reading fails, and the mischief is absent.
+
+    **R5 clause 1 is the ruling on that, and it does not retire this trial.** The
+    clause is available only where the ceiling is provably the gate by arithmetic,
+    so the arithmetic has to keep being true: if the strict reading ever became
+    dischargeable here, the clause would not be the one in force.
     """
     o = _l5tasks.oracle()
 
@@ -323,8 +367,8 @@ def trial_r2_obligation_1_is_not_dischargeable_by_a_strict_reading():
     require_equal(o["miss"], GATE_MISS, "the oracle floor for miss is not the gate")
     require(not (GATE_TRIGGER_PRECISION < o["precision"]),
             "trigger-precision now lies strictly below its oracle ceiling — if "
-            "that ever becomes true the Layer-5 collision has dissolved and "
-            "RULING-R5-DRAFT.md clause 1 is no longer needed")
+            "that ever becomes true the Layer-5 collision has dissolved and R5 "
+            "clause 1 is no longer the clause in force")
     require(GATE_F < o["F"],
             "F no longer discharges R2 obligation 1 by the ordinary method — it "
             "is the one clause of §5 L5 that does, and ATTAINABILITY.md §5 rests "
@@ -332,7 +376,7 @@ def trial_r2_obligation_1_is_not_dischargeable_by_a_strict_reading():
 
 
 def trial_r2_obligation_2_ties_on_the_minimizing_clauses_and_holds_on_the_conjunction():
-    """The second half of the collision: `dup-fire = 0` and `miss = 0` are tied.
+    """**R5 clause 2**: `dup-fire = 0` and `miss = 0` are tied, and the conjunction holds.
 
     R2's *"strictly above"* is written for measures where higher is better. Read
     literally against a minimizing clause it would require a baseline with a
@@ -340,6 +384,11 @@ def trial_r2_obligation_2_ties_on_the_minimizing_clauses_and_holds_on_the_conjun
     it is discharged with an enormous margin, and this trial asserts BOTH: that
     some baseline ties each minimizing clause, and that none clears more than
     three of the six.
+
+    R5 ratified that reading and required the arithmetic *"either way"*, which is
+    what the two halves below are: the ties are asserted rather than excused, and
+    the conjunction bound is asserted with headroom, so a policy clearing four
+    clauses reopens the corpus binding instead of passing unnoticed.
     """
     got = _l5tasks.baselines()
 
@@ -348,7 +397,7 @@ def trial_r2_obligation_2_ties_on_the_minimizing_clauses_and_holds_on_the_conjun
     require(ties_dup,
             "no named baseline ties `dup-fire = 0` any more — the clause-wise "
             "reading of R2 obligation 2 would then be dischargeable at Layer 5 "
-            "and RULING-R5-DRAFT.md clause 2 would be unnecessary")
+            "and R5 clause 2 would not be the clause doing the work here")
     require(ties_miss, "no named baseline ties `miss = 0` any more")
 
     for name, r in sorted(got.items()):
