@@ -1,5 +1,21 @@
 # ATTAINABILITY.md — what the Layer-5 gate can and cannot reach on `corpora/l5stream`
 
+> **NOW RATIFIED IN FULL — 2026-07-31, `BOUNDARY-RULINGS.md R6` (`[L4] [RULING]`).**
+> The note below records two of §6's four questions as decided and two as open.
+> **The other two are now decided as well, by `R6` and not here:** question 4, the
+> **corpus binding**, is taken — the Layer-5 ascension gate **and** the humility
+> ceiling both bind on `corpora/l5stream`, in one clause (**R6 clause 1**) — and
+> question 3, the **budget reading**, is ruled as this document's §1 declares it,
+> `budget_cap = raw_cells // 4 = 45 638`, with the events the engine emits
+> competing for cells inside that cap without enlarging it (**R6 clause 4**). `R6`
+> clause 2 additionally settles what the note below and §4 both record as left
+> open: a firing is an event and occupies a logical `t` of its own, so one caller
+> `ingest` advances `next_t` by `1 + f`. **Nothing in this document moves**: no
+> ceiling, no baseline, no price, no margin, and the `capped-4` `F` seam stated in
+> the note below is now governed by the standing rule of **R6 clause 3** — the
+> machine-checked figure is the enforced one and the prose stands as written. The
+> two notes below are unedited, and so is everything under them.
+
 > **RATIFIED IN PART — 2026-07-31, `BOUNDARY-RULINGS.md R5`.** This document was
 > written at Stage A, before any ruling existed, and asked a human to decide four
 > things (§6). **Two are now decided, and the decisions are frozen in `R5`, not

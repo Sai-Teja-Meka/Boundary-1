@@ -12,12 +12,16 @@ must clear the gate. That is the standing checkpoint shape of an `ASCEND` split
 at the trials/engine boundary — humility green, ascension skipped — and it is
 R2's standing step in force: *attainability arithmetic → trials → engine*.
 
-**NO GATE BINDS YET, and this file does not pretend otherwise.** `R5` settled a
-*reading* and expressly did **not** bind the Layer-5 gate to a corpus
-(`ATTAINABILITY.md §6` question 4 is untaken). `RULING-R6-DRAFT.md` clause 1 asks
-for that binding; until a human freezes it, the corpus below is the one Stage A
-exhibited a witness on and nothing more. The gate constants carry `R5` in
-`laws/t_rulings.py` for the reading they are scored under, not for a substrate.
+**THE GATE BINDS ON `corpora/l5stream`, by `BOUNDARY-RULINGS.md R6` clause 1**
+(ratified 2026-07-31, `[L4] [RULING]`), which binds the ascension gate and the
+Layer-5 humility ceiling together in one clause — a ceiling measured on one
+corpus beside a gate cleared on another would discriminate nothing. `R6` clause 4
+rules the cap this battery replays at: `budget_cap = raw_cells // 4 = 45 638`,
+with the events the engine **emits** competing for cells inside it rather than
+enlarging it. `R5` remains what settles the *reading* of R2's obligations these
+clauses are scored under, so `laws/t_rulings.py` carries both entries on every
+constant below — `R5` for the reading, `R6` for the substrate — except `GATE_F`,
+which carries `R6` alone, being the clause `R5` expressly excludes.
 
 ## The four identities, and the one threshold
 
@@ -52,17 +56,22 @@ one truth** — none of it is repeated here:
   * the corpus's own declared properties — `ops/l5/t_l5stream.py`.
 
 The gate constants below are the same ratified numbers those trials name, and
-`laws/t_rulings.py` binds **both** files' copies to `§5 L5` and `R5`, so they
-cannot drift apart silently.
+`laws/t_rulings.py` binds **both** files' copies to `§5 L5`, to `R5` and to `R6`,
+so they cannot drift apart silently.
 
 ## The `t` semantics this battery measures
 
-`STAGE-B.md §1` settles the question `R5` left open: a firing is an event, `§1.3`
-gives it a `t` of its own, and one caller `ingest` therefore advances `next_t` by
-`1 + (firings it caused)`. That is not a footnote to this battery — it is one of
-its instruments. `_l5score.assert_t_identity` audits the engine's firing report
-against its own logical clock, which is why `dup-fire` is a number an engine
-cannot report its way out of.
+`STAGE-B.md §1` settles the question `R5` left open and **`R6` clause 2 ratifies
+it**: a firing is an event, `§1.3` gives it a `t` of its own, and one caller
+`ingest` therefore advances `next_t` by `1 + f`. That is not a footnote to this
+battery — it is one of its instruments. `_l5score.assert_t_identity` audits the
+engine's firing report against its own logical clock, which is why `dup-fire` is
+a number an engine cannot report its way out of. Two things `R6` clause 2
+expressly does **not** decide are not asserted here either: cascades (unobservable
+on this corpus by the GUARDEDNESS induction, so both readings give the identical
+schedule) and what an engine owes when the budget cannot house a firing — the
+battery asserts the invariants and leaves the policy to Stage C, with the one
+consequence the gate does fix, that a firing is not discretionary.
 """
 
 import collections
@@ -74,7 +83,9 @@ from corpora.l5stream import generator as l5gen
 
 # The ratified §5 L5 gate, unchanged. Four identities, one threshold, one budget
 # law. Registered in `laws/t_rulings.py` against the §5 L5 clauses they are
-# quoted from and — for the six R5 reaches — against that entry.
+# quoted from, against R6 (clause 1's corpus binding, and clause 4's cap for
+# GATE_B) for every one of them, and against R5 for the five it reaches — GATE_F
+# being the clause R5 expressly excludes.
 GATE_TRIGGER_PRECISION = 1000
 GATE_TRIGGER_RECALL = 1000
 GATE_DUP_FIRE = 0
@@ -84,7 +95,8 @@ GATE_B = 1000
 
 LAYER_CAP = 5
 
-# The `t` layout the semantics of `STAGE-B.md §1` force on this frozen stream.
+# The `t` layout the semantics of `STAGE-B.md §1`, ratified as R6 clause 2,
+# force on this frozen stream.
 # Recorded at Stage A and asserted there engine-free
 # (`t_attainability.py::trial_one_caller_ingest_can_advance_next_t_by_more_than_one`);
 # here it is asserted of an ENGINE, which is the half Stage A could not reach.
@@ -121,7 +133,7 @@ def _run(engine):
 # ---- 1. the gate: exactly-once, as four identities --------------------------
 
 def trial_prospection_fires_exactly_once_and_the_four_clauses_are_identities():
-    """THE binding gate's exactness half (§5 L5; R5 clause 1).
+    """THE binding gate's exactness half (§5 L5; R5 clause 1; R6 clause 1).
 
     `§5.1 L5`: *"Every intention whose condition a future write satisfies must
     fire, and nothing may fire spuriously — prospection is exact or it is
@@ -130,7 +142,9 @@ def trial_prospection_fires_exactly_once_and_the_four_clauses_are_identities():
     the gate for a clause of this shape, and the obligation R2 states as a strict
     inequality is discharged instead by the witness Stage A exhibited attaining
     it. An identity clause has no margin to spend, so there is no `>=` here to
-    quietly widen later.
+    quietly widen later. `R6` clause 1 is what makes this the **binding** gate
+    rather than a measurement on a named corpus: it binds all four clauses, and
+    `F` and `B` with them, to `corpora/l5stream`.
     """
     l5 = _engine()
     _state, _budget, r, b = _run(l5)
@@ -365,12 +379,15 @@ def trial_the_fired_payload_matches_and_f_clears_the_graded_clause():
 
 
 def trial_the_budget_law_holds_after_every_write():
-    """`B = 1000` — and the firings are inside the cap, not beside it.
+    """`B = 1000` — and the firings are inside the cap, not beside it (R6 clause 4).
 
     `§5.1 L5`: *"Pending intentions live within the hard budget like any other
-    state."* `ATTAINABILITY.md §1` reads that as covering the events the engine
-    **emits** too: they are engine-derived and compete for cells inside the same
-    cap without enlarging it. So the cap is checked after every caller write —
+    state."* `ATTAINABILITY.md §1` read that as covering the events the engine
+    **emits** too, and `R6` clause 4 ratifies both halves: the cap is
+    `budget_cap = raw_cells // 4 = 45 638`, and the emitted events are
+    engine-derived and compete for cells inside it without enlarging it. No
+    footprint gate is created by that clause — `§5 L5` states none — so what is
+    certified here is the cap the budget law binds at, after every write. So the cap is checked after every caller write —
     `_l5score.replay` raises where it breaks, not at the end — and the pending
     set, the fired rows and the Layer-4 substrate all come out of one budget.
     """
@@ -416,7 +433,7 @@ def trial_the_footprint_is_priced_under_rule_p():
 # ---- 3. the `t` semantics, of an engine ------------------------------------
 
 def trial_the_engine_t_layout_is_the_one_the_written_texts_force():
-    """`STAGE-B.md §1`, asserted of an engine rather than of an arithmetic.
+    """`R6` clause 2, asserted of an engine rather than of an arithmetic.
 
     A firing is an event (`§5 L5` writes `intend(condition → event)`); `§1.4`
     makes an in-engine event record exactly `{payload, t}`; `§1.3` makes `t`
@@ -432,6 +449,12 @@ def trial_the_engine_t_layout_is_the_one_the_written_texts_force():
     What is added here is the half Stage A could not reach: that the ENGINE's own
     clock agrees, and that the caller events and the firings partition
     `0 .. next_t − 1` with nothing left over and nothing counted twice.
+
+    `R6` clause 2 ratifies the layout as `STAGE-B.md §1` derives it — including
+    that `ingest` returns the **caller** event's `t` and that `§7.1`'s *"appends
+    one event"* describes the caller's payload rather than capping the
+    transition — so what this trial applies is a ruled semantics and not a
+    session's reading.
     """
     l5 = _engine()
     state, _budget, _r, b = _run(l5)
@@ -455,12 +478,14 @@ def trial_the_engine_t_layout_is_the_one_the_written_texts_force():
 def trial_one_caller_ingest_advances_next_t_by_exactly_one_on_an_intention_free_stream():
     """The constraint the whole decision was taken under — asserted, not promised.
 
-    ENGINE-FREE and green today. `STAGE-B.md §1.4`: the `t` semantics settled
-    there must leave Layers 1–4 exactly where they were, or every anchor is
-    wrong. They do, and not by exception: the general rule is *one caller event
-    plus the firings it caused*, and on a stream that carries no intention the
-    second term is zero, so *"one ingest, one `t`"* is the `f = 0` case of the
-    same rule rather than a clause suspended for old corpora.
+    ENGINE-FREE and green today. `STAGE-B.md §1.4`, ratified as `R6` clause 2:
+    the `t` semantics settled there must leave Layers 1–4 exactly where they
+    were, or every anchor is wrong. They do, and not by exception: the general
+    rule is *one caller event plus the firings it caused*, and on a stream that
+    carries no intention the second term is zero, so *"one ingest, one `t`"* is
+    the `f = 0` case of the same rule rather than a clause suspended for old
+    corpora. The clause says so in its own text, and this trial is what it names
+    as the assertion behind the claim.
 
     That is a theorem about frozen bytes, so it is asserted over the bytes: of
     every corpus in the registry, `corpora/l5stream` is the **only** one carrying

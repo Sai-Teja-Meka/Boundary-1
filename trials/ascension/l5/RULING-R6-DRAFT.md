@@ -1,5 +1,23 @@
 # RULING-R6-DRAFT.md — proposed entry `R6`
 
+> **RATIFIED — 2026-07-31 (`[L4] [RULING]`).** A `RULING` session appended
+> **`R6`** to `BOUNDARY-RULINGS.md` from this draft, **as drafted**: all four
+> clauses, in this order, with their normative text unaltered — the question, the
+> rationale and the *"what this ruling does not do"* list carried across
+> byte-for-byte as well. **The frozen entry is the binding text and this file is
+> not**; where the two differ, R6 governs. R6 carries one section this draft does
+> not: the **Stage-B evidence**, gathered in one place — the `t` layout (20 000
+> caller writes → 20 765 logical times, last firing `t = 20 760`), the battery's
+> eight engine-gated skips and two engine-free trials, the `wrong = 0` restraint
+> that would have gated at 1000 under a 980 clause, the inheritance row, and the
+> humility measurement in **both** conditions (945 of 945 intentions held in
+> budget, 30 of 945 at the ratified cap, `trigger-recall` **0** either way).
+> This file is retained, unedited below this note, as the draft of record — the
+> proposal a human ratified, kept so the decision can be read against what was
+> put up for it.
+>
+> The header that follows was true when written and is superseded.
+
 > **DRAFT. Not appended to `BOUNDARY-RULINGS.md`, deliberately.** Appending is
 > what freezes an entry, and no session has the authority to freeze a ruling for
 > itself. This document states a proposed holding for a human to accept, amend or

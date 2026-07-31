@@ -13,16 +13,17 @@ the very fact the gate needs Layer 5 for. The primary check runs against
 against the Layer-5 engine *built and then capped to 4* skips until Stage C and
 then holds forever — the same shape `humility/l4` uses one layer down.
 
-## The corpus choice is PENDING, and this file says so rather than assuming it
+## The corpus is BOUND, and by the same clause that binds the gate
 
 `corpora/l5stream` is the corpus Stage A exhibited its witness on and the corpus
-this ceiling is measured on. **No ruling binds it to either side of the Layer-5
-gate.** `R5` settled a reading and expressly declined the binding
-(`ATTAINABILITY.md §6` question 4 is untaken); `RULING-R6-DRAFT.md` clause 1 asks
-for the ascension *and* humility bindings together, because a ceiling measured on
-one corpus and a gate bound on another would discriminate nothing. Until a human
-freezes that entry, what is recorded here is a measurement on a named corpus and
-not an authority.
+this ceiling is measured on. **`BOUNDARY-RULINGS.md R6` clause 1 binds it to both
+sides of the Layer-5 gate in one clause** (ratified 2026-07-31, `[L4] [RULING]`),
+because a ceiling measured on one corpus and a gate cleared on another would
+discriminate nothing — the ascension binding and this one are the same decision
+or they are no decision at all. `R5` settled a reading and expressly declined the
+binding; `R6` takes it, and `laws/t_rulings.py` carries both entries on
+`CEILING_TRIGGER_RECALL` — `R5` for the reading under which a baseline tying a
+minimizing clause does not void the gate, `R6` for the substrate.
 
 ## What the ceiling costs to measure, stated rather than hidden
 
@@ -63,12 +64,17 @@ CAPPED_LAYER = 4
 # t_attainability.py` pins 271, and R5 clause 2's boxed note records which of the
 # two the trials enforce. This one is measured on an ENGINE rather than on a
 # policy and comes out at 271, which is what makes the seam a documentation
-# question rather than an arithmetic one (RULING-R6-DRAFT.md clause 3).
+# question rather than an arithmetic one — and R6 clause 3 is now the STANDING
+# RULE it prompted: where a document states a quantity a trial also computes, the
+# trial's value is the enforced one, the prose stands as written, and the
+# divergence is recorded rather than edited away.
 RECORDED_CAPPED = {"recall": 0, "dup_fire": 0, "miss": 765, "F": 271}
 
 # `IMPOSSIBILITY.md §3`'s measurement, in two conditions, because the first draft
 # of that argument was refuted by its own measurement and the corrected form is
-# sharper. IN BUDGET the capped engine returns every one of the 945 intentions
+# sharper. Both conditions are carried verbatim in R6's Stage-B evidence, which
+# is R5 clause 4's discipline applied to a ceiling: quoting only the flattering
+# one would be the omission that clause was written about. IN BUDGET the capped engine returns every one of the 945 intentions
 # byte-exact from `read(t)` and still fires nothing — *recorded, never binding*
 # exactly. AT THE RATIFIED PRESSURE it holds 30 of them: an `intend` payload has
 # no Layer-4 facet, its condition AST is expensive, and the inherited Layer-3
@@ -131,13 +137,17 @@ def _assert_ceiling(engine, label):
 # ---- the ceiling, against the layer directly below --------------------------
 
 def trial_the_capped_consolidation_engine_cannot_reach_the_trigger_recall_ceiling():
-    """`capped trigger-recall ≤ 50` (§5 L5), measured **0** on `make_engine(4)`.
+    """`capped trigger-recall ≤ 50` (§5 L5; R6 clause 1), measured 0 on `make_engine(4)`.
 
     §5.1 L5 defends the ceiling: *"Consolidation summarizes the past and has no
     construct that watches future writes, so it fires condition-met triggers only
     by coincidence."* There are no coincidences available: firing is not a
     behaviour this engine has at all, so the ceiling is not approached from below
     — it is unreachable from an empty numerator.
+
+    The ceiling binds on `corpora/l5stream` by `R6` clause 1, in the same clause
+    that binds the ascension gate there — which is what makes this measurement a
+    discrimination rather than a fact about a corpus nobody's gate is stated on.
     """
     _assert_ceiling(l4, "make_engine(4) via adapters/l4")
 
@@ -145,8 +155,9 @@ def trial_the_capped_consolidation_engine_cannot_reach_the_trigger_recall_ceilin
 def trial_the_capped_engines_own_clock_proves_it_fired_nothing():
     """The structural fact, read off `§1.3` rather than off the engine's bookkeeping.
 
-    A firing is an event and consumes a logical `t` of its own (`STAGE-B.md §1`),
-    and nothing else in a replay of this stream consumes one. So over a
+    A firing is an event and consumes a logical `t` of its own (`STAGE-B.md §1`,
+    ratified as `R6` clause 2), and nothing else in a replay of this stream
+    consumes one. So over a
     20 000-event caller stream an engine that fired anything at all ends with
     `next_t > 20 000`. The capped engine ends at exactly 20 000.
 

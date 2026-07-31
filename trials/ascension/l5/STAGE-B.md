@@ -1,5 +1,36 @@
 # STAGE-B.md — the Layer-5 Stage-B record: the `t` semantics, and the battery
 
+> **RATIFIED — 2026-07-31, `BOUNDARY-RULINGS.md R6`.** This document was written
+> at Stage B, before any ruling existed, and put four things to a human (§7).
+> **All four are now decided, and the decisions are frozen in `R6`, not here:**
+>
+> * **the corpus binding** (§7 item 1) — the Layer-5 ascension gate **and** the
+>   humility ceiling both bind on `corpora/l5stream`, in one clause, because a
+>   ceiling measured on one corpus beside a gate cleared on another would
+>   discriminate nothing: **R6 clause 1**;
+> * **the `t` semantics** (§7 item 2) — §1's decision exactly as derived here,
+>   including `§7.1`'s reading (ii) (*"appends one event"* describes the
+>   **caller's** payload) and the two express non-decisions of §1.6, which R6
+>   restates so a later session cannot cite the clause as having made them:
+>   **R6 clause 2**;
+> * **the 270 / 271 seam** (§7 item 3) — generalized into a standing rule at
+>   every layer: where a document states a quantity a trial also computes, the
+>   trial's value is the **enforced** one, the prose stands as written, and the
+>   divergence is **recorded** rather than edited away: **R6 clause 3**, whose
+>   second and larger instance is §6's `grammar.md` block;
+> * **the budget reading** (§7 item 4) — `budget_cap = raw_cells // 4 = 45 638`,
+>   with the events the engine emits competing for cells inside that cap without
+>   enlarging it: **R6 clause 4**.
+>
+> §1.5's contradiction check is the evidence clause 2 rests on and is **ratified
+> rather than summarized** by it. The text below is **unedited** and stands as
+> the Stage-B record — including its forward-looking sentences (*"No Layer-5 gate
+> binds on anything"*, *"the corpus choice is PENDING"*, *"what a human is asked
+> to decide"*), which were true when written and are answered by R6 rather than
+> rewritten. No threshold moved, no measurement was corrected, and no engine
+> exists: `core/layers/l5_prospection.py` and `trials/adapters/l5.py` are still
+> unwritten, and R2's standing step still orders Stage C.
+
 `[L4] [ASCEND]` prospection, **Stage B**. R2's standing step orders an ascension
 *attainability arithmetic → trials → engine*, and this is the middle step: the
 ascension battery, the humility battery and the inheritance battery are written
