@@ -285,6 +285,64 @@ AUTHORIZED_GATES = (
      "structurally so — README-l4 §4 predicts 0 and not near 0, there being no "
      "pending set for a numerator to be drawn from. R5 clause 2 is the reading "
      "under which a baseline tying a minimizing clause does not void it"),
+
+    # Layer 5, Stage B: the same ratified numbers, now applied to an ENGINE
+    # rather than asked of a corpus. `t_prospection.py` (ascension) is
+    # engine-gated and skips until Stage C; `humility/l5` measures the capped
+    # consolidation engine today. The duplication of a *value* across files is
+    # what this registry is for — both copies are bound to one §5 clause and, for
+    # the five R5 reaches, to one ruling here, so they cannot drift apart.
+    #
+    # NO CORPUS BINDING IS CLAIMED BY ANY OF THEM. R5 settled a reading and
+    # expressly declined the binding, so these entries carry it for the reading
+    # exactly as the Stage-A entries above do; RULING-R6-DRAFT.md clause 1 is
+    # what would bind them to corpora/l5stream, and it is a draft.
+    ("ascension/l5/t_prospection.py", "GATE_TRIGGER_PRECISION", 1000,
+     (_s5("trigger-precision=1000"), _ruling("R5")),
+     "§5 L5, unchanged; an IDENTITY, asserted with require_equal rather than a "
+     "threshold — R5 clause 1 is why there is no inequality here to widen"),
+    ("ascension/l5/t_prospection.py", "GATE_TRIGGER_RECALL", 1000,
+     (_s5("trigger-recall=1000"), _ruling("R5")),
+     "§5 L5, unchanged; an identity, per R5 clause 1"),
+    ("ascension/l5/t_prospection.py", "GATE_DUP_FIRE", 0,
+     (_s5("dup-fire=0"), _ruling("R5")),
+     "§5 L5, unchanged; a MINIMIZING clause read direction-aware and over the "
+     "conjunction per R5 clause 2. The Stage-B battery observes it through the "
+     "query interface and audits it against the engine's own logical clock "
+     "(STAGE-B.md §1), so it is not a number an engine reports about itself"),
+    ("ascension/l5/t_prospection.py", "GATE_MISS", 0,
+     (_s5("miss=0"), _ruling("R5")),
+     "§5 L5, unchanged; a MINIMIZING clause, R5 clause 2"),
+    ("ascension/l5/t_prospection.py", "GATE_F", 980, (_s5("F≥980"),),
+     "§5 L5, unchanged; the ONE clause of §5 L5 that is a threshold, expressly "
+     "EXCLUDED from R5 clause 1, which is why it alone carries no ruling here. "
+     "R3 does not reach Layer 5 and no extension is requested"),
+    ("ascension/l5/t_prospection.py", "GATE_B", 1000,
+     (_s5("B=1000"), _ruling("R5")),
+     "§5 L5 budget; asserted after EVERY write, never once at the end, because "
+     "§4.1.2 refuses mid-stream. The events the engine emits when triggers fire "
+     "compete for cells inside this cap without enlarging it"),
+    ("humility/l5/t_prospection.py", "CEILING_TRIGGER_RECALL", 50,
+     (_s5("capped trigger-recall ≤ 50"), _ruling("R5")),
+     "§5 L5 humility ceiling, unchanged; measured 0 against make_engine(4) — the "
+     "frozen Layer-4 engine, run over the whole stream through the generic "
+     "interface, which is the half Stage A's policy-side measurement could not "
+     "reach. IMPOSSIBILITY.md carries the structural argument"),
+
+    # The inheritance class at Layer 5. As at Layer 4 it introduces no threshold
+    # of its own: these are ratified §5 clauses of LOWER layers, re-applied to the
+    # current engine at cap 5 on in-budget substrates. The Layer-4 row it adds is
+    # asserted as an IDENTITY (C = 1000, reconstruction F = 1000) and therefore
+    # declares no constant — a gate constant is what this registry governs, and
+    # an in-budget identity is deliberately not one.
+    ("inheritance/l5/t_inheritance.py", "GATE_L2_CUE_C", 900,
+     (_s5("cue-C≥900"),),
+     "§5 L2 cue coverage, re-applied at layer_cap = 5"),
+    ("inheritance/l5/t_inheritance.py", "GATE_L2_F", 950, (_s5("F≥950"),),
+     "§5 L2 fidelity, re-applied at layer_cap = 5"),
+    ("inheritance/l5/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "the budget law, absolute at every layer (§4.1); asserted in budget, where "
+     "a breach cannot be a pressure consequence"),
 )
 
 
