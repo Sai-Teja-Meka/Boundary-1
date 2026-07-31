@@ -226,6 +226,46 @@ AUTHORIZED_GATES = (
     ("inheritance/l4/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
      "the budget law, absolute at every layer (§4.1); asserted in budget, where "
      "a breach cannot be a pressure consequence"),
+
+    # Layer 5, Stage A. The ratified §5 L5 constants, named by the attainability
+    # trial ONLY so it can ask whether corpora/l5stream admits them (R2
+    # obligations 1 and 2). No engine is measured against any of them — none
+    # exists — and **no ruling binds them to a corpus yet**: unlike the Layer-3
+    # and Layer-4 entries above, these carry a §5 clause and no companion ruling,
+    # because RULING-R5-DRAFT.md is a draft and appending is what freezes.
+    #
+    # Four of them are the first IDENTITIES in the registry that are not the
+    # budget law: for them the oracle ceiling IS the gate, so R2's "strictly
+    # below" is undischargeable by the method that discharged Layers 3 and 4.
+    # That collision is the Stage-A finding, and it is recorded in
+    # trials/ascension/l5/ATTAINABILITY.md §5 rather than resolved here.
+    ("ascension/l5/t_attainability.py", "GATE_TRIGGER_PRECISION", 1000,
+     (_s5("trigger-precision=1000"),),
+     "§5 L5, unchanged; an identity — ATTAINABILITY.md exhibits a witness that "
+     "ATTAINS it rather than a gate lying strictly below a ceiling"),
+    ("ascension/l5/t_attainability.py", "GATE_TRIGGER_RECALL", 1000,
+     (_s5("trigger-recall=1000"),),
+     "§5 L5, unchanged; an identity, discharged by exhibited attainment"),
+    ("ascension/l5/t_attainability.py", "GATE_DUP_FIRE", 0,
+     (_s5("dup-fire=0"),),
+     "§5 L5, unchanged; a MINIMIZING clause — R2's 'strictly above' is written "
+     "for measures where higher is better, and three named baselines tie it"),
+    ("ascension/l5/t_attainability.py", "GATE_MISS", 0, (_s5("miss=0"),),
+     "§5 L5, unchanged; a MINIMIZING clause, tied by two named baselines"),
+    ("ascension/l5/t_attainability.py", "GATE_F", 980, (_s5("F≥980"),),
+     "§5 L5, unchanged; the ONE clause of §5 L5 that discharges R2 obligation 1 "
+     "by the ordinary method (980 < the exhibited oracle's 1000), and expressly "
+     "excluded from the draft ruling's identity clause for that reason. R3 does "
+     "not reach Layer 5 and no extension is requested"),
+    ("ascension/l5/t_attainability.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "§5 L5 budget; the identity that has been in this registry since Layer 1 "
+     "without ever being scored against an oracle — §3.3 makes any value below "
+     "1000 disqualifying, so its ceiling is exactly 1000"),
+    ("ascension/l5/t_attainability.py", "CEILING_TRIGGER_RECALL", 50,
+     (_s5("capped trigger-recall ≤ 50"),),
+     "§5 L5 humility ceiling, unchanged; measured 0 on the capped-4 policy, and "
+     "structurally so — README-l4 §4 predicts 0 and not near 0, there being no "
+     "pending set for a numerator to be drawn from"),
 )
 
 
