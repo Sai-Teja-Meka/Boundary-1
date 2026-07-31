@@ -232,16 +232,22 @@ AUTHORIZED_GATES = (
     # obligations 1 and 2). No engine is measured against any of them — none
     # exists.
     #
-    # Six of the seven now carry **R5** beside their §5 L5 clause — GATE_F alone
-    # carries none, being the clause R5 expressly EXCLUDES because it discharges
-    # R2 obligation 1 the ordinary way. What the ruling authorizes is stated
-    # precisely: R5 settles HOW R2's two obligations are discharged for these
-    # constants — by an exhibited ATTAINMENT for a clause the constitution states
-    # as an identity (clause 1), and direction-aware and over the CONJUNCTION for
-    # a minimizing one (clause 2). It does **not** bind
-    # the Layer-5 gate to a corpus: that is question 4 of ATTAINABILITY.md §6 and
-    # is deliberately not taken, so unlike the Layer-3 (R1) and Layer-4 (R4)
-    # entries above, the ruling here authorizes a READING and not a substrate.
+    # Six of the seven carry **R5** beside their §5 L5 clause — GATE_F alone
+    # carries none of it, being the clause R5 expressly EXCLUDES because it
+    # discharges R2 obligation 1 the ordinary way. What that ruling authorizes is
+    # stated precisely: R5 settles HOW R2's two obligations are discharged for
+    # these constants — by an exhibited ATTAINMENT for a clause the constitution
+    # states as an identity (clause 1), and direction-aware and over the
+    # CONJUNCTION for a minimizing one (clause 2). It did **not** bind the
+    # Layer-5 gate to a corpus.
+    #
+    # **R6 is what binds the substrate**, and every one of the seven carries it:
+    # clause 1 binds the Layer-5 ascension gate AND the humility ceiling to
+    # corpora/l5stream (together, because a ceiling measured on one corpus beside
+    # a gate cleared on another discriminates nothing), and clause 4 rules the cap
+    # the budget law binds at — `budget_cap = raw_cells // 4 = 45 638`. GATE_F
+    # therefore carries R6 and not R5: the substrate is ruled for it like every
+    # other clause, only the READING of R2 is not.
     #
     # Four of them are the first IDENTITIES in the registry that are not the
     # budget law: for them the oracle ceiling IS the gate, so R2's "strictly
@@ -249,42 +255,50 @@ AUTHORIZED_GATES = (
     # That collision is the Stage-A finding recorded in
     # trials/ascension/l5/ATTAINABILITY.md §5, and R5 is what resolves it.
     ("ascension/l5/t_attainability.py", "GATE_TRIGGER_PRECISION", 1000,
-     (_s5("trigger-precision=1000"), _ruling("R5")),
+     (_s5("trigger-precision=1000"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; an identity — R5 clause 1 discharges R2 obligation 1 by "
      "the witness ATTAINING it that ATTAINABILITY.md exhibits, rather than by a "
-     "gate lying strictly below a ceiling"),
+     "gate lying strictly below a ceiling; R6 clause 1 binds it to "
+     "corpora/l5stream, where that witness was exhibited"),
     ("ascension/l5/t_attainability.py", "GATE_TRIGGER_RECALL", 1000,
-     (_s5("trigger-recall=1000"), _ruling("R5")),
+     (_s5("trigger-recall=1000"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; an identity, discharged by exhibited attainment per R5 "
-     "clause 1"),
+     "clause 1; bound to corpora/l5stream by R6 clause 1"),
     ("ascension/l5/t_attainability.py", "GATE_DUP_FIRE", 0,
-     (_s5("dup-fire=0"), _ruling("R5")),
+     (_s5("dup-fire=0"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; a MINIMIZING clause — R2's 'strictly above' is written "
      "for measures where higher is better and three named baselines tie it, so "
-     "R5 clause 2 reads it direction-aware and over the conjunction"),
+     "R5 clause 2 reads it direction-aware and over the conjunction; R6 clause 1 "
+     "binds it to corpora/l5stream"),
     ("ascension/l5/t_attainability.py", "GATE_MISS", 0,
-     (_s5("miss=0"), _ruling("R5")),
+     (_s5("miss=0"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; a MINIMIZING clause, tied by two named baselines; R5 "
-     "clause 2"),
-    ("ascension/l5/t_attainability.py", "GATE_F", 980, (_s5("F≥980"),),
+     "clause 2, and R6 clause 1 for the corpus"),
+    ("ascension/l5/t_attainability.py", "GATE_F", 980,
+     (_s5("F≥980"), _ruling("R6")),
      "§5 L5, unchanged; the ONE clause of §5 L5 that discharges R2 obligation 1 "
      "by the ordinary method (980 < the exhibited oracle's 1000), and expressly "
      "EXCLUDED from R5 clause 1 for that reason — which is why it alone among "
-     "the Layer-5 constants carries no ruling here. R3 does not reach Layer 5 "
-     "and no extension is requested"),
+     "the Layer-5 constants carries no R5. It carries R6 like every other: "
+     "clause 1 binds the whole gate, this clause included, to corpora/l5stream. "
+     "R3 does not reach Layer 5 and no extension is requested"),
     ("ascension/l5/t_attainability.py", "GATE_B", 1000,
-     (_s5("B=1000"), _ruling("R5")),
+     (_s5("B=1000"), _ruling("R5"), _ruling("R6")),
      "§5 L5 budget; the identity that has been in this registry since Layer 1 "
      "without ever being scored against an oracle — §3.3 makes any value below "
      "1000 disqualifying, so its ceiling is exactly 1000. R5 REGULARIZES that "
      "practice rather than correcting it: nothing earlier stated was false, and "
-     "from here the clause is discharged by attainment"),
+     "from here the clause is discharged by attainment. R6 clause 4 rules the "
+     "cap it is certified against: budget_cap = raw_cells // 4 = 45 638"),
     ("ascension/l5/t_attainability.py", "CEILING_TRIGGER_RECALL", 50,
-     (_s5("capped trigger-recall ≤ 50"), _ruling("R5")),
+     (_s5("capped trigger-recall ≤ 50"), _ruling("R5"), _ruling("R6")),
      "§5 L5 humility ceiling, unchanged; measured 0 on the capped-4 policy, and "
      "structurally so — README-l4 §4 predicts 0 and not near 0, there being no "
      "pending set for a numerator to be drawn from. R5 clause 2 is the reading "
-     "under which a baseline tying a minimizing clause does not void it"),
+     "under which a baseline tying a minimizing clause does not void it; R6 "
+     "clause 1 binds the ceiling to corpora/l5stream in the SAME clause as the "
+     "gate, because a ceiling measured on one corpus beside a gate cleared on "
+     "another discriminates nothing"),
 
     # Layer 5, Stage B: the same ratified numbers, now applied to an ENGINE
     # rather than asked of a corpus. `t_prospection.py` (ascension) is
@@ -293,41 +307,58 @@ AUTHORIZED_GATES = (
     # what this registry is for — both copies are bound to one §5 clause and, for
     # the five R5 reaches, to one ruling here, so they cannot drift apart.
     #
-    # NO CORPUS BINDING IS CLAIMED BY ANY OF THEM. R5 settled a reading and
-    # expressly declined the binding, so these entries carry it for the reading
-    # exactly as the Stage-A entries above do; RULING-R6-DRAFT.md clause 1 is
-    # what would bind them to corpora/l5stream, and it is a draft.
+    # THE CORPUS IS NOW BOUND, and by R6 rather than by R5. R5 settled a reading
+    # and expressly declined the binding; R6 clause 1 takes it, for the ascension
+    # gate and the humility ceiling TOGETHER, and R6 clause 4 rules the cap these
+    # batteries replay at (raw_cells // 4 = 45 638). So each entry below carries
+    # two rulings and they authorize different things: R5 the reading of R2's
+    # obligations, R6 the substrate — except GATE_F, which carries R6 alone,
+    # being the clause R5 expressly excludes.
     ("ascension/l5/t_prospection.py", "GATE_TRIGGER_PRECISION", 1000,
-     (_s5("trigger-precision=1000"), _ruling("R5")),
+     (_s5("trigger-precision=1000"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; an IDENTITY, asserted with require_equal rather than a "
-     "threshold — R5 clause 1 is why there is no inequality here to widen"),
+     "threshold — R5 clause 1 is why there is no inequality here to widen; R6 "
+     "clause 1 binds it to corpora/l5stream"),
     ("ascension/l5/t_prospection.py", "GATE_TRIGGER_RECALL", 1000,
-     (_s5("trigger-recall=1000"), _ruling("R5")),
-     "§5 L5, unchanged; an identity, per R5 clause 1"),
+     (_s5("trigger-recall=1000"), _ruling("R5"), _ruling("R6")),
+     "§5 L5, unchanged; an identity, per R5 clause 1; bound to corpora/l5stream "
+     "by R6 clause 1"),
     ("ascension/l5/t_prospection.py", "GATE_DUP_FIRE", 0,
-     (_s5("dup-fire=0"), _ruling("R5")),
+     (_s5("dup-fire=0"), _ruling("R5"), _ruling("R6")),
      "§5 L5, unchanged; a MINIMIZING clause read direction-aware and over the "
-     "conjunction per R5 clause 2. The Stage-B battery observes it through the "
-     "query interface and audits it against the engine's own logical clock "
-     "(STAGE-B.md §1), so it is not a number an engine reports about itself"),
+     "conjunction per R5 clause 2, bound to corpora/l5stream by R6 clause 1. The "
+     "Stage-B battery observes it through the query interface and audits it "
+     "against the engine's own logical clock — which is R6 clause 2's `t` "
+     "semantics doing the auditing, so it is not a number an engine reports "
+     "about itself"),
     ("ascension/l5/t_prospection.py", "GATE_MISS", 0,
-     (_s5("miss=0"), _ruling("R5")),
-     "§5 L5, unchanged; a MINIMIZING clause, R5 clause 2"),
-    ("ascension/l5/t_prospection.py", "GATE_F", 980, (_s5("F≥980"),),
+     (_s5("miss=0"), _ruling("R5"), _ruling("R6")),
+     "§5 L5, unchanged; a MINIMIZING clause, R5 clause 2; R6 clause 1 for the "
+     "corpus, and R6 clause 2 records the one consequence it fixes — a firing is "
+     "NOT discretionary, since miss = 0 means an intention whose condition is "
+     "satisfied fires"),
+    ("ascension/l5/t_prospection.py", "GATE_F", 980,
+     (_s5("F≥980"), _ruling("R6")),
      "§5 L5, unchanged; the ONE clause of §5 L5 that is a threshold, expressly "
-     "EXCLUDED from R5 clause 1, which is why it alone carries no ruling here. "
-     "R3 does not reach Layer 5 and no extension is requested"),
+     "EXCLUDED from R5 clause 1, which is why it alone carries no R5. It carries "
+     "R6 clause 1 like every other clause of the gate — the substrate is ruled "
+     "for it too. R3 does not reach Layer 5 and no extension is requested"),
     ("ascension/l5/t_prospection.py", "GATE_B", 1000,
-     (_s5("B=1000"), _ruling("R5")),
+     (_s5("B=1000"), _ruling("R5"), _ruling("R6")),
      "§5 L5 budget; asserted after EVERY write, never once at the end, because "
-     "§4.1.2 refuses mid-stream. The events the engine emits when triggers fire "
-     "compete for cells inside this cap without enlarging it"),
+     "§4.1.2 refuses mid-stream. R6 clause 4 rules the cap — raw_cells // 4 = "
+     "45 638 — and rules with it that the events the engine emits when triggers "
+     "fire compete for cells inside that cap without enlarging it"),
     ("humility/l5/t_prospection.py", "CEILING_TRIGGER_RECALL", 50,
-     (_s5("capped trigger-recall ≤ 50"), _ruling("R5")),
+     (_s5("capped trigger-recall ≤ 50"), _ruling("R5"), _ruling("R6")),
      "§5 L5 humility ceiling, unchanged; measured 0 against make_engine(4) — the "
      "frozen Layer-4 engine, run over the whole stream through the generic "
      "interface, which is the half Stage A's policy-side measurement could not "
-     "reach. IMPOSSIBILITY.md carries the structural argument"),
+     "reach. R6 clause 1 binds this ceiling to corpora/l5stream in the SAME "
+     "clause as the gate, and carries the measurement in BOTH conditions R5 "
+     "clause 4 demands — 945 of 945 intentions held in budget, 30 of 945 at the "
+     "ratified cap, trigger-recall 0 either way. IMPOSSIBILITY.md carries the "
+     "structural argument"),
 
     # The inheritance class at Layer 5. As at Layer 4 it introduces no threshold
     # of its own: these are ratified §5 clauses of LOWER layers, re-applied to the

@@ -80,10 +80,13 @@ def replay(engine, mk, b=None, cap=None):
 
     Returns `(state, report)`. The cap is `ATTAINABILITY.md §1`'s Reading 2 —
     `raw_cells // 4`, the Layer-4 footprint ratio carried forward because `§5 L5`
-    declares no pressure ratio of its own. That reading is **not ratified**: R5
-    left it open and `RULING-R6-DRAFT.md` clause 4 asks for it. A looser ruling
-    moves the recorded margin and not the verdict, which is why the battery reads
-    the number from `_l5tasks` rather than hard-coding one.
+    declares no pressure ratio of its own. That reading is **ratified**:
+    `BOUNDARY-RULINGS.md R6` clause 4 rules `budget_cap = raw_cells // 4 =
+    45 638` on `corpora/l5stream`, and rules with it that the events the engine
+    emits compete for cells inside that cap without enlarging it. No footprint
+    gate is created by it — `§5 L5` states none. The battery still reads the
+    number from `_l5tasks` rather than hard-coding one, so the ruled ratio is
+    applied to whatever corpus is measured rather than to a constant.
 
     `B = 1000` is certified after every single write, never once at the end: the
     budget law refuses mid-stream (§4.1.2), so a state that would exceed the cap

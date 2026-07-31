@@ -52,6 +52,14 @@ Populated alongside ascension trials, one layer at a time. Present:
   binds it to the humility side any more than to the ascension side, and
   `ascension/l5/RULING-R6-DRAFT.md` clause 1 asks for both bindings together.
 
+  > **Note added 2026-07-31 (`[L4] [RULING]`).** No longer pending: `R6` clause 1
+  > is ratified and **binds `corpora/l5stream` to this ceiling and to the
+  > ascension gate in one clause**, for exactly the reason the sentence above
+  > gives. The measurement does not move — `trigger-recall` **0** against a
+  > ceiling of 50 — and both conditions of `IMPOSSIBILITY.md §3` (945 of 945
+  > intentions held in budget, 30 of 945 at the ratified cap, 0 either way) are
+  > carried into R6's Stage-B evidence.
+
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 `trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).

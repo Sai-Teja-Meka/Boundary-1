@@ -1,5 +1,18 @@
 # IMPOSSIBILITY.md — why `make_engine(layer_cap = 4)` cannot reach the Layer-5 ceiling
 
+> **THE CORPUS IS NOW BOUND — 2026-07-31, `BOUNDARY-RULINGS.md R6` clause 1
+> (`[L4] [RULING]`).** The boxed note below says the corpus is *pending*; it was
+> true when written and is answered here rather than rewritten. `R6` clause 1
+> binds `corpora/l5stream` to the Layer-5 **humility ceiling and the ascension
+> gate together, in one clause**, for the reason that note gives — a ceiling
+> measured on one corpus beside a gate cleared on another would discriminate
+> nothing. Nothing else in this document changes: no number moved, the argument
+> below never depended on which corpus it was, and both measured conditions of §3
+> (945 of 945 intentions held in budget, 30 of 945 at the ratified cap,
+> `trigger-recall` **0** either way) are carried verbatim into R6's Stage-B
+> evidence, because R5 clause 4 is why quoting only the flattering one would have
+> been an omission.
+
 `BOUNDARY.md §6` requires every humility trial to ship a **structural** argument —
 not an empirical observation — for why the capped engine cannot exceed its
 declared ceiling. The ceiling is `§5 L5`'s:
@@ -165,3 +178,7 @@ fails if any of these becomes true:
   — the same 0, from the arithmetic side, engine-free, since Stage A.
 * `trials/laws/t_rulings.py` — `CEILING_TRIGGER_RECALL = 50` bound to its `§5 L5`
   clause and to `R5`.
+
+  > **Note added 2026-07-31 (`[L4] [RULING]`).** It now carries `R6` beside them:
+  > `R5` for the reading under which a baseline tying a minimizing clause does not
+  > void a gate, `R6` clause 1 for the substrate this ceiling is measured on.

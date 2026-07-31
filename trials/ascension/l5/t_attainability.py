@@ -6,10 +6,20 @@ machine-checked by a trial that goes red if any recorded number drifts, BEFORE t
 gate is treated as binding."* This is that trial.
 
 **It applies no gate to any engine.** `core/layers/l5_prospection.py` does not
-exist and `trials/humility/l5/` does not exist. The `§5 L5` constants below are
-named so that this file can ask *whether the corpus admits them* (R2 obligations 1
-and 2), which is the only thing Stage A is for; `trials/laws/t_rulings.py` binds
-each of them to its `§5 L5` clause and, since **R5**, to that entry.
+exist. The `§5 L5` constants below are named so that this file can ask *whether
+the corpus admits them* (R2 obligations 1 and 2), which is the only thing Stage A
+is for; `trials/laws/t_rulings.py` binds each of them to its `§5 L5` clause, to
+**R5** and — since 2026-07-31 — to **R6**.
+
+> **Note added 2026-07-31 (`[L4] [RULING]`).** The paragraph below says no
+> Layer-5 gate binds on any corpus. That was true when written and is no longer:
+> **`R6` clause 1 binds the Layer-5 ascension gate and the humility ceiling to
+> `corpora/l5stream` together**, and `R6` clause 4 rules the budget reading §1 of
+> `ATTAINABILITY.md` declared (`budget_cap = raw_cells // 4 = 45 638`). Nothing
+> in this file's arithmetic moves — it is the same corpus, the same witness and
+> the same baselines — and R5 remains what this file's *readings* rest on. `R6`
+> clause 2 additionally ratifies the `t` semantics item 4 below records as a
+> drift: a firing is an event and occupies a logical `t` of its own.
 
 **`R5` is the ruling this file enforces**, and it settles a reading rather than a
 substrate: no Layer-5 gate binds on any corpus (`ATTAINABILITY.md §6` question 4
@@ -40,7 +50,9 @@ What is asserted here, and why each assertion exists:
    1**). Both are asserted as findings so that a later session cannot quietly
    restate them — R5 ratified the reading, not a licence to stop measuring it.
 4. **The engine-`t` drift** — one caller ingest advancing `next_t` by more than
-   one — as a number rather than a warning.
+   one — as a number rather than a warning. Ratified since as **R6 clause 2**,
+   which names this trial as the assertion that already enforced the semantics
+   before anyone proposed a clause for it.
 """
 
 from fractions import Fraction
@@ -416,11 +428,14 @@ def trial_r2_obligation_2_ties_on_the_minimizing_clauses_and_holds_on_the_conjun
 
 
 def trial_the_humility_ceiling_is_not_breached_and_the_reason_is_structural():
-    """`capped trigger-recall <= 50`, measured 0. README-l4 §4 predicted the value.
+    """`capped trigger-recall <= 50` (R6 clause 1), measured 0 on the capped POLICY.
 
-    Stated here rather than in a humility trial because `trials/humility/l5/` does
-    not exist yet: Stage A computes what the corpus admits, and the capped policy
-    is a policy the corpus admits like any other.
+    Stated here rather than only in a humility trial because Stage A computes what
+    the corpus admits, and the capped policy is a policy the corpus admits like
+    any other. `trials/humility/l5/` now exists and measures the same ceiling on
+    the capped **engine** — R6 clause 1 binds both to `corpora/l5stream`, in the
+    same clause that binds the gate, so the policy-side and engine-side numbers
+    are two measurements of one ceiling rather than two facts about two worlds.
     """
     row = _l5tasks.baseline_never_fire()
     require_equal(row["recall"], 0,
@@ -444,12 +459,19 @@ def trial_the_humility_ceiling_is_not_breached_and_the_reason_is_structural():
 # ---- 4. the engine-`t` drift, as a number ----------------------------------
 
 def trial_one_caller_ingest_can_advance_next_t_by_more_than_one():
-    """The `[L4] [PULSE]` session's second-ranked Layer-5 risk, measured.
+    """The `[L4] [PULSE]` session's second-ranked Layer-5 risk, measured — and ruled.
 
     A fired event is an event and `§1.3` gives it a `t` of its own, so on a stream
     carrying intentions the one-ingest-one-`t` identity that every anchor and the
-    whole `inheritance/` class assume stops holding. Stage A cannot fix that — it
-    is a Stage-B and Stage-C obligation — but it can stop it being a surprise.
+    whole `inheritance/` class assume stops holding. Stage A could not fix that —
+    it was a Stage-B and Stage-C obligation — but it could stop it being a
+    surprise, and it asserted the layout below before any ruling proposed one.
+
+    **`R6` clause 2 ratifies exactly this**, and cites this trial as the reason
+    the clause is the weakest possible way to introduce a semantics of that reach:
+    the partition asserted here — the caller events and the firings occupying
+    `0 .. next_t − 1` with nothing left over — *is* the ruled rule, so the ruling
+    states what the suite was already enforcing.
     """
     b = _l5tasks.corpus()
     n_fires = len(b["fireable"])

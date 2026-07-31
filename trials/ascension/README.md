@@ -78,6 +78,19 @@ Present:
   > `next_t` by `1 + f` — with `f = 0`, and therefore Layers 1–4 unmoved, on
   > every corpus that carries no intention, asserted over the bytes of all seven.
 
+  > **Note added 2026-07-31 (`[L4] [RULING]`).** `R6` is ratified and appended to
+  > `BOUNDARY-RULINGS.md`, so **the sentence above no longer holds and this is
+  > where it stops**: the Layer-5 ascension gate — and, in the same clause, the
+  > Layer-5 humility ceiling — **binds on `corpora/l5stream`** (clause 1), a
+  > firing is an event occupying a logical `t` of its own so one caller `ingest`
+  > advances `next_t` by `1 + f` (clause 2, which also records what it does *not*
+  > decide: cascades, and what an engine owes when the budget cannot house a
+  > firing), a machine-checked quantity beats a prose one and the divergence is
+  > recorded rather than edited away (clause 3), and `budget_cap = raw_cells // 4
+  > = 45 638` (clause 4). What does **not** change: no threshold moved, Layer 5
+  > is **not** claimed, and Stage C — the engine, its README, its strains and its
+  > anchor — is unwritten under R2's standing step.
+
 - `l5/STAGE-B.md` — the Stage-B record: the `t` decision and its derivation
   (§1, with the contradiction check against every text that could object), the
   declared query vocabulary the battery asks (§2), what the battery binds and
