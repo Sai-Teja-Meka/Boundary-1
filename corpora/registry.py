@@ -11,8 +11,30 @@ REAL      : real-data corpora, exempt from byte-match, bound by SHA-256 checksum
             accumulated dogfood store (`corpora/real_sessions.py` is its loader
             and its scrub; the hyphenated data directory is not importable).
 
-GENERATED currently holds seven: chronicle, sessions, murk, l3stream, l3streamb,
-l4stream, l5stream.
+GENERATED currently holds eight: chronicle, sessions, murk, l3stream, l3streamb,
+l4stream, l5stream, l6battery.
+
+l6battery is the odd one and is listed deliberately. It is a **query set**, not an
+event stream: its substrate is the frozen murk corpus and its answer keys are
+derived from murk's frozen ground_truth.json, which is the artifact §8.7 mandates.
+It is admitted here because §8.3's byte-match law is what a frozen generator
+output needs whether its records are events or queries, and an attainability
+arithmetic that rested on a battery which could drift would rest on nothing. It
+was frozen by the Layer-6 Stage-A session and **NO Layer-6 gate binds on it**:
+trials/ascension/l6/ATTAINABILITY.md computes the arithmetic and
+RULING-R7-DRAFT.md awaits human ratification (BOUNDARY.log line 36).
+
+  One consequence of that admission is recorded here rather than left to be
+  rediscovered. The FROZEN Layer-5 trial ascension/l5/t_prospection.py::
+  trial_one_caller_ingest_advances_next_t_by_exactly_one_on_an_intention_free_
+  stream quantifies over this list and reads each member as JSONL, requiring
+  l5stream to be the only corpus carrying an `intend` payload. l6battery is a
+  single canonical JSON object, so it reads there as ONE line carrying no
+  `intend` payload — the theorem that trial asserts stays true and is still
+  correctly checked, and the frozen trial is not edited (§9.2). What the seam
+  costs is that its `total > 0` guard is satisfied trivially for this member;
+  what it would cost to avoid is editing a frozen trial, which is not a trade
+  this project makes.
 
 l3stream and l3streamb are both frozen and both scored — l3streamb is the Layer-3
 ascension gate's binding corpus and l3stream its ungated diagnostic, per
@@ -55,6 +77,7 @@ Each REAL entry is: {"name": str, "path": str (absolute), "sha256": hex str}.
 
 from corpora import real_sessions
 from corpora.chronicle import generator as chronicle_gen
+from corpora.l6battery import generator as l6battery_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
 from corpora.l3stream import generator as l3stream_gen
@@ -63,7 +86,7 @@ from corpora.l4stream import generator as l4stream_gen
 from corpora.l5stream import generator as l5stream_gen
 
 GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen,
-             l4stream_gen, l5stream_gen]
+             l4stream_gen, l5stream_gen, l6battery_gen]
 
 MURK = murk_gen
 
