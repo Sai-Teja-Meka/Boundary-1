@@ -395,6 +395,56 @@ than a hash apart.
   is a non-capability by arithmetic, not by omission, for the same reason: at
   250‰ exactly one access path is affordable.
 
+  > **Note added 2026-08-01 (`[L5] [STRAIN]`, the prospection blocking seam).**
+  > The paragraph above states this price in prose and nowhere in a number, which
+  > `PULSE` (`BOUNDARY.log` line 34) recorded as the one genuine gap in the
+  > seven-sin strain audit: **blocking**, the sin of a memory that is present and
+  > unreachable, is now committed by two tiers no earlier layer had. It is
+  > measured on the binding corpus at the ratified cap by
+  > `trials/strain/l5/t_prospection_blocking_seam.py`. Nothing above is
+  > corrected; the numbers the prose never carried are these, and they bind from
+  > here:
+  >
+  > **Both prospection tiers are `t`-addressable and not cue-addressable.** At
+  > `budget_cap` 45 638 on `corpora/l5stream`: all **180** pending intentions
+  > return their own `intend` event byte-exact from `read(t0)` and all **765**
+  > firings return their emitted payload byte-exact from `read(t_fire)`, every one
+  > of them tagged `derive` and never `recall` — and **not one** of those **945**
+  > prospection-tier events answers a cue built from its own payload. Every
+  > blocked cue **abstains**; none is answered wrongly, so the missing channel
+  > costs 100 per query under §3.0 and never 0. The cue channel reaches the
+  > **952** held episodes and nothing else, **952 of 18 724** events still
+  > answerable by `t` — **51‰**, against `README-l4 §4`'s 26‰ one layer down, and
+  > all 952 are still recalled exactly, so what is asserted is a channel that
+  > does not exist and not an index the trial broke.
+  >
+  > **The reason above is the right reason for Layer 4 and for neither tier
+  > here**, which is what the measurement found and what this note exists to
+  > record (`R6` clause 3: the historical sentence stands as written, the
+  > divergence is recorded rather than edited away). The budget closes nothing
+  > here:
+  >
+  > * **the armed tier** — a payload is **cue-addressable or an intention, never
+  >   both**. `recall` addresses an episode by a `HANDLE_FIELDS` atom
+  >   (`README-l3 §0.2`), the frozen `intend` grammar carries none of them, and
+  >   §1.2 arms only a payload that rebuilds from `(iid, cond, fire)` as canonical
+  >   bytes — so a would-be intention carrying `entity` is retained as an ordinary
+  >   episode and reached exactly, and arms nothing. **The rule that opens the
+  >   capability is the rule that closes the channel**, which is the engine-side
+  >   form of the field note that found the shell half (`FIELD.md`, 2026-08-01:
+  >   adding `tok` leaves the payload perfectly canonical and stops it arming).
+  > * **the fired tier** — the closure is the **tier**, not the grammar. A firing
+  >   is folded and its episode released into the fired ledger, which regenerates
+  >   it, so it is never an episode and never earns a posting: a fire payload that
+  >   *does* carry a handle field is still unreachable while an ordinary event
+  >   carrying the same atom is reached exactly by it.
+  >
+  > The same rule prices the loss, too: an `intend` payload declaring
+  > `importance` carries a fourth field and stops arming, so **a promise always
+  > weighs exactly 1 in the forgetting record and can never outbid the episodes it
+  > displaces**. The trial pins all of it so it cannot change silently in either
+  > direction; this note says why it is what it is.
+
 - **No inference beyond the declared condition grammar.** Six predicates, three
   connectives, and a condition outside them arms nothing. The vocabulary is a
   **declared reading** of a frozen grammar, not a learner; an engine that guessed
