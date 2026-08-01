@@ -8,7 +8,8 @@ project (`shell/dogfood/`):
   * a remember/recall round trip survives a real state file on disk;
   * an abstention is always rendered explicitly — never empty silence;
   * a corrupted state file fails **loudly** and is never silently re-initialized;
-  * the committed store, if present, still restores and still validates.
+  * the committed store, if present, still restores and still validates — at
+    `[L5] [DOGFOOD]` against the two kinds its vocabulary now declares.
 
 Every trial that writes uses a temporary directory. None of them touches the
 committed store at `shell/dogfood/store/store.json` except read-only.
@@ -23,8 +24,10 @@ from _harness import require, require_equal, skip
 
 from core.serialize import check_canonical
 from core.layers import l2_recall as engine
+from core.layers import l5_prospection as l5
 from shell.dogfood import backfill, cli
 from shell.dogfood import event as ev
+from shell.dogfood import intend as it
 from shell.dogfood import store as st
 
 SUMMARY = {
@@ -276,6 +279,15 @@ def trial_corrupted_state_file_fails_loudly_and_is_never_re_initialized():
 # ---- 5. the committed store (read-only) ------------------------------------
 
 def trial_committed_store_restores_and_validates():
+    """The committed store restores, and every event in it is one of the two the
+    store's vocabulary declares.
+
+    `[L5] [DOGFOOD]` widened that vocabulary: the ledger now also carries
+    **intentions**, in the engine's own `intend` form (`shell/dogfood/intend.py`).
+    The check is not relaxed by that — it is dispatched, and each kind is
+    validated against its own schema, with the kind set itself asserted closed so
+    a third kind cannot appear here unremarked.
+    """
     path = st.default_store_path()
     if not os.path.isfile(path):
         skip("no committed dogfood store yet (%s)" % st.display_path(path))
@@ -285,5 +297,16 @@ def trial_committed_store_restores_and_validates():
     require(state.occupancy <= state.budget_cap, "the committed store breaches its cap (§4.1)")
     for record in engine.read_range(state, 0, state.next_t - 1):
         payload = record["payload"]
-        require_equal(payload["kind"], ev.KIND, "a stored event is not a session summary")
-        ev.validate_summary(ev.summary_of_payload(payload))
+        kind = payload["kind"]
+        require(kind in (ev.KIND, it.INTENTION_KIND),
+                "a stored event is neither a session summary nor an intention: %r"
+                % (kind,))
+        if kind == ev.KIND:
+            ev.validate_summary(ev.summary_of_payload(payload))
+            continue
+        it.validate_condition(payload["cond"])
+        require(it.guarded(payload["fire"]),
+                "a stored intention surfaces a payload outside the declared reading")
+        require(l5.arms(payload) is not None,
+                "a stored intention is one the engine would not arm — it would sit "
+                "in the ledger forever as an ordinary event (README-l5 §1.2)")

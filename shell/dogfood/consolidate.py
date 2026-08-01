@@ -1,6 +1,7 @@
-"""shell/dogfood/consolidate.py — the store's derived view, at Layer 4.
+"""shell/dogfood/consolidate.py — the store's derived view, at Layer 5.
 
-`[L4] [DOGFOOD]`. `remember` writes episodes and `recall` finds one of them.
+`[L4] [DOGFOOD]`, upgraded to prospection at `[L5] [DOGFOOD]`. `remember` writes
+episodes and `recall` finds one of them.
 This module answers the third question a memory owes its owner — *what does all
 of it add up to?* — by folding the store's session summaries through
 `core/layers/l4_consolidation.py` and reading the result back through the
@@ -47,9 +48,18 @@ events, so replay `t` and store `t` are different counters (§1.3 owns both, and
 neither is the other's index). Every number this module *prints* is a **store**
 `t`, translated through `origin`, so the report joins to `BOUNDARY.log` the way
 `README.md` says a reader should: on the line, not on arithmetic.
+
+`[L5]`: the replay now runs through `core/layers/l5_prospection.py`, and the
+engine emits events of its own. Under `BOUNDARY-RULINGS.md R6` clause 2 a firing
+consumes a logical `t` of its own, so **one caller write advances `next_t` by
+`1 + f`** and replay `t` is no longer an index into the caller stream at all.
+`origin` is therefore a **map** `replay t -> store t`, and a firing is attributed
+to the store event whose write satisfied it — which is the honest answer to
+*"where did this come from"* and the only one the caller stream can give.
 """
 
-from core.layers import l4_consolidation as l4
+from core.layers import l5_prospection as l5
+from core.serialize import encode
 from shell.dogfood import event as ev
 
 # The dogfood store is a handful of session summaries; the derived stream is a
@@ -71,6 +81,13 @@ QUESTION_KEY = "open_question"
 
 SUMMARY_KIND = ev.KIND
 ASSERTION_KIND = "attr"
+
+# The engine's frozen kind for an intention. A stored intention is replayed
+# UNCHANGED — the shell's reading of it is the identity, because the payload is
+# already in the engine's own grammar and `README-l5 §1.2` admits it only if it
+# rebuilds from `(iid, cond, fire)` byte-for-byte. `shell/dogfood/intend.py` is
+# where that reading is declared; nothing here may add a field to it.
+INTENTION_KIND = l5.INTENTION_KIND
 
 
 # ---- parsing the facts a log line states ------------------------------------
@@ -149,6 +166,22 @@ def session_stream(payload, entity):
     return out
 
 
+def derived_stream(payload, entities):
+    """The derived events one **stored** event becomes, whatever kind it is.
+
+    Two kinds, two readings, and the second one is deliberately the identity:
+
+      * a **session summary** becomes its episode plus one assertion per fact it
+        states (`session_stream`) — prose read into the engine's grammar;
+      * an **intention** is already in the engine's grammar and is replayed
+        unchanged. Adding an `entity` field the way `session_stream` does would
+        cost it the inversion `README-l5 §1.2` demands and it would never arm.
+    """
+    if payload.get("kind") == INTENTION_KIND:
+        return [dict(payload)]
+    return session_stream(payload, entities[payload["project"]])
+
+
 def project_entities(records):
     """`{project: entity id}` in first-appearance order, from 1.
 
@@ -159,7 +192,10 @@ def project_entities(records):
     """
     out = {}
     for record in records:
-        name = record["payload"]["project"]
+        payload = record["payload"]
+        if payload.get("kind") != SUMMARY_KIND:
+            continue                      # an intention belongs to no project
+        name = payload["project"]
         if name not in out:
             out[name] = len(out) + 1
     return out
@@ -168,39 +204,48 @@ def project_entities(records):
 # ---- the derived state ------------------------------------------------------
 
 def derive(records, budget_cap=DERIVED_BUDGET):
-    """Fold the store's episodes into a Layer-4 state.
+    """Fold the store's events into a Layer-5 state.
 
     Returns `(state, origin, sessions, entities, refused)`:
 
-      * `origin[replay_t]` — the store `t` the derived event came from;
-      * `sessions` — `[(store_t, summary_replay_t, last_replay_t)]` in order, so
-        a report can ask `asof` at the instant a session ended;
+      * `origin` — `{replay_t: store_t}`, covering **every** logical time the
+        engine assigned, its own firings included (module docstring);
+      * `sessions` — `[(store_t, summary_replay_t, last_replay_t)]` for the
+        session summaries, in order, so a report can ask `asof` at the instant a
+        session ended;
       * `entities` — the `{project: entity}` mapping the reading used;
       * `refused` — `(store_t, payload)` of the first write the budget refused,
         or `None`.
 
     A refusal is surfaced, never swallowed: an event the budget cannot admit
     stops the replay and is reported as such, because a view built from a
-    truncated stream that says so is honest and one that does not is a lie.
+    truncated stream that says so is honest and one that does not is a lie. At
+    Layer 5 a refusal is total in a second sense the engine owns — where the
+    budget cannot house a firing, the whole transition is refused with `t`
+    unspent (`README-l5 §1.4`), so a half-kept promise is not a state this
+    replay can reach.
     """
     entities = project_entities(records)
-    state = l4.make_engine(l4.LAYER, budget_cap=budget_cap)
-    origin = []
+    state = l5.make_engine(l5.LAYER, budget_cap=budget_cap)
+    origin = {}
     sessions = []
     refused = None
     for record in records:
         payload = record["payload"]
-        entity = entities[payload["project"]]
         first = state.next_t
-        for derived in session_stream(payload, entity):
-            state, t = l4.write(state, derived)
+        for derived in derived_stream(payload, entities):
+            state, t = l5.write(state, derived)
             if t is None:
                 refused = (record["t"], derived)
                 break
-            origin.append(record["t"])
+            for spent in range(t, state.next_t):
+                # `t` is the caller event's; everything after it in this
+                # transition is a firing the write caused (R6 clause 2).
+                origin[spent] = record["t"]
         if refused is not None:
             break
-        sessions.append((record["t"], first, state.next_t - 1))
+        if payload.get("kind") == SUMMARY_KIND:
+            sessions.append((record["t"], first, state.next_t - 1))
     return state, origin, sessions, entities, refused
 
 
@@ -208,13 +253,27 @@ def derive(records, budget_cap=DERIVED_BUDGET):
 
 def ask(state, q):
     """One query through the generic interface (§7.1). Never raises (§7.3)."""
-    return l4.query(state, q)
+    return l5.query(state, q)
 
 
 def _store_t(origin, replay_t):
-    if replay_t is None or replay_t < 0 or replay_t >= len(origin):
+    if replay_t is None:
         return None
-    return origin[replay_t]
+    return origin.get(replay_t)
+
+
+def _replay_t(origin, store_t):
+    """The replay `t` of the caller event that came from store `t`, or `None`.
+
+    The inverse of `origin` on its caller entries: the first replay time that
+    store event occupied. A firing shares its cause's store `t`, and a firing is
+    never first, so the minimum is always the caller's own.
+    """
+    found = None
+    for replay, stored in origin.items():
+        if stored == store_t and (found is None or replay < found):
+            found = replay
+    return found
 
 
 def current_fact(state, entity, key, origin):
@@ -302,7 +361,8 @@ def reachability(state, records, sessions, entity, origin):
     it is a strict superset — an ambiguity the answer reports rather than hides.
     """
     out = []
-    for (store_t, summary_t, _last), record in zip(sessions, records):
+    summaries = [r for r in records if r["payload"].get("kind") == SUMMARY_KIND]
+    for (store_t, summary_t, _last), record in zip(sessions, summaries):
         payload = record["payload"]
         read = ask(state, {"op": "read", "t": summary_t})
         cue = {"entity": entity, "tok": dict(payload["tok"])}
@@ -317,6 +377,129 @@ def reachability(state, records, sessions, entity, origin):
     return out
 
 
+def promises(state, records, origin):
+    """What the engine did with every intention the store declared.
+
+    Read through the **ordinary query interface** and nothing else (§7.1), which
+    is what makes this a report of the engine's behaviour rather than of the
+    shell's expectations:
+
+      * `{"op":"fired","iid":I}` is the exactly-once ledger, and it answers with
+        a **list** — `dup-fire = 0` is a ratified gate clause, so an intention
+        that fired twice has to be visible here and not only in an engine's own
+        bookkeeping (`README-l5`, `STAGE-B.md §2`). The list is reported as it
+        comes back, never collapsed to its first element.
+      * a **pending** intention's own `intend` event is regenerated by
+        `{"op":"read","t":t0}` from the pending entry (`README-l5 §1.3`), so a
+        promise still waiting can be shown in full without the episode existing.
+
+    Returns one entry per stored intention, in ingest order.
+    """
+    out = []
+    for record in records:
+        payload = record["payload"]
+        if payload.get("kind") != INTENTION_KIND:
+            continue
+        iid = payload["iid"]
+        entry = {"store_t": record["t"], "iid": iid,
+                 "cond": payload["cond"], "fire": payload["fire"],
+                 "fired": [], "readable": False, "regenerated": False}
+        answer = ask(state, {"op": "fired", "iid": iid})
+        if answer["status"] == "answer":
+            for rec in answer["value"]:
+                entry["fired"].append({"replay_t": rec["t"],
+                                       "store_t": _store_t(origin, rec["t"]),
+                                       "payload": rec["payload"]})
+        armed_at = _replay_t(origin, record["t"])
+        seen = ask(state, {"op": "read", "t": armed_at})
+        entry["readable"] = seen["status"] == "answer"
+        if entry["readable"]:
+            entry["regenerated"] = (
+                encode(seen["value"]["payload"]) == encode(payload))
+        out.append(entry)
+    return out
+
+
+def describe_condition(cond):
+    """One line of prose for any condition the engine can read.
+
+    Generic over the frozen grammar rather than over the shell's narrower
+    reading, so a condition this shell would no longer declare still renders as
+    itself instead of as a blob — the store outlives the vocabulary that wrote
+    it, and a report that could not read an old promise would be the wrong kind
+    of shell.
+    """
+    if not isinstance(cond, dict):
+        return encode(cond).decode("utf-8")
+    if "op" in cond:
+        args = cond.get("args") or []
+        inner = [describe_condition(a) for a in args]
+        if cond["op"] == "not":
+            return "not(%s)" % (inner[0] if inner else "")
+        joiner = " and " if cond["op"] == "and" else " or "
+        return joiner.join(inner) if len(inner) > 1 else (inner[0] if inner else "")
+    p = cond.get("p")
+    if p == "count_ge":
+        return "count(%s)>=%s" % (cond.get("k"), cond.get("v"))
+    if p == "val_ge":
+        return "val>=%s" % (cond.get("v"),)
+    return "%s=%s" % (p, cond.get("v"))
+
+
+def describe_fire(fire, width=72):
+    """One line for the payload a promise surfaces."""
+    if not isinstance(fire, dict):
+        return encode(fire).decode("utf-8")
+    text = fire.get("text")
+    if not isinstance(text, str):
+        return encode(fire).decode("utf-8")
+    if len(text) > width:
+        text = text[:width - 1] + "…"
+    return "%s about %s — %s" % (fire.get("kind"), fire.get("about"), text)
+
+
+def prospection_lines(state, records, origin, indent="  "):
+    """The promises section: what is pending, what fired, and what it said.
+
+    Every number and every payload here comes back through `§7.1` (`promises`
+    above); this function only labels and wraps them.
+    """
+    entries = promises(state, records, origin)
+    shape = ask(state, {"op": "prospection"})
+    lines = []
+    if shape["status"] == "answer":
+        counts = shape["value"]
+        lines.append("%sdeclared         %d intention%s — %d pending, %d fired "
+                     "(%d + %d cells)"
+                     % (indent, len(entries), "" if len(entries) == 1 else "s",
+                        counts["pending"], counts["fired"],
+                        counts["pending_cells"], counts["fired_cells"]))
+    for entry in entries:
+        if entry["fired"]:
+            when = entry["fired"][0]
+            lines.append("%siid %-3d declared at store t=%-3s  FIRED %s at store "
+                         "t=%s (derived t=%s)"
+                         % (indent, entry["iid"], entry["store_t"],
+                            "once" if len(entry["fired"]) == 1
+                            else "%d TIMES" % len(entry["fired"]),
+                            when["store_t"], when["replay_t"]))
+            for fired in entry["fired"]:
+                text = fired["payload"].get("text") \
+                    if isinstance(fired["payload"], dict) else None
+                lines.append("%s    >> %s" % (indent, text if isinstance(text, str)
+                                              else encode(fired["payload"]).decode("utf-8")))
+        else:
+            lines.append("%siid %-3d declared at store t=%-3s  PENDING%s"
+                         % (indent, entry["iid"], entry["store_t"],
+                            "" if entry["readable"]
+                            else "  (its own event is no longer readable)"))
+            lines.append("%s    surfaces  %s"
+                         % (indent, describe_fire(entry["fire"])))
+        lines.append("%s    when      %s"
+                     % (indent, describe_condition(entry["cond"])))
+    return lines
+
+
 # ---- the report -------------------------------------------------------------
 
 def _fmt(value, width=60):
@@ -329,9 +512,12 @@ def report(state, origin, sessions, entities, records,
     """The consolidated view, as lines meant to be pasted into a preamble."""
     lines = []
     total = state.next_t
+    summaries = [r for r in records if r["payload"].get("kind") == SUMMARY_KIND]
+    declared = [r for r in records if r["payload"].get("kind") == INTENTION_KIND]
     lines.append("consolidated view — %s" % ", ".join(sorted(entities)))
-    lines.append("  derived by core/layers/l4_consolidation.py (Layer 4) from "
-                 "%d stored session summaries" % len(records))
+    lines.append("  derived by core/layers/l5_prospection.py (Layer 5) from "
+                 "%d stored session summaries and %d declared intentions"
+                 % (len(summaries), len(declared)))
     lines.append("  %d derived events, %d / %d work units, "
                  "nothing written back to the store"
                  % (total, state.occupancy, state.budget_cap))
@@ -377,7 +563,7 @@ def report(state, origin, sessions, entities, records,
 
         lines.append("")
         questions = history(state, entity, QUESTION_KEY, origin, total - 1)
-        silent = sum(1 for r in records if not r["payload"]["open_questions"])
+        silent = sum(1 for r in summaries if not r["payload"]["open_questions"])
         lines.append("open questions — aggregate over the whole store")
         lines.append("  recorded         %d across %d sessions  "
                      "(%d sessions recorded none)"
@@ -395,11 +581,21 @@ def report(state, origin, sessions, entities, records,
                          "`consolidate --questions` prints them all)"
                          % (len(questions) - len(shown)))
 
+    if declared:
+        lines.append("")
+        lines.append("prospection — the promises this store is keeping")
+        lines.extend(prospection_lines(state, records, origin))
+
     lines.append("")
     lines.append("what the budget did")
     forgot = ask(state, {"op": "forgetting"})["value"]
     lines.append("  demotions        %d  (an episode a chain regenerates — "
                  "content kept, cue lost)" % shape["demotions"])
+    if declared:
+        armed = ask(state, {"op": "prospection"})["value"]["pending"]
+        lines.append("    of which       %d are ARMED INTENTIONS, released at the "
+                     "door because the pending entry regenerates them "
+                     "(README-l5 §1.3) — not pressure" % armed)
     lines.append("  forgotten        %d events, importance mass %d  (gone)"
                  % (forgot["count"], forgot["mass"]))
 

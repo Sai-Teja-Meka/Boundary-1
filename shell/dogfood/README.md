@@ -12,7 +12,9 @@ No engine code was changed to make this work.
 python3 -m shell.dogfood remember --move DOGFOOD --log-line "[L2] [DOGFOOD] …"
 python3 -m shell.dogfood remember --json -        # a summary as JSON on stdin
 python3 -m shell.dogfood recall graphiti bitemporal
-python3 -m shell.dogfood consolidate              # the Layer-4 derived view
+python3 -m shell.dogfood intend --when-kind attr --when-key layer --when-val-ge 6 \
+    --about trials/adapters/INTERFACE.md --surface "…"   # a promise
+python3 -m shell.dogfood consolidate              # the Layer-5 derived view
 python3 -m shell.dogfood consolidate --budget 8000 --cue "graphiti bitemporal"
 python3 -m shell.dogfood status
 ```
@@ -266,6 +268,114 @@ The report then separates the two channels using the engine's own provenance —
 regenerated from a chain — which is `README-l4 §4`'s non-capability turned into a
 number.
 
+## intend — the promise (`[L5] [DOGFOOD]`)
+
+`remember` writes what a session did, `recall` finds one of those events and
+`consolidate` says what all of them add up to. All three are folds over the past.
+`intend` is the first thing this store does that faces the other way: **a
+condition written now, evaluated against every session summary written
+afterwards, and a payload surfaced when one satisfies it — once.**
+
+```
+python3 -m shell.dogfood intend \
+    --when-kind attr --when-key layer --when-val-ge 6 \
+    --about  trials/adapters/INTERFACE.md \
+    --surface "…what to say when it fires…"
+```
+
+The division of labour is the one `consolidate` already draws, and it is the
+whole design: **the shell declares the reading, the engine keeps the promise.**
+
+### An intention is an event, in the engine's own form
+
+`§7.1` declares three operations and `§1.1` says events are the only fuel, so
+`intend` is no more a fourth verb here than it is in the engine
+(`core/layers/README-l5.md §1.1`). The stored payload is the frozen `intend`
+shape and **nothing else**:
+
+```json
+{"kind":"intend","iid":<int>,"cond":<AST>,"fire":<payload>}
+```
+
+Not a shell schema translated later. `README-l5 §1.2` arms an intention only when
+the payload rebuilds from `(iid, cond, fire)` as canonical bytes, so a fourth
+field — a `tok` cue surface, the project's name, a note about who declared it —
+would stop it arming at all. The consequence is a real one and is stated rather
+than hidden: **a promise is `t`-addressable and not cue-addressable.** `recall`
+cannot find it; `FIELD.md` carries the note.
+
+The write path is `remember`'s: one store, one writer, one budget law, and the
+same exit codes (`3` on a refusal). What is different is the last step —
+after writing, the shell **replays the store and asks `§7.1` whether the
+intention is pending**, because the engine decides what arms and a shell that
+reported success without asking would be reporting its own intentions.
+
+### The declared reading, narrower than the grammar on purpose
+
+The engine's condition vocabulary is six predicates and three connectives. This
+shell admits a strict subset, and every narrowing is a fact about what
+`consolidate.py` emits (`shell/dogfood/intend.py` states each one):
+
+| narrowing | why |
+|---|---|
+| `and` over atoms only — no `or`, no `not` | `not` is what makes GUARDEDNESS a question; refusing it makes a cascade impossible **by construction** |
+| at least one guard atom (`kind` / `entity` / `key`) | each is false of a `reminder`, so no payload this shell fires satisfies any condition it admits |
+| `loc` refused | a session summary has no `loc`, so such a promise could never fire |
+| `key` / `kind` / `count_ge`'s `k` checked against the reading | a condition over a key nothing writes is the same silent promise |
+
+Everything admitted is then handed to the engine's own `readable`, which is the
+authority: **the shell narrows, it never widens.** A condition outside the
+reading is a usage error at declare time (exit `1`, nothing written) rather than
+an intention that waits forever for a fact no one will ever assert.
+
+`--when-count-ge KIND:N` is the one that spans the consolidation boundary: a fold
+over the Layer-4 per-kind counters, two cells per kind and never decremented, so
+it **outlives the episodes it counts**. `FIELD.md` records that measured.
+
+### Where a firing surfaces
+
+Nowhere new. `§7.1` returns it and the shell prints it, so both `consolidate` and
+`recall` end with the promises section and nothing else in the shell produces
+prospection output:
+
+```
+prospection — the promises this store is keeping
+  declared         1 intention — 1 pending, 0 fired (26 + 0 cells)
+  iid 1   declared at store t=31   PENDING
+      surfaces  reminder about trials/adapters/INTERFACE.md — …
+      when      kind=attr and entity=1 and key=layer and val>=6
+```
+
+`{"op":"fired","iid":I}` is the exactly-once ledger and it answers with a **list**
+— `dup-fire = 0` is a ratified gate clause, so an intention that fired twice has
+to be visible through the query interface and not only in an engine's own
+bookkeeping. The shell prints what comes back and never collapses it to its first
+element. A store that has declared no intention skips the replay entirely and
+prints nothing.
+
+### The store is a ledger of promises; the view is what keeps them
+
+The state file is still a **Layer-2 ledger** (`status` still prints `layer_cap
+2`), and it still holds only what it was told. An intention sitting in it is
+inert: the arming, the watching and the firing all happen in the **derived
+replay**, which is recomputed on demand and thrown away — for the reason
+`consolidate` gives, that committing a derived event beside a remembered one is
+the mem0 defect the autopsy names and the §5 L7 self-pollution law forbids. A
+firing is therefore a *fact about the store*, re-derived identically on every
+read, and never a row somebody could edit. `FIELD.md` records the chafe that
+comes with it.
+
+### The seed
+
+The first promise this store keeps is one the project actually made: `iid 1`,
+declared at store `t=31`, fires when a session summary first asserts `layer = 6`
+and surfaces the **`INTERFACE.md` attribute gap** — the adapter contract's
+unstated requirement that `state.occupancy` and `state.budget_cap` are read as
+plain attributes, found at `[L4] [PACKAGE]` by writing
+`trials/adapters/external/reference.py` against that document alone and recorded
+in `trials/adapters/README.md` because §7 is frozen. Layer 6 is where the next
+shared scorer is written, which is exactly when someone needs to be told.
+
 ## Backfill
 
 `python3 -m shell.dogfood.backfill` parses `BOUNDARY.log` into one summary per
@@ -297,13 +407,19 @@ store is committed with the move it records.
 |------|------------|
 | `event.py`    | the session-summary schema, the tokenizer, the cue surface |
 | `store.py`    | the budget, the state-file location, load/save, corruption |
-| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-4 fold, the derived-view report |
-| `cli.py`      | `remember` / `recall` / `consolidate` / `status`, and all rendering |
+| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-5 replay, the derived-view report |
+| `intend.py`   | the declared condition vocabulary, the promise's schema, guardedness |
+| `cli.py`      | `remember` / `recall` / `intend` / `consolidate` / `status`, and all rendering |
 | `backfill.py` | `BOUNDARY.log` → session summaries (writes nothing) |
 | `store/store.json` | the state file: engine-owned, committed, never hand-edited |
 | `FIELD.md`    | what chafed, in use |
 
-Trials: `trials/ops/dogfood/` — `t_dogfood.py` covers schema validation, a round
+Trials: `trials/ops/dogfood/` — `t_intend.py` covers the declared reading's
+narrowings, GUARDEDNESS over the whole cross product of declared conditions and
+declared fire payloads, the stored form (and what a fourth field costs it),
+exactly-once firing at the first satisfying session, the `1 + f` `t`-accounting of
+`R6` clause 2, a `count_ge` fold surviving the demotion of everything it counts,
+and the committed store's own promises; `t_dogfood.py` covers schema validation, a round
 trip through a real temp state file, abstention output shape, corruption → loud
 failure, and a read-only check that the committed store still restores;
 `t_consolidate.py` covers the declared reading's invertibility against the frozen
