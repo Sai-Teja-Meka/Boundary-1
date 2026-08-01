@@ -130,6 +130,40 @@ Present:
   project has ever recorded. R2's standing step is untouched: a Layer-6 `ASCEND`
   still owes its own `ATTAINABILITY.md` before any Layer-6 gate has authority.
 
+  > **Note added 2026-08-01 (`[L5] [ASCEND]`, Layer-6 Stage A).** That
+  > `ATTAINABILITY.md` now exists, beside this file and answering it rather than
+  > rewriting it. The pre-read's prediction is **scored** in its §7 — five hits,
+  > three misses and one hit sharpened — and the two misses that matter are:
+  > `R2` obligation 2 does **not** rest entirely on `AUROC` (`Brier` fails both
+  > named constants at 45 and 43, and `F` fails the key-blind abstainer at 829),
+  > and the capped engine's confidence is **not** a `§5.1` convention (the frozen
+  > Layer-5 engine emits `{0, 1000}` through `§7.2` itself, so `capped AUROC`
+  > measures 500 against the ratified 600 and the humility side is a measurement
+  > of an engine after all). The pre-read's own flagged half was the wrong one.
+  > **Still true, and unchanged: no Layer-6 gate binds on anything.**
+
+- `l6/ATTAINABILITY.md` + `l6/t_attainability.py` — Layer 6, Meta-memory,
+  Stage A. The `R2` arithmetic over the newly frozen `corpora/l6battery` (3 905
+  queries over the frozen murk corpus, answer keys derived from murk's frozen
+  `ground_truth.json`), computed with **no Layer-6 engine in existence**: the
+  ceiling **exhibited** as a concrete confidence assignment at
+  `Brier 0 / ECE 7 / AUROC 1000 / F 955 / B 1000`, both policy classes declared
+  (`O` oracle, `E` evidence-only) and measured against each other, every named
+  capability-free baseline scored, and `R5` clause 2's conjunction reading
+  applied **first** — which discharges `R2` obligation 2 without a new clause of
+  law. `n_neg = 158`, measured on the frozen Layer-5 engine through `§7`'s own
+  interface, so both AUROC classes are non-empty and the calibration triple is
+  **defined** — the thing that was true on no artifact this project had before.
+- `l6/RULING-R7-DRAFT.md` — the draft, **not appended** to
+  `BOUNDARY-RULINGS.md` because appending is what freezes: the binding (clause
+  1), the calibration denominator stated explicitly (clause 2), `AUROC`'s domain
+  including the finding that `n/a` must **disqualify** rather than excuse — since
+  a capability-free abstainer otherwise clears every evaluable clause (clause 3)
+  — and the exact-not-permille reading (clause 4). **No Layer-6 gate binds on
+  `corpora/l6battery` or on anything else**, and `laws/t_rulings.py` carries the
+  six `§5 L6` constants with a `§5` clause and no companion ruling, which is what
+  that says in the registry's own structure.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

@@ -394,6 +394,66 @@ AUTHORIZED_GATES = (
      "are outside every eviction phase, because an engine that could evict "
      "either could be made to break a ratified gate by being poor. R6 clause 2 "
      "left that question to Stage C expressly"),
+
+    # Layer 6, Stage A. The ratified §5 L6 numbers, declared so the attainability
+    # arithmetic can be stated in the constitution's own figures — and carrying a
+    # §5 clause and NO COMPANION RULING, which is what "no gate binds" looks like
+    # in this registry. It is the same shape the Layer-5 Stage-A session left
+    # behind (BOUNDARY.log line 28) and it lasted exactly until R5 and R6 were
+    # ratified; RULING-R7-DRAFT.md asks for the Layer-6 equivalent and appending
+    # is what freezes, so a session does not append.
+    #
+    # R5 IS ALREADY IN FORCE ON THESE CLAUSES AND IS DELIBERATELY NOT CITED HERE.
+    # Clause 2 is forward-binding in its own words *"because Layer 6 needs it
+    # immediately (Brier<=40 and ECE<=30 are both minimizing)"*, and clause 1
+    # already carries B=1000 as an identity — so R5 governs how these constants
+    # are READ without any entry of its own, and the Stage-A arithmetic discharges
+    # R2 obligation 2 over the conjunction under it. What the registry records by
+    # the ABSENCE of a ruling here is the substrate: no Layer-6 gate binds on
+    # corpora/l6battery or on anything else.
+    ("ascension/l6/t_attainability.py", "GATE_BRIER", 40,
+     (_s5("Brier≤40"),),
+     "§5 L6 calibration, unchanged; a MINIMIZING clause with ceiling 0, read "
+     "direction-aware under R5 clause 2 — which is cited in ATTAINABILITY.md and "
+     "not here, because R5 authorizes a reading and this entry records that no "
+     "ruling authorizes a substrate. It is the clause the battery's size was "
+     "chosen to make load-bearing: both named constants fail it (45 and 43)"),
+    ("ascension/l6/t_attainability.py", "GATE_ECE", 30,
+     (_s5("ECE≤30"),),
+     "§5 L6 calibration, unchanged; MINIMIZING, ceiling 0. Measured to "
+     "discriminate against NOTHING — a base-rate constant confidence puts every "
+     "answer in one bin whose mean confidence is its own accuracy, so it scores "
+     "0 with no model at all. Recorded rather than repaired: R5 clause 2's "
+     "conjunction reading is what carries the obligation past it"),
+    ("ascension/l6/t_attainability.py", "GATE_AUROC", 900,
+     (_s5("AUROC≥900"),),
+     "§5 L6 calibration, unchanged; the only clause both named constants fail by "
+     "arithmetic rather than by margin (a constant ranks nothing, every pair "
+     "ties, ties count half, AUROC = 1/2 exactly). It is also the clause §3.4 "
+     "leaves UNDEFINED at n_neg = 0, which is the whole of the Layer-6 collision "
+     "and RULING-R7-DRAFT.md clause 3's question"),
+    ("ascension/l6/t_attainability.py", "GATE_F", 950,
+     (_s5("abstention-aware F≥950"),),
+     "§5 L6 fidelity, unchanged, under the LITERAL §3.0 table — R3 does not reach "
+     "Layer 6 in its own text and no extension is requested, the exhibited "
+     "witness clearing it at 955. It is what forbids abstaining out of the "
+     "commitment class: 1000w + 900a <= 50 is a 50-permille budget spent at 900 "
+     "per hedge, and the key-blind abstainer measures 829"),
+    ("ascension/l6/t_attainability.py", "GATE_B", 1000,
+     (_s5("B=1000"),),
+     "§5 L6 budget; the identity in this registry since Layer 1, carried by R5 "
+     "clause 1's regularization without needing an entry here. Attained rather "
+     "than approached: the battery is scored in budget at DEFAULT_BUDGET with "
+     "refused = 0, and §5 L6 states no footprint clause at all"),
+    ("ascension/l6/t_attainability.py", "CEILING_AUROC", 600,
+     (_s5("capped AUROC ≤ 600"),),
+     "§5 L6 humility ceiling, unchanged and NOT APPLIED — trials/humility/l6/ "
+     "does not exist and R2's standing order puts the trials after the "
+     "arithmetic. It is declared because the attainability arithmetic measures "
+     "the capped engine against it: make_engine(5) emits {0, 1000} through §7.2 "
+     "itself and scores AUROC 500, so the ceiling is neither breached nor "
+     "vacuous — README-l5 §4's stated seam, closed by the battery's commitment "
+     "class"),
 )
 
 
