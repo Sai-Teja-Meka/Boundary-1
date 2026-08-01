@@ -109,6 +109,27 @@ Present:
   what it defers to Stage A (§3), and the four questions `RULING-R6-DRAFT.md`
   puts to a human (§7).
 
+- `l6/PRE-READ.md` — Layer 6, Meta-memory. **A `PULSE` finding document, not an
+  `ATTAINABILITY.md`**: it binds nothing, names no corpus, applies no gate and
+  declares no constant, and this directory holds no trial. Deposited by
+  `[L5] [PULSE]` (2026-08-01) in the shape `[L4] [PULSE]` used for its Layer-5
+  risk note — read the ratified clauses one layer ahead and **predict the shape
+  of the collision** so Stage A meets it rather than discovers it. It sorts
+  `§5 L6`'s six clauses into `R5`'s kinds (four ordinary graded gates, one
+  identity in `B`, both minimizing clauses already read by `R5` clause 2, which
+  named Layer 6 in its own text — **so Layer 6 needs no `R5`-shaped reading of
+  its own**); confirms Brier, ECE and AUROC are exactly computable in `Fraction`
+  under `§2.2` at `§3.4`'s ten-bin structure, with one reading to declare
+  (`permille(x) ≤ 40` and `x ≤ 40/1000` differ on `(40/1000, 81/2000]`); and
+  records the collision it predicts Stage A will stop on — `§3.0` is
+  confidence-blind and `§3.4` is abstention-blind, so `ECE ≤ 30` discriminates
+  against no base-rate constant at any error rate (`ECE = 0` exactly), `Brier`
+  discriminates only in a nine-permille band bounded above by `§5 L6`'s own
+  `F ≥ 950`, and `R2` obligation 2 therefore rests entirely on `AUROC`, the one
+  clause `§3.4` leaves **undefined** when `n_neg = 0` — which is every score this
+  project has ever recorded. R2's standing step is untouched: a Layer-6 `ASCEND`
+  still owes its own `ATTAINABILITY.md` before any Layer-6 gate has authority.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

@@ -33,6 +33,20 @@ Layer-5 gate binds on it**: the arithmetic in that directory's ATTAINABILITY.md
 found a constitutional collision between §5 L5's identity gate and R2's
 strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
 
+  Note added 2026-08-01 ([L5] [PULSE]). The two sentences above were true when
+  written and are no longer, and this is where they stop. R5 is ratified and
+  settles the READING (an identity clause discharges R2 obligation 1 by an
+  exhibited attainment; a minimizing clause is read direction-aware and over the
+  gate's conjunction); R6 clause 1 then binds BOTH sides of the Layer-5 gate --
+  ascension and humility together -- to corpora/l5stream, and R6 clause 4 rules
+  its budget_cap = raw_cells // 4 = 45638. Layer 5 is CLAIMED (BOUNDARY.log line
+  32): the gate is cleared on this corpus at trigger-precision 1000, trigger-
+  recall 1000, dup-fire 0, miss 0, F 1000 against 980, B 1000, at 250 permille.
+  Nothing about the corpus itself moved -- same seed, same bytes, same grammar --
+  and l5stream has no ungated diagnostic family in the R1-clause-5 shape, because
+  no other frozen corpus carries an intend payload at all (R6 clause 1), so on
+  them every Layer-5 measure is undefined rather than low.
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
