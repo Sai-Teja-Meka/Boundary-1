@@ -1,8 +1,12 @@
-"""ops/dogfood — the Layer-4 derived view (`shell/dogfood/consolidate.py`).
+"""ops/dogfood — the derived view (`shell/dogfood/consolidate.py`).
 
-`[L4] [DOGFOOD]`. The `consolidate` surface folds the store's session summaries
-through the frozen Layer-4 engine and reads the result back through the ordinary
-query interface (§7.1). These trials hold it to four things:
+`[L4] [DOGFOOD]`, replayed through Layer 5 at `[L5] [DOGFOOD]`. The `consolidate`
+surface folds the store's session summaries through the engine and reads the
+result back through the ordinary query interface (§7.1). The Layer-4 claims below
+are unchanged and still bind — a consolidating engine that gained prospection
+must not have lost consolidation, which is exactly what `trials/inheritance/l5/`
+asserts of the engine and what these assert of this surface. These trials hold it
+to four things:
 
   * the **declared reading** emits assertions the engine can invert, and asserts
     only facts the summary already carries — no invention;
@@ -310,29 +314,43 @@ def trial_consolidate_reports_through_the_cli_and_writes_nothing():
 # ---- 5. the committed store (read-only) ------------------------------------
 
 def trial_the_committed_store_consolidates():
-    """This project's own memory folds, and the fold is exact where it claims to be."""
+    """This project's own memory folds, and the fold is exact where it claims to be.
+
+    `[L5] [DOGFOOD]`: the replay now runs through `l5_prospection`, so two of the
+    claims below are stated more precisely than they were at Layer 4 rather than
+    more loosely. The store's sessions are no longer all of its events, and the
+    unpressured cap no longer means *no demotion* — **arming is a demotion**
+    (`README-l5 §1.3`), and the sharper claim is that it is the only one.
+    """
     path = st.default_store_path()
     if not os.path.isfile(path):
         skip("no committed dogfood store yet (%s)" % st.display_path(path))
     state = st.load(path)
     records = ledger.read_range(state, 0, state.next_t - 1)
+    summaries = [r for r in records if r["payload"]["kind"] == ev.KIND]
     derived, origin, sessions, entities, refused = co.derive(records)
     require(refused is None, "the committed store must fold inside the derived cap")
-    require_equal(len(sessions), len(records), "a session was dropped from the fold")
+    require_equal(len(sessions), len(summaries), "a session was dropped from the fold")
     require_equal(len(origin), derived.next_t, "the origin table must cover the stream")
 
     entity = entities["boundary-1-memory"]
     layer = co.current_fact(derived, entity, "layer", origin)
     require(layer is not None, "the project's claimed layer must be derivable")
     require(layer[0] >= 4, "the store's own history claims Layer 4 or later")
-    require_equal(layer[1], records[-1]["t"],
+    require_equal(layer[1], summaries[-1]["t"],
                   "the layer in force must be attributed to the latest session that stated it")
 
     profile = co.ask(derived, {"op": "profile", "entity": entity})
     require_equal(profile["status"], "answer", "the project fold must be exact")
-    require_equal(profile["value"][ev.KIND], len(records),
+    require_equal(profile["value"][ev.KIND], len(summaries),
                   "every stored session must be counted against the project")
 
+    pending = co.ask(derived, {"op": "prospection"})["value"]["pending"]
     census = co.channels(derived)
     require_equal(census["gone"], 0, "nothing may be lost at the unpressured cap")
-    require_equal(census["derived"], 0, "nothing may be demoted at the unpressured cap")
+    require_equal(census["derived"], pending,
+                  "at an unpressured cap the ONLY events not still episodes are "
+                  "the armed intentions, whose episodes the pending set "
+                  "regenerates — a demotion at the door, not pressure")
+    require_equal(derived.demotions, pending,
+                  "and the engine's own demotion counter must say the same")

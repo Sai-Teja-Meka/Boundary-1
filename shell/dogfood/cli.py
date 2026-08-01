@@ -1,8 +1,10 @@
-"""shell/dogfood/cli.py — `python3 -m shell.dogfood`: remember / recall / consolidate / status.
+"""shell/dogfood/cli.py — `python3 -m shell.dogfood`: remember / recall / intend / consolidate / status.
 
     remember     ingest one session summary; print the engine-assigned `t`
     recall       associative recall over the store from free cue tokens
-    consolidate  the store's Layer-4 derived view, for a session preamble
+    intend       declare a promise: a condition over future sessions, and what
+                 to surface when one satisfies it
+    consolidate  the store's Layer-5 derived view, for a session preamble
     status       event count, budget occupancy, checksum, the last three events
 
 Exit codes:
@@ -23,6 +25,7 @@ import sys
 from core.layers import l2_recall as engine
 from shell.dogfood import consolidate as co
 from shell.dogfood import event as ev
+from shell.dogfood import intend as it
 from shell.dogfood import store as st
 
 EXIT_OK = 0
@@ -72,9 +75,24 @@ def _truncate(text, width=LINE_WIDTH):
 
 # ---- rendering -------------------------------------------------------------
 
+def render_intention(record, indent="  "):
+    """One stored intention: what it watches, and what it will surface.
+
+    An intention carries exactly the three fields the engine can invert
+    (`README-l5 §1.2`), so there is no prose to render and nothing to truncate —
+    the condition and the fire payload are the whole event.
+    """
+    payload = record["payload"]
+    return ["%st=%d  INTEND iid=%s" % (indent, record["t"], payload.get("iid")),
+            "%s  when:     %s" % (indent, co.describe_condition(payload.get("cond"))),
+            "%s  surfaces: %s" % (indent, co.describe_fire(payload.get("fire")))]
+
+
 def render_event(record, indent="  "):
     """One stored event, rendered to be pasted into a session preamble."""
     payload = record["payload"]
+    if it.is_intention(payload):
+        return render_intention(record, indent=indent)
     lines = ["%st=%d  %s  (%s)" % (indent, record["t"], payload["move"], payload["project"])]
     lines.append("%s  log: %s" % (indent, payload["log_line"]))
     for field, label in (("decisions", "decisions"),
@@ -178,6 +196,12 @@ def render_status(state, path):
     lines.append("last three")
     for record in last:
         payload = record["payload"]
+        if it.is_intention(payload):
+            lines.append("  %s" % _truncate(
+                "t=%-3d %-16s iid=%s  when %s"
+                % (record["t"], "INTEND", payload.get("iid"),
+                   co.describe_condition(payload.get("cond")))))
+            continue
         lines.append("  %s" % _truncate("t=%-3d %-16s %s"
                                         % (record["t"], payload["move"], payload["log_line"])))
     return lines
@@ -236,6 +260,28 @@ def cmd_remember(args, out, err):
     return EXIT_OK
 
 
+def promise_footer(state, indent="  "):
+    """The promises the store is keeping, replayed on demand. `[]` when there are none.
+
+    A firing has to reach its owner somewhere, and this repository does not get
+    to invent a channel for it: `§7.1` returns it and the shell prints it. So
+    `recall` and `consolidate` both end here, and nothing else in the shell
+    produces prospection output.
+
+    The replay is skipped entirely when no intention has been declared, so a
+    store that has made no promises pays nothing for the surface existing.
+    """
+    records = engine.read_range(state, 0, state.next_t - 1)
+    if not it.intentions_of(records):
+        return []
+    derived, origin, _sessions, _entities, refused = co.derive(records)
+    lines = co.prospection_lines(derived, records, origin, indent=indent)
+    if refused is not None:
+        lines.append("%sthe derived replay was TRUNCATED at store t=%d"
+                     % (indent, refused[0]))
+    return lines
+
+
 def cmd_recall(args, out, err):
     state, code = _load(args.store, err)
     if state is None:
@@ -244,6 +290,110 @@ def cmd_recall(args, out, err):
     answer = engine.recall(state, cue)
     for line in render_recall(state, args.tokens, cue, answer):
         print(line, file=out)
+    promises = promise_footer(state)
+    if promises:
+        print("promises (replayed through Layer 5; `consolidate` for the whole view)",
+              file=out)
+        for line in promises:
+            print(line, file=out)
+    return EXIT_OK
+
+
+def _condition_from_args(args, entity, err):
+    """The declared condition these flags name, or `None` with a usage message.
+
+    The shell builds the AST; `intend.validate_condition` decides whether this
+    reading admits it and `l5.readable` whether the engine could evaluate it at
+    all. The `entity` atom is always present: it is the guard, and it is what
+    makes the promise a promise about *this project* rather than about whatever
+    the store fills up with later.
+    """
+    atoms = [it.atom("entity", entity)]
+    if args.when_kind is not None:
+        atoms.append(it.atom("kind", args.when_kind))
+    if args.when_key is not None:
+        atoms.append(it.atom("key", args.when_key))
+    if args.when_val_ge is not None:
+        atoms.append(it.atom("val_ge", args.when_val_ge))
+    if args.when_count_ge is not None:
+        raw = args.when_count_ge
+        kind, sep, number = raw.partition(":")
+        if not sep or not number.lstrip("-").isdigit():
+            print("usage: --when-count-ge takes KIND:N (e.g. attr:250)", file=err)
+            return None
+        atoms.append(it.atom("count_ge", int(number), k=kind))
+    if len(atoms) == 1:
+        print("usage: an intention needs something to watch — give at least one "
+              "of --when-kind / --when-key / --when-val-ge / --when-count-ge",
+              file=err)
+        return None
+    return it.condition(atoms)
+
+
+def cmd_intend(args, out, err):
+    """Declare a promise: write the intention as an event, then check it armed.
+
+    The write path is `remember`'s — one store, one writer, one budget law. What
+    is different is the last step: the shell replays the store through Layer 5
+    and asks `§7.1` whether the intention is pending, because *the engine decides
+    what arms* (`README-l5 §1.2`) and a shell that reported success without
+    asking would be reporting its own intentions rather than the store's.
+    """
+    state, code = _load(args.store, err)
+    if state is None:
+        return code
+    records = engine.read_range(state, 0, state.next_t - 1)
+
+    entities = co.project_entities(records)
+    if args.project not in entities:
+        print("usage: no session of project %r is in the store, so the declared "
+              "reading has no entity id for it; `remember` one first."
+              % args.project, file=err)
+        return EXIT_USAGE
+    entity = entities[args.project]
+
+    cond = _condition_from_args(args, entity, err)
+    if cond is None:
+        return EXIT_USAGE
+
+    known = it.known_iids(records)
+    iid = args.iid if args.iid is not None else it.next_iid(records)
+    if iid in known:
+        print("usage: iid %d is already declared (%s) — §5 L5 names no re-arming, "
+              "so an iid is spent forever and the engine would arm nothing."
+              % (iid, " ".join(str(i) for i in known)), file=err)
+        return EXIT_USAGE
+
+    try:
+        payload = it.build_payload(iid, cond, it.reminder(args.about, args.surface))
+    except ev.SchemaError as exc:
+        print("usage: %s" % exc, file=err)
+        return EXIT_USAGE
+
+    preview = {"payload": payload, "t": state.next_t}
+    if args.dry_run:
+        for line in render_intention(preview):
+            print(line, file=err)
+        print("dry run — nothing written", file=err)
+        return EXIT_OK
+
+    state, t = st.remember(state, payload)
+    if t is None:
+        print("REFUSED: this write would raise occupancy above the budget cap "
+              "(%d used of %d) — the budget law refuses, it does not evict (§4.1)."
+              % (state.occupancy, state.budget_cap), file=err)
+        return EXIT_REFUSED
+
+    st.save(args.store, state)
+    print(t, file=out)
+    print("declared t=%d  iid=%d  store: %d events, %d/%d work units"
+          % (t, iid, state.next_t, state.occupancy, state.budget_cap), file=err)
+    for line in render_intention({"payload": payload, "t": t}):
+        print(line, file=err)
+
+    # The engine decides what arms; ask it rather than assume it (§7.1).
+    for line in promise_footer(state):
+        print(line, file=err)
     return EXIT_OK
 
 
@@ -273,7 +423,7 @@ def cmd_consolidate(args, out, err):
                           refused=refused, cues=args.cue,
                           all_questions=args.questions):
         print(line, file=out)
-    print("derived %d events from %d stored summaries at a %d-unit cap"
+    print("derived %d events from %d stored events at a %d-unit cap"
           % (derived.next_t, len(records), budget), file=err)
     return EXIT_OK
 
@@ -292,7 +442,8 @@ def cmd_status(args, out, err):
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="python3 -m shell.dogfood",
-        description="The dogfood memory of this project: remember / recall / status.")
+        description="The dogfood memory of this project: "
+                    "remember / recall / intend / consolidate / status.")
     parser.add_argument("--store", default=st.default_store_path(),
                         help="state file (default: shell/dogfood/store/store.json)")
     subs = parser.add_subparsers(dest="command")
@@ -309,6 +460,31 @@ def build_parser():
 
     recall = subs.add_parser("recall", help="associative recall from cue tokens")
     recall.add_argument("tokens", nargs="+", metavar="TOKEN")
+
+    intend = subs.add_parser(
+        "intend", help="declare a promise over future sessions of this project")
+    intend.add_argument("--project", default="boundary-1-memory",
+                        help="the project the condition is about (its entity id "
+                             "is read out of the store's own reading)")
+    intend.add_argument("--when-kind", dest="when_kind", metavar="KIND",
+                        help="the derived kind to watch (%s)"
+                             % "/".join(it.DECLARED_KINDS))
+    intend.add_argument("--when-key", dest="when_key", metavar="KEY",
+                        help="the asserted key to watch (%s)"
+                             % "/".join(it.DECLARED_KEYS))
+    intend.add_argument("--when-val-ge", dest="when_val_ge", type=int,
+                        metavar="N", help="fire when that key's value reaches N")
+    intend.add_argument("--when-count-ge", dest="when_count_ge", metavar="KIND:N",
+                        help="fire when N events of KIND have been derived — a "
+                             "fold that outlives the episodes it counts")
+    intend.add_argument("--surface", required=True, metavar="TEXT",
+                        help="what to say when it fires")
+    intend.add_argument("--about", required=True, metavar="WHAT",
+                        help="what the reminder is about (a path, a document)")
+    intend.add_argument("--iid", type=int,
+                        help="the intention id (default: the next free one)")
+    intend.add_argument("--dry-run", dest="dry_run", action="store_true",
+                        help="validate and render it; write nothing")
 
     consolidate = subs.add_parser(
         "consolidate", help="the store's Layer-4 derived view of this project")
@@ -336,6 +512,8 @@ def main(argv=None, out=None, err=None):
         return cmd_remember(args, out, err)
     if args.command == "recall":
         return cmd_recall(args, out, err)
+    if args.command == "intend":
+        return cmd_intend(args, out, err)
     if args.command == "consolidate":
         return cmd_consolidate(args, out, err)
     if args.command == "status":
