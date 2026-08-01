@@ -69,6 +69,32 @@ strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
   no other frozen corpus carries an intend payload at all (R6 clause 1), so on
   them every Layer-5 measure is undefined rather than low.
 
+  Note added 2026-08-01 ([L5] [ASCEND], Layer-6 Stage A ROUND 2). GENERATED now
+  holds NINE: corpora/l6batteryb — battery-b — joins it, and the header's
+  "currently holds eight" stops holding here rather than being rewritten.
+  battery-b is
+  the round-2 artifact and it exists because of a limit round 1 MEASURED on
+  l6battery: §8.7 injects every murk defect by visible construction, so a
+  stream-only rule recovers each family exactly and l6battery's n_neg > 0 held
+  only RELATIVE TO the declared latest-wins reading (a first-wins reader would
+  have answered its whole commitment class correctly and taken AUROC with it).
+  battery-b removes that: its forcing region is 100 mirror pairs whose two
+  members are observationally identical and whose truths sit at opposite ends of
+  their chains, with the resolving coin WITHHELD at generation — the stream is
+  byte-identical under the coin's complement — so n_neg = 100 is a THEOREM for
+  every committing reader definable from the stream. It is one canonical JSON
+  object carrying the substrate, the answer key and the query set together,
+  because the guarantee is a joint property of the three and three separately
+  byte-matched files could be paired across generations and lose it. The l6battery
+  seam recorded above applies to it identically (one line, no `intend` payload,
+  the frozen Layer-5 theorem still true and still checked).
+
+  NO LAYER-6 GATE BINDS ON EITHER ARTIFACT. trials/ascension/l6/ATTAINABILITY-B.md
+  computes the round-2 arithmetic and trials/ascension/l6/RULING-R7-DRAFT.md
+  asks a human to bind battery-b and to DEMOTE l6battery to an ungated
+  diagnostic; appending a ruling is what freezes, and this session does not
+  append, so the demotion is proposed here and executed at ratification.
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
@@ -78,6 +104,7 @@ Each REAL entry is: {"name": str, "path": str (absolute), "sha256": hex str}.
 from corpora import real_sessions
 from corpora.chronicle import generator as chronicle_gen
 from corpora.l6battery import generator as l6battery_gen
+from corpora.l6batteryb import generator as l6batteryb_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
 from corpora.l3stream import generator as l3stream_gen
@@ -86,7 +113,7 @@ from corpora.l4stream import generator as l4stream_gen
 from corpora.l5stream import generator as l5stream_gen
 
 GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen,
-             l4stream_gen, l5stream_gen, l6battery_gen]
+             l4stream_gen, l5stream_gen, l6battery_gen, l6batteryb_gen]
 
 MURK = murk_gen
 
