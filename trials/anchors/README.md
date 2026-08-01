@@ -25,6 +25,16 @@ Present — one anchor file and one replay trial per claimed layer:
   the facet map, the invertibility rule, the row codec's field order, the
   key-major nesting, the demotion order or the shedding rule turns the suite red
   **even when every score still clears the gate**.
+- `l5.json` / `t_l5.py` — replay at `layer_cap = 5`, carrying a **prospection**
+  entry (`l5stream` at the ratified 45 638-cell cap, after 17 772 demotions,
+  2 041 losses and 765 firings with 180 intentions still pending) as well as
+  entries at `DEFAULT_BUDGET`. The generous-cap entries pin both directions:
+  `sessions` and `murk` carry no intention, so prospection is **inert** on them
+  and their clocks end exactly at the caller count, while `l5stream` at
+  `DEFAULT_BUDGET` pins that nothing is lost where there is room — every caller
+  event byte-exact, `forgotten = 0`. A drift in the arming rule, the firing
+  order, the pending-set or fired-ledger layout, the loss reconciliation or the
+  row codec turns the suite red **even when every score still clears the gate**.
 
 The capped constructor (§7.4) is what makes an older layer's anchors eternal: each
 layer replays at its own `layer_cap`, so a new layer never perturbs the ones below.

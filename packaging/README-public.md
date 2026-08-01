@@ -172,6 +172,23 @@ thousands of payloads into 23 cells, so those events are unanswerable in
 principle and the engine abstains on every one. It can, however, tell *forgotten*
 from *demoted* from *never ingested*.
 
+> **Note added 2026-08-01 (`[L5] [ASCEND]`).** **Layer 5 is now claimed**, so
+> the paragraph below is superseded on both of its counts and is left as written
+> rather than edited (`BOUNDARY-RULINGS.md R6` clause 3's discipline: a reading
+> that supersedes another should have to show the one it replaced). Three layers
+> are unbuilt, not four. And the "known problem" is settled: `R5` clause 1 rules
+> that an **identity** gate discharges R2's upper obligation by an exhibited
+> witness *attaining* it — a stronger evidentiary burden than a strict
+> inequality, not a weaker one — `R5` clause 2 reads a **minimizing** clause
+> direction-aware and over the gate's conjunction, and `R6` clause 1 binds both
+> sides of the Layer-5 gate to `corpora/l5stream`, where no named
+> capability-free policy clears more than two of the five scored clauses. The
+> engine then cleared it: trigger-precision 1000, trigger-recall 1000, dup-fire
+> 0, miss 0, `F` 1000 against a gate of 980, `B` 1000 at 250‰ of the raw
+> episodic footprint. **Nothing in the L1–L4 scorecard above moves**; this
+> document's own counts of built and unbuilt layers do, and a later `PACKAGE`
+> move owns the rewrite.
+
 **Four layers are unbuilt, and Layer 5 already has a known problem.** §5 L5's
 gate is an **identity** (`trigger-precision = trigger-recall = 1000`), while the
 standing rule R2 requires every future gate to lie strictly *below* the oracle

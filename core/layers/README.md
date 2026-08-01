@@ -28,9 +28,21 @@ Claimed layers:
   reconstruction still returns 19 286 of 20 000 events. Built on the frozen
   Layer-1 primitives and the frozen Layer-3 eviction law; edits neither, and
   `make_engine(3)` **is** the Layer-3 engine (§7.4).
+- **Layer 5 — Prospection** — `l5_prospection.py` (`README-l5.md`). The first
+  capability that is not a fold over the past: an intention arrives as an
+  ingested payload under a declared reading of the frozen grammar, is armed only
+  if its condition is **readable** and its payload **inverts**, and is evaluated
+  against every later event — firing **exactly once**, emitting the intended
+  payload at a logical time of its own (`R6` clause 2: one caller `ingest`
+  advances `next_t` by `1 + f`). The pending set and the fired ledger are outside
+  every eviction phase, because `miss = 0` and `dup-fire = 0` are identities;
+  what gives way is the episodic tier, and the promise's own episode is booked as
+  a loss the moment firing makes it unregenerable. `L5State` is a **subclass** of
+  the frozen `L4State`, so Layer 4 is inherited rather than re-implemented, and
+  `make_engine(4)` **is** the Layer-4 engine (§7.4).
 
 Once a layer is claimed its code is **frozen**: it is never edited (§9). A newer
 layer builds on the frozen layers beneath it.
 
 Per `CLAUDE.md §1`, every session reads the most recent layer's README
-(currently `README-l4.md`) before acting.
+(currently `README-l5.md`) before acting.
