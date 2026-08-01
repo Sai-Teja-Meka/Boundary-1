@@ -16,6 +16,7 @@ which is what makes the sentence below checkable rather than aspirational:
 | `l2.py` | `core.layers.l2_recall` | Layers 1–2 |
 | `l3.py` | `core.layers.l3_forgetting` | Layers 1–3 |
 | `l4.py` | `core.layers.l4_consolidation` | Layers 1–4 |
+| `l5.py` | `core.layers.l5_prospection` | Layers 1–5 |
 | `external/reference.py` | nothing in `core/` | Layers 1–2, and stops |
 | `external/mem0_stub.py` | — | a written-down mapping; not runnable |
 | `external/letta_stub.py` | — | a written-down mapping; not runnable |

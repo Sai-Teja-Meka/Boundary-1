@@ -22,7 +22,7 @@ Non-negotiable, enforced by the `laws/` trials:
   `shell/`** (§2.6). `core/` imports neither corpora nor trials.
 
 `core/layers/` holds the per-layer engine code, added one layer at a time by
-`ASCEND` moves. Old layers are frozen and never edited (§9). Four layers are
+`ASCEND` moves. Old layers are frozen and never edited (§9). Five layers are
 claimed — **L1 Retention**, **L2 Recall**, **L3 Forgetting**, **L4
-Consolidation** — each with its own `README-lN.md`; see `core/layers/README.md`
-for the index.
+Consolidation**, **L5 Prospection** — each with its own `README-lN.md`; see
+`core/layers/README.md` for the index.

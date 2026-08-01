@@ -181,6 +181,16 @@ compression by closing the associative channel on demoted content. We chose to
 measure and publish that rather than describe it, but it is a capability the
 engine had at Layer 3 and does not have at Layer 4 for anything it demoted.
 
+> **Note added 2026-08-01 (`[L5] [ASCEND]`).** **Prospection is now built and
+> claimed**, so the count below is superseded — four layers are unbuilt, not
+> five, and a claim about what this benchmark proves is a claim about five
+> layers. The paragraph stands as written rather than being edited, in the form
+> `R6` clause 3 established. Nothing else in this document changes: no published
+> number moved, and the two limitations either side of this note (the 26‰
+> cue-reach, and ordering as a design commitment rather than a finding) are
+> untouched and still hold — Layer 5 is asserted to presuppose Layer 4 by this
+> constitution, not shown to by anything here.
+
 **Five layers are unbuilt.** Prospection, meta-memory, generation,
 self-description and birth are specified and unclaimed, and two of them have no
 thresholds yet. Any claim about what this benchmark proves is a claim about four

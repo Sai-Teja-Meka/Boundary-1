@@ -1,0 +1,103 @@
+{
+ "assertion_kinds": [
+  "attr",
+  "link",
+  "move",
+  "retire",
+  "spawn"
+ ],
+ "connectives": [
+  "and",
+  "not",
+  "or"
+ ],
+ "corpora": {
+  "l5stream": {
+   "assertions": 16827,
+   "demotions": 945,
+   "episodes": 19820,
+   "fired": 765,
+   "forgotten": 0,
+   "index_atoms": 400,
+   "keys": 16,
+   "n": 20000,
+   "next_t": 20765,
+   "occupancy": 149098,
+   "pairs": 2924,
+   "pending": 180,
+   "seed": 7007,
+   "state_sha256": "141224c969dfd6370d7647cac0d94686002ee47e88544c6d5d2e3d092668e09c"
+  },
+  "murk": {
+   "assertions": 9810,
+   "demotions": 0,
+   "episodes": 10000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 2652,
+   "keys": 18,
+   "n": 10000,
+   "next_t": 10000,
+   "occupancy": 74981,
+   "pairs": 7519,
+   "pending": 0,
+   "seed": 3003,
+   "state_sha256": "88fe2938f27996ed39bc78fea76f8151e1b85b2884fde44c4889dea238d0c5df"
+  },
+  "sessions": {
+   "assertions": 0,
+   "demotions": 0,
+   "episodes": 5000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 712,
+   "keys": 0,
+   "n": 5000,
+   "next_t": 5000,
+   "occupancy": 24538,
+   "pairs": 0,
+   "pending": 0,
+   "seed": 2002,
+   "state_sha256": "5e1697de8ba38e88c6f4f2b849e4fc4a182a6f359ac7d3ebfb286d0f223dd751"
+  }
+ },
+ "default_budget": 1000000000,
+ "intention_form": [
+  "iid",
+  "cond",
+  "fire"
+ ],
+ "layer": 5,
+ "predicates": [
+  "count_ge",
+  "entity",
+  "key",
+  "kind",
+  "loc",
+  "val_ge"
+ ],
+ "prospection": {
+  "l5stream_at_the_gate": {
+   "assertions": 16827,
+   "budget_cap": 45638,
+   "damaged": 0,
+   "demotions": 17772,
+   "episodes": 952,
+   "fired": 765,
+   "fired_cells": 2297,
+   "forget_buckets": 11,
+   "forget_width": 2048,
+   "forgotten": 2041,
+   "index_atoms": 113,
+   "keys": 16,
+   "n": 20000,
+   "next_t": 20765,
+   "occupancy": 45628,
+   "pairs": 2924,
+   "pending": 180,
+   "pending_cells": 2141,
+   "seed": 7007,
+   "state_sha256": "e3e55fb0cda7f8bb23bfcbf35e935519bb48db55273de78308183b6bcf486f1b"
+  }
+ }
+}

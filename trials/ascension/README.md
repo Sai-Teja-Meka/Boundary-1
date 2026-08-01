@@ -91,6 +91,18 @@ Present:
   > is **not** claimed, and Stage C — the engine, its README, its strains and its
   > anchor — is unwritten under R2's standing step.
 
+  > **Note added 2026-08-01 (`[L5] [ASCEND]`, Stage C+D+E).** Stage C is written
+  > and **the gate is CLEARED**, so the last sentence above is where the
+  > unwritten-engine note stops: `core/layers/l5_prospection.py`,
+  > `trials/adapters/l5.py` and `core/layers/README-l5.md` exist, all eight
+  > engine-gated trials in `l5/t_prospection.py` are engaged and green, and
+  > **Layer 5 is claimed**. Measured on `corpora/l5stream` at the ratified cap:
+  > trigger-precision **1000**, trigger-recall **1000**, dup-fire **0**, miss
+  > **0**, `F` **1000** against a gate of 980, `B` **1000** with `refused = 0`,
+  > at 45 628 of 45 638 cells (250‰); `next_t` 20 765 with the last firing at
+  > `t = 20 760`, audited against the engine's own clock. Nothing here is
+  > rewritten and no number in `ATTAINABILITY.md` or `STAGE-B.md` moved.
+
 - `l5/STAGE-B.md` — the Stage-B record: the `t` decision and its derivation
   (§1, with the contradiction check against every text that could object), the
   declared query vocabulary the battery asks (§2), what the battery binds and

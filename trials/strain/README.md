@@ -49,3 +49,24 @@ sessions ~5k, murk ~10k, l3stream / l3streamb ~10k each):
   were already released, and a mixed stream at and below the footprint where
   demotion, forgetting and chain-shedding all run. Red first, on all three
   sections; the engine fix that followed is `atlas_after`.
+- `l5/t_prospection_strain.py` — prospection under pressure, repetition and dirt.
+  **Absent-mindedness**, the *prospective* Schacter sin (`autopsy/GAPMAP.md §6`):
+  under a budget that cannot hold the episodes an armed intention is never
+  silently dropped — 765 fired + 180 pending = 945 ingested — a pending
+  intention's own `intend` event comes back byte-exact from `read(t0)` while a
+  fired one's abstains, and **that loss is booked**, so `forgot_at(t0)` carries
+  it rather than the demotion counter keeping a booking that firing made false;
+  plus the closing ledger over every logical time the engine ever assigned, the
+  engine's own firings included, measured by reading all 20 765 of them. **The
+  fired ledger binds** (`autopsy/GAPMAP.md §2`'s *recorded but never binding*,
+  inverted — GA's expiration is written and read by nothing): the exactly-once
+  mark is read on the satisfaction path *and* on the arming path, where an `iid`
+  that has fired arms nothing because `§5 L5` names no re-arming, with a
+  **ledger-blind reference policy** (a trial fixture, never engine code) reaching
+  `dup-fire = 199` on the same stream to show the guard is load-bearing; and an
+  unreadable condition arms nothing and never raises (§7.3 on the write path).
+  **The demotion seam from the other side**: a `count_ge` fold fires exactly once
+  at a cap where **not one episode survives**, and no counted event is answered
+  as held. **Determinism** through arming, firing and the round trip, plus the
+  declared `iid` order on a fixture that arms ten intentions in its exact
+  reverse.

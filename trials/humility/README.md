@@ -60,6 +60,13 @@ Populated alongside ascension trials, one layer at a time. Present:
   > intentions held in budget, 30 of 945 at the ratified cap, 0 either way) are
   > carried into R6's Stage-B evidence.
 
+  > **Note added 2026-08-01 (`[L5] [ASCEND]`, Stage C).** The engine-gated §7.4
+  > confirmation is now engaged and green: `make_engine(4)` built from the
+  > **Layer-5** engine measures what `make_engine(4)` built from the Layer-4
+  > engine measures, field for field — and by construction rather than by
+  > imitation, since `l5_prospection.new_state` returns the frozen Layer-4 state
+  > below its own layer. The ceiling does not move: **0** against 50.
+
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 `trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).

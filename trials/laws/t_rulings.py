@@ -374,6 +374,26 @@ AUTHORIZED_GATES = (
     ("inheritance/l5/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
      "the budget law, absolute at every layer (§4.1); asserted in budget, where "
      "a breach cannot be a pressure consequence"),
+
+    # Layer 5, Stage C: the strain class. A strain does not apply a gate — it
+    # states the pressure a property is asserted UNDER — but this registry's rule
+    # is that a §5 number cannot appear in a trial without a recorded authority
+    # whatever the trial does with it, which is why `strain/l4`'s copies of
+    # GATE_FOOTPRINT are here too.
+    ("strain/l5/t_prospection_strain.py", "GATE_DUP_FIRE", 0,
+     (_s5("dup-fire=0"), _ruling("R5"), _ruling("R6")),
+     "§5 L5, unchanged; the clause the fired-ledger strain exists for. It is not "
+     "applied as a gate here — `ascension/l5` does that on the binding corpus — "
+     "but as the number a ledger-blind reference policy is shown to miss by 199 "
+     "on a fixture, which is what makes the guard load-bearing rather than "
+     "assumed"),
+    ("strain/l5/t_prospection_strain.py", "GATE_MISS", 0,
+     (_s5("miss=0"), _ruling("R5"), _ruling("R6")),
+     "§5 L5, unchanged; the clause behind the engine's design decision the "
+     "absent-mindedness strain measures — the pending set and the fired ledger "
+     "are outside every eviction phase, because an engine that could evict "
+     "either could be made to break a ratified gate by being poor. R6 clause 2 "
+     "left that question to Stage C expressly"),
 )
 
 
