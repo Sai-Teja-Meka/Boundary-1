@@ -14,10 +14,16 @@ python3 -m shell.dogfood remember --json -        # a summary as JSON on stdin
 python3 -m shell.dogfood recall graphiti bitemporal
 python3 -m shell.dogfood intend --when-kind attr --when-key layer --when-val-ge 6 \
     --about trials/adapters/INTERFACE.md --surface "…"   # a promise
-python3 -m shell.dogfood consolidate              # the Layer-5 derived view
+python3 -m shell.dogfood consolidate              # the Layer-6 derived view
 python3 -m shell.dogfood consolidate --budget 8000 --cue "graphiti bitemporal"
 python3 -m shell.dogfood status
 ```
+
+**Still three verbs into the engine, and there will only ever be three** (§7.1):
+`remember` is `ingest`, `recall` and `consolidate` are `query`, and the state
+file is `snapshot`. `intend` writes an event like `remember` does. Layer 6 adds
+no verb here for the same reason it adds no field to the state — what it adds is
+a number on an answer that already existed.
 
 Exit codes: `0` success — **including an abstention**, which is a correct answer
 (§3.0); `1` usage/schema error; `2` the state file failed its integrity check;
@@ -365,6 +371,75 @@ firing is therefore a *fact about the store*, re-derived identically on every
 read, and never a row somebody could edit. `FIELD.md` records the chafe that
 comes with it.
 
+## confidence — the number on the answer (`[L6] [DOGFOOD]`)
+
+`remember` writes, `recall` finds, `consolidate` sums up and `intend` waits. All
+four answer. Layer 6 is the first layer at which an answer says **how sure of it
+the store is**, and the upgrade here is exactly that and nothing else: the
+derived replay runs through `core/layers/l6_meta_memory.py`, and every answer the
+shell reads back through `§7.1` carries the engine's own `§7.2` confidence, in
+integer permille, which the report prints beside the value.
+
+**No new verb, no new field, no new file.** `L6State` adds no field to the frozen
+`L5State` (`README-l6 §0`), so the derived state this shell builds is the state it
+built one layer ago — same occupancy, same chains, same demotions, same firings —
+and `t_calibration.py` asserts that by comparing the two canonical snapshots
+branch for branch. The confidence is **derived at read time and never stored**:
+the view it lives in is recomputed on every read and thrown away, so there is no
+row anywhere carrying a number anyone could edit. That is the `[L4]` refusal to
+write derivations back, inherited one layer on and now load-bearing — a stored
+confidence would be a claim about evidence that had moved on without it.
+
+### The shell narrows a second reading
+
+`intend.py` narrows the engine's condition grammar. `consolidate.py` now narrows
+its **set-once reading** the same way, and the narrowing is *computed*:
+
+```python
+SET_ONCE_KEYS = tuple(k for k in ASSERTED_KEYS + (QUESTION_KEY,) if l6.set_once(k))
+```
+
+so this shell can never call a key set-once that the engine does not, and cannot
+drift from a reading that is frozen somewhere else. Today the intersection is
+**empty**: the one key `l6.SET_ONCE_KEYS` declares is `origin`, and a session
+summary states no origin.
+
+### What the census says, and why it is not a formality
+
+A confidence surface that only ever printed `1000‰` would be indistinguishable
+from one that printed a constant — the exact defect `autopsy/GAPMAP.md §2`
+convicts four engines of, metadata written and never read where it counts. So
+`consolidate` prints a **calibration census** that states the reason beside the
+number: per key, how many distinct claimants the chain has held, whether the
+engine calls that key set-once, and the confidence it states.
+
+```
+calibration — what this store says about its own certainty
+  engine reading   set-once keys: origin  (l6.SET_ONCE_KEYS, a declared reading …)
+  this reading     8 keys asserted, of which set-once: (none)  (computed …)
+  ties             0 chains hold more than one claimant for a slot that admits one
+  key              asserted   claimants in force                   states
+  layer            39         7         6                          1000‰
+  …
+  origin           0          0         (never asserted)           ABSTAIN
+```
+
+Two things about that table are deliberate. It asks about **`origin`** although
+this reading never writes it, because those are the only keys on which a
+confidence can move and a census that asked only about its own vocabulary could
+never see a tie. And the finding is not that nothing changed — `layer` has held
+7 values, `suite` 20 — it is that **not one of those disagreements is a
+contradiction**, because a chain that disagrees with itself is a contradiction
+only where the key admits exactly one value. `1000‰` here is a proof and not a
+default: the same renderer states `500‰` the moment a set-once chain holds two
+claimants, which `t_calibration.py` exhibits on a fixture. `FIELD.md`
+(2026-08-02) carries the live measurement.
+
+`asof` prices the evidence the answer actually **had** (`README-l6 §1.4`), so a
+history step is annotated with its own confidence exactly where that confidence
+is not `1000` — the walk then shows where a chain stopped being sure of itself,
+and says nothing everywhere else.
+
 ### The seed
 
 The first promise this store keeps is one the project actually made: `iid 1`,
@@ -407,7 +482,7 @@ store is committed with the move it records.
 |------|------------|
 | `event.py`    | the session-summary schema, the tokenizer, the cue surface |
 | `store.py`    | the budget, the state-file location, load/save, corruption |
-| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-5 replay, the derived-view report |
+| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-6 replay, the confidence census, the derived-view report |
 | `intend.py`   | the declared condition vocabulary, the promise's schema, guardedness |
 | `cli.py`      | `remember` / `recall` / `intend` / `consolidate` / `status`, and all rendering |
 | `backfill.py` | `BOUNDARY.log` → session summaries (writes nothing) |
@@ -425,5 +500,11 @@ failure, and a read-only check that the committed store still restores;
 `t_consolidate.py` covers the declared reading's invertibility against the frozen
 facet map, the derived battery through `query` alone, as-of under supersession,
 the demotion measurement (content kept, cue lost, session summaries never
-demoted), and that `consolidate` is read-only on the store. Shell code is
-testable; it is only `core/` that must stay pure.
+demoted), the take-back of a kept promise's own episode, and that `consolidate`
+is read-only on the store; `t_calibration.py` covers the `[L6]` confidence
+surface — the computed set-once narrowing, the zero-state identity between the
+Layer-5 and Layer-6 replays of this store, an integer permille on every rendered
+answer including an abstention, a contradicted chain rendering less certain than
+a clean one (and an as-of before the contradiction rendering certain), and the
+committed store's own census. Shell code is testable; it is only `core/` that
+must stay pure.
