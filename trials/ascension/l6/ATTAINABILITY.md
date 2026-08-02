@@ -46,6 +46,39 @@
 > `RULING-R7-DRAFT.md` carries the round-2 draft above its own round-1 body, in
 > the same form.
 
+> **Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded). The demotion is now
+> EXECUTED, not proposed.**
+>
+> The note above was written while the round-2 draft was still a draft. A human
+> ratified it and a `RULING` session appended it as **`R7`**, as drafted, so what
+> that note describes as a resolution being executed is now a frozen entry:
+> clause 1 binds both sides of the Layer-6 gate to `corpora/l6batteryb` **and
+> DEMOTES `corpora/l6battery` to an ungated diagnostic** — the fourth substrate
+> kill, after `l3stream` (`R1` clause 1) and the chronicle family (`R4` clause 1).
+>
+> **The cause `R7` records is this document's own §6, quoted verbatim** —
+> *"`n_neg > 0` **for the declared reading**, measured at 158 on the engine this
+> project has frozen — and **not** against an arbitrary reader"* — and it is
+> machine-checked against this file, so an entry that softened the ground it
+> rests on would be red rather than merely disappointing
+> (`t_attainability.py::trial_this_artifact_is_an_ungated_diagnostic_under_r7_clause_1`).
+>
+> **What a demotion is, and is not.** It is a change of **authority**, never of
+> bytes: `corpora/l6battery`'s frozen instance, its generator,
+> `trials/ops/l6/t_l6battery.py` and `t_attainability.py` are untouched and still
+> run green, and every figure in this document still holds on the artifact it was
+> computed on. There is no conditional arithmetic-skip to install — `R1` clause
+> 5's mechanism is for a **gate trial** deferred on arithmetic grounds, and
+> nothing here applies a gate to an engine. What survives is on the record in the
+> entry: this is the artifact that first gave `§3.4` a denominator at all, whose
+> capped measurement of 500 against the 600 ceiling was the first defined `AUROC`
+> in this project's history, and it is the diagnostic against which battery-b's
+> arithmetic is read.
+>
+> §8's four questions are all answered by `R7`, in clauses 1, 3(b), 1 and 4
+> respectively, and clause 5 settles the ECE bin index alongside them. No number
+> below moves.
+
 **BOUNDARY-RULINGS.md R2** put attainability before authority: *"a gate must lie
 strictly below the oracle ceiling and strictly above every capability-free
 baseline on its binding corpus, and that arithmetic must be computed and recorded

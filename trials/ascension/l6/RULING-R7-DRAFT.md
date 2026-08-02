@@ -1,5 +1,42 @@
 # RULING-R7-DRAFT.md — round 2: the binding on battery-b, AUROC's domain, and the demotion
 
+> **RATIFIED — 2026-08-02 (`[L5] [RULING]`).** A `RULING` session appended the
+> round-2 draft below to `BOUNDARY-RULINGS.md` as **`R7`**, **as drafted**: all
+> nine clauses, in this order, with their normative text unaltered — the
+> question, the rationale and the *"what this ruling does not do"* list carried
+> across **byte-for-byte**, and checked mechanically against this file rather
+> than by eye. **The frozen entry is the binding text and this file is not**;
+> where the two differ, `R7` governs.
+>
+> `R7` carries three things this file does not, and each is named so the
+> difference is on the record rather than in a diff nobody runs:
+>
+> * **the entry envelope** — the `# R7 — …` heading and the
+>   `Status`/`Binds`/`Authority`/`Holding` block that `BOUNDARY-RULINGS.md`'s own
+>   *Entry format* section requires and `laws/t_rulings.py` enforces. This file
+>   was written in file voice and carries none of it; the one other adjustment of
+>   that kind is the section heading *"The ruling (proposed)"*, which is *"The
+>   ruling"* in a frozen entry. **No clause text moves**, which is what the
+>   carriage check asserts;
+> * **one section of its own — the round-2 evidence, carried verbatim**: the two
+>   theorems, the six-reader bench, the feasible window `A/r ∈ [10, (25+5√21)/4)`
+>   with battery-b at `11r`, the witness at `Brier 23 / ECE 0 / AUROC 976 /
+>   F 955`, `detect-and-abstain` broken at `F 918` under **both** readings of
+>   `n/a`, the `n_neg ≥ 87` generalization, the 18-cell price and the disclaimed
+>   reserve, the humility measurement at 500 against 600, and the demotion's
+>   measured cause. It is the `R6` form: the drafted text is carried and the
+>   evidence is gathered in one place beside it;
+> * **an `Enforcement` section** adapted from this file's *"Enforcement, if
+>   ratified"* to what the ratifying session actually did. One item differs from
+>   what that section anticipated and the difference is deliberate: it said round
+>   1's `ATTAINABILITY.md` *"does not gain another"* dated note, and the human's
+>   execution directive asked for one recording the demotion as **executed**
+>   rather than proposed. It has one. Nothing else in that section was departed
+>   from.
+>
+> Nothing below this note is edited — including round 1's body, which round 2
+> already preserved verbatim under its own dated note.
+
 > **DRAFT. NOTHING HERE BINDS.** This file is deliberately **not** appended to
 > `BOUNDARY-RULINGS.md`, because appending is what freezes an entry. It is the
 > Layer-6 Stage-A **round 2** session's proposal, written from that session's own

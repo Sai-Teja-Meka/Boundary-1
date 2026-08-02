@@ -209,6 +209,35 @@ Present:
   artifact**, and `laws/t_rulings.py` now carries the six `§5 L6` constants
   **twice**, once per round, each with a `§5` clause and no companion ruling.
 
+  > **Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded).** The last two
+  > sentences above are where *"no Layer-6 gate binds on either artifact"* stops
+  > holding, and this index says so rather than being rewritten. A human ratified
+  > the round-2 draft and a `RULING` session appended it as **`R7`**, **as
+  > drafted**: all nine clauses, normative text unaltered, checked mechanically
+  > against the draft. **The Layer-6 gate now binds on `corpora/l6batteryb`,
+  > BOTH sides**, in one clause (`R6` clause 1's shape), and **`corpora/l6battery`
+  > is DEMOTED to an ungated diagnostic** — the fourth substrate kill, its cause
+  > quoted verbatim from round 1's own `ATTAINABILITY.md §6`, its bytes and both
+  > trials that score it untouched and still green. In `laws/t_rulings.py` the six
+  > battery-b constants now carry `R7`; round 1's six keep their `§5` clause and
+  > carry **no** ruling, which is that registry recording the demotion in its own
+  > structure — and a registry edit restoring one is red.
+  >
+  > `R7` also settles what the arithmetic in both files had to assume: the
+  > calibration denominator excludes abstentions and is stated beside the triple
+  > (clause 2), `AUROC = n/a` **disqualifies** with a **forcing region** required
+  > of any artifact a gate citing `AUROC` binds on and priced inside a recorded
+  > window (clause 3), the reading is **exact, not permille** (clause 4), and the
+  > ECE bin index is ruled (clause 5). `R5` still carries the READINGS of `R2`'s
+  > obligations here without an entry of its own; `R7` carries the **substrate**
+  > and the **`n/a` law**.
+  >
+  > **Authority, not behaviour**: no score moved, no threshold, ceiling or corpus
+  > binding other than Layer 6's own changed, and **no Layer-6 engine exists**.
+  > `trials/humility/l6/` with its mandatory `IMPOSSIBILITY.md`,
+  > `trials/inheritance/l6/`, and only then `core/layers/l6_meta_memory.py`, are
+  > what `R2`'s standing step orders next.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

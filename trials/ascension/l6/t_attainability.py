@@ -18,6 +18,39 @@ a gate.
 `R5` clause 2 is applied FIRST, as the obligation's own order requires: the
 minimizing clauses are read direction-aware and the lower obligation is read over
 the gate's conjunction, with every clause's arithmetic recorded either way.
+
+---
+
+**Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded). This file is ROUND 1
+and `corpora/l6battery` is now an UNGATED DIAGNOSTIC.**
+
+`R7` clause 1 binds both sides of the Layer-6 gate to `corpora/l6batteryb` and
+**DEMOTES this artifact** — the fourth substrate kill, after `l3stream` (`R1`
+clause 1) and the chronicle family (`R4` clause 1), and the first performed on an
+artifact this project froze one session earlier. The cause is this file's own
+document, `ATTAINABILITY.md §6`, recorded verbatim in the entry: `n_neg > 0` held
+here **for the declared reading** and not against an arbitrary reader, because
+`§8.7` injects every murk defect by visible construction and a stream-only rule
+recovers each family exactly — on murk, evidence that ranks also resolves. The
+consequence is `trial_a_perfect_reader_would_take_auroc_with_it` below, which
+already measured it.
+
+**Nothing here is edited in substance and nothing is retired.** Every figure
+below is still computed, still asserted on `corpora/l6battery`, and still green:
+a demotion is a change of authority and not of bytes. The constants keep their
+`§5 L6` clause and carry **no ruling**, which is now what *"this artifact
+diagnoses rather than gates"* looks like in the registry — asserted there by
+`laws/t_rulings.py::trial_a_demoted_artifacts_constants_carry_no_companion_ruling`,
+so re-promoting this artifact by editing the registry is red.
+
+What `R7` also settles, and what these trials therefore now assert as ratified law
+rather than as a proposal: `AUROC = n/a` **disqualifies** (clause 3(a)), the
+calibration denominator excludes abstentions and is stated beside the triple
+(clause 2), the reading is **exact and not permille** (clause 4), and the ECE bin
+index is `bin(conf) = 9 if conf == 1000 else conf // 100` (clause 5). `R5` still
+carries the READINGS of `R2`'s obligations at this layer without an entry of its
+own; `R7` carries the SUBSTRATE and the `n/a` law. The two are kept distinct here
+as the `R6` session kept `R5` and `R6`.
 """
 
 from fractions import Fraction
@@ -184,8 +217,9 @@ def trial_no_scored_policy_lands_in_a_disputed_reading_interval():
             require(not (lo < value <= hi),
                     "%s's %s = %s lies in the interval where the exact and "
                     "permille readings of §5 L6 disagree — the reading now "
-                    "decides a verdict and RULING-R7-DRAFT.md clause (iv) is no "
-                    "longer optional" % (name, measure, value))
+                    "decides a verdict and BOUNDARY-RULINGS.md R7 clause 4 — "
+                    "EXACT, not permille — is what settles it"
+                    % (name, measure, value))
 
 
 # ---- R2 obligation 1 -------------------------------------------------------
@@ -264,10 +298,15 @@ def trial_obligation_2_no_capability_free_baseline_clears_the_gate():
     Applied first, as the session's charter required. Every named capability-free
     policy is scored on every clause and none clears the whole gate. The two
     abstainers fail only because `§3.4` leaves AUROC undefined for them, which is
-    §5's collision and `RULING-R7-DRAFT.md` clause (iii)'s question — asserted
-    here under the reading the draft proposes, so that a human who took the other
-    reading would find this trial red rather than find the obligation quietly
-    discharged.
+    §5's collision and was round 1's open question.
+
+    **`R7` clause 3(a) has since ruled it**: `AUROC = n/a` DISQUALIFIES rather
+    than excuses the clause — a gate is an instrument and declines to certify
+    what it cannot measure. So the reading this trial applies is ratified law and
+    no longer a proposal, and the thing it asserts on this demoted artifact is
+    what that law measures here. On the BINDING artifact the same policy is
+    killed by `§5 L6`'s own `F` clause instead (918 against 950), which is why
+    `R7` could take the general rule without buying a consequence.
     """
     board = _scoreboard()
     for name in CAPABILITY_FREE:
@@ -372,9 +411,10 @@ def trial_the_abstainer_is_what_makes_the_auroc_reading_load_bearing():
     require(_clears(hedger, auroc_na_disqualifies=False),
             "under the reading where `n/a` merely excuses the clause, this "
             "capability-free policy clears every evaluable clause of §5 L6 — "
-            "which is the horn RULING-R7-DRAFT.md clause (iii) rejects")
+            "which is the horn BOUNDARY-RULINGS.md R7 clause 3(a) rejects")
     require(not _clears(hedger, auroc_na_disqualifies=True),
-            "and under the reading the draft proposes it does not clear")
+            "and under the ratified reading — n/a DISQUALIFIES — it does not "
+            "clear")
 
 
 def trial_a_perfect_reader_would_take_auroc_with_it():
@@ -433,30 +473,75 @@ def trial_the_capped_engine_is_measured_and_the_ceiling_is_neither_breached_nor_
             "AUROC, structurally rather than marginally")
 
 
-# ---- what this session does NOT do ----------------------------------------
+# ---- what this artifact is now: an ungated diagnostic ----------------------
 
-def trial_no_layer_6_gate_binds_on_anything():
-    """The Stage-A boundary, asserted in code rather than promised in prose.
+def trial_this_artifact_is_an_ungated_diagnostic_under_r7_clause_1():
+    """The demotion, asserted in code rather than promised in prose.
 
-    `R2` obligation 4: the corpus binding is the human's. A Layer-6 engine, a
-    Layer-6 humility trial and a Layer-6 inheritance row do not exist, and
-    `RULING-R7-DRAFT.md` is deliberately not appended to `BOUNDARY-RULINGS.md`
-    because appending is what freezes.
+    Until `R7` this trial asserted the opposite fact — that no ruling had been
+    appended and therefore no Layer-6 gate bound on anything. A human ratified
+    `RULING-R7-DRAFT.md`'s round-2 draft, so what it asserts now is the state that
+    replaced it: `R7` exists, it binds `corpora/l6batteryb`, and it demotes
+    **this** artifact to an ungated diagnostic. That is the `R4` clause 1 form —
+    bytes untouched, generator untouched, trials still running — and it is why
+    every figure in this file is still computed and still green.
+
+    **The demotion's cause is checked verbatim**, not paraphrased. `R7` clause 1
+    records it as a quotation from `ATTAINABILITY.md §6`, and the two are compared
+    byte for byte here, so an entry that softened the cause on its way into the
+    ledger would be red rather than merely disappointing.
+
+    There is no conditional arithmetic-skip to install. `R1` clause 5's mechanism
+    is for a **gate trial** deferred on arithmetic grounds — it computes a ceiling
+    and engages by itself if the ceiling ever reaches the gate. Nothing in this
+    file applies a gate to an engine: it is Stage-A arithmetic, every trial of it
+    is an engine-free measurement of a frozen artifact, and a measurement has
+    nothing to defer. What would lift this demotion is not an arithmetic that
+    moves but a ruling that says so, and `trial_a_perfect_reader_would_take_auroc_
+    with_it` is the standing measurement of why one is not available here.
     """
     import os
     root = tasks.PROJECT_ROOT
-    for absent in ("core/layers/l6_meta_memory.py",
-                   "trials/adapters/l6.py",
-                   "trials/humility/l6",
-                   "trials/inheritance/l6"):
-        require(not os.path.exists(os.path.join(root, absent)),
-                "%s exists — this is a Stage-A session and the engine, the "
-                "humility class and the inheritance row all come after a "
-                "ruling (R2's standing step)" % (absent,))
-
     rulings = os.path.join(root, "BOUNDARY-RULINGS.md")
     with open(rulings, "r", encoding="utf-8") as fh:
         text = fh.read()
-    require("\n# R7 " not in text,
-            "RULING-R7-DRAFT.md must NOT be appended by a session; appending is "
-            "what freezes and a human ratifies")
+
+    require("\n# R7 — " in text,
+            "R7 is not in BOUNDARY-RULINGS.md — this file's constants cite no "
+            "ruling BECAUSE the entry demoted its artifact, and without the "
+            "entry that absence means the older thing (no gate binds anywhere) "
+            "and this trial is asserting a state that does not exist")
+    entry = text[text.index("\n# R7 — ") + 1:]
+    require("corpora/l6batteryb" in entry and "DEMOTED" in entry,
+            "R7 must bind the Layer-6 gate to corpora/l6batteryb and demote this "
+            "artifact; it does neither")
+
+    # The cause, carried verbatim out of this file's own document. Both texts are
+    # normalized the same way — blockquote markers dropped, whitespace collapsed —
+    # so a reflowed quotation is not mistaken for a softened one, and a softened
+    # one cannot hide behind a reflow.
+    def _flat(s):
+        return " ".join(line.lstrip("> ").strip()
+                        for line in s.splitlines()).replace("  ", " ")
+
+    doc = os.path.join(root, "trials/ascension/l6/ATTAINABILITY.md")
+    with open(doc, "r", encoding="utf-8") as fh:
+        cause_source = _flat(fh.read())
+    cause = ("`n_neg > 0` **for the declared reading**, measured at 158 on the "
+             "engine this project has frozen — and **not** against an arbitrary "
+             "reader.")
+    require(cause in cause_source,
+            "ATTAINABILITY.md §6 no longer states the cause in the words R7 "
+            "quotes — the demotion's ground and the entry that rests on it have "
+            "come apart")
+    require(cause in _flat(entry),
+            "R7 clause 1 must record the demotion's cause VERBATIM from "
+            "ATTAINABILITY.md §6 — the R4 clause 1 form, where a corpus is "
+            "refused with its reason on the record and not by assertion")
+
+    # Stage B and Stage C are still ahead: R2's standing order is attainability
+    # arithmetic -> trials -> engine, and the ruling is the first step's end.
+    for absent in ("core/layers/l6_meta_memory.py", "trials/adapters/l6.py"):
+        require(not os.path.exists(os.path.join(root, absent)),
+                "%s exists — R2's standing step puts the engine last, after the "
+                "Stage-B batteries this entry authorizes" % (absent,))

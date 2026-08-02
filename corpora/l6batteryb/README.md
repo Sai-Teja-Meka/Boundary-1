@@ -1,5 +1,34 @@
 # `corpora/l6batteryb` — battery-b, and the forcing region
 
+> **RATIFIED — 2026-08-02 (`[L5] [RULING]`, `R7` recorded). §7's first line is
+> where *"it does not bind a gate"* stops holding.**
+>
+> `R7` clause 1 binds **both sides** of the Layer-6 gate — ascension and
+> humility — to this artifact, in one clause, for `R6` clause 1's reason: a
+> ceiling measured on one artifact beside a gate cleared on another is two facts
+> about two worlds. The six `§5 L6` constants in
+> `trials/ascension/l6/t_attainability_b.py` now carry `R7` beside their clause
+> in `laws/t_rulings.py`; `corpora/l6battery`'s six keep the clause and carry no
+> ruling, which is that registry recording its **demotion** in its own structure.
+>
+> **§3's two theorems are what the entry rests on**, and `R7` clause 3(b) makes
+> the shape of them a standing requirement rather than a property of this
+> artifact: a gate citing `AUROC` binds only where both classes non-empty is a
+> **theorem**, carried by a **forcing region** on which every committing policy
+> definable from the substrate is wrong on a stated number of queries, proved
+> from the frozen bytes and machine-checked. Clause 3(c) adds the price: the
+> region's size must sit inside the recorded window `A/r ∈ [10, (25 + 5√21)/4)`,
+> which §4 computes and this artifact occupies at `A = 11r`.
+>
+> Ratification adds nothing to the theorems themselves — they were already
+> trials. A forcing region that stopped forcing turns `trials/ops/l6/
+> t_l6batteryb.py` red before any gate is applied to any engine, and that was as
+> true the day this file was written as it is now.
+>
+> Nothing below is edited and no corpus byte is touched. `trials/humility/l6/`
+> with its mandatory `IMPOSSIBILITY.md`, `trials/inheritance/l6/` and the engine
+> are still ahead, in that order, under `R2`'s standing step.
+
 `[L5] [ASCEND]`, Layer-6 Stage A **round 2**, 2026-08-01. Frozen instance
 **`l6batteryb.s9009.e12000.q2400.json`** (seed 9009, 12 000 events, 2 400
 queries, 888 897 bytes).

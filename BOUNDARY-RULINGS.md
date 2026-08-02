@@ -1570,3 +1570,793 @@ at Stage B.
 - `trials/laws/t_rulings.py` — the gate registry, where the Layer-5 constants now
   carry this entry beside their `§5 L5` clauses, and the completeness check that
   forbids an unregistered gate constant anywhere under `trials/`.
+
+---
+
+# R7 — The Layer 6 gate binds on `corpora/l6batteryb`; AUROC's domain; the demotion of `corpora/l6battery`
+
+**Status:** FROZEN on commit.
+**Binds:** the Layer-6 ascension trials (`trials/ascension/l6/`) and the Layer-6
+humility trial (`trials/humility/l6/`) when it exists; clause 2 binds every
+`ATTAINABILITY.md` and every Layer-6-or-later battery, clause 3 binds **every
+gate that cites `AUROC`** at any layer, including `BOUNDARY-HIGH.md` when it is
+written, and clauses 4 and 5 bind the reading of `§3.4`'s quantities wherever
+they are scored.
+**Authority:** `BOUNDARY.md §3.0`, `§3.4`, `§3.5`, `§4.1`, `§5 L6`, `§5.1 L6`,
+`§8.3`, `§8.7`, `§8.8`; `BOUNDARY-RULINGS.md R1` clause 5 and `R4` clause 1 (the
+precedent for keeping a corpus as an ungated diagnostic rather than retiring
+it), `R2` (whose four obligations this rests on and does not weaken), `R3`
+(whose scope this deliberately does **not** extend), `R4` clauses 2, 3 and 5,
+`R5` clauses 1–4 (which carry the identity, the direction-aware conjunction
+reading, the declared policy class and the pricing discipline here without an
+entry of their own), `R6` clauses 1 and 3. Resolves the four questions put in
+`trials/ascension/l6/ATTAINABILITY.md §8` and re-put, after the human's ruling
+on them, in `trials/ascension/l6/ATTAINABILITY-B.md §7`. Ratifies the round-2
+draft of `trials/ascension/l6/RULING-R7-DRAFT.md`, written at Stage A round 2
+from the arithmetic in `ATTAINABILITY-B.md` and machine-checked by
+`t_attainability_b.py`.
+**Holding:** the ratified `§5 L6` thresholds stand **unchanged**; both sides of
+the Layer-6 gate — ascension **and** humility — bind on **`corpora/l6batteryb`**,
+and **`corpora/l6battery` is DEMOTED to an ungated diagnostic**, the fourth
+substrate kill, its bytes untouched and its trials still running; abstentions
+are **outside** the calibration denominator, and every battery states its `A`,
+its `n_pos` and its `n_neg` beside the triple; **`AUROC = n/a` DISQUALIFIES**,
+and a gate citing `AUROC` binds only on an artifact where both classes non-empty
+is a **theorem** carried by a forcing region priced inside a recorded window;
+`§5 L6`'s `40 / 30 / 900` are read **exact**, not permille; and `§3.4`'s ECE bin
+index is `bin(conf) = 9 if conf == 1000 else conf // 100`.
+
+## The question, restated after the ruling on round 1
+
+Round 1 put four questions to a human and the human answered them. The answers
+are the charter of round 2 and they are recorded here as the premises of this
+draft rather than re-argued as its conclusions:
+
+**(i) `AUROC = n/a` DISQUALIFIES.** Vacuous satisfaction of a calibration clause
+is the **null-exemption defect this project's own autopsies convicted**:
+`autopsy/writ/ANATOMY.md` records that declaring a capability false sets the
+score `null` and null is dropped from **both** numerator and denominator
+(`evaluator.ts:545-548`, `docs/metrics.md:204`), so a system exempts itself
+exactly where `make_engine(layer_cap = N−1)` is scored against a ceiling. A gate
+that let `n/a` excuse its own clause would commit, in this project's own trials,
+the defect this project published about somebody else's.
+
+**(ii) The binding artifact must make `n_neg > 0` a THEOREM**, not a fact
+relative to a declared reading — via an irreducible-ambiguity forcing region
+whose resolving signal the generator **withholds**.
+
+**(iii) `corpora/l6battery` is DEMOTED** to an ungated diagnostic, with its cause
+recorded verbatim in the `R4`-clause-1 form.
+
+**(iv) A commitment clause was considered and held in RESERVE**, and is recorded
+below as the declined alternative with its reason.
+
+Round 2 built the artifact, redid the band arithmetic, re-exhibited the witness
+and re-scored every baseline. What follows is what that produced.
+
+## The ruling
+
+### Clause 1 — the binding, and the fourth substrate kill
+
+The ratified `§5 L6` thresholds stand **UNCHANGED** — `Brier ≤ 40`, `ECE ≤ 30`,
+`AUROC ≥ 900`, `F ≥ 950`, `B = 1000`, capped `AUROC ≤ 600` — and **both sides of
+the Layer-6 gate, ascension and humility, bind on `corpora/l6batteryb`**, in one
+clause, for `R6` clause 1's reason: a ceiling measured on one artifact beside a
+gate cleared on another is two facts about two worlds.
+
+The **upper side is EXHIBITED** (`R4` clause 5, `R5` clause 1 for the `B = 1000`
+identity): a concrete confidence assignment over the frozen artifact — structural
+evidence in, integer permille out, no engine and no answer key — attains
+`Brier 23 / ECE 0 / AUROC 976 / F 955 / B 1000` against the gate, and it is
+**provably non-resolving**, pricing the forcing region at the tie's own
+confidence of 500 because the region's own theorem forbids it from doing better.
+
+The **lower side holds over the CONJUNCTION** (`R5` clause 2), and four of the
+five clauses do work clause-wise:
+
+| capability-free policy | Brier | ECE | AUROC | F | clears |
+|---|---|---|---|---|---|
+| confident-always (= `make_engine(5)`, measured) | **45** | **45** | **500** | 955 | no |
+| base-rate constant | **43** | 0 | **500** | 955 | no |
+| detect-and-abstain | 0 | 0 | n/a | **918** | **no — killed by `F`** |
+| abstain-on-conflict | 0 | 0 | n/a | **766** | no — killed by `F` |
+
+`Brier` fails both constants, `AUROC` fails both by 400 permille and by
+arithmetic rather than margin, and — the round-2 change — **`F` fails both
+abstainers outright**, so no clause of `R2` obligation 2 rests on what `n/a`
+means on this artifact.
+
+**THE FOURTH SUBSTRATE KILL. `corpora/l6battery` is DEMOTED to an ungated
+diagnostic** — after `corpora/l3stream` (`R1` clause 1), the chronicle family at
+Layer 4 (`R4` clause 1), and now this. Its bytes are untouched, its generator is
+untouched, `trials/ops/l6/t_l6battery.py` and
+`trials/ascension/l6/t_attainability.py` are untouched and keep running green: a
+corpus is retired only by ceasing to gate on it, never by changing its bytes, and
+nothing here is deleted. Its cause is recorded **verbatim**, from the round-1
+document's own §6, and it is independently sufficient:
+
+> `n_neg > 0` **for the declared reading**, measured at 158 on the engine this
+> project has frozen — and **not** against an arbitrary reader.
+
+with the mechanism measured rather than argued in the same section: `§8.7` pairs
+every injected murk defect with its answer key **and injects it by visible
+construction**, so a stream-only rule recovers each family **exactly** —
+symmetric difference **0** against the frozen key on contradiction (305),
+near-duplicate (393), ambiguity (205) and malformed (257). **On murk, evidence
+that ranks also resolves.** A gate citing `AUROC` bound there would be a gate
+whose evaluability depended on the engine under test not having thought of
+first-wins, and clause 3(b) below is what forbids that in general.
+
+What `corpora/l6battery` remains is not nothing, and the demotion says so: it is
+the artifact that first gave `§3.4` a denominator at all, its capped measurement
+of 500 against the 600 ceiling was the first defined `AUROC` in this project's
+history, and its arithmetic is the diagnostic against which battery-b's is read.
+`corpora/murk` likewise stays exactly what `R4` clause 1 left it — an ungated
+Layer-4 diagnostic and this project's dirt corpus — and battery-b takes nothing
+away from it.
+
+**No alternative substrate was passed over in silence.** `§8.8`'s REAL corpus is
+25 events, three orders of magnitude too small to fill ten ECE bins; no other
+frozen corpus carries an answer key at all, so on them the correctness of an
+answer is whatever the engine's own reading says it is and `n_neg` is 0 by
+construction rather than by capability.
+
+### Clause 2 — the calibration denominator, stated
+
+**Abstentions are outside the calibration denominator, and the exclusion is
+stated rather than inferred.** `§3.4`'s `A` is the count of **answered** queries;
+an abstention contributes to `§3.0`'s fidelity and to no calibration quantity.
+Every `ATTAINABILITY.md` and every Layer-6-or-later battery states its `A`, its
+`n_pos` and its `n_neg` explicitly beside the triple, and a battery declares for
+each query class whether it scores inside the denominator and why.
+
+This clause adds no arithmetic — `§3.4` already implies all of it. What it adds
+is that the implication may no longer be left implicit, because the whole of
+clause 3's problem is invisible until `A` is written down next to `N`. It is
+carried across from round 1's draft unchanged, and round 2 honoured it before it
+was ratified.
+
+### Clause 3 — AUROC's domain
+
+**(a) `AUROC = n/a` DISQUALIFIES; it does not excuse the clause.** A policy or an
+engine whose `AUROC` is undefined has not cleared a gate that cites `AUROC`, and
+`§3.4`'s own sentence — *"any gate that cites AUROC requires both classes
+present"* — is ruled to mean exactly that.
+
+**The framing is instrument range, and it is the reason rather than a
+decoration.** A gate is an instrument. An instrument has a range, and outside it
+the honest output is not a pass but a refusal to certify: a balance that reads
+`----` under an out-of-range load has not weighed the object, and nobody records
+the `----` as a weight. `§3.4` says `AUROC` is *undefined* when a class is empty
+and instructs the harness to report `n/a`; a gate that treated that report as
+satisfaction would be certifying a quantity it had just declared itself unable to
+measure. **The instrument declines to certify what it cannot measure.**
+
+The alternative reading is not merely worse in principle; it was **measured**.
+Round 1's `detect-and-abstain` — a policy with no confidence model whatsoever,
+flat 1000 on everything it answers, which hedged exactly the queries the
+structural evidence flagged and thereby deleted them from `§3.4`'s denominator —
+scored `Brier 0 / ECE 0 / F 960 / B 1000`, *better than the exhibited witness on
+three clauses*, and would have cleared every evaluable clause of `§5 L6` with no
+capability at all. And this is the **null-exemption defect this project's own
+autopsy convicted WRIT of** (`autopsy/writ/ANATOMY.md`, commit `3c0900a`):
+declaring a capability false sets the score `null`, and null is dropped from
+**both** numerator and denominator, so a system exempts itself precisely where
+this project scores a capped engine against a ceiling. A project that published
+that finding cannot write the same exemption into its own gate.
+
+**(b) A gate citing `AUROC` binds only on an artifact where both classes
+non-empty is a THEOREM, and the artifact must carry the proof.** This is the
+Layer-6 analogue of `§5 L3`'s corpus precondition — *"importance uniformly-to-late
+(never front-loaded)"*, the one ratified gate cell in the whole table that names a
+property its corpus must have — and it is stated here because `§5 L6` does not
+state one and needs it more.
+
+**The guarantee may NOT be relative to a declared reading**, and this is where
+this draft departs from round 1's, on the human's ruling. Round 1's clause 3(c)
+proposed that the guarantee *may* be relative to a declared reading provided the
+artifact declares it. That is now refused, for the reason round 1's own §6 made
+plain: a guarantee relative to a reading is a guarantee that the engine under
+test has not thought of a different reading, and a gate whose evaluability
+depends on the engine's ignorance is not a gate. What is required instead is a
+**forcing region**: a region of the artifact on which
+
+> **every** committing policy definable from the artifact's own substrate — not
+> merely the one the session declared — is wrong on a stated number of queries,
+
+proved from the frozen bytes and machine-checked. `corpora/l6batteryb` supplies
+one, and the proof has two halves, both asserted in
+`trials/ops/l6/t_l6batteryb.py`:
+
+* **the tie.** The region is 100 **mirror pairs**. The two members of a pair have
+  equal event histories once the entity id is blanked, and logical times
+  differing by exactly `+1` at every position; one member's truth is its FIRST
+  assertion and the other's is its LAST. So any reader that does not read the raw
+  id or an absolute `t` answers both identically and is wrong on exactly one —
+  **exactly 100 errors, for every such reader.** Exhibited against a bench of six
+  readers built to break it, `first-wins` included, all measuring 100;
+* **the withholding.** Regenerating with every coin bit flipped produces a
+  **byte-identical stream** and an answer key that differs on all 200 forcing
+  queries and on nothing else. So the stream carries **zero** bits about the
+  coin, every class-E policy's answers, confidences and scores are unmoved by the
+  flip while its error set is exactly complemented, and a policy that resolves
+  the region has read the answer key — class **O** by definition. The two handles
+  the tie leaves, the raw id and the absolute `t`, are closed by the coin's
+  **balance**: a rule keyed on either takes both members of a pair or neither and
+  is right on exactly half the pairs, which is 100 errors again.
+
+**(c) The forcing region's price is a ratified-clause arithmetic and must be
+recorded as a window, not as a number.** A forcing region of size `r` inside an
+answerable core of size `A` is admissible only where three ratified clauses hold
+at once, and `ATTAINABILITY-B.md §2.2` records the window exactly:
+
+```
+A >= 10r                          the honest committer clears F >= 950
+A <  18r                          blanket abstention on the region BREAKS F >= 950
+A <  (25 + 5*sqrt(21))/4 * r      Brier <= 40 still beats the base-rate constant
+```
+
+`corpora/l6batteryb` sits at `A = 11r = 2200`, `r = 200`, `w = 1/22`. The
+irrational bound is checked as the exact rational predicate `25u² − 50u + 4 < 0`
+in `u = r/A` and never as a float (§2.2). Where no `r` satisfies every ratified
+clause simultaneously, that is an ATTEMPT-shaped constitutional finding and the
+session stops rather than bending a constant; it did not arise here, which is
+also why clause 8's reserve instrument was not needed.
+
+**(d) The consequence is stated rather than hidden — and on this artifact it
+costs nothing.** Round 1's draft accepted, with reasons, the second horn of the
+same reading: *"a gate citing `AUROC` cannot be cleared by an engine that answers
+everything correctly."* It called the consequence unattractive and took it
+anyway. On `corpora/l6batteryb` **that engine cannot exist**: answering
+everything correctly requires resolving the forcing region, and (b)'s second half
+says the resolving signal is not in the stream. The disqualifying reading locks
+out nothing reachable here. It remains the right general rule, and clause 3(b) is
+what keeps it from ever being expensive again: an artifact that carries a forcing
+region cannot be outgrown by a correct engine, because being correct on it is not
+a thing an engine can be.
+
+The residue is stated rather than smoothed over. A **binding artifact is
+outgrown** when an engine's own answers move `n_neg` on the region, which by the
+tie is impossible, and when they move it elsewhere, which is ordinary and is what
+the rest of the battery measures. And a policy that has **memorised** the answer
+key resolves the region trivially; that policy is class **O**, and the coin is
+what makes the class definition bite — it exists in the key and in the generator,
+and in no function of the stream. **The generator is part of the answer key, not
+part of the substrate**, and this draft says so in as many words so a later
+session does not have to rediscover it.
+
+### Clause 4 — the reading: EXACT, not permille
+
+`§5 L6`'s `40`, `30` and `900` are bounds on the quantity `§3.4` defines in
+`[0,1]`, not on its `§3.5` permille rounding:
+
+```
+Brier ≤ 40/1000        ECE ≤ 30/1000        AUROC ≥ 900/1000
+```
+
+The two readings differ on `(40/1000, 81/2000]`, `(30/1000, 61/2000]` and
+`[1799/2000, 900/1000)` — the endpoints exact, because `§3.5` rounds a half to
+the **even** neighbour and 40 is even. `§5.1 L6`'s own defense sentences favour
+the exact reading in its own words: *"at or under 0.04"* and *"to within 3%"* are
+bounds on the quantity. `F ≥ 950` is read the same way, and round 2 is where that
+stops being an afterthought.
+
+Round 1 asked for this reading while recording that **nothing turned on it**.
+Round 2 found the first place a reading moves a **number**, and it is an `F`
+instance: a policy hedging 13 of battery-b's mirror pairs scores
+`F = 1306/1375 = 0.94981…`, which is `950` in permille — **affordable under one
+reading and not under the other**. It still moves no verdict, and the theorem
+that matters survives both (`n_neg ≥ 88` exact, `≥ 87` permille, `> 0` either
+way), which is precisely the moment to settle it: cheap now, and expensive the
+first time a verdict rather than a ladder row lands in the interval.
+
+### Clause 5 — the bin reading
+
+`§3.4`'s ten ECE bins are `[0,100)`, `[100,200)`, …, `[900,1000]` with the last
+bin **closed**. On an integer permille confidence the bin index is ruled to be
+exactly
+
+```
+bin(conf) = 9 if conf == 1000 else conf // 100
+```
+
+— a total order and a partition at once: no boundary is ambiguous, no value falls
+outside, and empty bins contribute 0 as `§3.4` already says. This is the reading
+every Layer-6 instrument in the tree already implements (`_l6tasks.ece`, used
+unchanged by both rounds), ruled rather than left as an implementation detail
+because it is the one place a `§3.4` quantity could be computed two defensible
+ways from the same numbers, and because the exhibited witness's `ECE = 0` depends
+on it: its 500s land in bin 5 and its 1000s in bin 9, and a reading that put 1000
+in an eleventh bin or split the closed interval would move the witness's headline
+figure without moving anything it measures.
+
+### Clause 6 — the key-blind scope statement
+
+Round 1's sharpest positive result is **preserved, re-measured, and re-scoped**,
+because it is the kind of finding that travels further than its evidence if
+nobody restates it.
+
+Round 1 recorded that *a policy that RANKS without RESOLVING clears the gate*,
+measuring the key-blind `conflict-rank` at `Brier 31 / ECE 0 / AUROC 945 /
+F 955`. On `corpora/l6batteryb` the same policy measures
+`Brier 36 / ECE 0 / AUROC 911 / F 955` and still clears. The scope statement is
+ruled to read, henceforth:
+
+> On an artifact carrying a forcing region, **ranking without resolving is not
+> merely sufficient for the Layer-6 gate; it is the only thing available**, since
+> the region is by construction unresolvable and the exhibited witness is itself
+> non-resolving. And **key-blindness costs a measurable margin**: a policy that
+> cannot tell a set-once tie from an ordinary chain that was legally updated
+> clears `AUROC ≥ 900` on 11 permille where the set-once-aware witness clears it
+> on 76.
+
+Two caveats travel with it and are ruled to travel with it. `conflict-rank`'s
+levels are the artifact's own measured accuracy per conflict count, so its scores
+are a **ceiling for the key-blind sub-family** and not an attainable policy —
+round 1's caveat, carried forward unweakened. And the fit is **coin-invariant**
+on battery-b, because the tie pins the region's accuracy at exactly one half
+under either coin, which is asserted rather than assumed.
+
+### Clause 7 — the §3.0 price-list tension, RECORDED for Layer 7's eyes
+
+**This clause rules nothing. It records a tension so that the layer that will
+have to live with it inherits the item rather than rediscovering it.**
+
+`§3.0` prices an abstention on an answerable query at 100 and a confident error
+at 0, and `§3.4` computes calibration over answered queries only. The two point
+the same query in opposite directions: `§3.0` pays an engine to convert an error
+into an abstention, and `§3.4` needs those errors to survive as answers or its
+whole triple evaporates. Round 1 measured a capability-free policy that followed
+the incentive to its end and beat the exhibited witness on three clauses. Round 2
+closes it **on this artifact and by arithmetic** — hedging the forcing region
+costs 90 permille out of `F ≥ 950`'s 50-permille budget, so every policy that
+clears `F` leaves `n_neg ≥ 87` — and that closure is a property of a *sizing*,
+not of a law. A future artifact whose forcing region is a smaller share of its
+core would reopen it exactly.
+
+**Layer 7 is where it bites next and it will bite harder**, which is why this is
+recorded now and in this document. `§5 L7` gates `novelty = 1000`,
+`tagging = 1000`, `validity = 1000` and `ECE ≤ 40` together, and `§4.2` becomes
+**binding** there: an answer without a valid provenance tag scores as **wrong
+(0)**, *"regardless of whether its value is correct"*. So at Layer 7 the price
+list acquires a third way to reach 0 that has nothing to do with being wrong, and
+an engine facing an untaggable answer is offered the same escape `§3.0` offers
+here — abstain, keep 100, and leave the calibration denominator behind. Two
+existing findings meet exactly there and are named so the Layer-7 session finds
+them together: the `[L5] [PULSE]` question of whether a support entry must be
+**recoverable** or merely **ingested** (`BOUNDARY.log` line 34 — Layer 5 already
+produces, lawfully, a correct scored answer whose natural support names an
+unrecoverable `t`), and this clause's tension, which will decide whether the
+honest response to that gap is an abstention `§3.4` cannot see or a tagged answer
+`§4.2` scores as wrong.
+
+Nothing above is a holding. It is a bequest.
+
+### Clause 8 — the DECLINED ALTERNATIVE: the commitment clause, held in reserve
+
+A **commitment clause** was drafted and is **declined**, and it is recorded here
+with its reason so that a later session finds an examined instrument rather than
+an idea nobody had.
+
+**What it would have said.** *On a query class an artifact declares as a
+commitment class — one where the engine's own state holds the material to answer
+and the artifact's key names an answer — an abstention is scored **0** rather
+than `§3.0`'s 100, so that hedging a declared tie earns exactly what a confident
+error earns and the `§3.4` denominator cannot be emptied by declining to use it.*
+
+**Why it was drafted.** It closes the `§3.0`/`§3.4` collision *directly* and at
+the level of law, rather than through a sizing that a future artifact could get
+wrong. It is the smallest instrument that makes clause 3(a) unnecessary: with it,
+`n/a` could not be reached by any policy at all, on any artifact.
+
+**Why it is declined.** Four reasons, in descending order of how much they bind.
+
+1. **It rewrites `§3.0`'s price list, and `§3.0` is frozen.** The table is the
+   constitution's own five-row statement of what knowing-that-you-do-not-know is
+   worth, and `BOUNDARY.md` has no amendment mechanism. A ruling may settle which
+   corpus a stated gate binds on and which reading of a ratified sentence the
+   trials implement — that is what `R1`, `R4` clause 2, `R5` and `R6` did — but a
+   ruling that changed 100 to 0 for a declared class would be an amendment
+   wearing a supplement's clothes. `§9` says the procedure for a rule that seems
+   wrong is to log the objection and stop, and it is not clear this rule is even
+   wrong.
+2. **It is not needed on the artifact it would bind.** `ATTAINABILITY-B.md §5`
+   measures the closure the ratified constants already produce: the hedger dies
+   at `F 918`, and no policy clearing `F` reaches `n_neg = 0`. `R5`'s own
+   discipline — draft new law only for what the existing rulings cannot carry —
+   forbids adding a clause to do work `§5 L6`'s own `F` clause is already doing.
+3. **It would make a good property of an artifact into a duty of every engine.**
+   Under it, an engine that abstained on a declared commitment class would be
+   punished for a behaviour `§3.0` elsewhere rewards, and the line between the
+   two would be drawn by whoever declared the class. Clause 3(b)'s forcing region
+   puts the burden on the **artifact**, where `R2` obligation 4 already puts the
+   corpus binding, and leaves the engine's incentives exactly as ratified.
+4. **It is the wrong instrument for the failure it fears.** What it protects
+   against is an artifact whose forcing region is too small a share of its core
+   for `F` to price hedging out. The window in clause 3(c) is where that is
+   caught, before a gate binds, by arithmetic — and an artifact that cannot be
+   sized into the window is an ATTEMPT-shaped finding for a human, not a case for
+   changing what an abstention is worth.
+
+**When it should get its hearing.** If a future Layer-6-or-later artifact cannot
+be sized into clause 3(c)'s window while satisfying every ratified clause — the
+ATTEMPT-shaped case, which round 2 checked for and did not find — or if Layer 7's
+`§4.2` binding makes abstention the dominant strategy on a class the gate needs
+answered (clause 7), then this reserve instrument is the one that was already
+examined, and this is the record of what it says and of the four objections it
+must answer first.
+
+### Clause 9 — nothing else is added
+
+`R5` clause 2 is forward-binding in its own text *"because Layer 6 needs it
+immediately"*, and it carries the whole of `R2` obligation 2 here: the minimizing
+clauses are read direction-aware, the lower obligation is read over the
+conjunction, and the round-2 arithmetic discharges it without a new clause. `R5`
+clause 1 carries `B = 1000` as an identity, as it has since Layer 1. `R5`
+clause 3's policy-class declaration and clause 4's pricing discipline are both
+satisfied by `ATTAINABILITY-B.md §3` and are not restated. `R4` clause 5's
+exhibit-don't-argue obligation is satisfied by the witness and, unusually, twice
+over: the forcing region's tie is exhibited against a reader bench as well as
+proved.
+
+**So this draft proposes no ruling on `Brier` beyond the readings in clauses 4
+and 5**, and says so explicitly, because the session was instructed to draft new
+law only for what `R5` cannot already carry.
+
+## The round-2 evidence, carried verbatim
+
+Every number in this section is computed by `trials/_l6btasks.py` from the frozen
+artifact alone and asserted by `trials/ascension/l6/t_attainability_b.py` or
+`trials/ops/l6/t_l6batteryb.py`, both of which run every suite; none of it is
+argued from anywhere else. Clause 1 rests on the first four blocks and the last
+two, clause 3 on the first three and the fifth, clause 4 on the fifth, clauses 5
+and 6 on the sixth.
+
+**THEOREM 1 — THE TIE, the first half of clause 3(b)'s proof.** The forcing
+region is `PAIRS = 100` **mirror pairs**, `r = 200` forcing queries, class **K0,
+the whole region, unsampled** — a battery that sampled its forcing class could be
+tuned by choosing which ties to ask about. Each pair is two entities spawned at
+adjacent logical times with the same class, each carrying exactly **two** `origin`
+assertions with the **same ordered value pair**, and **nothing else in the stream
+ever touches either of them** (region ids are allocated outside the base world,
+so no link, move or retire can reach them). Each member's entire event history is
+therefore `[spawn, attr origin x, attr origin y]`; blank the entity id and the two
+members' histories are **equal as sequences**, their logical times differing by
+exactly `+1` at every position. A **withheld, balanced coin** — exactly 50 pairs
+each way, shuffled from the same PRNG *after* the stream is complete — makes one
+member's **FIRST** assertion true and the other's **LAST**. So any reader that
+does not read the raw entity id or an absolute `t` receives identical input for
+the two members, returns the same value, and is wrong on **exactly one** of them:
+**exactly 100 errors, under either coin, for every such reader.** Exhibited
+rather than argued, against a bench of **six readers built to break it** —
+`latest-wins`, `first-wins`, `canonical-min`, `canonical-max` and two id-keyed
+rules — **every one measuring exactly 100**. `first-wins` is the specific reader
+that made round 1's guarantee relative: on `corpora/l6battery` it would have
+answered the whole commitment class correctly.
+
+**THEOREM 2 — THE WITHHOLDING, the second half.** The generator builds the region
+layout and the whole 12 000-event stream **before the coin is drawn**, and the
+stream path never reads it; regenerating with every coin bit flipped produces a
+**byte-identical stream** and an answer key that differs on **all 200** forcing
+queries and on nothing else. So the stream carries **zero** bits about the coin;
+every class-E policy's answers, confidences and every one of its scores are
+**identical** under the flip while the set of its region errors is exactly
+complemented — `n_neg` does not move, the 100 errors are a different 100 — and a
+policy that resolves the region has obtained the coin from the answer key, which
+is class **O** by definition. The two handles Theorem 1 leaves, the raw entity id
+and the absolute `t`, are closed by the coin's **balance**: a rule keyed on either
+takes both members of a pair or neither and is right on exactly half the pairs,
+which is 100 errors again — measured on the bench's two id-keyed readers. The
+declared evidence vocabulary excludes both handles for that reason, so every
+feature is **equal** on the two members of a pair and a class-E policy provably
+cannot split a tie. **`n_neg = 100` is therefore a theorem for every committing
+policy definable from the frozen stream, and not a fact relative to a declared
+reading** — which is the whole of what round 2 was built to produce.
+
+**THE COMPOSITION, AND THE FEASIBLE WINDOW.** `corpora/l6batteryb`, seed 9009:
+12 000 events and 2 400 queries in **one** canonical JSON object carrying the
+substrate, the answer key and the query set together, because the guarantee is a
+**joint** property of the three and three separately byte-matched files could be
+paired across generations while every individual check stayed green. K0 200
+forcing / K2 1 400 current-value / K3 600 as-of = **`A` 2 200**, the answerable
+core and `§3.4`'s denominator; K4 200 absence probes, unanswerable and
+deliberately **outside** the denominator because an abstention carries no
+confidence to calibrate; `N` 2 400. `n_pos = 2 100`, `n_neg = 100`,
+`w = 1/22 = 45.45` permille. The base stream is **clean** — no near-duplicate, no
+ambiguity, no malformed knob — so all of the error mass is the forcing region by
+construction. Theorem 1 pins `w = (r/2)/A` for **any** committing reader, so the
+window below is a property of the **artifact** and not of a policy:
+
+| requirement | arithmetic | window |
+|---|---|---|
+| the honest committer clears `F ≥ 950` | `1000w ≤ 50` | `A ≥ 10r` |
+| blanket abstention on the region **breaks** `F ≥ 950` | `900(r/A) > 50` | `A < 18r` |
+| `Brier ≤ 40` still beats the base-rate constant (`Brier = w(1−w)`) | `25u² − 50u + 4 < 0`, `u = r/A` | `A < (25 + 5√21)/4 · r ≈ 11.978r` |
+
+**The feasible window is `A/r ∈ [10, (25 + 5√21)/4)`**, i.e. `[10, 11.9782…)`;
+under the three literal requirements alone it is `[10, 18)` and the third row is
+what tightens it. `corpora/l6batteryb` sits at **`A = 11r = 2 200`**, with `1r` of
+margin below and `0.978r` above. The irrational bound is never evaluated as a
+float (`§2.2`): it is checked as the exact rational predicate above, and the
+trial additionally requires `A = 10r − 1` to fail the lower bound and `A = 12r`
+the upper, so a resized artifact is checked against the arithmetic rather than
+against this instance's numbers. **No `r` was refused** and no ATTEMPT-shaped
+finding arose: all three bounds scale with `r`, so every `r` admits a feasible
+`A`, and `r = 200` was chosen so that `A = 11r` is a clean `1 : 7 : 3 : 1`
+composition and one pair is one permille of `A`.
+
+**THE WITNESS, AND EVERY NAMED BASELINE.** The exhibited witness `W` is a pure map
+from the declared evidence to an integer permille — structural evidence in, no
+engine, no answer key — and attains
+
+```
+Brier 1/44 → 23    ECE 0 exactly    AUROC 41/42 → 976    F 21/22 → 955    B 1000
+```
+
+against a ratified gate of `≤ 40 / ≤ 30 / ≥ 900 / ≥ 950 / = 1000`. It is
+**provably non-resolving**: it prices the forcing region at the tie's own
+confidence of **500**, which is **derived** — `permille(1/2)`, with the region's
+measured accuracy asserted to be exactly one half — and not chosen, any other
+value scoring worse on Brier. Class **O**, which may read the answer key, attains
+`Brier 0 / ECE 0 / AUROC 1000`, so the distance between the two declared classes
+(`R5` clause 3) is now the tie itself and is exactly `1/42` on AUROC — on round
+1's battery class E *met* class O there, because murk's evidence resolved as well
+as it ranked. The named capability-free policies, scored on every clause and read
+over the **conjunction** (`R5` clause 2):
+
+| policy | class | Brier ≤40 | ECE ≤30 | AUROC ≥900 | F ≥950 | B =1000 | clears |
+|---|---|---|---|---|---|---|---|
+| oracle | O | 0 | 0 | 1000 | 955 | 1000 | yes — not capability-free |
+| **witness `W`** | E | **23** | **0** | **976** | **955** | **1000** | **yes** |
+| conflict-rank | E | 36 | 0 | 911 | 955 | 1000 | **yes** |
+| confident-always (= `make_engine(5)`, measured) | E, capability-free | **45** | **45** | **500** | 955 | 1000 | no |
+| base-rate constant | E, capability-free | **43** | 0 | **500** | 955 | 1000 | no |
+| detect-and-abstain | E, capability-free | 0 | 0 | **n/a** | **918** | 1000 | no |
+| abstain-on-conflict | E, capability-free | 0 | 0 | **n/a** | **766** | 1000 | no |
+
+**THE KILL, MEASURED, AND ITS GENERALIZATION.** `detect-and-abstain` is round 1's
+`abstain-on-set-once` under its true name: the policy with **no confidence model
+whatsoever** that follows `§3.0`'s incentive to its end, hedging exactly what the
+structural evidence flags and thereby deleting its own errors from `§3.4`'s
+denominator. On round 1's battery it scored `Brier 0 / ECE 0 / F 960 / B 1000`
+with `AUROC n/a` — *better than the exhibited witness on three clauses* — and
+cleared every evaluable clause of `§5 L6` with no capability at all. On
+`corpora/l6batteryb` it measures **`F 1010/1100 → 918` against 950 and fails
+under BOTH readings of `n/a`**; the key-blind `abstain-on-conflict` fails far
+harder at **766**. Generalized on a **measured** ladder rather than derived: a
+policy hedging `k` mirror pairs is left with
+
+```
+n_neg = 100 − k        F = (21 000 − 8k) / 22 000
+```
+
+so `k ≤ 12` under clause 4's exact reading and `k ≤ 13` under the permille one,
+and **every policy that clears `§5 L6`'s own `F` clause leaves `n_neg ≥ 87`**.
+`AUROC` is therefore defined for every policy that can afford to be in the
+running, the `§3.0`/`§3.4` collision is closed **by arithmetic on this artifact**,
+and no clause of `R2` obligation 2 rests on what `n/a` means. The ladder is scored
+**outside** the class-E policy interface on purpose, which makes the bound
+stronger rather than weaker: a class-E policy cannot even choose *which* pairs to
+hedge, the two members of a pair carrying identical evidence, so the family
+measured strictly contains class E. And the 13-pair row —
+`F = 1306/1375 = 0.94981… = 950` in permille — is the **first number in this
+project that clause 4's reading moves**: affordable under one reading and not the
+other, and still moving no verdict, the floor on `n_neg` being 88 exact and 87
+permille.
+
+**THE READING, THE BINS, AND THE KEY-BLIND RANKER.** No policy scored on either
+artifact lands in a disputed reading interval, which is asserted rather than
+observed, so every verdict here is the same under both readings — which is what
+makes clause 4 cheap to take now. `ECE` still discriminates against nothing, but
+**round 1's ordering is REVERSED and the reversal is a finding rather than a
+detail**: there the base-rate constant *beat* a real model because a one-bin
+partition agrees with itself; here the witness's own bins agree with themselves
+exactly — bin 5 carries 200 answers at confidence 500 against an accuracy of one
+half, which is Theorem 1 showing up inside `§3.4`, and bin 9 carries 2 000 at 1000
+against 1 — so it attains `ECE = 0` and the constant merely ties the floor from
+above. The round-2 trial that asserted round 1's ordering went **RED** against its
+first draft and was corrected rather than relaxed. Clause 5's bin index is what
+that `ECE = 0` depends on. And the key-blind `conflict-rank` — which sees that a
+chain disagrees with itself and cannot see which value is true — re-measures at
+`Brier 36 / ECE 0 / AUROC 911 / F 955` and **still clears**, so ranking without
+resolving survives; but **key-blindness now costs a measured margin**, clearing
+`AUROC ≥ 900` on 11 permille where the set-once-aware witness clears it on 76,
+which is asserted so that a change making key-blindness free would go red. Its
+levels are the artifact's own measured accuracy per conflict count, so they are a
+**ceiling for the key-blind sub-family** and not an attainable policy — round 1's
+caveat, carried forward unweakened — and the fit is **coin-invariant**, because
+the tie pins the region's accuracy at one half under either coin.
+
+**THE HUMILITY SIDE, MEASURED AND NOT APPLIED.** `§5.1 L6` defends its ceiling by
+saying a capped engine *"carries no confidence model, so the harness scores it
+confident-by-default"*, and no convention is needed: the frozen Layer-5 engine
+emits `{0, 1000}` through `§7.2` **itself** over all 2 400 queries and agrees with
+the declared reader on every one of them, status and value (a 12 000-event replay
+at `DEFAULT_BUDGET`, occupancy 91 119, `refused = 0`). So the `confident-always`
+row **is** `make_engine(layer_cap = 5)` scored on battery-b, and **capped `AUROC`
+measures 500 against the ratified ceiling of 600 and the gate of 900** — neither
+breached nor vacuous, sat at from below by arithmetic, and bought this time by a
+query class the engine cannot get right **for any reading**. That closes
+`README-l5 §4`'s stated seam — *"the Layer-6 humility battery needs a query class
+this engine gets wrong, or its ceiling is vacuous rather than loose"*. **This
+entry does not apply that ceiling.** `trials/humility/l6/` does not exist, no
+`IMPOSSIBILITY.md` is written, and `R2`'s standing order puts the trials after the
+arithmetic.
+
+**THE PRICE, UNDER RULE P AND `R5` CLAUSE 4.** The marginal state a confidence
+policy needs **beyond the frozen Layer-5 state** is **18 cells** — one set-once
+flag per attribute key on battery-b's 18-key vocabulary — **and nothing else**,
+because `n_assert`, `n_distinct`, `verbatim_repeats` and `assert_span` all read
+off the interval table the engine already holds. An earlier draft's per-entity
+event count was **not** free (~2 500 cells here) and was dropped rather than left
+unpriced; the raw entity id and the absolute `t` are excluded for the stronger
+reason that they are the two handles Theorem 1 leaves, buy a policy no reachable
+score, and would let a class-E policy split a pair. **The loss reserve is
+DISCLAIMED with its reason**, which clause 4 admits and this entry records: the
+artifact is scored **in budget** where nothing is evicted, and what an engine owes
+when the budget sheds the evidence a confidence model reads — a shed chain's tie
+flag is gone, and a model reading a table that has forgotten a tie would be
+confident **at 1000 on a coin flip**, the worst failure available to this layer —
+is named here and left to Stage B and Stage C rather than pre-empted.
+
+**THE FOURTH SUBSTRATE KILL, AND WHAT SURVIVES IT.** Clause 1 carries the cause
+verbatim; the measurement behind it is that `§8.7` pairs every injected murk
+defect with its answer key **and injects it by visible construction**, so a
+stream-only rule recovers each family **exactly** — symmetric difference **0**
+against the frozen key on contradiction (305), near-duplicate (393), ambiguity
+(205) and malformed (257). The near-duplicate row is the sharpest because it
+looked most likely to leave a residue: 426 byte-identical `attr`/`link` repeats,
+of which 393 are injected at nearest-prior distance ≤ 25 and 33 are the clean base
+repeating itself by chance at ≥ 131, separating perfectly. **On murk, evidence
+that ranks also resolves.** What survives the demotion is not nothing, and the
+entry says so: round 1's arithmetic is **not withdrawn**, still runs green, and
+still records `A = 3 550`, `n_pos = 3 392`, `n_neg = 158`, a witness at
+`Brier 0 / ECE 7 / AUROC 1000 / F 955`, and the **first defined `AUROC` in this
+project's history** — the capped engine at 500 against the 600 ceiling. It is the
+artifact that gave `§3.4` a denominator at all, and it is the diagnostic against
+which battery-b's arithmetic is read.
+
+**THE DECLINED INSTRUMENT, AND WHY IT WAS NOT NEEDED.** Clause 8 records the
+commitment clause and its four objections in full. What the evidence adds is that
+objection 2 is **measured rather than predicted** — the hedger dies at `F 918` and
+no policy clearing `F` reaches `n_neg = 0`, so `§5 L6`'s own fidelity clause is
+already doing the work the instrument would have done — and that objection 4's
+ATTEMPT-shaped case, an artifact that cannot be sized into clause 3(c)'s window
+while satisfying every ratified clause, **was checked for and did not arise**.
+The instrument stays in reserve with its four objections on the record, which is
+the strongest position a declined alternative can be left in.
+
+## Rationale
+
+**On clause 1.** The demotion is the fourth of its kind and the first this
+project has performed on an artifact **it froze one session earlier**. That is
+worth saying plainly rather than burying: `corpora/l6battery` was frozen, scored,
+documented and machine-checked by the immediately preceding session, and what
+disqualifies it is a limit that session **measured and published about itself**.
+The discipline that made that possible is `R2`'s — attainability before authority
+— and this is the fourth time it has stopped a gate before a gate could be wrong,
+after `l3stream`, the chronicle family, and Layer 5's constitutional collision.
+The cost is one session; the alternative was a Layer-6 gate whose central clause
+could be evaporated by an engine that read `origin` first-wins.
+
+**On clause 3(b).** It is the load-bearing clause and it is the one a reader
+should be most suspicious of, because "theorem" is a strong word for a property
+of a finite artifact. The claim is bounded precisely: `n_neg ≥ 100` for every
+committing policy that is a **function of the frozen stream** and does not carry
+the coin inside itself. It is not a claim about policies that have memorised the
+key, and no artifact could make one. What makes the bound worth the word is that
+it is closed on both sides *mechanically* — the tie by an assertion over the
+frozen bytes, the withholding by a regeneration that produces the same bytes —
+and that the family it quantifies over strictly contains every reading any
+session could declare, including the two that disagree about which end of a chain
+is true.
+
+**On clause 3(d).** Round 1 accepted an unattractive consequence and said so.
+Round 2 does not get to claim credit for removing it: it was removed by building
+a different artifact, not by finding a better argument, and on any artifact
+*without* a forcing region the consequence returns exactly. That is why clause
+3(b) is written as a precondition on artifacts rather than as a reassurance about
+this one.
+
+**On clauses 4 and 5.** Ruling a reading is cheapest before a measurement needs
+it, and `R4` clause 2 is the precedent for doing it anyway. Round 1 ruled clause
+4's reading while recording that nothing turned on it; round 2 found the first
+number that turns on it, one row of a hedging ladder, and no verdict. That is the
+last comfortable moment to settle a reading and it is the reason to settle both
+now.
+
+**On clause 7.** A recorded tension is not a deferral if it names where it lands
+and what it will collide with. This one names Layer 7, names `§4.2`'s
+scores-as-wrong rule, and names the `[L5] [PULSE]` recoverable-or-ingested
+question it will meet there. The alternative — ruling it now, at Layer 6, from
+Layer 6's evidence — is exactly the ordering `R2` forbids.
+
+**On clause 8.** Recording a declined alternative is not padding. The project's
+own history is that its best rulings were the ones that had an examined
+alternative to be better than: `R4` clause 4 preserved a concession that was
+available and declined, `R5` clause 1 recorded the counter-argument it did not
+answer away, and `R6` clause 2 tabulated four refusals on written text. A reserve
+instrument with four stated objections is worth more to the session that
+eventually needs it than a clean document is worth to this one.
+
+## What this ruling does not do
+
+* It does **not** amend `BOUNDARY.md`, which has no amendment mechanism, and it
+  moves **no threshold** in either direction on any layer. In particular it does
+  not touch `§3.0`'s price list — clause 8 is the record of an instrument that
+  would have, and of why it was declined.
+* It does **not** create a footprint clause at Layer 6. `§5 L6` states none, and
+  both artifacts are scored in budget.
+* It does **not** delete, edit or retire `corpora/l6battery`, `corpora/murk`, or
+  any trial that scores them. Demotion is a change of authority, not of bytes;
+  round 1's `ATTAINABILITY.md`, `RULING-R7-DRAFT.md` body and
+  `t_attainability.py` are unedited and still run green.
+* It does **not** claim Layer 6, write `core/layers/l6_meta_memory.py`,
+  `trials/adapters/l6.py`, `trials/humility/l6/` with its mandatory
+  `IMPOSSIBILITY.md`, or `trials/inheritance/l6/`. `R2`'s standing order is
+  attainability arithmetic → trials → engine and this is the first step only.
+* It does **not** extend `R3` to Layer 6, and no extension is requested: `F`
+  binds under the literal `§3.0` table and the exhibited witness clears it at 955
+  without a concession.
+* It does **not** rule on what an engine owes when the budget cannot house the
+  evidence a confidence model reads — a shed chain's tie flag is gone, and a
+  model reading a table that has forgotten a tie would be confident **at 1000 on
+  a coin flip**, which is the worst failure available to this layer.
+  `ATTAINABILITY-B.md §3.2` names the item and disclaims the reserve with that
+  reason under `R5` clause 4; Stage B and Stage C take it.
+* It does **not** rule the `§3.0`/`§3.4` tension of clause 7, and says so in that
+  clause's own first sentence.
+
+## Enforcement
+
+* `trials/ascension/l6/ATTAINABILITY-B.md` — the round-2 arithmetic this entry
+  rests on: the two theorems, the feasible window, the exhibited witness with both
+  policy classes declared, every named baseline re-scored, the hedging ladder and
+  the disclaimed reserve. It now carries a dated ratification note above its body,
+  which is unedited, including its forward-looking sentences — they are answered
+  rather than rewritten.
+* `trials/ascension/l6/RULING-R7-DRAFT.md` — the draft a human ratified, retained
+  unedited beneath a dated note naming **this entry** the binding text; round 1's
+  body, already preserved verbatim below round 2's, is likewise untouched.
+* `trials/ascension/l6/ATTAINABILITY.md` — round 1's document, unedited, gaining a
+  second dated note that records the demotion as **executed** rather than
+  proposed. Its arithmetic still runs green, which is what a demotion means here.
+* `corpora/l6batteryb/README.md` — the statement of the artifact and the home of
+  both theorems clause 3(b) rests on, with a dated ratification note above its
+  body recording where its own *"no gate binds on this artifact"* stops holding.
+* `corpora/l6battery/README.md` — a dated note recording the demotion, its cause,
+  and what the artifact remains: the first calibration denominator this project
+  ever had, and an ungated diagnostic whose bytes and trials are untouched.
+* `trials/ascension/l6/t_attainability_b.py` — the exhibited witness, `n_neg` as a
+  theorem across the reader bench, the class-E indistinguishability of a pair, the
+  window with its own endpoints, the kill and the hedging ladder, the key-blind
+  scope statement, the capped measurement, and the drift check over every recorded
+  number; its module and trial docstrings now cite this entry by clause, and the
+  trial that asserted no gate binds now asserts the binding.
+* `trials/ascension/l6/t_attainability.py` — round 1's arithmetic, still computed
+  and still asserted on the demoted artifact, its docstrings recording that what
+  it measures is a diagnostic and that the cause of the demotion is its own §6.
+* `trials/ops/l6/t_l6batteryb.py` — Theorem 1's premise, the balanced coin, the
+  reader bench, Theorem 2 and the class-E invariance under the coin complement.
+  A forcing region that stopped forcing — a pair whose members diverged, a coin
+  that stopped being balanced, a stream that stopped being byte-identical under
+  the complement — turns it red **before** any gate is applied to any engine, so
+  ratification adds nothing to these two theorems: they were already trials.
+* `trials/ops/l6/t_l6battery.py` — the separability finding that is the
+  demotion's cause, unchanged and still running on the frozen murk corpus.
+* `corpora/registry.py` — a dated note recording that battery-b now binds and
+  that `l6battery` is demoted, in the form the `[L5] [PULSE]` session used for
+  `l5stream`; no historical sentence is rewritten and no corpus byte is touched.
+* `trials/laws/t_rulings.py` — the gate registry, where the **six battery-b
+  constants now carry this entry** beside their `§5 L6` clauses while the **six
+  `l6battery` copies keep their `§5` clause and NO companion ruling** — the
+  registry recording the demotion in its own structure, the same clause authorized
+  on one artifact and diagnostic on the other — together with the completeness
+  check that forbids an unregistered gate constant anywhere under `trials/`, and a
+  check that a demoted artifact's constants carry no companion ruling, so that
+  **re-promoting `l6battery` by editing the registry is red**.
+* `trials/humility/l6/` and `trials/inheritance/l6/` are written next under `R2`'s
+  standing step, the humility directory with its mandatory `IMPOSSIBILITY.md` —
+  whose argument is available and is **not** the Layer-5 pigeonhole: a capped
+  engine fails here for want of a **ranking**, not for want of information, since
+  it holds both halves of every tie and returns 1000 on all of them.

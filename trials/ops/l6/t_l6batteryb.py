@@ -26,6 +26,15 @@ that closes the handle the first leaves.
 **No gate constant is declared here and none is applied.** `RULING-R7-DRAFT.md`
 asks a human whether battery-b should bind, and appending is what freezes
 (`BOUNDARY.log` lines 21, 29, 31).
+
+**Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded).** A human answered yes:
+`R7` clause 1 binds **both sides** of the Layer-6 gate to `corpora/l6batteryb`,
+and clause 3(b) makes a **forcing region** with a machine-checked proof the
+standing precondition for any gate that cites `AUROC`. **Not one line of this
+file changes for that** — the two theorems below were already trials, which is
+exactly why the clause could be written as a requirement on artifacts: a region
+that stopped forcing turns this file red BEFORE any gate is applied to any
+engine.
 """
 
 import json

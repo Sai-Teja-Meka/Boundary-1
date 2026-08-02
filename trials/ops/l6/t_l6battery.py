@@ -8,6 +8,16 @@ a fixed artifact instead of about whatever the generator happens to emit today.
 **No gate constant is declared here and none is applied.** The battery binds
 nothing: `RULING-R7-DRAFT.md` asks a human whether it should, and appending is
 what freezes (`BOUNDARY.log` lines 21, 29, 31).
+
+**Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded).** A human answered, and
+the answer was no: `R7` clause 1 binds the Layer-6 gate to `corpora/l6batteryb`
+and **DEMOTES this battery to an ungated diagnostic**. The sentence above stops
+holding only in that it is no longer a pending question — the battery still binds
+nothing, and now permanently. **Not one line of this file changes for that**,
+which is what a demotion means here: bytes, generator and every trial below are
+untouched and still run green, and
+`trial_every_murk_defect_family_is_perfectly_separable_from_the_stream` is the
+demotion's own cause, still measured every suite.
 """
 
 import json
@@ -289,8 +299,12 @@ def trial_every_murk_defect_family_is_perfectly_separable_from_the_stream():
     used the same evidence to answer rather than to hedge would drive `n_neg` to
     0 and take AUROC with it (§3.4). This battery therefore guarantees
     `n_neg > 0` for the DECLARED READING and not against an arbitrary reader —
-    `ATTAINABILITY.md §6` and `RULING-R7-DRAFT.md` clause (iii) are where that is
-    reported rather than hidden.
+    `ATTAINABILITY.md §6` is where that is reported rather than hidden, and
+    `BOUNDARY-RULINGS.md R7` clause 1 is where it became the recorded cause of
+    this battery's demotion to an ungated diagnostic. This trial is therefore the
+    standing measurement of a ruling's ground: if murk ever acquired a class
+    where evidence ranks WITHOUT resolving, it would go red here, and the reason
+    the demotion was taken would have changed.
     """
     separability = _l6tasks.defect_separability()
     require_equal(sorted(separability),
