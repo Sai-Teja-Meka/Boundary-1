@@ -537,6 +537,78 @@ AUTHORIZED_GATES = (
      "about two worlds: make_engine(5) emits {0, 1000} through §7.2 itself and "
      "scores AUROC 500 there, neither breached nor vacuous, bought by a query "
      "class the engine cannot get right FOR ANY READING"),
+
+    # Layer 6, STAGE B — the batteries, written against an engine that does not
+    # exist (R2's standing step: arithmetic -> trials -> engine). The SAME five
+    # gate constants a third time, now applied to an ENGINE rather than computed
+    # over policies, and carrying the SAME §5 L6 clause and the SAME ruling as
+    # the round-2 arithmetic they were derived from — which is the point of
+    # registering them: the value check is what keeps the battery's copy and
+    # Stage A's copy from drifting apart, on an artifact where the gate's own
+    # window arithmetic (R7 clause 3(c)) depends on both being the same number.
+    #
+    # Every trial that applies one of these is an ENGINE-GATED SKIP this session.
+    # A gate constant is registered for what it says, not for whether it ran.
+    ("ascension/l6/t_meta_memory.py", "GATE_BRIER", 40,
+     (_s5("Brier≤40"), _ruling("R7")),
+     "§5 L6 calibration, unchanged; MINIMIZING, read direction-aware under R5 "
+     "clause 2 and EXACT under R7 clause 4. Applied to an engine on "
+     "corpora/l6batteryb, the artifact R7 clause 1 binds"),
+    ("ascension/l6/t_meta_memory.py", "GATE_ECE", 30,
+     (_s5("ECE≤30"), _ruling("R7")),
+     "§5 L6 calibration, unchanged; MINIMIZING. R7 clause 5's bin index — "
+     "bin(conf) = 9 if conf == 1000 else conf // 100 — is the reading this "
+     "clause is computed under, asserted engine-free in ops/l6/t_stage_b.py"),
+    ("ascension/l6/t_meta_memory.py", "GATE_AUROC", 900,
+     (_s5("AUROC≥900"), _ruling("R7")),
+     "§5 L6 calibration, unchanged; and the clause R7 clause 3(a) rules the "
+     "domain of. The battery states it AS LAW: an engine whose battery-b scores "
+     "yield n_neg = 0 FAILS this clause rather than being excused by §3.4's "
+     "n/a, on the instrument-range ground the entry gives and against the "
+     "null-exemption defect autopsy/writ convicted WRIT of. R7 clause 3(b)'s "
+     "forcing region is what makes the domain a theorem here"),
+    ("ascension/l6/t_meta_memory.py", "GATE_F", 950,
+     (_s5("abstention-aware F≥950"), _ruling("R7")),
+     "§5 L6 fidelity, unchanged, under the LITERAL §3.0 table — R3 does not "
+     "reach Layer 6 and no extension is requested. Scored over the ANSWERABLE "
+     "CORE, the denominator R7 clause 3(c)'s window arithmetic is stated in and "
+     "the stricter of the two; F over the whole query set is computed and "
+     "reported as the ungated diagnostic"),
+    ("ascension/l6/t_meta_memory.py", "GATE_B", 1000,
+     (_s5("B=1000"), _ruling("R7")),
+     "§5 L6 budget; the identity in this registry since Layer 1, carried by R5 "
+     "clause 1. Asserted after EVERY write because §4.1.2 refuses mid-stream, "
+     "and on the demoted diagnostic too — the budget law is absolute at every "
+     "layer and on every corpus, gated or not"),
+
+    # Layer 6, Stage B — the humility side, GREEN this session against
+    # adapters/l5. R7 clause 1 binds this ceiling to corpora/l6batteryb in the
+    # SAME clause as the gate, for R6 clause 1's reason.
+    ("humility/l6/t_meta_memory.py", "CEILING_AUROC", 600,
+     (_s5("capped AUROC ≤ 600"), _ruling("R7")),
+     "§5 L6 humility ceiling, unchanged and now APPLIED — the clause round 1 and "
+     "round 2 both declared without applying, R2's standing order having put the "
+     "trials after the arithmetic. make_engine(5) emits {0, 1000} through §7.2 "
+     "ITSELF and measures AUROC 500: neither breached nor vacuous, sat at from "
+     "below by arithmetic because a constant ranks nothing"),
+    ("humility/l6/t_meta_memory.py", "GATE_AUROC", 900,
+     (_s5("AUROC≥900"), _ruling("R7")),
+     "§5 L6, unchanged; declared here as the gate the ceiling must sit STRICTLY "
+     "BELOW, without which a ceiling is loose rather than load-bearing. It is "
+     "not applied to the capped engine as a gate — the ceiling is"),
+
+    # Layer 6, Stage B — the inheritance class at cap 6. Older layers' gates
+    # only; the class introduces no measure and no threshold of its own.
+    ("inheritance/l6/t_inheritance.py", "GATE_L2_CUE_C", 900,
+     (_s5("cue-C≥900"),),
+     "§5 L2 cue coverage, re-applied at layer_cap = 6"),
+    ("inheritance/l6/t_inheritance.py", "GATE_L2_F", 950, (_s5("F≥950"),),
+     "§5 L2 fidelity, re-applied at layer_cap = 6"),
+    ("inheritance/l6/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "the budget law, absolute at every layer (§4.1); asserted in budget, where "
+     "a breach cannot be a pressure consequence. The Layer-5 row it now carries "
+     "declares no constant of its own: §5 L5's clauses are identities in budget, "
+     "and an in-budget identity is not a gate this registry governs"),
 )
 
 

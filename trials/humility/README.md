@@ -67,6 +67,34 @@ Populated alongside ascension trials, one layer at a time. Present:
   > imitation, since `l5_prospection.new_state` returns the frozen Layer-4 state
   > below its own layer. The ceiling does not move: **0** against 50.
 
+- `l6/t_meta_memory.py` + `l6/IMPOSSIBILITY.md` — the capped `layer_cap = 5`
+  engine against Layer 6's own battery on `corpora/l6batteryb` (ceiling:
+  `AUROC ≤ 600`). Measured **500** against a gate of 900 — *neither breached nor
+  vacuous*, and sat at from below by arithmetic rather than approached: `AUROC`
+  is a ranking statistic and a constant confidence ranks nothing, so every
+  correct×incorrect pair ties, ties count ½, and the value is exactly `1/2`. The
+  artifact is bound to this ceiling **and** to the ascension gate by one clause,
+  `BOUNDARY-RULINGS.md R7` clause 1, for `R6` clause 1's reason.
+
+  Two things this one settles that earlier layers could leave alone. First,
+  `§5.1 L6`'s *"the harness scores it confident-by-default"* needs **no
+  convention**: the frozen Layer-5 engine emits `{0, 1000}` through `§7.2`
+  itself, so the harness reads the engine's own field and supplies nothing — the
+  `[L5] [PULSE]` pre-read flagged that sentence as the half of its prediction
+  most likely to be wrong, and the measurement is what answers it. Second, the
+  ceiling is not vacuous, which `README-l5 §4` said the battery would have to
+  buy: *"the Layer-6 humility battery needs a query class this engine gets
+  wrong."* The forcing region is that class, and the capped engine errs on
+  exactly one member of every one of its 100 mirror pairs **for any reading of
+  the frozen bytes**, which is why `R7` demoted round 1's artifact and bound
+  this one. Its `IMPOSSIBILITY.md` argues the **third** kind of impossibility in
+  the ladder — neither `l4`'s pigeonhole (information) nor `l5`'s absence of
+  machinery: the capped engine holds both halves of every tie and answers all
+  200 forcing queries, and what it lacks is a **ranking**. *Confidence emitted is
+  not confidence calibrated; that is the layer.* It clears two of the five
+  clauses (`F 955`, `B 1000`) and fails three, and `§3.0` cannot see the
+  difference, being confidence-blind.
+
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 `trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).
