@@ -344,6 +344,23 @@ Nowhere new. `§7.1` returns it and the shell prints it, so both `consolidate` a
 `recall` end with the promises section and nothing else in the shell produces
 prospection output:
 
+> **Note added 2026-08-02 (`[L6] [PULSE]`).** The sample below was written at
+> `[L5] [DOGFOOD]` when the store held **one** intention and had never kept a
+> promise, and it is where its two figures stop holding. Under `R6` clause 3 the
+> prose stands as written and the divergence is recorded rather than edited away:
+> the shell's live output is the enforced value, and it now reads **`2 intentions
+> — 1 pending, 1 fired (26 + 7 cells)`**, with `iid 1` **`FIRED once at store
+> t=39 (derived t=397)`** rather than `PENDING`. What changed is the store's
+> history and not this section's claim — *"nowhere new"* is exactly as true of a
+> firing as of a promise, `§7.1` still returns both and the shell still prints
+> what comes back. Two lines the sample could not have carried are worth naming
+> because they are the take-back rule visible in the **surface** rather than only
+> in the engine (`README-l5 §1.3`): a **fired** intention's own `intend` event
+> comes back tagged `recall`, because nothing regenerates it once the pending
+> entry is gone, while a **pending** one's comes back tagged `derive`. See
+> `FIELD.md` (2026-08-02) for both measurements and `BOUNDARY.log` line 40 for
+> the firing.
+
 ```
 prospection — the promises this store is keeping
   declared         1 intention — 1 pending, 0 fired (26 + 0 cells)
