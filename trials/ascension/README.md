@@ -297,3 +297,42 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
 > `t_attainability.py` now asserts that the **demotion survived the engine's
 > arrival**, naming the battery that scores its artifact ungated, since an
 > artifact nobody scores has been retired by silence.
+
+- `l7/PRE-READ.md` — Layer 7, Generation. **A `PULSE` finding document, not an
+  `ATTAINABILITY.md`**: it binds nothing, names no corpus, applies no gate and
+  declares no constant, and `l7/` holds no trial (`run.py` walks it for `t_*.py`
+  and finds none). Deposited by `[L6] [PULSE]` (2026-08-02) in the shape
+  `[L5] [PULSE]` used for `l6/PRE-READ.md` — read the ratified clauses one layer
+  ahead and **predict the shape of the collision** so Stage A meets it rather
+  than discovers it, with both prior pre-reads' scored records (Layer 5: one
+  unpredicted half; Layer 6: three misses) carried as the standard it expects to
+  be held to. It sorts `§5 L7`'s **seven** clauses into `R5`'s kinds — five
+  identities, the highest count in the ladder, so `R5` clause 1's exhibited
+  attainment is the dominant instrument and Layer 7 needs no `R5`-shaped reading
+  of its own; finds that a **retrieval-only policy (which is `make_engine(6)`)
+  ties three of the seven at the gate** (`validity 1000`, `promotion 0`,
+  `B 1000`) while `ECE ≤ 40` is the one clause Layer 6 *measured* to
+  discriminate against nothing, so `R2` obligation 2 rests over the conjunction
+  on **`novelty`** (0 for retrieval-only, by arithmetic) and on `F`; names the
+  **fourth species** of gate clause after `R5` clause 1's identity, `R5`
+  clause 2's minimizing clause and `R7` clause 3's empty domain — **the
+  SELF-REPORTED DENOMINATOR**, since `§5` states no denominator for
+  `validity`/`novelty`/`tagging` and the tempting one is the engine's own
+  testimony, which is WRIT's null-exemption (`evaluator.ts:545-548`) in a new
+  costume; examines `§4.2` as it wakes (shape-valid, and blind to
+  **recoverability**, to **relevance**, and to **lineage** — there is no
+  `"generated"` kind in the closed four-kind vocabulary, and a re-ingested
+  generation is an actually-ingested `t` whose citation `§4.2.3` cannot
+  distinguish from an observed one); prices `R7` clause 7's bequest against
+  `§3.0`'s five ways to score, finding the blanket hedger killed iff the
+  generation class exceeds **`1/18`** of the answerable core — the *same
+  constant* as `R7` clause 3(c), because it is `50/900`, `§5`'s `F` slack over
+  `§3.0`'s abstention price — with Layer 7 inheriting the window's upper bound
+  and **not** its lower one, no error being forced here; records that
+  `generate(cue)` must be read as a `query` op under `§7.1`'s three doors, the
+  argument `ATTAINABILITY.md`'s Reading 1 made for `intend` and `R6` clause 2
+  ratified for *"appends one event"*; and predicts the stop at the denominators
+  and at **an artifact where tagging is not free** — the Layer-7 form of the
+  defect that killed `corpora/l6battery` one session after it was frozen.
+  R2's standing step is untouched: a Layer-7 `ASCEND` still owes its own
+  `ATTAINABILITY.md` before any Layer-7 gate has authority.
