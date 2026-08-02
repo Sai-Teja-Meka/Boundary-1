@@ -238,6 +238,33 @@ Present:
   > `trials/inheritance/l6/`, and only then `core/layers/l6_meta_memory.py`, are
   > what `R2`'s standing step orders next.
 
+- `l6/STAGE-B.md` + `l6/t_meta_memory.py` — **Stage B**
+  (`[L5] [ASCEND]`, 2026-08-02): the ratified `§5 L6` gate applied to an
+  **engine** on `corpora/l6batteryb`, and **every trial in it is an engine-gated
+  skip**. The standing checkpoint of a trials-before-engine session is *humility
+  green + ascension skipped*, and that is what this session leaves behind. The
+  battery carries `Brier ≤ 40` and `ECE ≤ 30` exact (`R7` clause 4) under
+  clause 5's bin index; `AUROC ≥ 900` with **`n/a` DISQUALIFIES asserted as law**
+  — an engine whose battery-b scores yield `n_neg = 0` fails the clause, in `R7`
+  clause 3(a)'s own instrument-range words; `F ≥ 950` under the literal `§3.0`
+  table over the **answerable core**, with `F` over the whole query set reported
+  as the ungated diagnostic; `B = 1000` after **every** write; the denominator
+  declared class by class (`R7` clause 2); `§7.2`'s `confidence` read as an
+  integer permille, a float or a `bool` there being a harness-level failure and
+  not a low score; the forcing region measured, where **no pair may be resolved**
+  because the coin is in the answer key and in no function of the stream
+  (Theorem 2); and `corpora/l6battery` **scored and reported UNGATED**, the
+  chronicle pattern one layer up, per its demotion's recorded duty. It
+  deliberately re-asserts none of Stage A's witness, baselines or tie proof —
+  one fixture, one truth — and names the owning trial for each. `STAGE-B.md`
+  records the declared query vocabulary, the denominator law as applied, the
+  restraint (the tie confidence of 500 is **expected and reported, never
+  required** — `§5 L6` gates a score, not a policy's shape), and §7's explicit
+  report that **no `R8` was needed and none is drafted**.
+  `ops/l6/t_stage_b.py` checks engine-free what a fully engine-gated battery
+  otherwise could not: one instrument, the bin reading, the vocabulary, the
+  denominator declaration and this document.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

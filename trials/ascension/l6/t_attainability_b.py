@@ -661,6 +661,16 @@ def trial_the_layer_6_gate_binds_on_this_artifact_under_r7_clause_1():
     `IMPOSSIBILITY.md`, `trials/inheritance/l6/` and only then the engine are
     still ahead. A later session flips these as Stage B and Stage C flipped
     Layer 5's.
+
+    **Note added 2026-08-02 (`[L5] [ASCEND]`, Layer-6 Stage B). The first half of
+    that last sentence is now flipped, exactly as it said it would be.** Stage B
+    wrote `trials/humility/l6/` with its mandatory `IMPOSSIBILITY.md` and
+    `trials/inheritance/l6/`, so the two of them move from the absence list to
+    the presence list below — the assertion is not weakened, it is advanced one
+    step along the order `R2` fixes. What still must NOT exist is the engine:
+    `core/layers/l6_meta_memory.py` and `trials/adapters/l6.py` are Stage C's,
+    and this trial goes on saying so. Round 1's `t_attainability.py` has asserted
+    exactly that pair since `R7` and is unchanged.
     """
     import os
     root = tasks.PROJECT_ROOT
@@ -681,10 +691,17 @@ def trial_the_layer_6_gate_binds_on_this_artifact_under_r7_clause_1():
             "artifacts holding one §5 L6 clause")
 
     for absent in ("core/layers/l6_meta_memory.py",
-                   "trials/adapters/l6.py",
-                   "trials/humility/l6",
-                   "trials/inheritance/l6"):
+                   "trials/adapters/l6.py"):
         require(not os.path.exists(os.path.join(root, absent)),
-                "%s exists — a RULING session grants authority and writes no "
-                "battery and no engine; R2's standing step orders Stage B and "
-                "Stage C after this entry, not inside it" % (absent,))
+                "%s exists — R2's standing step puts the engine LAST, after the "
+                "Stage-B batteries this entry authorizes" % (absent,))
+
+    for present in ("trials/humility/l6/t_meta_memory.py",
+                    "trials/humility/l6/IMPOSSIBILITY.md",
+                    "trials/inheritance/l6/t_inheritance.py"):
+        require(os.path.exists(os.path.join(root, present)),
+                "%s is missing — Stage B wrote it under this entry's authority, "
+                "and §6 makes the IMPOSSIBILITY.md mandatory for the ceiling "
+                "R7 clause 1 binds to this artifact. A humility battery that "
+                "vanished would leave the gate below unmeasured against a capped "
+                "engine" % (present,))
