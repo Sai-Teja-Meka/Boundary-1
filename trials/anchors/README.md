@@ -38,3 +38,20 @@ Present — one anchor file and one replay trial per claimed layer:
 
 The capped constructor (§7.4) is what makes an older layer's anchors eternal: each
 layer replays at its own `layer_cap`, so a new layer never perturbs the ones below.
+
+- `l6.json` / `t_l6.py` — replay at `layer_cap = 6`, and the first anchor file
+  that pins a **model** rather than only a state. Its `corpora` entries pin a
+  **negative**: every shared shape figure equals `anchors/l5.json`'s own frozen
+  figure for the same corpus, asserted by reading that file, because `§5.1 L6`
+  defends `B = 1000` with *"meta-memory derives confidence from existing state"*
+  and this engine adds no field — the canonical bodies differ in exactly one
+  branch, the recorded `layer_cap`. Its `calibration` entries carry both Layer-6
+  artifacts at `DEFAULT_BUDGET` — `A`, `n_pos`, `n_neg`, every `§3.4` quantity as
+  an exact `Fraction` **and** its permille rendering, the engine's whole
+  confidence vocabulary, and a `trace_sha256` over the canonical
+  `(qid, status, confidence)` triples. The trace is the point: a score can
+  survive a changed model, since two different confidence assignments can round
+  to one Brier, and the trace cannot. The two artifacts sit side by side because
+  together they are what the fourth substrate kill was for — `AUROC 976` on the
+  binding artifact against **1000** on the demoted diagnostic, where the ties the
+  engine reads are exactly its errors.

@@ -22,7 +22,12 @@ Non-negotiable, enforced by the `laws/` trials:
   `shell/`** (§2.6). `core/` imports neither corpora nor trials.
 
 `core/layers/` holds the per-layer engine code, added one layer at a time by
-`ASCEND` moves. Old layers are frozen and never edited (§9). Five layers are
+`ASCEND` moves. Old layers are frozen and never edited (§9). Six layers are
 claimed — **L1 Retention**, **L2 Recall**, **L3 Forgetting**, **L4
-Consolidation**, **L5 Prospection** — each with its own `README-lN.md`; see
-`core/layers/README.md` for the index.
+Consolidation**, **L5 Prospection**, **L6 Meta-memory** — each with its own
+`README-lN.md`; see `core/layers/README.md` for the index.
+
+From Layer 6 the `confidence` field of the Answer (§7.2) is **scored** and no
+longer decorative: `§3.4`'s calibration is dormant below it and binding from it,
+so a confidence that is not an integer permille is a harness-level failure and
+not a low score. `§4.2`'s provenance law is still dormant and binds at Layer 7.

@@ -191,6 +191,24 @@ engine had at Layer 3 and does not have at Layer 4 for anything it demoted.
 > untouched and still hold — Layer 5 is asserted to presuppose Layer 4 by this
 > constitution, not shown to by anything here.
 
+> **Note added 2026-08-02 (`[L6] [ASCEND]`, Layer 6 claimed).** **Meta-memory is
+> now built and claimed**, so the count is superseded again — **three** layers
+> are unbuilt (generation, self-description, birth), and two of those still have
+> no thresholds. Both notes stand as written rather than being edited, in the
+> form `R6` clause 3 established, and the paragraph they qualify stands too.
+>
+> One limitation this document carries **is** changed by Layer 6 and the change
+> is in the uncomfortable direction, so it is recorded here rather than left for
+> the rewrite: this repository now ships an engine that is **wrong on purpose**.
+> On `corpora/l6batteryb` it answers 100 queries incorrectly, by construction and
+> not by defect — a theorem in that artifact makes every reader wrong on exactly
+> one member of each of its 100 mirror pairs, and the whole point of the layer is
+> that the engine says `500` before it does so. Any published fidelity number for
+> Layer 6 is therefore `F 955`, **not** the `F 1000` the layers below reach, and
+> quoting it beside them without the theorem is the citation error this document
+> exists to forbid. A later `PACKAGE` move owns the scorecard row; what is owed
+> now is the caveat, not the table.
+
 **Five layers are unbuilt.** Prospection, meta-memory, generation,
 self-description and birth are specified and unclaimed, and two of them have no
 thresholds yet. Any claim about what this benchmark proves is a claim about four

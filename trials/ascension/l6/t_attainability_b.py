@@ -671,6 +671,26 @@ def trial_the_layer_6_gate_binds_on_this_artifact_under_r7_clause_1():
     `core/layers/l6_meta_memory.py` and `trials/adapters/l6.py` are Stage C's,
     and this trial goes on saying so. Round 1's `t_attainability.py` has asserted
     exactly that pair since `R7` and is unchanged.
+
+    **Note added 2026-08-02 (`[L5] [ASCEND]`, Layer-6 Stage C). The second half is
+    now flipped too, and this is the last step of `R2`'s order there is.** Stage C
+    wrote `core/layers/l6_meta_memory.py` and `trials/adapters/l6.py`, so the two
+    of them move from the absence list to the presence list and the absence list
+    is empty. The assertion is again advanced rather than weakened, and what
+    replaces the absence check is the check only Stage C could carry — the one
+    that keeps `R7` clause 3(b)'s class boundary a property of the ENGINE and not
+    of a session's declaration:
+
+    > the engine reads **the stream and nothing else**. `core/layers/
+    > l6_meta_memory.py` may not import the artifact, its generator, its answer
+    > key or the battery module that carries them.
+
+    An engine that imported any of those would be class **O** by `R7` clause
+    3(b)'s own definition, and every score it produced on this artifact would
+    have measured nothing. `§2.6` forbids it in general — *"corpora and trials
+    are tooling; `core/` imports neither"* — and the `laws/` class enforces that
+    generally; it is asserted **here** because here it is not hygiene, it is the
+    difference between a gate and a formality.
     """
     import os
     root = tasks.PROJECT_ROOT
@@ -690,18 +710,30 @@ def trial_the_layer_6_gate_binds_on_this_artifact_under_r7_clause_1():
             "SAME clause; an entry carrying only half of that leaves two "
             "artifacts holding one §5 L6 clause")
 
-    for absent in ("core/layers/l6_meta_memory.py",
-                   "trials/adapters/l6.py"):
-        require(not os.path.exists(os.path.join(root, absent)),
-                "%s exists — R2's standing step puts the engine LAST, after the "
-                "Stage-B batteries this entry authorizes" % (absent,))
-
     for present in ("trials/humility/l6/t_meta_memory.py",
                     "trials/humility/l6/IMPOSSIBILITY.md",
-                    "trials/inheritance/l6/t_inheritance.py"):
+                    "trials/inheritance/l6/t_inheritance.py",
+                    "core/layers/l6_meta_memory.py",
+                    "trials/adapters/l6.py"):
         require(os.path.exists(os.path.join(root, present)),
-                "%s is missing — Stage B wrote it under this entry's authority, "
-                "and §6 makes the IMPOSSIBILITY.md mandatory for the ceiling "
-                "R7 clause 1 binds to this artifact. A humility battery that "
-                "vanished would leave the gate below unmeasured against a capped "
-                "engine" % (present,))
+                "%s is missing — Stage B and Stage C wrote it under this entry's "
+                "authority, and §6 makes the IMPOSSIBILITY.md mandatory for the "
+                "ceiling R7 clause 1 binds to this artifact. A humility battery "
+                "that vanished would leave the gate below unmeasured against a "
+                "capped engine" % (present,))
+
+    # The teeth the absence check handed over (2026-08-02, Stage C): the engine
+    # is class E because it CANNOT be class O, read off its own source.
+    with open(os.path.join(root, "core/layers/l6_meta_memory.py"),
+              "r", encoding="utf-8") as fh:
+        engine_source = fh.read()
+    for forbidden in ("corpora", "_l6btasks", "_l6tasks", "_l6score",
+                      "ground_truth"):
+        require("import %s" % (forbidden,) not in engine_source
+                and "from %s" % (forbidden,) not in engine_source,
+                "the Layer-6 engine names %r in an import. The artifact, its "
+                "generator and its answer key are the ANSWER KEY (R7 clause "
+                "3(b): *the generator is part of the answer key, not part of "
+                "the substrate*), and an engine that read one would be class O "
+                "by definition — every score it produced on this artifact would "
+                "have measured nothing" % (forbidden,))

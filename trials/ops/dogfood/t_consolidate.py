@@ -321,6 +321,32 @@ def trial_the_committed_store_consolidates():
     more loosely. The store's sessions are no longer all of its events, and the
     unpressured cap no longer means *no demotion* — **arming is a demotion**
     (`README-l5 §1.3`), and the sharper claim is that it is the only one.
+
+    **Note added 2026-08-02 (`[L6] [ASCEND]`). The store kept its first promise,
+    and that made the sentence above incomplete rather than wrong.** `iid 1` was
+    armed at store `t = 31` on the condition `key=layer and val>=6`, and this
+    session's own summary is the first this project has ever written that asserts
+    `layer = 6`, so it **fired** — which arming alone could never exercise. Two
+    things follow, and the claim is advanced to carry both rather than relaxed to
+    tolerate one:
+
+    * a **fired** intention's emitted event is folded and its episode released
+      into the fired ledger, which regenerates it — a second demotion at the
+      door, and by the same rule. So the census's `derived` count is
+      `pending + fired`, not `pending`;
+    * a fired intention's **own `intend` episode** was released at arming and
+      stops being regenerable the instant the pending entry goes, so
+      `README-l5 §1.3`'s **take-back rule** must return it to the store where
+      there is room — and here there is. That is asserted directly below, and it
+      is a check this trial could not make while nothing had fired: it is the
+      direction that would go red against `BOUNDARY.log` line 32's first Stage-C
+      Layer-5 draft, which released an armed intention's episode unconditionally
+      and lost the event at a generous budget with nothing forcing a drop.
+
+    The demotion counter is asserted against the same sum, so a firing that
+    booked its promise as a loss where there was room — or one that took the
+    episode back without giving the demotion back — moves one side and not the
+    other.
     """
     path = st.default_store_path()
     if not os.path.isfile(path):
@@ -345,12 +371,47 @@ def trial_the_committed_store_consolidates():
     require_equal(profile["value"][ev.KIND], len(summaries),
                   "every stored session must be counted against the project")
 
-    pending = co.ask(derived, {"op": "prospection"})["value"]["pending"]
+    prospection = co.ask(derived, {"op": "prospection"})["value"]
+    pending, fired = prospection["pending"], prospection["fired"]
     census = co.channels(derived)
     require_equal(census["gone"], 0, "nothing may be lost at the unpressured cap")
-    require_equal(census["derived"], pending,
+    require_equal(census["derived"], pending + fired,
                   "at an unpressured cap the ONLY events not still episodes are "
-                  "the armed intentions, whose episodes the pending set "
-                  "regenerates — a demotion at the door, not pressure")
-    require_equal(derived.demotions, pending,
+                  "the PROSPECTION TIERS — an armed intention's own event, which "
+                  "the pending set regenerates, and a fired intention's emitted "
+                  "event, which the fired ledger does. Both are a demotion at the "
+                  "door and neither is pressure (README-l5 §1.3)")
+    require_equal(derived.demotions, pending + fired,
                   "and the engine's own demotion counter must say the same")
+
+    # The take-back rule, which only a store that has KEPT a promise can test:
+    # a fired intention's own `intend` episode was released at arming and stops
+    # being regenerable when the pending entry goes, so where there is room it
+    # must come back into the store rather than be booked as a loss.
+    kept = 0
+    for promise in co.promises(derived, records, origin):
+        if not promise["fired"]:
+            continue
+        kept += 1
+        require(promise["readable"],
+                "iid %s fired, and its own `intend` event is no longer readable "
+                "at an unpressured cap — firing consumed the derivation the "
+                "pending entry provided, and the take-back rule did not return "
+                "the episode, so a promise was booked as a loss where there was "
+                "room for it (README-l5 §1.3; the defect BOUNDARY.log line 32 "
+                "records its own first Stage-C draft committing)"
+                % (promise["iid"],))
+        require(promise["regenerated"],
+                "iid %s's own event came back but not byte-exact" % (promise["iid"],))
+        t0 = co._replay_t(origin, promise["store_t"])
+        answer = co.ask(derived, {"op": "read", "t": t0})
+        require_equal(answer["provenance"]["kind"], "recall",
+                      "iid %s's own event came back tagged `derive`: nothing "
+                      "regenerates a FIRED intention's episode — the pending "
+                      "entry that did is gone — so `recall` is the only honest "
+                      "provenance it can carry, and `derive` here would mean the "
+                      "engine believes it can rebuild something it cannot"
+                      % (promise["iid"],))
+    require_equal(kept, fired,
+                  "the fired ledger reports %d firings and the per-promise view "
+                  "found %d — one of them is not reading §7.1" % (fired, kept))

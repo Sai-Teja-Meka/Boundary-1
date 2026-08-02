@@ -189,6 +189,17 @@ from *demoted* from *never ingested*.
 > document's own counts of built and unbuilt layers do, and a later `PACKAGE`
 > move owns the rewrite.
 
+> **Note added 2026-08-02 (`[L6] [ASCEND]`, Layer 6 claimed).** **Three** layers
+> are unbuilt now — generation, self-description and birth — and the paragraph
+> below is superseded twice over rather than edited (`R6` clause 3). Layer 6's
+> gate was cleared on `corpora/l6batteryb` per `R7` clause 1 at `Brier 23`,
+> `ECE 0`, `AUROC 976`, `F 955`, `B 1000`, and the **next** open question is not
+> a constitutional collision but a bequest: `R7` clause 7 records that `§3.0`
+> pays an engine to convert an error into an abstention while `§3.4` cannot see
+> one, closed on this artifact by arithmetic and reopening at Layer 7 where
+> `§4.2` gives the price list a third way to reach 0. **Nothing in the L1–L4
+> scorecard above moves.**
+
 **Four layers are unbuilt, and Layer 5 already has a known problem.** §5 L5's
 gate is an **identity** (`trigger-precision = trigger-recall = 1000`), while the
 standing rule R2 requires every future gate to lie strictly *below* the oracle

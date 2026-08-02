@@ -272,3 +272,28 @@ computed and recorded **before the gate binds** — the ascension-side counterpa
 `humility/`'s `IMPOSSIBILITY.md`. R2 also fixes the standing order of an `ASCEND`:
 attainability arithmetic → trials → engine. R2 binds every *future* gate, so
 Layers 1–2 predate it and are not retroactively invalidated by it.
+
+> **Note added 2026-08-02 (`[L6] [ASCEND]`, Layer-6 **Stage C**). Layer 6 is
+> CLAIMED, and the Layer-6 index above is where the last "engine-gated" stops
+> holding.** `core/layers/l6_meta_memory.py` and `trials/adapters/l6.py` exist,
+> and every one of `l6/t_meta_memory.py`'s eight engine-gated skips is flipped
+> and green: the ratified `§5 L6` gate CLEARS on `corpora/l6batteryb` at
+> **Brier 1/44 → 23, ECE 0 exactly, AUROC 41/42 → 976, F 21/22 → 955 over the
+> answerable core (23/24 → 958 over the whole set, ungated), B 1000** with
+> `A 2200 / n_pos 2100 / n_neg 100`, `refused 0` and `fabricated 0` — clause for
+> clause the figures `ATTAINABILITY-B.md` exhibited before any engine existed,
+> which is `R2` obligation 1 discharged rather than a coincidence. No pair of the
+> forcing region is resolved. `corpora/l6battery` is replayed, scored and
+> reported ungated beside it, where the same model measures `AUROC 1000` because
+> there evidence that ranks also resolves — the demotion's cause, on an engine.
+>
+> Both files' closing checks are **advanced** one step along `R2`'s order rather
+> than deleted, each under a dated note with no historical line rewritten:
+> `t_attainability_b.py` moves the engine and the adapter from its absence list
+> to its presence list and replaces the absence check with the one only Stage C
+> could carry — the engine's own source may not import the artifact, its
+> generator, its answer key or the battery module, because *the generator is part
+> of the answer key, not part of the substrate* (`R7` clause 3(b)); and round 1's
+> `t_attainability.py` now asserts that the **demotion survived the engine's
+> arrival**, naming the battery that scores its artifact ungated, since an
+> artifact nobody scores has been retired by silence.
