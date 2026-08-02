@@ -4,7 +4,7 @@
     recall       associative recall over the store from free cue tokens
     intend       declare a promise: a condition over future sessions, and what
                  to surface when one satisfies it
-    consolidate  the store's Layer-5 derived view, for a session preamble
+    consolidate  the store's Layer-6 derived view, for a session preamble
     status       event count, budget occupancy, checksum, the last three events
 
 Exit codes:
@@ -120,8 +120,9 @@ def render_recall(state, tokens, cue, answer):
     lines = ["memory-recall  cue: %s  (store: %d events)"
              % (" ".join(tokens), state.next_t)]
     if not probe:
-        lines.append("ABSTAIN — the cue has no usable tokens (a token is an "
-                     "[a-z0-9] run of length >= %d)." % ev.MIN_TOKEN_LEN)
+        lines.append("ABSTAIN  confidence=%d‰ — the cue has no usable tokens (a "
+                     "token is an [a-z0-9] run of length >= %d)."
+                     % (answer["confidence"], ev.MIN_TOKEN_LEN))
         return lines
     lines.append("probe: %s" % " ".join(probe))
 
@@ -147,15 +148,22 @@ def render_recall(state, tokens, cue, answer):
         full = set(postings[tok]) if full is None else (full & postings[tok])
     full = sorted(full or ())
 
+    # The confidence of an abstention is the engine's own and it is 0 (§7.2's
+    # `value: null` row): an abstention states no value, so there is no claim for
+    # a confidence to be about. It is printed rather than omitted because a
+    # surface that showed the number only when it was high would be reporting the
+    # engine's certainty and hiding its silence.
+    conf = answer["confidence"]
     if absent:
-        lines.append("ABSTAIN — no stored event carries: %s" % " ".join(absent))
+        lines.append("ABSTAIN  confidence=%d‰ — no stored event carries: %s"
+                     % (conf, " ".join(absent)))
     elif not full:
-        lines.append("ABSTAIN — every cue token is stored, but no single event "
-                     "carries all %d together." % len(probe))
+        lines.append("ABSTAIN  confidence=%d‰ — every cue token is stored, but no "
+                     "single event carries all %d together." % (conf, len(probe)))
     else:
-        lines.append("ABSTAIN — ambiguous: %d stored events carry the whole cue, "
-                     "and Layer 2 answers only when exactly one does (README-l2)."
-                     % len(full))
+        lines.append("ABSTAIN  confidence=%d‰ — ambiguous: %d stored events carry "
+                     "the whole cue, and Layer 2 answers only when exactly one "
+                     "does (README-l2)." % (conf, len(full)))
 
     lines.append("  df: %s" % "  ".join("%s=%d" % (tok, len(postings[tok])) for tok in probe))
 
@@ -487,7 +495,7 @@ def build_parser():
                         help="validate and render it; write nothing")
 
     consolidate = subs.add_parser(
-        "consolidate", help="the store's Layer-4 derived view of this project")
+        "consolidate", help="the store's Layer-6 derived view of this project")
     consolidate.add_argument("--budget", type=int, metavar="UNITS",
                              help="replay the fold under a reduced cap "
                                   "(default %d) to observe demotion"

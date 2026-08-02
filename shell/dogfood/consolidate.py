@@ -1,10 +1,10 @@
-"""shell/dogfood/consolidate.py — the store's derived view, at Layer 5.
+"""shell/dogfood/consolidate.py — the store's derived view, at Layer 6.
 
-`[L4] [DOGFOOD]`, upgraded to prospection at `[L5] [DOGFOOD]`. `remember` writes
-episodes and `recall` finds one of them.
+`[L4] [DOGFOOD]`, upgraded to prospection at `[L5] [DOGFOOD]` and to meta-memory
+at `[L6] [DOGFOOD]`. `remember` writes episodes and `recall` finds one of them.
 This module answers the third question a memory owes its owner — *what does all
 of it add up to?* — by folding the store's session summaries through
-`core/layers/l4_consolidation.py` and reading the result back through the
+`core/layers/l6_meta_memory.py` and reading the result back through the
 **ordinary query interface** (§7.1): `current`, `asof`, `profile`, `count`,
 `consolidation`, `forgetting`, `recall`, `read`. The shell computes no answer of
 its own; it asks, labels, and formats.
@@ -56,9 +56,35 @@ consumes a logical `t` of its own, so **one caller write advances `next_t` by
 `origin` is therefore a **map** `replay t -> store t`, and a firing is attributed
 to the store event whose write satisfied it — which is the honest answer to
 *"where did this come from"* and the only one the caller stream can give.
+
+## What `[L6]` changes: the number, and nothing else
+
+The replay now runs through `core/layers/l6_meta_memory.py`, and the whole of
+that upgrade is that **every answer this module reads back carries the engine's
+own `§7.2` confidence, and the report prints it**. Nothing else moves, and that
+is the layer rather than a convenience: `L6State` adds no field to the frozen
+`L5State` (`README-l6 §0`), so the derived state this module builds is the one it
+built yesterday — same occupancy, same chains, same demotions, same firings — and
+what changed is what the engine says about it.
+
+Three consequences, each stated here because each is a fact about *this store*
+and not about the layer in general:
+
+  * **the confidence is derived, never stored.** It is recomputed on every read
+    of a view that is itself recomputed on every read and thrown away, so there
+    is no row anywhere carrying a number somebody could edit — the `[L4]`
+    refusal to write derivations back, inherited one layer on;
+  * **the shell narrows, it never widens** (`intend.py`'s rule, applied to a
+    second reading): `SET_ONCE_KEYS` below is *computed* from the engine's own
+    frozen declaration, so this shell cannot call a key set-once that the engine
+    does not, and cannot drift from it;
+  * **1000 is not a default.** A key that admits updates is answered by its
+    latest assertion and the engine has proved it. A set-once key whose chain
+    holds `d` mutually exclusive claimants is answered at `permille(1/d)` — 500
+    at `d = 2` — and `FIELD.md` records what this project's own history measures.
 """
 
-from core.layers import l5_prospection as l5
+from core.layers import l6_meta_memory as l6
 from core.serialize import encode
 from shell.dogfood import event as ev
 
@@ -82,12 +108,44 @@ QUESTION_KEY = "open_question"
 SUMMARY_KIND = ev.KIND
 ASSERTION_KIND = "attr"
 
+# The engine's own name for the confidence of an answer it has proved. Imported
+# rather than typed: `1000` appears in this module only as `l6.CERTAIN`, so the
+# report cannot state a certainty the engine does not.
+CERTAIN = l6.CERTAIN
+
 # The engine's frozen kind for an intention. A stored intention is replayed
 # UNCHANGED — the shell's reading of it is the identity, because the payload is
 # already in the engine's own grammar and `README-l5 §1.2` admits it only if it
 # rebuilds from `(iid, cond, fire)` byte-for-byte. `shell/dogfood/intend.py` is
 # where that reading is declared; nothing here may add a field to it.
-INTENTION_KIND = l5.INTENTION_KIND
+INTENTION_KIND = l6.INTENTION_KIND
+
+# The keys of this reading that the ENGINE's frozen reading calls set-once — the
+# only keys on which a Layer-6 confidence can be anything but `CERTAIN`.
+#
+# It is COMPUTED and not typed, which is the whole of its content: `l6.set_once`
+# is the authority (`SET_ONCE_KEYS = ("origin",)`, a declared reading of the
+# frozen grammars, `README-l6 §1.2`), so this shell can neither call a key
+# set-once that the engine does not nor fall out of step with it if the engine's
+# reading is ever extended. The shell narrows; it never widens — `intend.py`'s
+# rule for the condition vocabulary, applied to the second reading this shell
+# declares.
+#
+# Today it is EMPTY, and that is a measurement rather than an oversight: the one
+# key the frozen reading calls set-once is `origin`, and a session summary states
+# no origin. `FIELD.md` (2026-08-02) carries the census and what follows from it.
+SET_ONCE_KEYS = tuple(k for k in tuple(ASSERTED_KEYS) + (QUESTION_KEY,)
+                      if l6.set_once(k))
+
+# The keys the calibration census ASKS about: every key this reading asserts,
+# plus every key the engine calls set-once whether this reading asserts it or
+# not. The second half is the point — those are the only keys on which a
+# confidence can be anything but `CERTAIN`, so a census that asked only about
+# what this reading writes could never see a tie and would be reporting its own
+# vocabulary rather than the store's certainty. Where the key is never asserted
+# the row says so and the engine abstains, which is the honest empty answer.
+CENSUS_KEYS = tuple(dict.fromkeys(tuple(ASSERTED_KEYS) + (QUESTION_KEY,)
+                                  + tuple(l6.SET_ONCE_KEYS)))
 
 
 # ---- parsing the facts a log line states ------------------------------------
@@ -204,7 +262,7 @@ def project_entities(records):
 # ---- the derived state ------------------------------------------------------
 
 def derive(records, budget_cap=DERIVED_BUDGET):
-    """Fold the store's events into a Layer-5 state.
+    """Fold the store's events into a Layer-6 state.
 
     Returns `(state, origin, sessions, entities, refused)`:
 
@@ -224,9 +282,14 @@ def derive(records, budget_cap=DERIVED_BUDGET):
     budget cannot house a firing, the whole transition is refused with `t`
     unspent (`README-l5 §1.4`), so a half-kept promise is not a state this
     replay can reach.
+
+    `[L6]`: the engine is `l6_meta_memory` and the state it returns is the state
+    `l5_prospection` returned yesterday — `L6State` adds no field (`README-l6
+    §0`), so nothing above this line changes and every answer below it carries a
+    confidence.
     """
     entities = project_entities(records)
-    state = l5.make_engine(l5.LAYER, budget_cap=budget_cap)
+    state = l6.make_engine(l6.LAYER, budget_cap=budget_cap)
     origin = {}
     sessions = []
     refused = None
@@ -234,7 +297,7 @@ def derive(records, budget_cap=DERIVED_BUDGET):
         payload = record["payload"]
         first = state.next_t
         for derived in derived_stream(payload, entities):
-            state, t = l5.write(state, derived)
+            state, t = l6.write(state, derived)
             if t is None:
                 refused = (record["t"], derived)
                 break
@@ -253,7 +316,7 @@ def derive(records, budget_cap=DERIVED_BUDGET):
 
 def ask(state, q):
     """One query through the generic interface (§7.1). Never raises (§7.3)."""
-    return l5.query(state, q)
+    return l6.query(state, q)
 
 
 def _store_t(origin, replay_t):
@@ -277,21 +340,37 @@ def _replay_t(origin, store_t):
 
 
 def current_fact(state, entity, key, origin):
-    """`(value, store_t)` for `(entity, key)` now, or `None` if never asserted."""
+    """`(value, store_t, confidence)` for `(entity, key)` now, or `None`.
+
+    `[L6]`: the third element is the engine's own `§7.2` confidence in integer
+    permille — read off the answer, never computed here. It is `1000` on a key
+    the declared reading does not call set-once, because the value in force is
+    the latest assertion and that is a thing the engine has proved; it is
+    `permille(1/d)` where a set-once chain holds `d` mutually exclusive
+    claimants (`README-l6 §1.3`).
+    """
     answer = ask(state, {"op": "current", "entity": entity, "key": key})
     if answer["status"] != "answer":
         return None
     support = answer["provenance"]["support"]
-    return answer["value"], _store_t(origin, support[0] if support else None)
+    return (answer["value"],
+            _store_t(origin, support[0] if support else None),
+            answer["confidence"])
 
 
 def history(state, entity, key, origin, upto):
-    """The whole chain for `(entity, key)`, as `[(store_t, value)]`.
+    """The whole chain for `(entity, key)`, as `[(store_t, value, confidence)]`.
 
     Reconstructed by walking `asof` forward and reading each answer's own
     provenance `support` — the assertion the engine says carries the value. No
     engine internals are touched: the history is the sequence of *distinct
     supports* the ordinary as-of query reports across the stream.
+
+    `[L6]`: each step carries the confidence the engine stated **at that
+    horizon**, which is not the same number as the one it states now. `asof`
+    prices the evidence the answer actually had — the chain up to the asked `t`
+    (`README-l6 §1.4`) — so on a set-once key an early step can be certain and a
+    later one a coin flip, and the walk shows where certainty was lost.
     """
     out = []
     seen = set()
@@ -304,26 +383,67 @@ def history(state, entity, key, origin, upto):
         if stamp is None or stamp in seen:
             continue
         seen.add(stamp)
-        out.append((_store_t(origin, stamp), answer["value"]))
+        out.append((_store_t(origin, stamp), answer["value"], answer["confidence"]))
     return out
 
 
 def collapse(chain):
-    """`[(store_t, value, restatements)]` — consecutive equal values folded.
+    """`[(store_t, value, restatements, confidence)]` — equal values folded.
 
     A session asserts the project's whole state every time, so most assertions
     restate the value already in force. The chain keeps them all (they are what
     `asof` walks); a *history* is the sequence of **changes**, so the display
     folds a run of equal values into the `t` it was first decided at and counts
     the restatements rather than dropping them silently.
+
+    A fold keeps the **last** confidence of the run, which is the one that was
+    still in force when the value finally changed: a restatement can only lower
+    it (a further claimant on a set-once chain), never raise it, so keeping the
+    first would report a certainty the later evidence had already withdrawn.
     """
     out = []
-    for store_t, value in chain:
+    for store_t, value, conf in chain:
         if out and out[-1][1] == value and type(out[-1][1]) is type(value):
             out[-1][2] += 1
+            out[-1][3] = conf
             continue
-        out.append([store_t, value, 0])
-    return [(t, v, n) for t, v, n in out]
+        out.append([store_t, value, 0, conf])
+    return [(t, v, n, c) for t, v, n, c in out]
+
+
+def claimants_seen(chain):
+    """How many mutually exclusive values a walked chain asserted, by §2.4 bytes.
+
+    The engine's own `n_distinct` rule (`README-l6 §1.2`: canonical bytes, not
+    Python equality, because `True == 1` there and `true != 1` here) applied to
+    the values the *queries* returned — so this is a census of answers and not a
+    reach into the state, and the shell still computes no confidence of its own.
+    """
+    return len({encode(value) for _t, value, _c in chain})
+
+
+def calibration(state, entity, origin, upto):
+    """The per-key calibration census: what the store is certain of, and why.
+
+    One row per key the declared reading asserts, each carrying the value in
+    force, the number of distinct claimants the chain has held, whether the
+    engine's frozen reading calls the key **set-once**, and the confidence the
+    engine states. The engine's own `{"op":"calibration"}` diagnostic is read
+    beside it (§7.1 — no new verb), so the shell's count of ties and the
+    engine's cannot disagree without the report saying so.
+    """
+    rows = []
+    for key in CENSUS_KEYS:
+        now = current_fact(state, entity, key, origin)
+        chain = history(state, entity, key, origin, upto)
+        rows.append({"key": key,
+                     "set_once": l6.set_once(key),
+                     "asserts": len(chain),
+                     "claimants": claimants_seen(chain),
+                     "value": None if now is None else now[0],
+                     "since": None if now is None else now[1],
+                     "confidence": None if now is None else now[2]})
+    return rows, ask(state, {"op": "calibration"})
 
 
 def channels(state, ts=None):
@@ -393,6 +513,14 @@ def promises(state, records, origin):
         `{"op":"read","t":t0}` from the pending entry (`README-l5 §1.3`), so a
         promise still waiting can be shown in full without the episode existing.
 
+    Each entry also carries the **provenance kind** of that read-back, because
+    at Layer 5 it is the whole of the take-back rule and it points opposite ways
+    for the two states a promise can be in: a *pending* intention's event is
+    `derive` (the pending entry regenerates it) and a *kept* one's is `recall`
+    (nothing regenerates it any more, so where there is room the episode came
+    back into the store, and where there was none it is a booked loss and the
+    read abstains). `README-l5 §1.3`; `BOUNDARY.log` line 32.
+
     Returns one entry per stored intention, in ingest order.
     """
     out = []
@@ -403,16 +531,23 @@ def promises(state, records, origin):
         iid = payload["iid"]
         entry = {"store_t": record["t"], "iid": iid,
                  "cond": payload["cond"], "fire": payload["fire"],
-                 "fired": [], "readable": False, "regenerated": False}
+                 "fired": [], "readable": False, "regenerated": False,
+                 "provenance": None, "confidence": None}
         answer = ask(state, {"op": "fired", "iid": iid})
         if answer["status"] == "answer":
             for rec in answer["value"]:
-                entry["fired"].append({"replay_t": rec["t"],
-                                       "store_t": _store_t(origin, rec["t"]),
-                                       "payload": rec["payload"]})
+                read_back = ask(state, {"op": "read", "t": rec["t"]})
+                entry["fired"].append({
+                    "replay_t": rec["t"],
+                    "store_t": _store_t(origin, rec["t"]),
+                    "payload": rec["payload"],
+                    "provenance": (read_back["provenance"] or {}).get("kind"),
+                    "confidence": read_back["confidence"]})
         armed_at = _replay_t(origin, record["t"])
         seen = ask(state, {"op": "read", "t": armed_at})
         entry["readable"] = seen["status"] == "answer"
+        entry["confidence"] = seen["confidence"]
+        entry["provenance"] = (seen["provenance"] or {}).get("kind")
         if entry["readable"]:
             entry["regenerated"] = (
                 encode(seen["value"]["payload"]) == encode(payload))
@@ -488,6 +623,10 @@ def prospection_lines(state, records, origin, indent="  "):
                     if isinstance(fired["payload"], dict) else None
                 lines.append("%s    >> %s" % (indent, text if isinstance(text, str)
                                               else encode(fired["payload"]).decode("utf-8")))
+                lines.append("%s       the fired event  read(t=%s) %s‰ "
+                             "provenance %s (the fired ledger regenerates it)"
+                             % (indent, fired["replay_t"], fired["confidence"],
+                                fired["provenance"]))
         else:
             lines.append("%siid %-3d declared at store t=%-3s  PENDING%s"
                          % (indent, entry["iid"], entry["store_t"],
@@ -497,7 +636,30 @@ def prospection_lines(state, records, origin, indent="  "):
                          % (indent, describe_fire(entry["fire"])))
         lines.append("%s    when      %s"
                      % (indent, describe_condition(entry["cond"])))
+        lines.append("%s    its own event  %s"
+                     % (indent, _promise_episode(entry)))
     return lines
+
+
+def _promise_episode(entry):
+    """One line for what `read(t0)` says about a promise's own `intend` event.
+
+    The take-back rule, read off `§7.1` (`README-l5 §1.3`): a **pending**
+    intention's event is regenerated by the pending entry and comes back
+    `derive`; a **kept** one's cannot be regenerated by anything, so `recall` is
+    the only honest provenance it can carry and an abstention means the budget
+    booked it as a loss rather than taking it back.
+    """
+    if not entry["readable"]:
+        return ("GONE — read(t0) abstains, so the episode was booked into the "
+                "forgetting record (confidence %s‰)" % entry["confidence"])
+    exact = "byte-exact" if entry["regenerated"] else "NOT byte-exact"
+    if entry["fired"]:
+        return ("readable %s, %s‰, provenance %s — taken back into the store, "
+                "which is the only honest tag once the pending entry is gone"
+                % (exact, entry["confidence"], entry["provenance"]))
+    return ("readable %s, %s‰, provenance %s — regenerated by the pending entry"
+            % (exact, entry["confidence"], entry["provenance"]))
 
 
 # ---- the report -------------------------------------------------------------
@@ -505,6 +667,68 @@ def prospection_lines(state, records, origin, indent="  "):
 def _fmt(value, width=60):
     text = value if isinstance(value, str) else str(value)
     return text if len(text) <= width else text[:width - 1] + "…"
+
+
+def calibration_lines(state, entity, origin, upto, indent="  "):
+    """The calibration census: what the store is certain of, and why it is.
+
+    A confidence surface that only ever printed `1000‰` would be indistinguishable
+    from a surface that printed a constant, which is exactly the defect
+    `autopsy/GAPMAP.md §2`'s engine thesis convicts four systems of — metadata
+    written and never read where it counts. So the section states the *reason*
+    beside the number: how many distinct claimants each chain has held, and
+    whether the key is one the engine's frozen reading calls **set-once**, which
+    is the only condition under which a claimant is a rival rather than an
+    update.
+    """
+    rows, engine_view = calibration(state, entity, origin, upto)
+    declared = engine_view["value"]["set_once_keys"] \
+        if engine_view["status"] == "answer" else []
+    ties = engine_view["value"]["ties"] if engine_view["status"] == "answer" else 0
+    levels = engine_view["value"]["tie_levels"] \
+        if engine_view["status"] == "answer" else []
+
+    lines = ["", "calibration — what this store says about its own certainty"]
+    lines.append("%sengine reading   set-once keys: %s  (l6.SET_ONCE_KEYS, a "
+                 "declared reading of the frozen grammars)"
+                 % (indent, ", ".join(declared) or "(none)"))
+    lines.append("%sthis reading     %d keys asserted, of which set-once: %s  "
+                 "(computed from the engine's — the shell narrows, never widens)"
+                 % (indent, len(ASSERTED_KEYS) + 1,
+                    ", ".join(SET_ONCE_KEYS) or "(none)"))
+    lines.append("%sties             %d chain%s hold more than one claimant for "
+                 "a slot that admits exactly one%s"
+                 % (indent, ties, "" if ties == 1 else "s",
+                    "" if not levels
+                    else "  (%s)" % ", ".join("d=%d -> %d‰" % (d, c)
+                                              for d, c in levels)))
+    lines.append("%s%-16s %-10s %-9s %-26s %s"
+                 % (indent, "key", "asserted", "claimants", "in force", "states"))
+    for row in rows:
+        if row["confidence"] is None:
+            lines.append("%s%-16s %-10s %-9s %-26s %s"
+                         % (indent, row["key"], "0", "0", "(never asserted)",
+                            "ABSTAIN"))
+            continue
+        lines.append("%s%-16s %-10d %-9d %-26s %4d‰%s"
+                     % (indent, row["key"], row["asserts"], row["claimants"],
+                        _fmt(row["value"], 26), row["confidence"],
+                        "  SET-ONCE" if row["set_once"] else ""))
+    contradicted = [r for r in rows if r["set_once"] and r["claimants"] > 1]
+    if contradicted:
+        lines.append("%sa set-once chain holding d claimants is answered at "
+                     "permille(1/d): %s"
+                     % (indent, ", ".join("%s d=%d -> %d‰"
+                                          % (r["key"], r["claimants"],
+                                             r["confidence"])
+                                          for r in contradicted)))
+    else:
+        lines.append("%sno key of this reading is set-once, so no chain here can "
+                     "be CONTRADICTED — a key that admits updates is answered by "
+                     "its latest assertion, which the engine has proved, and "
+                     "%d‰ is that proof and not a default"
+                     % (indent, CERTAIN))
+    return lines
 
 
 def report(state, origin, sessions, entities, records,
@@ -515,12 +739,14 @@ def report(state, origin, sessions, entities, records,
     summaries = [r for r in records if r["payload"].get("kind") == SUMMARY_KIND]
     declared = [r for r in records if r["payload"].get("kind") == INTENTION_KIND]
     lines.append("consolidated view — %s" % ", ".join(sorted(entities)))
-    lines.append("  derived by core/layers/l5_prospection.py (Layer 5) from "
+    lines.append("  derived by core/layers/l6_meta_memory.py (Layer 6) from "
                  "%d stored session summaries and %d declared intentions"
                  % (len(summaries), len(declared)))
     lines.append("  %d derived events, %d / %d work units, "
                  "nothing written back to the store"
                  % (total, state.occupancy, state.budget_cap))
+    lines.append("  every ‰ below is the engine's own §7.2 confidence, derived "
+                 "at read time from state it already held and never stored")
     if refused is not None:
         lines.append("  TRUNCATED — the budget refused an event of store t=%d; "
                      "everything below covers only what was admitted." % refused[0])
@@ -540,6 +766,10 @@ def report(state, origin, sessions, entities, records,
                 globally = count["value"] if count["status"] == "answer" else "n/a"
                 lines.append("  %-16s %6d for this project, %s derived in all"
                              % (kind, profile["value"][kind], globally))
+            lines.append("  fold             %d‰ — a fold is regenerated exactly "
+                         "or abstained on, so there is nothing here for a "
+                         "confidence to vary with (README-l6 §4)"
+                         % profile["confidence"])
         lines.append("  derived schema   %d keys, %d pairs, %d assertions"
                      % (shape["keys"], shape["pairs"], shape["assertions"]))
         lines.append("  episodes held    %d of %d   demotions %d   damaged %d"
@@ -547,19 +777,28 @@ def report(state, origin, sessions, entities, records,
                         shape["damaged"]))
 
         lines.append("")
-        lines.append("decision history — the value in force, and where it changed")
+        lines.append("decision history — the value in force, how sure of it, "
+                     "and where it changed")
         for key in ASSERTED_KEYS:
             now = current_fact(state, entity, key, origin)
             if now is None:
                 lines.append("  %-16s (never asserted)" % key)
                 continue
-            value, decided = now
-            lines.append("  %-16s %-38s  since store t=%s"
-                         % (key, _fmt(value, 38), decided))
+            value, decided, conf = now
+            lines.append("  %-16s %-38s  %4d‰  since store t=%s"
+                         % (key, _fmt(value, 38), conf, decided))
             changes = collapse(history(state, entity, key, origin, total - 1))
             if len(changes) > 1:
+                # A step is annotated with its own as-of confidence only where
+                # that confidence is not CERTAIN: the walk then shows exactly
+                # where the chain stopped being sure of itself, and says nothing
+                # everywhere else (README-l6 §1.4).
                 lines.append("      %s" % "  ->  ".join(
-                    "%s (t=%s)" % (_fmt(v, 24), st) for st, v, _n in changes))
+                    "%s (t=%s%s)" % (_fmt(v, 24), st,
+                                     "" if c == CERTAIN else ", %d‰" % c)
+                    for st, v, _n, c in changes))
+
+        lines.extend(calibration_lines(state, entity, origin, total - 1))
 
         lines.append("")
         questions = history(state, entity, QUESTION_KEY, origin, total - 1)
@@ -570,11 +809,11 @@ def report(state, origin, sessions, entities, records,
                      % (len(questions), len(sessions), silent))
         asked = current_fact(state, entity, "open_questions", origin)
         if asked is not None:
-            lines.append("  latest session   %s open at store t=%s"
-                         % (asked[0], asked[1]))
+            lines.append("  latest session   %s open at store t=%s  (%d‰)"
+                         % (asked[0], asked[1], asked[2]))
         shown = questions if all_questions else [
             q for q in questions if sessions and q[0] == sessions[-1][0]]
-        for store_t, text in shown:
+        for store_t, text, _conf in shown:
             lines.append("    t=%-3s %s" % (store_t, _fmt(text, 88)))
         if not all_questions and len(shown) < len(questions):
             lines.append("    (%d earlier questions are in the chain — "
@@ -592,10 +831,17 @@ def report(state, origin, sessions, entities, records,
     lines.append("  demotions        %d  (an episode a chain regenerates — "
                  "content kept, cue lost)" % shape["demotions"])
     if declared:
-        armed = ask(state, {"op": "prospection"})["value"]["pending"]
-        lines.append("    of which       %d are ARMED INTENTIONS, released at the "
-                     "door because the pending entry regenerates them "
-                     "(README-l5 §1.3) — not pressure" % armed)
+        # Both prospection tiers demote at the door, and after this store kept
+        # its first promise the two are different events: an ARMED intention's
+        # own `intend` event (the pending entry regenerates it) and a FIRED
+        # intention's emitted event (the fired ledger does). Reporting only the
+        # first would leave a demotion unattributed at a cap under no pressure
+        # at all, which is how this line read before iid 1 fired.
+        counts = ask(state, {"op": "prospection"})["value"]
+        lines.append("    of which       ARMED INTENTIONS %d, FIRED EVENTS %d — "
+                     "released at the door because the pending set and the "
+                     "fired ledger regenerate them (README-l5 §1.3), not pressure"
+                     % (counts["pending"], counts["fired"]))
     lines.append("  forgotten        %d events, importance mass %d  (gone)"
                  % (forgot["count"], forgot["mass"]))
 
@@ -630,8 +876,10 @@ def report(state, origin, sessions, entities, records,
         if answer["status"] == "answer":
             hit = _store_t(origin, answer["value"]["t"])
             payload = answer["value"]["payload"]
-            lines.append("  cue %-24s MATCH  store t=%s  %s"
-                         % (raw, hit, _fmt(payload.get("log_line", ""), 48)))
+            lines.append("  cue %-24s MATCH  %4d‰  store t=%s  %s"
+                         % (raw, answer["confidence"], hit,
+                            _fmt(payload.get("log_line", ""), 48)))
         else:
-            lines.append("  cue %-24s ABSTAIN" % raw)
+            lines.append("  cue %-24s ABSTAIN  %4d‰"
+                         % (raw, answer["confidence"]))
     return lines

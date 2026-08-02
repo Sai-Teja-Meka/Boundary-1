@@ -145,10 +145,14 @@ def trial_the_derived_view_answers_the_battery_through_the_query_interface():
     require_equal(len(sessions), len(records), "every session must be replayed")
 
     entity = 1
-    # Q1 — current value.
-    require_equal(co.current_fact(state, entity, "layer", origin), (2, 2),
+    # Q1 — current value. `[L6]`: the third element is the engine's own §7.2
+    # confidence, and 1000 here is a claim and not a formality — neither key is
+    # set-once under the frozen reading, so the value in force is the latest
+    # assertion and that is a thing the engine has proved (README-l6 §1.3).
+    require_equal(co.current_fact(state, entity, "layer", origin), (2, 2, 1000),
                   "current(layer) must be the last assertion, at its own store t")
-    require_equal(co.current_fact(state, entity, "move", origin), ("DOGFOOD", 2),
+    require_equal(co.current_fact(state, entity, "move", origin),
+                  ("DOGFOOD", 2, 1000),
                   "current(move) must be the last session's move")
     require(co.current_fact(state, entity, "no-such-key", origin) is None,
             "a key never asserted must ABSTAIN, never be guessed (§7.3)")
@@ -164,8 +168,11 @@ def trial_the_derived_view_answers_the_battery_through_the_query_interface():
 
     # The history is the sequence of CHANGES, and it is read out of provenance.
     changes = co.collapse(co.history(state, entity, "layer", origin, state.next_t - 1))
-    require_equal([(t, v) for t, v, _n in changes], [(0, 1), (1, 2)],
+    require_equal([(t, v) for t, v, _n, _c in changes], [(0, 1), (1, 2)],
                   "the layer history must be 1 at store t=0, then 2 at store t=1")
+    require_equal([c for _t, _v, _n, c in changes], [1000, 1000],
+                  "every step of an update-legal chain is CERTAIN, at its own "
+                  "horizon as well as now (README-l6 §1.4)")
     require_equal(changes[-1][2], 1,
                   "the third session restates layer 2 — a restatement is counted, not dropped")
 
