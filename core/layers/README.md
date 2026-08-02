@@ -41,8 +41,24 @@ Claimed layers:
   the frozen `L4State`, so Layer 4 is inherited rather than re-implemented, and
   `make_engine(4)` **is** the Layer-4 engine (§7.4).
 
+- **Layer 6 — Meta-memory** — `l6_meta_memory.py` (`README-l6.md`). The first
+  layer whose engine is **wrong on purpose** — wrong exactly where a theorem
+  forces it, with a confidence that says so beforehand. It answers exactly what
+  Layer 5 answered (`§5 L6` asks for *"confidence permille from structural
+  evidence"* — a confidence model, not a second reader) and attaches one integer:
+  `permille(1/d)` where a **declared set-once key**'s chain holds `d` mutually
+  exclusive claimants for a slot that admits one, `1000` everywhere else. `L6State`
+  adds **no field** to the frozen `L5State` — `§5.1 L6`'s *"derives confidence
+  from existing state"* taken literally, so the canonical body is Layer 5's in
+  every branch but the recorded `layer_cap` — and the whole model is two folds
+  over the interval table Layer 4 already carries, plus the `damaged` flag it
+  already sets, so it spends 0 cells against the 18 `ATTAINABILITY-B.md §3.2`
+  priced. `make_engine(5)` **is** the Layer-5 engine (§7.4), and measures
+  `AUROC 500` exactly against a ceiling of 600, because a constant confidence
+  ranks nothing.
+
 Once a layer is claimed its code is **frozen**: it is never edited (§9). A newer
 layer builds on the frozen layers beneath it.
 
 Per `CLAUDE.md §1`, every session reads the most recent layer's README
-(currently `README-l5.md`) before acting.
+(currently `README-l6.md`) before acting.

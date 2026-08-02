@@ -1,0 +1,160 @@
+{
+ "calibration": {
+  "l6battery": {
+   "A": 3550,
+   "F_all": [
+    3747,
+    3905
+   ],
+   "F_all_permille": 960,
+   "F_core": [
+    1696,
+    1775
+   ],
+   "F_core_permille": 955,
+   "N": 3905,
+   "abstentions": 355,
+   "auroc": [
+    1,
+    1
+   ],
+   "auroc_permille": 1000,
+   "brier": [
+    13406257,
+    1775000000
+   ],
+   "brier_permille": 8,
+   "confidences": [
+    0,
+    100,
+    143,
+    167,
+    200,
+    250,
+    333,
+    500,
+    1000
+   ],
+   "ece": [
+    31129,
+    1775000
+   ],
+   "ece_permille": 18,
+   "fabricated": 0,
+   "n_events": 10000,
+   "n_neg": 158,
+   "n_pos": 3392,
+   "next_t": 10000,
+   "occupancy": 74981,
+   "state_sha256": "12394f7dc28f94d8cd0fbee9ddb8399825796bf373ccbc515b57abd182e10f68",
+   "ties": 158,
+   "trace_sha256": "75956f209cbf62a5ed3f8bf5eb451d5e81fd3abd429b540c8fb7e3f8fdb079dc",
+   "wrong": 158
+  },
+  "l6batteryb": {
+   "A": 2200,
+   "F_all": [
+    23,
+    24
+   ],
+   "F_all_permille": 958,
+   "F_core": [
+    21,
+    22
+   ],
+   "F_core_permille": 955,
+   "N": 2400,
+   "abstentions": 200,
+   "auroc": [
+    41,
+    42
+   ],
+   "auroc_permille": 976,
+   "brier": [
+    1,
+    44
+   ],
+   "brier_permille": 23,
+   "confidences": [
+    0,
+    500,
+    1000
+   ],
+   "ece": [
+    0,
+    1
+   ],
+   "ece_permille": 0,
+   "fabricated": 0,
+   "n_events": 12000,
+   "n_neg": 100,
+   "n_pos": 2100,
+   "next_t": 12000,
+   "occupancy": 91119,
+   "state_sha256": "37df3bd884ff7d9dd1644f68c2dc025a08c5b2e71031ba51bd6673774404b1ad",
+   "ties": 200,
+   "trace_sha256": "6b58c8151488b9121877ccf2401e2352b8d96ffa86e6ddfa6ecfe6d629ce0205",
+   "wrong": 100
+  }
+ },
+ "certain": 1000,
+ "corpora": {
+  "l5stream": {
+   "assertions": 16827,
+   "demotions": 945,
+   "episodes": 19820,
+   "fired": 765,
+   "forgotten": 0,
+   "index_atoms": 400,
+   "keys": 16,
+   "n": 20000,
+   "next_t": 20765,
+   "occupancy": 149098,
+   "pairs": 2924,
+   "pending": 180,
+   "seed": 7007,
+   "state_sha256": "d0749036bbb9f17588905c7b68dae2c026de92e3f14a4174990695d54444d5f4",
+   "ties": 0
+  },
+  "murk": {
+   "assertions": 9810,
+   "demotions": 0,
+   "episodes": 10000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 2652,
+   "keys": 18,
+   "n": 10000,
+   "next_t": 10000,
+   "occupancy": 74981,
+   "pairs": 7519,
+   "pending": 0,
+   "seed": 3003,
+   "state_sha256": "12394f7dc28f94d8cd0fbee9ddb8399825796bf373ccbc515b57abd182e10f68",
+   "ties": 158
+  },
+  "sessions": {
+   "assertions": 0,
+   "demotions": 0,
+   "episodes": 5000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 712,
+   "keys": 0,
+   "n": 5000,
+   "next_t": 5000,
+   "occupancy": 24538,
+   "pairs": 0,
+   "pending": 0,
+   "seed": 2002,
+   "state_sha256": "b9bb064c74ea3c05a6db02ffe01518c97cf27dcea247fab25323bff8da873717",
+   "ties": 0
+  }
+ },
+ "default_budget": 1000000000,
+ "layer": 6,
+ "no_answer": 0,
+ "set_once_keys": [
+  "origin"
+ ]
+}

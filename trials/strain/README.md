@@ -93,3 +93,28 @@ sessions ~5k, murk ~10k, l3stream / l3streamb ~10k each):
   project has already committed (`BOUNDARY.log` line 26 and line 32). Plus the
   measured figures asserted against the `README-l5 §4` note that reports them
   (`R6` clause 3).
+
+- `l6/t_calibration_seam.py` — **the calibration seam**, four strains on
+  `corpora/l6batteryb` at `DEFAULT_BUDGET` (`§5 L6` states no footprint clause).
+  **Bias**, the confidence half of the Schacter sin the post-L4 strain audit
+  deferred to this layer in as many words (`BOUNDARY.log` line 24): injected
+  contradiction into a **watched chain of the frozen forcing region** must move
+  the emitted confidence *down* (500 → 333 → 250 → 200 as claimants accumulate)
+  while a **verbatim repeat** must not move it at all, with a
+  constant-confidence reference policy — a trial fixture, never engine code —
+  measured beside it as the thing that does not move. **No manufactured
+  errors**: the Layer-6 engine's `status` and `value` equal the frozen Layer-5
+  engine's on all 2 400 queries, so the clean core carries 0 errors and the
+  region carries exactly 100 — `AUROC`'s domain is fed by `R7` clause 3(b)'s
+  theorem and never by sandbagging. **The denominator law under adversarial
+  abstention**, `autopsy/GAPMAP.md §2`'s evaluator thesis inverted: four
+  abstention patterns including one that consults the ANSWER KEY, and for every
+  one of them `A` is exactly the answered queries, `A = n_pos + n_neg`,
+  `A + abstentions = N`, and the per-class declaration rebuilds `A`; the hedger
+  dies at `F 918` and not at the region trial, and a fabrication in a class
+  declared outside enters `A` as an error. **The evidence under pressure**, the
+  item `R7` left to Stage C: shedding drops a whole chain so a shed tie abstains
+  rather than shrinking, but a set-once key **re-asserted after its chain was
+  shed** would leave a confident engine behind — the `damaged` flag Layer 4
+  already carries is what stops it, and the strain asserts its own scope, since
+  neither Layer-6 artifact reaches the seam at all.

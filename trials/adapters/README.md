@@ -54,6 +54,38 @@ This is a finding about our own interface document, not a complaint about it:
 §7 is frozen, so the gap is *recorded* here and in `INTERFACE.md`'s neighbours
 rather than patched into the constitution.
 
+> **Note added 2026-08-02 (`[L6] [ASCEND]`, Layer 6 claimed) — the promise this
+> paragraph was the subject of arrived, and it arrived on time.** The reminder
+> above was recorded at `[L4] [PACKAGE]` and then *armed as an intention* in the
+> dogfood store at `[L5] [DOGFOOD]` (store `t = 31`), conditioned on the first
+> session summary to assert `layer = 6` — *"Layer 6 is where the next shared
+> scorer is written … so state the contract before the sixth scorer assumes
+> it."* It fired at store `t = 39`, eleven moves later, on this session's own
+> remember. `trials/_l6score.py` **is** that sixth scorer, and it was written
+> before the promise surfaced — so the contract is stated here **after** the
+> assumption rather than before it, which is the honest order to record and not
+> the one that was asked for.
+>
+> **What the sixth scorer actually assumes, added to the list rather than
+> replacing it:** `state.next_t` is read as an attribute too. `_l5score` reads it
+> to audit a firing against the constitution's own clock (`R6` clause 2's
+> `next_t − |caller stream|`), `_l6score.replay` reports it beside `occupancy`,
+> and `humility/l6` and `anchors/l6.json` both pin it. So the portable list is
+> **`occupancy`, `budget_cap`, `next_t` — attributes — plus `restore(bytes) ->
+> state`**.
+>
+> And one requirement that is **new at Layer 6** and belongs beside them, because
+> it is the first time a field of the Answer became load-bearing rather than
+> decorative: `§7.2`'s `confidence` must be an **integer permille in `[0, 1000]`**
+> from Layer 6 onward (`§3.4`'s dormancy ends there). `_l6score._ask` refuses a
+> float, a `bool` and an out-of-range value **at the read** — a confidence that
+> is not a permille is a harness-level failure and categorically worse than a
+> scored abstention (`§7.3`), not a low score. An adapter for a foreign engine
+> must therefore expose a confidence in that form or it cannot be scored at
+> Layer 6 at all, which is a sharper obligation than anything Layers 1–5 put on
+> one, and `mem0_stub.py` / `letta_stub.py` should say so when they are next
+> revisited.
+
 ## `external/` — engines that are not ours
 
 The three modules under `external/` exist to keep the generic claim honest. Two

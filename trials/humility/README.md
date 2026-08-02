@@ -98,3 +98,15 @@ Populated alongside ascension trials, one layer at a time. Present:
 **Layer 1 has no humility trial** and never will: it is the floor, so there is no
 lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 `trials/ops/l1/t_capped0_baseline.py` as a sanity check (§5 L1, §6).
+
+> **Note added 2026-08-02 (`[L6] [ASCEND]`, Layer-6 Stage C).** The engine-gated
+> confirmation in `l6/t_meta_memory.py` — `make_engine(5)` built from the
+> **Layer-6** engine — is flipped and green, and it measures what
+> `make_engine(5)` built from the Layer-5 engine measures, field for field
+> (`Brier 1/22 → 45`, `ECE 1/22 → 45`, `AUROC 1/2 → 500`, `F_core 21/22 → 955`,
+> `A 2200 / n_pos 2100 / n_neg 100`), with the confidence vocabulary still the
+> constant pair `{0, 1000}`. That last one is the check a Layer-6 engine is most
+> likely to fail by accident and it holds by construction rather than by
+> imitation: `l6_meta_memory.new_state` returns the **frozen Layer-5 state**
+> below its own layer, so the capped engine is the prospection engine and has no
+> confidence model to leak.

@@ -499,6 +499,17 @@ def trial_this_artifact_is_an_ungated_diagnostic_under_r7_clause_1():
     nothing to defer. What would lift this demotion is not an arithmetic that
     moves but a ruling that says so, and `trial_a_perfect_reader_would_take_auroc_
     with_it` is the standing measurement of why one is not available here.
+
+    **Note added 2026-08-02 (`[L5] [ASCEND]`, Layer-6 Stage C).** The closing
+    check below required `core/layers/l6_meta_memory.py` and
+    `trials/adapters/l6.py` to be ABSENT, which is what `R2`'s order looked like
+    from the far side of it. Stage C built both, so the check is **advanced** one
+    step rather than deleted: what this file goes on asserting is that the
+    demotion survived the engine's arrival. A demoted artifact keeps its duty
+    (`R1` clause 5, `R4` clause 1) — still replayed, still scored, still
+    reported, never gating — and the battery that discharges it now exists, so
+    the trial names it. Nothing above is edited; the ruling, the cause and every
+    round-1 figure stand exactly as they were.
     """
     import os
     root = tasks.PROJECT_ROOT
@@ -539,9 +550,30 @@ def trial_this_artifact_is_an_ungated_diagnostic_under_r7_clause_1():
             "ATTAINABILITY.md §6 — the R4 clause 1 form, where a corpus is "
             "refused with its reason on the record and not by assertion")
 
-    # Stage B and Stage C are still ahead: R2's standing order is attainability
-    # arithmetic -> trials -> engine, and the ruling is the first step's end.
-    for absent in ("core/layers/l6_meta_memory.py", "trials/adapters/l6.py"):
-        require(not os.path.exists(os.path.join(root, absent)),
-                "%s exists — R2's standing step puts the engine last, after the "
-                "Stage-B batteries this entry authorizes" % (absent,))
+    # Note added 2026-08-02 (`[L5] [ASCEND]`, Layer-6 Stage C). Until today this
+    # loop required the engine to be ABSENT, which is what R2's standing order —
+    # attainability arithmetic -> trials -> engine — looked like from the far
+    # side of it. Stage C built the engine, so the check is advanced one step
+    # rather than deleted: what this file has to go on asserting is that the
+    # DEMOTION survived the engine's arrival. A demoted artifact keeps its duty
+    # (R1 clause 5, R4 clause 1): it is still replayed, still scored and still
+    # reported, and it never gates. The battery that does that now exists, and
+    # the ungated half of it is named here so the two cannot come apart.
+    for present in ("core/layers/l6_meta_memory.py", "trials/adapters/l6.py",
+                    "trials/ascension/l6/t_meta_memory.py"):
+        require(os.path.exists(os.path.join(root, present)),
+                "%s is missing — R2's standing step put the engine last and "
+                "Stage C built it; the demoted artifact's remaining duty is to "
+                "be SCORED by that battery and never gated by it" % (present,))
+    with open(os.path.join(root, "trials/ascension/l6/t_meta_memory.py"),
+              "r", encoding="utf-8") as fh:
+        battery = fh.read()
+    require("trial_the_demoted_diagnostic_is_scored_and_reported_ungated"
+            in battery,
+            "the Layer-6 ascension battery no longer carries the trial that "
+            "scores this artifact as an ungated diagnostic — a demotion is a "
+            "change of authority, not a retirement, and an artifact nobody "
+            "scores has been retired by silence")
+    require("DIAGNOSTIC = \"l6battery\"" in battery,
+            "the ascension battery no longer names this artifact as its "
+            "diagnostic")
