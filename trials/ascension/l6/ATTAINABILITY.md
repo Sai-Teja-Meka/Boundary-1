@@ -1,5 +1,51 @@
 # ATTAINABILITY.md — what the Layer-6 gate can and cannot reach on `corpora/l6battery`
 
+> **Note added 2026-08-01 (`[L5] [ASCEND]`, Layer-6 Stage A ROUND 2). This is
+> ROUND 1. Its substrate is superseded; its arithmetic is not.**
+>
+> Nothing below is edited, withdrawn or reread, and every number in it still
+> holds: `t_attainability.py` still computes and asserts all of them on
+> `corpora/l6battery`, green, this session and after it. What changed is the
+> **artifact a gate may bind on**, and the reason is §6 of this very document —
+> the limit this round measured about itself rather than a defect a later
+> session found in it:
+>
+> > *"`n_neg > 0` **for the declared reading** … and **not** against an arbitrary
+> > reader."*
+>
+> A gate citing `AUROC` bound here would be a gate whose evaluability depended on
+> the engine under test not having thought of first-wins. The human ruled on
+> §8's four questions and the round-2 session executes the resolution:
+> **`AUROC = n/a` disqualifies**; the binding artifact must make `n_neg > 0` a
+> **theorem**; and `corpora/l6battery` is **DEMOTED to an ungated diagnostic** —
+> the fourth substrate kill, in the `R4`-clause-1 form, bytes untouched and
+> trials still running.
+>
+> Round 2 is `ATTAINABILITY-B.md` on the newly frozen `corpora/l6batteryb`,
+> whose forcing region makes `n_neg = 100` true of *every* committing reader
+> definable from the stream. Two artifacts, two documents. Three things below
+> are answered rather than rewritten, and the answers are recorded here so a
+> reader of this file is not misled by its own forward-looking sentences:
+>
+> * **§0 finding 4 and §5, the collision.** Both horns stand as measured. On
+>   battery-b the first is closed by arithmetic — the honest hedger measures
+>   `F 918` against 950 and fails under BOTH readings — and the second is
+>   defused, because an engine that answers everything correctly cannot exist
+>   there.
+> * **§0 finding 3 and §4.1, the key-blind ranker.** Re-measured on battery-b at
+>   `Brier 36 / ECE 0 / AUROC 911 / F 955`: it still clears, on 11 permille
+>   rather than 45, and the scope statement is updated in `ATTAINABILITY-B.md`
+>   §4.3 — *ranking without resolving* is no longer a contingent finding there
+>   but the only thing available.
+> * **§4.1's ECE row.** Round 1's ordering is REVERSED on battery-b: the
+>   witness's bins agree with themselves exactly and it attains `ECE = 0`, so the
+>   base-rate constant no longer beats a real model. `ECE` is idle on both
+>   artifacts, for two different reasons. The round-2 trial that asserted this
+>   document's ordering went RED and was corrected rather than relaxed.
+>
+> `RULING-R7-DRAFT.md` carries the round-2 draft above its own round-1 body, in
+> the same form.
+
 **BOUNDARY-RULINGS.md R2** put attainability before authority: *"a gate must lie
 strictly below the oracle ceiling and strictly above every capability-free
 baseline on its binding corpus, and that arithmetic must be computed and recorded

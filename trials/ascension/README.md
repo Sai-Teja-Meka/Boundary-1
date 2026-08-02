@@ -164,6 +164,51 @@ Present:
   six `§5 L6` constants with a `§5` clause and no companion ruling, which is what
   that says in the registry's own structure.
 
+  > **Note added 2026-08-01 (`[L5] [ASCEND]`, Layer-6 Stage A ROUND 2.)** The two
+  > entries above are **round 1**, and their substrate is superseded while their
+  > arithmetic is not: `t_attainability.py` still computes and asserts every one
+  > of those figures on `corpora/l6battery`, green. What the human ruled on is the
+  > fork round 1's clause 3 put to them — **`AUROC = n/a` DISQUALIFIES**, and a
+  > binding artifact must make `n_neg > 0` a **THEOREM** rather than a fact
+  > relative to a declared reading. Round 1's own §6 is the reason it cannot:
+  > `§8.7` injects every murk defect by visible construction, so a stream-only
+  > rule recovers each family exactly and a first-wins reader would have driven
+  > `n_neg` to 0.
+
+- `l6/ATTAINABILITY-B.md` + `l6/t_attainability_b.py` — Layer 6, **Stage A round
+  2**, over the newly frozen `corpora/l6batteryb` (12 000 events + 2 400 queries,
+  one artifact carrying substrate, key and query set together). Its **forcing
+  region** is 100 mirror pairs whose two members are observationally identical —
+  equal event histories once the entity id is blanked, logical times differing by
+  exactly `+1` — with one member's truth its FIRST assertion and the other's its
+  LAST, and the resolving coin **withheld at generation**: regenerating with every
+  bit flipped produces a **byte-identical stream**. So every reader on a six-reader
+  bench, `first-wins` included, errs on exactly 100 forcing queries and
+  **`n_neg = 100` is a theorem**. Ceiling **exhibited** at
+  `Brier 23 / ECE 0 / AUROC 976 / F 955 / B 1000`; the feasible window for the
+  region size recorded exactly (`A/r ∈ [10, (25 + 5√21)/4)`, sitting at 11); and
+  the round-1 collision **closed by arithmetic** — the detect-and-abstain hedger
+  measures `F 918` and fails under BOTH readings of `n/a`, and no policy clearing
+  `F ≥ 950` can reach `n_neg = 0` (floor 87). The key-blind ranker is re-measured
+  at `AUROC 911` and its scope statement updated; one round-1 finding is
+  **reversed** and recorded (the witness attains `ECE = 0`, so the base-rate
+  constant no longer beats a real model).
+- `l6/RULING-R7-DRAFT.md` — **round 2 stands above round 1's body**, which is
+  preserved verbatim under a dated note and never edited. Still **not appended**
+  to `BOUNDARY-RULINGS.md`, because appending is what freezes. Nine clauses: the
+  binding on `corpora/l6batteryb` for both sides **and the fourth substrate kill**
+  (`corpora/l6battery` DEMOTED to an ungated diagnostic, its cause recorded
+  verbatim in the `R4`-clause-1 form, its bytes and its trials untouched); the
+  denominator law; `AUROC`'s domain with the **instrument-range** framing — a gate
+  is an instrument and declines to certify what it cannot measure — and the
+  **forcing-region theorem** as the domain guarantee that replaces round 1's
+  declared-reading proviso; the exact reading; the ECE **bin** reading; the
+  key-blind scope statement; the `§3.0` price-list tension **recorded for Layer
+  7's eyes** and ruled on by nobody; and the **declined commitment clause**, held
+  in reserve with its four objections. **No Layer-6 gate binds on either
+  artifact**, and `laws/t_rulings.py` now carries the six `§5 L6` constants
+  **twice**, once per round, each with a `§5` clause and no companion ruling.
+
 **`ATTAINABILITY.md` is mandatory from `BOUNDARY-RULINGS.md` R2**: a gate must be
 shown to lie strictly below the oracle ceiling and strictly above every named
 capability-free baseline on its binding corpus, and that arithmetic must be

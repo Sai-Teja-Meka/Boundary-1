@@ -454,6 +454,59 @@ AUTHORIZED_GATES = (
      "itself and scores AUROC 500, so the ceiling is neither breached nor "
      "vacuous — README-l5 §4's stated seam, closed by the battery's commitment "
      "class"),
+
+    # Layer 6, Stage A ROUND 2. The SAME six ratified numbers, declared a second
+    # time by the round-2 arithmetic on corpora/l6batteryb, and carrying a §5
+    # clause and NO COMPANION RULING for the same reason: no Layer-6 gate binds
+    # on battery-b either, and RULING-R7-DRAFT.md asks a human to bind it.
+    #
+    # Two copies of one clause is what this registry is for. Round 1's arithmetic
+    # is not withdrawn — its numbers still hold on its own artifact — and the
+    # draft proposes DEMOTING corpora/l6battery to an ungated diagnostic rather
+    # than retiring it, so both files keep computing and the registry binds both
+    # copies of every constant to the one §5 L6 clause. If they ever drift apart,
+    # the value check is where that shows.
+    ("ascension/l6/t_attainability_b.py", "GATE_BRIER", 40,
+     (_s5("Brier≤40"),),
+     "§5 L6 calibration, unchanged; MINIMIZING, read direction-aware under R5 "
+     "clause 2. On battery-b it is the clause the band's UPPER end keeps "
+     "load-bearing — both named constants fail it (45 and 43) and the honest "
+     "committer clears it at 23 by pricing the forcing region at the tie's own "
+     "confidence of 500"),
+    ("ascension/l6/t_attainability_b.py", "GATE_ECE", 30,
+     (_s5("ECE≤30"),),
+     "§5 L6 calibration, unchanged; MINIMIZING. Still discriminates against "
+     "NOTHING, but round 1's ORDERING IS REVERSED and the reversal is recorded: "
+     "the witness's bins agree with themselves exactly (bin 5 at 500 against an "
+     "accuracy of one half, which is the tie's own arithmetic) so it attains 0 "
+     "and the base-rate constant no longer beats a real model"),
+    ("ascension/l6/t_attainability_b.py", "GATE_AUROC", 900,
+     (_s5("AUROC≥900"),),
+     "§5 L6 calibration, unchanged; the clause §3.4 leaves UNDEFINED at "
+     "n_neg = 0. battery-b's forcing region makes n_neg = 100 a THEOREM for "
+     "every committing reader definable from the stream (the coin is withheld "
+     "and the stream is byte-identical under its complement), so this clause is "
+     "evaluable for reasons no session declared"),
+    ("ascension/l6/t_attainability_b.py", "GATE_F", 950,
+     (_s5("abstention-aware F≥950"),),
+     "§5 L6 fidelity, unchanged, under the LITERAL §3.0 table — R3 does not "
+     "reach Layer 6 and no extension is requested. On battery-b it is the clause "
+     "that KILLS the detect-and-abstain hedger outright at 918, under BOTH "
+     "readings of `n/a`: hedging the region costs 90 permille out of a "
+     "50-permille budget, so no policy clearing F can reach n_neg = 0"),
+    ("ascension/l6/t_attainability_b.py", "GATE_B", 1000,
+     (_s5("B=1000"),),
+     "§5 L6 budget; the identity in this registry since Layer 1, carried by R5 "
+     "clause 1's regularization. Attained rather than approached: battery-b is "
+     "scored in budget at DEFAULT_BUDGET with refused = 0, and §5 L6 states no "
+     "footprint clause at all"),
+    ("ascension/l6/t_attainability_b.py", "CEILING_AUROC", 600,
+     (_s5("capped AUROC ≤ 600"),),
+     "§5 L6 humility ceiling, unchanged and NOT APPLIED — trials/humility/l6/ "
+     "does not exist and R2's standing order puts the trials after the "
+     "arithmetic. make_engine(5) emits {0, 1000} through §7.2 itself and scores "
+     "AUROC 500 on battery-b, so the ceiling is neither breached nor vacuous "
+     "here either"),
 )
 
 
