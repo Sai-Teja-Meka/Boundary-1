@@ -28,7 +28,9 @@ round-half-to-even. The two readings disagree on a real interval — `Brier ≤
 (`PRE-READ.md §2`). This module computes **both** and this project's arithmetic
 takes the **exact** one, because `§5.1 L6`'s own defense sentences state bounds
 on the quantity and not on its rounding (*"at or under 0.04"*, *"to within 3%"*).
-Nothing here rules; `RULING-R7-DRAFT.md` asks a human to.
+Nothing here rules; `RULING-R7-DRAFT.md` asked a human to, and
+`BOUNDARY-RULINGS.md R7` clause 4 ruled it — EXACT, not permille — with clause 5
+ruling the ECE bin index this module implements.
 
 ## AUROC's precondition is load-bearing, not decorative
 

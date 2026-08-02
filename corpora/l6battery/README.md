@@ -1,5 +1,36 @@
 # `corpora/l6battery` — the Layer-6 commitment battery
 
+> **Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded). This artifact is now
+> an UNGATED DIAGNOSTIC.**
+>
+> `R7` clause 1 binds both sides of the Layer-6 gate to `corpora/l6batteryb` and
+> **DEMOTES this battery** — the fourth substrate kill, after `corpora/l3stream`
+> (`R1` clause 1) and the chronicle family (`R4` clause 1), and the first this
+> project has performed on an artifact it froze **one session earlier**.
+>
+> **The cause is this battery's own measurement**, recorded verbatim in the entry
+> from `trials/ascension/l6/ATTAINABILITY.md §6`: *"`n_neg > 0` **for the declared
+> reading**, measured at 158 on the engine this project has frozen — and **not**
+> against an arbitrary reader."* §4 below says the same thing in this file's own
+> words. The mechanism is `§8.7` itself — the murk doctrine pairs every injected
+> defect with its answer key **and injects it by visible construction**, so a
+> stream-only rule recovers each family exactly (symmetric difference **0** on
+> contradiction 305, near-duplicate 393, ambiguity 205, malformed 257), and **on
+> murk, evidence that ranks also resolves**. A gate citing `AUROC` bound here
+> would be a gate whose evaluability depended on the engine under test not having
+> thought of first-wins. `R7` clause 3(b) is what forbids that in general.
+>
+> **Nothing is retired and nothing is deleted.** A corpus is retired only by
+> ceasing to gate on it, never by changing its bytes: the frozen instance, the
+> generator, `trials/ops/l6/t_l6battery.py` and
+> `trials/ascension/l6/t_attainability.py` are all untouched and still run green.
+> What this battery remains is on the record in the entry — the artifact that
+> first gave `§3.4` a **denominator** at all, whose capped measurement of `AUROC
+> 500` against the ratified 600 ceiling was the first defined `AUROC` in this
+> project's history, and the diagnostic against which battery-b's arithmetic is
+> read. The paragraph below that begins *"No gate binds on this battery"* was
+> true when written; this is where it stops, and none of it is rewritten.
+
 `[L5] [ASCEND]`, Layer-6 Stage A, 2026-08-01. Frozen instance
 **`l6battery.s8008.n3905.json`** (seed 8008, 3 905 queries, 418 783 bytes).
 

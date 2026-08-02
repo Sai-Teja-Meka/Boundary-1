@@ -95,6 +95,37 @@ strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
   diagnostic; appending a ruling is what freezes, and this session does not
   append, so the demotion is proposed here and executed at ratification.
 
+  Note added 2026-08-02 ([L5] [RULING], R7 recorded). The paragraph above was
+  true when written and this is where it stops. R7 is ratified and appended, and
+  it does both things that paragraph left to a human. Clause 1 binds BOTH sides
+  of the Layer-6 gate -- ascension and humility together, for R6 clause 1's
+  reason -- to corpora/l6batteryb, where the upper side is EXHIBITED (a
+  confidence assignment reading structural evidence only, at Brier 23 / ECE 0 /
+  AUROC 976 / F 955 / B 1000 against <=40 / <=30 / >=900 / >=950 / =1000) and no
+  named capability-free policy clears the conjunction. AND IT DEMOTES
+  corpora/l6battery TO AN UNGATED DIAGNOSTIC -- the FOURTH substrate kill, after
+  l3stream (R1 clause 1) and the chronicle family (R4 clause 1), and the first
+  performed on an artifact this project froze ONE SESSION EARLIER. The cause is
+  round 1's own measurement, recorded verbatim in the entry: n_neg > 0 held there
+  FOR THE DECLARED READING and not against an arbitrary reader, because §8.7
+  injects every murk defect by visible construction and a stream-only rule
+  recovers each family exactly -- on murk, evidence that ranks also resolves.
+  battery-b replaces that proviso with a theorem: its forcing region is 100
+  mirror pairs whose members are observationally identical, the resolving coin is
+  withheld, and the stream is byte-identical under the coin's complement, so
+  n_neg = 100 for EVERY committing reader definable from the stream.
+
+  NOTHING ABOUT EITHER ARTIFACT MOVED: same seeds, same bytes, same generators,
+  same trials. A demotion is a change of AUTHORITY and not of bytes (R4 clause
+  1's form, which kept chronicle and murk), so trials/ops/l6/t_l6battery.py and
+  trials/ascension/l6/t_attainability.py keep computing and keep running green,
+  and what l6battery remains is on the record: the artifact that first gave §3.4
+  a denominator at all, and the diagnostic against which battery-b's arithmetic
+  is read. laws/t_rulings.py records the demotion in its own structure -- the six
+  battery-b constants carry R7 beside their §5 L6 clause, the six l6battery
+  copies carry the §5 clause and NO ruling -- and a registry edit that gave them
+  one back turns that file red.
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 

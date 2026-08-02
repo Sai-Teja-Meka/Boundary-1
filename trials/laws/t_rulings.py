@@ -395,22 +395,32 @@ AUTHORIZED_GATES = (
      "either could be made to break a ratified gate by being poor. R6 clause 2 "
      "left that question to Stage C expressly"),
 
-    # Layer 6, Stage A. The ratified §5 L6 numbers, declared so the attainability
-    # arithmetic can be stated in the constitution's own figures — and carrying a
-    # §5 clause and NO COMPANION RULING, which is what "no gate binds" looks like
-    # in this registry. It is the same shape the Layer-5 Stage-A session left
-    # behind (BOUNDARY.log line 28) and it lasted exactly until R5 and R6 were
-    # ratified; RULING-R7-DRAFT.md asks for the Layer-6 equivalent and appending
-    # is what freezes, so a session does not append.
+    # Layer 6, Stage A — ROUND 1, AND NOW THE DEMOTED DIAGNOSTIC. The ratified §5
+    # L6 numbers, declared so the attainability arithmetic can be stated in the
+    # constitution's own figures — and carrying a §5 clause and NO COMPANION
+    # RULING. When they were written that recorded "no gate binds anywhere"; since
+    # R7 it records something sharper and permanent, which is why the six entries
+    # below are unchanged rather than updated: **R7 clause 1 DEMOTED
+    # corpora/l6battery to an ungated diagnostic**, so the same §5 L6 clause is
+    # now authorized on one artifact (battery-b, below) and diagnostic on this
+    # one, and the registry says so in its own structure by the ABSENCE of a
+    # ruling here. DEMOTED_DIAGNOSTICS below makes that absence machine-checked:
+    # giving these rows a ruling back — re-promoting the artifact by editing the
+    # registry — is RED.
+    #
+    # The demotion's cause is round 1's own §6, recorded verbatim in R7: n_neg > 0
+    # held here FOR THE DECLARED READING and not against an arbitrary reader,
+    # because §8.7 injects every murk defect by visible construction and a
+    # stream-only rule recovers each family exactly. Nothing is retired: the
+    # arithmetic below still runs, still asserts every recorded figure on
+    # corpora/l6battery, and is still green.
     #
     # R5 IS ALREADY IN FORCE ON THESE CLAUSES AND IS DELIBERATELY NOT CITED HERE.
     # Clause 2 is forward-binding in its own words *"because Layer 6 needs it
     # immediately (Brier<=40 and ECE<=30 are both minimizing)"*, and clause 1
     # already carries B=1000 as an identity — so R5 governs how these constants
     # are READ without any entry of its own, and the Stage-A arithmetic discharges
-    # R2 obligation 2 over the conjunction under it. What the registry records by
-    # the ABSENCE of a ruling here is the substrate: no Layer-6 gate binds on
-    # corpora/l6battery or on anything else.
+    # R2 obligation 2 over the conjunction under it.
     ("ascension/l6/t_attainability.py", "GATE_BRIER", 40,
      (_s5("Brier≤40"),),
      "§5 L6 calibration, unchanged; a MINIMIZING clause with ceiling 0, read "
@@ -455,58 +465,100 @@ AUTHORIZED_GATES = (
      "vacuous — README-l5 §4's stated seam, closed by the battery's commitment "
      "class"),
 
-    # Layer 6, Stage A ROUND 2. The SAME six ratified numbers, declared a second
-    # time by the round-2 arithmetic on corpora/l6batteryb, and carrying a §5
-    # clause and NO COMPANION RULING for the same reason: no Layer-6 gate binds
-    # on battery-b either, and RULING-R7-DRAFT.md asks a human to bind it.
+    # Layer 6, Stage A ROUND 2 — THE BINDING ARTIFACT. The SAME six ratified
+    # numbers, declared a second time by the round-2 arithmetic on
+    # corpora/l6batteryb, and now carrying **R7** beside their §5 L6 clause.
     #
-    # Two copies of one clause is what this registry is for. Round 1's arithmetic
-    # is not withdrawn — its numbers still hold on its own artifact — and the
-    # draft proposes DEMOTING corpora/l6battery to an ungated diagnostic rather
-    # than retiring it, so both files keep computing and the registry binds both
-    # copies of every constant to the one §5 L6 clause. If they ever drift apart,
-    # the value check is where that shows.
+    # R7 clause 1 binds BOTH sides of the Layer-6 gate — ascension and humility
+    # together, for R6 clause 1's reason — to corpora/l6batteryb, and in the same
+    # clause demotes corpora/l6battery. So two copies of one §5 clause sit in this
+    # registry with different authorities, which is exactly what it is for: the
+    # value check keeps them from drifting apart, and the ruling column records
+    # which artifact each is authorized on.
+    #
+    # WHAT R7 AUTHORIZES IS THE SUBSTRATE AND THE n/a LAW, NOT THE READING, and
+    # the two are kept distinct here as the R6 session kept R5 and R6. R5 governs
+    # how R2's obligations are discharged at this layer without an entry of its
+    # own — clause 2 forward-binding in its own words *"because Layer 6 needs it
+    # immediately"*, clause 1 carrying B=1000 as the identity it has been since
+    # Layer 1, clause 3 the declared policy class, clause 4 the pricing. R7 adds
+    # the artifact, the calibration denominator, AUROC's domain, and the two
+    # readings (exact-not-permille; the ECE bin index).
     ("ascension/l6/t_attainability_b.py", "GATE_BRIER", 40,
-     (_s5("Brier≤40"),),
+     (_s5("Brier≤40"), _ruling("R7")),
      "§5 L6 calibration, unchanged; MINIMIZING, read direction-aware under R5 "
      "clause 2. On battery-b it is the clause the band's UPPER end keeps "
      "load-bearing — both named constants fail it (45 and 43) and the honest "
      "committer clears it at 23 by pricing the forcing region at the tie's own "
-     "confidence of 500"),
+     "confidence of 500. R7 clause 1 binds it to corpora/l6batteryb, and clause "
+     "4 rules the bound EXACT (40/1000) rather than permille"),
     ("ascension/l6/t_attainability_b.py", "GATE_ECE", 30,
-     (_s5("ECE≤30"),),
+     (_s5("ECE≤30"), _ruling("R7")),
      "§5 L6 calibration, unchanged; MINIMIZING. Still discriminates against "
      "NOTHING, but round 1's ORDERING IS REVERSED and the reversal is recorded: "
      "the witness's bins agree with themselves exactly (bin 5 at 500 against an "
      "accuracy of one half, which is the tie's own arithmetic) so it attains 0 "
-     "and the base-rate constant no longer beats a real model"),
+     "and the base-rate constant no longer beats a real model. R7 clause 1 binds "
+     "it to corpora/l6batteryb; clause 5 rules the BIN INDEX the witness's "
+     "ECE = 0 depends on — bin(conf) = 9 if conf == 1000 else conf // 100"),
     ("ascension/l6/t_attainability_b.py", "GATE_AUROC", 900,
-     (_s5("AUROC≥900"),),
+     (_s5("AUROC≥900"), _ruling("R7")),
      "§5 L6 calibration, unchanged; the clause §3.4 leaves UNDEFINED at "
-     "n_neg = 0. battery-b's forcing region makes n_neg = 100 a THEOREM for "
-     "every committing reader definable from the stream (the coin is withheld "
-     "and the stream is byte-identical under its complement), so this clause is "
-     "evaluable for reasons no session declared"),
+     "n_neg = 0. R7 clause 3 rules that domain: n/a DISQUALIFIES rather than "
+     "excuses (a gate is an instrument and declines to certify what it cannot "
+     "measure), and a gate citing AUROC binds only where both classes non-empty "
+     "is a THEOREM — which battery-b's forcing region supplies, the coin being "
+     "withheld and the stream byte-identical under its complement, so n_neg = "
+     "100 for every committing reader definable from the stream. R7 clause 1 "
+     "binds it to that artifact"),
     ("ascension/l6/t_attainability_b.py", "GATE_F", 950,
-     (_s5("abstention-aware F≥950"),),
+     (_s5("abstention-aware F≥950"), _ruling("R7")),
      "§5 L6 fidelity, unchanged, under the LITERAL §3.0 table — R3 does not "
-     "reach Layer 6 and no extension is requested. On battery-b it is the clause "
+     "reach Layer 6 and R7 requests no extension. On battery-b it is the clause "
      "that KILLS the detect-and-abstain hedger outright at 918, under BOTH "
      "readings of `n/a`: hedging the region costs 90 permille out of a "
-     "50-permille budget, so no policy clearing F can reach n_neg = 0"),
+     "50-permille budget, so no policy clearing F can reach n_neg = 0 (floor 87). "
+     "R7 clause 1 binds it; clause 3(c) records the window that keeps a future "
+     "artifact's region large enough for this clause to price hedging out"),
     ("ascension/l6/t_attainability_b.py", "GATE_B", 1000,
-     (_s5("B=1000"),),
+     (_s5("B=1000"), _ruling("R7")),
      "§5 L6 budget; the identity in this registry since Layer 1, carried by R5 "
      "clause 1's regularization. Attained rather than approached: battery-b is "
      "scored in budget at DEFAULT_BUDGET with refused = 0, and §5 L6 states no "
-     "footprint clause at all"),
+     "footprint clause at all — which R7 states again in its own text, creating "
+     "none. R7 clause 1 binds the whole gate, this clause included"),
     ("ascension/l6/t_attainability_b.py", "CEILING_AUROC", 600,
-     (_s5("capped AUROC ≤ 600"),),
-     "§5 L6 humility ceiling, unchanged and NOT APPLIED — trials/humility/l6/ "
-     "does not exist and R2's standing order puts the trials after the "
-     "arithmetic. make_engine(5) emits {0, 1000} through §7.2 itself and scores "
-     "AUROC 500 on battery-b, so the ceiling is neither breached nor vacuous "
-     "here either"),
+     (_s5("capped AUROC ≤ 600"), _ruling("R7")),
+     "§5 L6 humility ceiling, unchanged and NOT APPLIED HERE — "
+     "trials/humility/l6/ does not exist and R2's standing order puts the trials "
+     "after the arithmetic. R7 clause 1 binds this ceiling to "
+     "corpora/l6batteryb in the SAME clause as the gate, because a ceiling "
+     "measured on one artifact beside a gate cleared on another is two facts "
+     "about two worlds: make_engine(5) emits {0, 1000} through §7.2 itself and "
+     "scores AUROC 500 there, neither breached nor vacuous, bought by a query "
+     "class the engine cannot get right FOR ANY READING"),
+)
+
+
+# --- the demoted diagnostics (R7 clause 1, in the R1 clause 5 / R4 clause 1 form)
+#
+# A corpus is retired only by ceasing to gate on it, never by changing its bytes.
+# When a ruling demotes an artifact, the registry records it by the ABSENCE of a
+# ruling beside that artifact's copies of the §5 clause — and an absence is not a
+# check unless something asserts it. This is that assertion: the named file's
+# constants must carry their §5 clause and NO BOUNDARY-RULINGS.md entry at all, so
+# RE-PROMOTING a demoted artifact by editing this registry is red.
+#
+# (file, the entry that demoted it, why)
+
+DEMOTED_DIAGNOSTICS = (
+    ("ascension/l6/t_attainability.py", "R7",
+     "corpora/l6battery, DEMOTED to an ungated diagnostic by R7 clause 1 — the "
+     "fourth substrate kill, after l3stream (R1 clause 1) and the chronicle "
+     "family (R4 clause 1). Its cause is round 1's own measurement, recorded "
+     "verbatim in the entry: n_neg > 0 held there FOR THE DECLARED READING and "
+     "not against an arbitrary reader. Its bytes, its generator and both trials "
+     "that score it are untouched and still green; what it lost is authority"),
 )
 
 
@@ -685,6 +737,36 @@ def trial_every_gate_binding_matches_section5_or_a_ruling():
                     "%s::%s claims authority %r from %s, but that text does not "
                     "occur there — the gate is applied without authority"
                     % (rel, const, clause, doc))
+
+
+def trial_a_demoted_artifacts_constants_carry_no_companion_ruling():
+    """The demotion, machine-checked — `R7` clause 1 in the `R4` clause 1 form.
+
+    A demotion is a change of authority and not of bytes, so what makes it real
+    is exactly this registry: the demoted artifact's copies of the §5 clause keep
+    the clause and lose the ruling, while the binding artifact's copies carry it.
+    An absence records nothing unless something asserts it, and this asserts it —
+    a registry edit that handed those rows a ruling back would RE-PROMOTE the
+    artifact silently, so it goes red here instead.
+    """
+    ruling_ids = set(entry_id for entry_id, _title in _entries())
+    for rel, entry, why in DEMOTED_DIAGNOSTICS:
+        require(entry in ruling_ids,
+                "%s is recorded as demoted by %s, which is not an entry in "
+                "BOUNDARY-RULINGS.md" % (rel, entry))
+        rows = [row for row in AUTHORIZED_GATES if row[0] == rel]
+        require(len(rows) > 0,
+                "the registry names %s as a demoted diagnostic but authorizes no "
+                "constant in it — the demotion has nothing to be about" % (rel,))
+        for _rel, const, _value, authorities, _note in rows:
+            cited = [clause for doc, clause in authorities
+                     if doc == "BOUNDARY-RULINGS.md"]
+            require(not cited,
+                    "%s::%s cites %s, but that artifact is an UNGATED DIAGNOSTIC "
+                    "(%s). A ruling beside a constant is what authorizes a gate "
+                    "to bind; restoring one here re-promotes a demoted artifact "
+                    "without a ruling that says so"
+                    % (rel, const, ", ".join(cited), why))
 
 
 def trial_no_trial_applies_an_undeclared_gate():

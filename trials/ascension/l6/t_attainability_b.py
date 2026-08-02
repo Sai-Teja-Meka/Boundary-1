@@ -26,6 +26,37 @@ where the frozen Layer-5 engine is replayed to check that the declared reader is
 what it actually does, which is a measurement and not a gate.
 
 `R5` clause 2 is applied FIRST, as the obligation's own order requires.
+
+---
+
+**Note added 2026-08-02 (`[L5] [RULING]`, `R7` recorded). The paragraph above is
+where "no gate binds" stops holding for this artifact.**
+
+A human ratified `RULING-R7-DRAFT.md`'s round-2 draft and a `RULING` session
+appended it as **`R7`**, as drafted. **`R7` clause 1 binds BOTH sides of the
+Layer-6 gate — ascension and humility — to `corpora/l6batteryb`**, in one clause,
+for `R6` clause 1's reason: a ceiling measured on one artifact beside a gate
+cleared on another is two facts about two worlds. The six constants below now
+carry `R7` beside their `§5 L6` clause in `laws/t_rulings.py`; round 1's six keep
+the clause and carry no ruling, which is that registry recording `corpora/
+l6battery`'s **demotion** in its own structure.
+
+The rest of `R7` is what this file's arithmetic already assumed and may now cite:
+the calibration denominator excludes abstentions and is stated beside the triple
+(clause 2); `AUROC = n/a` **DISQUALIFIES** and a gate citing it binds only where
+both classes non-empty is a **theorem**, priced inside clause 3(c)'s window
+(clause 3); the reading is **exact, not permille** (clause 4); and the ECE bin
+index is `bin(conf) = 9 if conf == 1000 else conf // 100` (clause 5), which is
+what the witness's `ECE = 0` depends on.
+
+**Two authorities, kept distinct as the `R6` session kept `R5` and `R6`.** `R5`
+governs the READING of `R2`'s obligations here without an entry of its own —
+clause 2 forward-binding *"because Layer 6 needs it immediately"*, clause 1
+carrying `B = 1000` as the identity it has been since Layer 1, clause 3 the
+declared policy class, clause 4 the pricing. `R7` governs the SUBSTRATE and the
+`n/a` law. Nothing below is edited in substance and no recorded figure moves:
+**authority, not behaviour.** `trials/humility/l6/` and `trials/inheritance/l6/`
+are Stage B's, and the engine is Stage C's, under `R2`'s standing step.
 """
 
 from fractions import Fraction
@@ -45,8 +76,8 @@ GATE_F = 950
 GATE_B = 1000
 CEILING_AUROC = 600
 
-# The exact reading (RULING-R7-DRAFT.md clause 4): the gate integers are bounds
-# on the quantity in [0,1], not on its permille rounding.
+# The exact reading (BOUNDARY-RULINGS.md R7 clause 4): the gate integers are
+# bounds on the quantity in [0,1], not on its permille rounding.
 BRIER_BOUND = Fraction(GATE_BRIER, 1000)
 ECE_BOUND = Fraction(GATE_ECE, 1000)
 AUROC_BOUND = Fraction(GATE_AUROC, 1000)
@@ -279,8 +310,10 @@ def trial_no_scored_policy_lands_in_a_disputed_reading_interval():
             require(not (lo < value <= hi),
                     "%s's %s = %s lies in the interval where the exact and "
                     "permille readings of §5 L6 disagree — the reading now "
-                    "decides a verdict and RULING-R7-DRAFT.md clause 4 is no "
-                    "longer optional" % (name, measure, value))
+                    "decides a verdict — BOUNDARY-RULINGS.md R7 clause 4 rules "
+                    "it EXACT, and a policy landing here would be the first "
+                    "whose verdict that ruling decides"
+                    % (name, measure, value))
 
 
 # ---- R2 obligation 1 -------------------------------------------------------
@@ -450,7 +483,8 @@ def trial_detect_and_abstain_is_killed_by_fidelity_and_not_by_the_auroc_reading(
     F 960 / B 1000` with `AUROC n/a` — better than the exhibited witness on three
     clauses — and the ONLY thing standing between a capability-free policy and
     the Layer-6 gate was what `n/a` meant. `ATTAINABILITY.md §5` recorded both
-    horns and `RULING-R7-DRAFT.md` put the question to a human.
+    horns and `RULING-R7-DRAFT.md` put the question to a human, which `R7`
+    clause 3(a) answered: `n/a` DISQUALIFIES.
 
     On battery-b the same policy fails `F` at 918 against 950, so it does not
     clear under EITHER reading of `n/a`. The forcing region is 200 of 2 200
@@ -505,7 +539,7 @@ def trial_no_policy_clearing_f_can_reach_n_neg_zero():
             "and hedging one more must break it under the exact reading")
     require_equal(tasks.permille(f_next), GATE_F,
                   "that one is where the two readings differ — it rounds to 950 "
-                  "and is below 950 exactly, which is RULING-R7-DRAFT.md "
+                  "and is below 950 exactly, which is BOUNDARY-RULINGS.md R7 "
                   "clause 4 earning its keep")
     _n, f_permille_edge = tasks.score_hedging_pairs(
         MAX_AFFORDABLE_HEDGE_PERMILLE + 1)
@@ -605,30 +639,52 @@ def trial_the_capped_engine_is_measured_and_the_ceiling_is_neither_breached_nor_
             "AUROC, structurally rather than marginally")
 
 
-# ---- what this session does NOT do ----------------------------------------
+# ---- the binding, and what still comes after it ----------------------------
 
-def trial_no_layer_6_gate_binds_on_anything():
-    """The Stage-A boundary, asserted in code rather than promised in prose.
+def trial_the_layer_6_gate_binds_on_this_artifact_under_r7_clause_1():
+    """The binding, asserted in code rather than promised in prose.
 
-    `R2` obligation 4: the corpus binding is the human's. A Layer-6 engine, a
-    Layer-6 humility trial and a Layer-6 inheritance row do not exist, and
-    `RULING-R7-DRAFT.md` is deliberately not appended to `BOUNDARY-RULINGS.md`
-    because appending is what freezes.
+    Until `R7` this trial asserted the opposite fact — that no ruling had been
+    appended and therefore no Layer-6 gate bound on anything. A human ratified
+    the round-2 draft and a `RULING` session appended it, so what it asserts now
+    is the state that replaced it: `R7` exists, and clause 1 binds **both sides**
+    of the Layer-6 gate to `corpora/l6batteryb` while demoting round 1's artifact.
+
+    The two facts are checked together on purpose. A binding whose entry did not
+    also record the demotion would leave two artifacts carrying the same clause
+    with no way to tell which one gates, which is the state `R7` was written to
+    end.
+
+    **What `R7` does not do is asserted here too**, because it is the boundary
+    this session stops at: `R2`'s standing order is *attainability arithmetic →
+    trials → engine*, so `trials/humility/l6/` with its mandatory
+    `IMPOSSIBILITY.md`, `trials/inheritance/l6/` and only then the engine are
+    still ahead. A later session flips these as Stage B and Stage C flipped
+    Layer 5's.
     """
     import os
     root = tasks.PROJECT_ROOT
+    rulings = os.path.join(root, "BOUNDARY-RULINGS.md")
+    with open(rulings, "r", encoding="utf-8") as fh:
+        text = fh.read()
+
+    require("\n# R7 — " in text,
+            "R7 is not in BOUNDARY-RULINGS.md — the six constants in this file "
+            "cite it as their authority, so without the entry the gate they "
+            "state is applied without one")
+    entry = text[text.index("\n# R7 — ") + 1:]
+    require("corpora/l6batteryb" in entry,
+            "R7 must name the artifact it binds")
+    require("DEMOTED" in entry and "corpora/l6battery`" in entry,
+            "R7 clause 1 binds battery-b and demotes corpora/l6battery in the "
+            "SAME clause; an entry carrying only half of that leaves two "
+            "artifacts holding one §5 L6 clause")
+
     for absent in ("core/layers/l6_meta_memory.py",
                    "trials/adapters/l6.py",
                    "trials/humility/l6",
                    "trials/inheritance/l6"):
         require(not os.path.exists(os.path.join(root, absent)),
-                "%s exists — this is a Stage-A session and the engine, the "
-                "humility class and the inheritance row all come after a "
-                "ruling (R2's standing step)" % (absent,))
-
-    rulings = os.path.join(root, "BOUNDARY-RULINGS.md")
-    with open(rulings, "r", encoding="utf-8") as fh:
-        text = fh.read()
-    require("\n# R7 " not in text,
-            "RULING-R7-DRAFT.md must NOT be appended by a session; appending is "
-            "what freezes and a human ratifies")
+                "%s exists — a RULING session grants authority and writes no "
+                "battery and no engine; R2's standing step orders Stage B and "
+                "Stage C after this entry, not inside it" % (absent,))

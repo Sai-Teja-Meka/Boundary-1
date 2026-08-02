@@ -1,5 +1,39 @@
 # ATTAINABILITY-B.md — the Layer-6 gate on `corpora/l6batteryb` (round 2)
 
+> **RATIFIED — 2026-08-02 (`[L5] [RULING]`, `R7` recorded).**
+>
+> A `RULING` session appended **`R7`** to `BOUNDARY-RULINGS.md` from
+> `RULING-R7-DRAFT.md`'s round-2 draft, **as drafted**: all nine clauses, in that
+> order, with their normative text unaltered. **The frozen entry is the binding
+> text and this file is not**; where the two differ, `R7` governs. §7's four
+> questions are answered, and each answer is a clause:
+>
+> 1. **the Layer-6 gate binds on `corpora/l6batteryb`, both sides** — ascension
+>    and humility in one clause, for `R6` clause 1's reason (clause 1);
+> 2. **`corpora/l6battery` is DEMOTED to an ungated diagnostic** — the fourth
+>    substrate kill, its cause recorded verbatim in the `R4`-clause-1 form, its
+>    bytes and its trials untouched (clause 1);
+> 3. **`AUROC = n/a` DISQUALIFIES**, with the instrument-range framing, and the
+>    **forcing-region theorem** as the domain guarantee that replaces round 1's
+>    declared-reading proviso, priced inside the window §2.2 records (clause 3);
+> 4. **EXACT, not permille** (clause 4) — with §1.1's 13-pair row now on the
+>    record as the first number a reading moves — and the **ECE bin index** ruled
+>    alongside it, `bin(conf) = 9 if conf == 1000 else conf // 100` (clause 5),
+>    because this document's `ECE = 0` depends on it.
+>
+> **Two authorities, kept distinct as the `R6` session kept `R5` and `R6`.** `R5`
+> governs the READING of `R2`'s obligations at this layer without an entry of its
+> own — clause 2 forward-binding in its own words *"because Layer 6 needs it
+> immediately"*, clause 1 carrying `B = 1000` as the identity it has been since
+> Layer 1, clause 3 the declared policy class, clause 4 the pricing this document
+> honours in §3.2. `R7` governs the **substrate** and the **`n/a` law**.
+>
+> Nothing below is edited, withdrawn or reread. Its forward-looking sentences —
+> §0's *"No gate binds this session"*, §3's and §4.2's *"this document does not
+> apply that ceiling"*, §7's four open questions — are **answered by the entry
+> rather than rewritten**, which is the form `R4`, `R5` and `R6` each used. Every
+> number still holds and `t_attainability_b.py` still asserts each of them, green.
+
 **BOUNDARY-RULINGS.md R2** put attainability before authority: *"a gate must lie
 strictly below the oracle ceiling and strictly above every capability-free
 baseline on its binding corpus, and that arithmetic must be computed and recorded
