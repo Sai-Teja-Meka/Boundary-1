@@ -610,14 +610,14 @@ AUTHORIZED_GATES = (
      "declares no constant of its own: §5 L5's clauses are identities in budget, "
      "and an in-budget identity is not a gate this registry governs"),
 
-    # Layer 7, Stage A. The ratified §5 L7 numbers, declared so the attainability
-    # arithmetic can be stated in the constitution's own figures — and carrying a
-    # §5 clause and NO COMPANION RULING, which is what "no gate binds on
-    # anything" looks like in this registry. It is the shape BOUNDARY.log line 28
-    # left behind at Layer 5 and line 36 at Layer 6, and
-    # ascension/l7/t_attainability.py::trial_no_layer_7_gate_binds_on_anything
-    # asserts the same absence from the other side (no engine, no adapter, no
-    # humility or inheritance directory, and no R8 in BOUNDARY-RULINGS.md).
+    # Layer 7, Stage A — AND NOW THE BINDING. The ratified §5 L7 numbers,
+    # declared so the attainability arithmetic can be stated in the
+    # constitution's own figures. Until R8 they carried a §5 clause and NO
+    # COMPANION RULING, which is what "no gate binds on anything" looked like in
+    # this registry — the shape BOUNDARY.log line 28 left behind at Layer 5 and
+    # line 36 at Layer 6. **R8 clause 1 binds BOTH sides of the Layer-7 gate —
+    # ascension and humility together, for R6 clause 1's reason — to
+    # corpora/l7compose**, so every one of the eight now carries it.
     #
     # THE CONSTANTS LIVE IN THE SHARED TASK MODULE, quoted once, because the
     # Stage-A arithmetic and the drift trial must apply the same figures and this
@@ -625,49 +625,102 @@ AUTHORIZED_GATES = (
     # files — so quoting them anywhere under trials/ is what makes them
     # discoverable, and there is no cheaper place to hide one.
     #
-    # R5 IS ALREADY IN FORCE ON THESE CLAUSES AND IS DELIBERATELY NOT CITED HERE,
-    # exactly as at Layer 6: clause 1 carries the five identities and clause 2 the
-    # two minimizing clauses, both forward-binding in their own text, so R5
-    # governs how these constants are READ while the absence of a ruling here
-    # records that none authorizes a SUBSTRATE.
-    ("_l7tasks.py", "GATE_VALIDITY", 1000, (_s5("validity=1000"),),
+    # THE SAME CLAUSE ALSO REFUSED THE WHOLE EXISTING STOCK — the FIFTH SUBSTRATE
+    # KILL, measured at 85 954 answerable queries with not one answer absent from
+    # its own stream. It is a REFUSAL TO BIND and not a demotion, so nothing is
+    # named in DEMOTED_DIAGNOSTICS below and no artifact loses an authority it
+    # had; what records it here instead is REFUSED_STOCK and the converse check,
+    # so that a registry edit binding one of those artifacts is red.
+    #
+    # THREE AUTHORITIES, KEPT DISTINCT, as the R6 session kept R5 and R6 and the
+    # R7 session kept R5 and R7. **R5** governs how R2's obligations are
+    # discharged here without an entry of its own — clause 1 the five identities
+    # (discharged by exhibited attainment), clause 2 the two minimizing clauses
+    # and the conjunction reading, clause 3 the declared policy class, clause 4
+    # the pricing — and is deliberately NOT cited on any row. **R7** governs the
+    # `n/a` law's ground, clause 4's exact-not-permille reading and clause 5's
+    # ECE bin index, and is cited only where a Layer-7 clause applies one of
+    # them. **R8** governs the SUBSTRATE, the three denominators §5 does not
+    # state, and the reading of §4.2.
+    ("_l7tasks.py", "GATE_VALIDITY", 1000,
+     (_s5("validity=1000"), _ruling("R8")),
      "§5 L7 generation validity, unchanged; an identity discharged by an "
-     "exhibited attainment under R5 clause 1. Its denominator is the one §5 does "
-     "not state, which is the whole subject of RULING-R8-DRAFT.md clause 3"),
-    ("_l7tasks.py", "GATE_NOVELTY", 1000, (_s5("novelty=1000"),),
+     "exhibited attainment under R5 clause 1. Its denominator is one §5 does not "
+     "state: R8 clause 3(b) binds it to the items the engine TAGS generated, "
+     "every member checked by the harness against the declared grammar and the "
+     "set unshrinkable without failing tagging — and clause 3(c) makes an empty "
+     "one n/a, which DISQUALIFIES, which is why a retrieval-only policy does not "
+     "tie this clause at 1000. R8 clause 1 binds it to corpora/l7compose"),
+    ("_l7tasks.py", "GATE_NOVELTY", 1000,
+     (_s5("novelty=1000"), _ruling("R8")),
      "§5 L7, unchanged; the clause R2 obligation 2 rests on — a retrieval-only "
      "policy misses it by the maximum possible margin, and it is the clause a "
-     "self-reported denominator could let evaporate"),
-    ("_l7tasks.py", "GATE_TAGGING", 1000, (_s5("tagging=1000"),),
+     "self-reported denominator could let evaporate. R8 clause 3(b) binds the "
+     "denominator to the items the engine tags generated, checked by the HARNESS "
+     "over frozen bytes; clause 1 binds it to corpora/l7compose, where Theorem 2 "
+     "makes 'provably never-stored' a property of the ARTIFACT — the composed "
+     "item's canonical bytes appear nowhere in all 12 000 payloads"),
+    ("_l7tasks.py", "GATE_TAGGING", 1000,
+     (_s5("tagging=1000"), _ruling("R8")),
      "§5 L7, unchanged; the constitution's named capital crime as a number — "
      "*an untagged generation is a fabrication* — and the clause the forcing "
-     "region exists to make cost something"),
+     "region exists to make cost something. R8 clause 3(b) gives it the one "
+     "ARTIFACT-BOUND denominator of the three (the declared generation-required "
+     "queries the engine answers), which is what fences the other two; clause "
+     "3(d) puts the stricter tagging_all beside it as an ungated diagnostic in "
+     "R3's F_strict shape; clause 1 binds it to corpora/l7compose, where "
+     "Theorem 1 makes the class unreadable from the query"),
     ("_l7tasks.py", "GATE_PROMOTION", 0,
-     (_s5("self-pollution promotion=0"),),
+     (_s5("self-pollution promotion=0"), _ruling("R8")),
      "§5 L7, unchanged; MINIMIZING as well as an identity, read direction-aware "
      "under R5 clause 2. It is also the one clause §6 names in a second trial "
      "class in its own text (the mandatory Layer 7 self-pollution strain), and "
-     "Stage A measures it on the three-generation ladder without owning it"),
-    ("_l7tasks.py", "GATE_F", 950, (_s5("F≥950"),),
+     "R8 clause 5(c) rules WHO enforces it: the battery and that strain, keyed "
+     "on lineage, and NEVER laws/t_provenance_schema.py — the frozen validator "
+     "accepts all 30 depth-2 tags whose whole warrant is invented content. R8 "
+     "clause 1 binds it to corpora/l7compose, whose ladder makes the failure "
+     "reachable by construction"),
+    ("_l7tasks.py", "GATE_F", 950, (_s5("F≥950"), _ruling("R8")),
      "§5 L7 fidelity under the literal §3.0 table; the ordinary graded clause, "
-     "ceiling 1000, and the one that prices hedging out at 900 per abstention — "
-     "the g > 1/18 window"),
-    ("_l7tasks.py", "GATE_B", 1000, (_s5("B=1000"),),
-     "the budget law, absolute at every layer (§4.1); §5 L7 states no footprint "
-     "clause, so the artifact is scored at DEFAULT_BUDGET where refused = 0"),
-    ("_l7tasks.py", "GATE_ECE", 40, (_s5("ECE≤40"),),
+     "ceiling 1000, and the one that prices hedging out at 900 per abstention. "
+     "R8 clause 8(b) makes that arithmetic a PRECONDITION ON AN ARTIFACT — a "
+     "gate citing a Layer-7 capability ratio binds only where the "
+     "generation-required class exceeds 1/18 of the answerable core — and "
+     "corpora/l7compose sits at 80 permille, which is why the blanket hedger "
+     "dies here at 928. R3 does not reach Layer 7 and no extension is requested"),
+    ("_l7tasks.py", "GATE_B", 1000, (_s5("B=1000"), _ruling("R8")),
+     "the budget law, absolute at every layer (§4.1); the identity in this "
+     "registry since Layer 1, carried by R5 clause 1's regularization. §5 L7 "
+     "states no footprint clause and R8 creates none, so corpora/l7compose is "
+     "scored at DEFAULT_BUDGET where refused = 0; R8 clause 1 binds the whole "
+     "gate, this clause included"),
+    ("_l7tasks.py", "GATE_ECE", 40,
+     (_s5("ECE≤40"), _ruling("R7"), _ruling("R8")),
      "§5 L7 calibration, unchanged; MINIMIZING with ceiling 0, read "
      "direction-aware under R5 clause 2. Layer 6 MEASURED this clause to "
      "discriminate against nothing and Layer 7 inherits it as its sole "
-     "calibration clause, which ATTAINABILITY.md §6 states rather than lets a "
-     "reader assume"),
+     "calibration clause, which R8 clause 6 STATES rather than lets a reader "
+     "assume — a floor against incoherence, not a discriminator, and R2 "
+     "obligation 2 does not rest on it. R8 clause 6 also rules the denominator: "
+     "§3.4's own answered queries, so hedging one class cannot empty it. R7 is "
+     "cited beside R8 because its clause 4 (exact, not permille) and clause 5 "
+     "(bin(conf) = 9 if conf == 1000 else conf // 100) are the readings this "
+     "quantity is computed under, unchanged from Layer 6. R8 clause 1 binds it "
+     "to corpora/l7compose with the rest of the gate, where every named policy "
+     "scores 0 exactly — which is why the entry records what the clause is FOR "
+     "instead of letting that 0 be read as discrimination"),
     ("_l7tasks.py", "CEILING_CONJUNCTION", 50,
-     (_s5("capped (novel∧valid∧tagged) ≤ 50"),),
-     "§5 L7's humility ceiling, unchanged. It is stated in a measure the "
-     "ascension gate never states, so Stage A DEFINES it (a per-item conjunction "
-     "over the artifact's declared G class) and MEASURES the capped engine at 0 "
-     "— and does NOT apply it: trials/humility/l7/ is Stage B's under R2's "
-     "standing order"),
+     (_s5("capped (novel∧valid∧tagged) ≤ 50"), _ruling("R8")),
+     "§5 L7's humility ceiling, unchanged, and NOT APPLIED — trials/humility/l7/ "
+     "does not exist and R2's standing order puts the trials after the "
+     "arithmetic. It is stated in a measure the ascension gate never states, so "
+     "R8 clause 7 DEFINES it: a per-item conjunction over the artifact's "
+     "declared generation class, denominator the whole 160 so no policy can "
+     "empty it, and not a correctness measure. R8 clause 1 binds the ceiling to "
+     "corpora/l7compose in the SAME clause as the gate, for R6 clause 1's "
+     "reason; the capped engine measures 0 of 160 there, and clause 7 reads the "
+     "50 permille of headroom as eight items of slack for a partially capable "
+     "engine §7.4 does not produce"),
 )
 
 
@@ -691,6 +744,35 @@ DEMOTED_DIAGNOSTICS = (
      "not against an arbitrary reader. Its bytes, its generator and both trials "
      "that score it are untouched and still green; what it lost is authority"),
 )
+
+
+# --- the refused stock (R8 clause 1, the FIFTH SUBSTRATE KILL) --------------
+#
+# A demotion and a refusal are recorded differently, and the difference is not a
+# formality. R7 clause 1 DEMOTED an artifact that had been a candidate, so the
+# registry records it by the ABSENCE of a ruling beside that artifact's copies of
+# the §5 clause, and DEMOTED_DIAGNOSTICS above turns the absence into a check.
+#
+# R8 clause 1 REFUSED A WHOLE STOCK instead — 85 954 answerable queries across
+# every artifact in corpora/registry.py plus §8.8's one REAL entry, with not one
+# answer absent from its own stream, so the generation-required class is empty on
+# all of them and a gate citing novelty or tagging measures nothing there.
+# NOTHING IS DEMOTED: none of them was ever a Layer-7 candidate, so none loses an
+# authority it had, and there is no absence for the check above to attach to.
+#
+# What a refusal needs is the CONVERSE, and this is it: the §5 L7 constants carry
+# R8, R8 binds exactly one artifact, and no Layer-7 registry row may name a
+# refused artifact as the substrate its gate binds on. A registry edit that bound
+# a killed-stock artifact would reopen the fifth substrate kill silently; it goes
+# red instead.
+
+LAYER_7_CONSTANTS_FILE = "_l7tasks.py"
+LAYER_7_SUBSTRATE = "corpora/l7compose"
+LAYER_7_BINDING_RULING = "R8"
+
+REFUSED_STOCK = ("chronicle", "sessions", "murk", "l3stream", "l3streamb",
+                 "l4stream", "l5stream", "l6battery", "l6batteryb",
+                 "real-sessions/v1")
 
 
 # --- helpers ----------------------------------------------------------------
@@ -898,6 +980,70 @@ def trial_a_demoted_artifacts_constants_carry_no_companion_ruling():
                     "to bind; restoring one here re-promotes a demoted artifact "
                     "without a ruling that says so"
                     % (rel, const, ", ".join(cited), why))
+
+
+def trial_the_refused_stock_cannot_acquire_a_layer_7_binding():
+    """The refusal, machine-checked — `R8` clause 1's FIFTH SUBSTRATE KILL.
+
+    `R7` clause 1 demoted an artifact, and the check above turns the resulting
+    *absence* of a ruling into teeth. `R8` clause 1 refuses a whole stock and
+    demotes nothing, so that shape does not fit: no artifact loses an authority
+    it had, and there is no absence to assert. The teeth a refusal needs point the
+    other way, and this is them — three things together, none of which is a check
+    on its own:
+
+      * every registry row bearing a `§5 L7` constant cites `R8`, so the gate is
+        applied with the authority that bound it and not with an older one;
+      * `R8` itself names `corpora/l7compose` **and** records the whole-stock
+        refusal in the same clause, so an entry carrying only half of that cannot
+        stand behind the rows;
+      * and no such row names a **refused** artifact as the substrate it binds
+        on, while every one names the substrate that was bound.
+
+    The third is the one with the mutation behind it. A session that rebound a
+    Layer-7 constant to `corpora/murk` — or to any other member of the stock the
+    fifth kill refused — would reopen a kill a human ruled on, in a diff that
+    changes one string. It goes red here.
+    """
+    ruling_ids = set(entry_id for entry_id, _title in _entries())
+    require(LAYER_7_BINDING_RULING in ruling_ids,
+            "%s is not an entry in BOUNDARY-RULINGS.md, so the Layer-7 constants "
+            "cite an authority that does not exist"
+            % (LAYER_7_BINDING_RULING,))
+
+    rulings = _read_text(RULINGS_PATH)
+    entry = _entry_body(rulings, LAYER_7_BINDING_RULING)
+    require(LAYER_7_SUBSTRATE in entry,
+            "%s must name the artifact it binds" % (LAYER_7_BINDING_RULING,))
+    require("85 954" in entry and "refusal to bind" in entry,
+            "%s clause 1 binds an artifact AND records the whole-stock refusal "
+            "that forced it; an entry carrying only the binding would leave the "
+            "fifth substrate kill unrecorded in the document that performed it"
+            % (LAYER_7_BINDING_RULING,))
+
+    rows = [row for row in AUTHORIZED_GATES if row[0] == LAYER_7_CONSTANTS_FILE]
+    require(len(rows) == 8,
+            "the eight §5 L7 constants must all be registered; found %d"
+            % (len(rows),))
+    for rel, const, _value, authorities, note in rows:
+        cited = [clause for doc, clause in authorities
+                 if doc == "BOUNDARY-RULINGS.md"]
+        require(LAYER_7_BINDING_RULING in cited,
+                "%s::%s does not cite %s — the Layer-7 gate binds under that "
+                "entry and a constant applying it without one is applied without "
+                "authority" % (rel, const, LAYER_7_BINDING_RULING))
+        for refused in REFUSED_STOCK:
+            require("corpora/%s" % (refused,) not in note,
+                    "%s::%s names corpora/%s, which %s clause 1 REFUSED as a "
+                    "Layer-7 substrate — the fifth substrate kill, measured "
+                    "across 85 954 answerable queries with not one answer absent "
+                    "from its own stream. Binding a Layer-7 gate there reopens a "
+                    "kill a human ruled on"
+                    % (rel, const, refused, LAYER_7_BINDING_RULING))
+        require(LAYER_7_SUBSTRATE in note,
+                "%s::%s does not name %s as the substrate it is bound to, so "
+                "the row applies a gate this entry bound to an artifact without "
+                "recording which one" % (rel, const, LAYER_7_SUBSTRATE))
 
 
 def trial_no_trial_applies_an_undeclared_gate():

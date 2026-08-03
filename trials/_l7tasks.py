@@ -64,8 +64,13 @@ HUE_KEY = gen.HUE_KEY
 MASS_KEY = gen.MASS_KEY
 COMPOUND_CLASS = gen.COMPOUND_CLASS
 
-# `§5 L7`'s own gate, quoted here and registered in `laws/t_rulings.py`. NO
-# COMPANION RULING: no Layer-7 gate binds on anything (`t_attainability.py`).
+# `§5 L7`'s own gate, quoted here and registered in `laws/t_rulings.py`. Until
+# 2026-08-03 these eight carried a `§5 L7` clause and NO COMPANION RULING, which
+# is what "no Layer-7 gate binds on anything" looked like in that registry;
+# `BOUNDARY-RULINGS.md R8` clause 1 binds both sides of the gate to
+# `corpora/l7compose`, so every one of them now carries `R8` beside its clause.
+# `R8` clause 3 supplies the three denominators `§5` states none of, and its
+# clause 3(c) is why a `None` here is a FAILURE and not an excuse.
 GATE_VALIDITY = 1000
 GATE_NOVELTY = 1000
 GATE_TAGGING = 1000
@@ -201,7 +206,7 @@ class Reading:
 
         `support` is the ascending tuple of every `t` the rule actually read,
         which is what makes `§4.2`'s `support` a **relevance** claim on this
-        artifact and not merely a schema-valid list (`RULING-R8-DRAFT.md`
+        artifact and not merely a schema-valid list (`R8`
         clause 5(b)).
         """
         stored = self.profile_at.get(entity)
@@ -252,7 +257,7 @@ class Reading:
     def recoverable(self, t):
         """Can this store still PRODUCE the event at `t`?
 
-        THE SEAM `RULING-R8-DRAFT.md` clause 5(a) is about, named here rather
+        THE SEAM `R8` clause 5(a) is about, named here rather
         than left implicit. `§4.2.3` asks only whether a `t` was ever ASSIGNED;
         the support-recoverability diagnostic asks whether `read(t)` still
         ANSWERS. A `Reading` is backed by a payload list with no eviction, so at
@@ -317,7 +322,7 @@ def recomputed_lineage(reading=None):
 # the ITEM rather than of the answer's channel: `§4.2.3`'s four `kind`s say how
 # an answer reached the caller, and `lineage` says what the item is. The two are
 # orthogonal, which is why `§5 L7`'s `generated` tag does not violate `§4.2.3`'s
-# *"and no other"* (`RULING-R8-DRAFT.md` clause 4).
+# *"and no other"* (`R8` clause 4).
 
 OBSERVED = "observed"
 GENERATED = "generated"
@@ -386,7 +391,7 @@ class RetrievalOnly(Policy):
 
     It has no composition construct at all, which is why its `validity`,
     `novelty` and `tagging` denominators are **empty** — the fourth species
-    `PRE-READ.md §1.5` names, met head-on by `RULING-R8-DRAFT.md` clause 3.
+    `PRE-READ.md §1.5` names, met head-on by `R8` clause 3.
     """
 
     name = "retrieval-only"
@@ -476,7 +481,7 @@ class AlwaysObserved(Policy):
     **correct on every value it returns**, including all 160 generations, and it
     is killed by `tagging = 0/160` alone. That is the kill demonstrated rather
     than argued, and it is the reason the identity clauses and not `§3.0`'s
-    averaging are what govern this layer (`RULING-R8-DRAFT.md` clause 8).
+    averaging are what govern this layer (`R8` clause 8).
     """
 
     name = "always-observed"
@@ -648,7 +653,7 @@ def labeller_pair_profile(label):
 # ---- the measures ----------------------------------------------------------
 #
 # `§5 L7` states three ratios and NO denominator for any of them. The
-# denominators below are `RULING-R8-DRAFT.md` clause 3's, and they are stated
+# denominators below are `R8` clause 3's, and they are stated
 # here in one place so that no trial can quietly choose a different one.
 #
 #   tagging   — over the declared **G** queries the policy ANSWERS.

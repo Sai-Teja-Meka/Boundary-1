@@ -12,6 +12,56 @@ Every figure in `ATTAINABILITY.md` is recomputed here from the frozen bytes and
 required to be what that document records (`R2` obligation 3: a recorded number
 that drifts goes red). Nothing is asserted from prose, and where prose and trial
 disagree the trial's value is the enforced one (`R6` clause 3).
+
+---
+
+**Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded). The paragraph above is
+where "no Layer-7 gate binds on anything" stops holding.**
+
+A human ratified `RULING-R8-DRAFT.md` and a `RULING` session appended it as
+**`R8`**, as drafted. **`R8` clause 1 binds BOTH sides of the Layer-7 gate —
+ascension and humility — to `corpora/l7compose`**, in one clause, for `R6`
+clause 1's reason: a ceiling measured on one artifact beside a gate cleared on
+another is two facts about two worlds. The eight `§5 L7` constants in
+`_l7tasks.py` now carry `R8` beside their `§5 L7` clauses in
+`laws/t_rulings.py`, where until today they carried the clause and no companion
+ruling.
+
+**The same clause refused the whole existing stock** — the FIFTH SUBSTRATE KILL,
+measured by `trial_no_frozen_artifact_carries_a_generation_required_query` below
+at 85 954 answerable queries with not one answer absent from its own stream. It
+is a **refusal to bind and not a demotion**, in `R4` clause 1's form, so nothing
+is demoted, no byte moves and every trial that scores those artifacts keeps
+running; what makes the refusal checkable in the registry is
+`laws/t_rulings.py::trial_the_refused_stock_cannot_acquire_a_layer_7_binding`,
+the converse of the re-promotion check `R7` clause 1 needed.
+
+The rest of `R8` is what this file's arithmetic already computed and may now
+cite: `generate(cue)` is a **`query` op** (clause 2); the three ratios'
+denominators are the artifact's declared classes, a self-reported denominator is
+admissible only where the harness can check every member **and** another
+artifact-bound clause makes shrinking the report costly, and an empty denominator
+is `n/a`, which **DISQUALIFIES** (clause 3); `generated` is **item-lineage**,
+orthogonal to `§4.2.3`'s closed answer-channel kinds (clause 4); `§4.2` is
+**shape-only** as to recoverability, artifact-bound as to relevance, and blind to
+lineage, so `promotion = 0` is never `laws/t_provenance_schema.py`'s to enforce
+(clause 5); `ECE ≤ 40` is read over `§3.4`'s own denominator and is a floor
+against incoherence rather than a discriminator (clause 6); the humility
+conjunction is **defined** and its 50 permille read as eight items (clause 7);
+and `R7` clause 7's bequest is **settled**, `§3.0` unamended (clause 8).
+
+**Three authorities, kept distinct**, as the `R6` session kept `R5` and `R6` and
+the `R7` session kept `R5` and `R7`. **`R5`** governs the READING of `R2`'s
+obligations here without an entry of its own — clause 1 the five identities,
+clause 2 the two minimizing clauses and the conjunction, clause 3 the declared
+policy class, clause 4 the pricing. **`R7`** governs the `n/a` law's
+instrument-range ground, its clause 4's exact-not-permille reading and its
+clause 5's ECE bin index, which `R8` clause 6 applies unchanged. **`R8`** governs
+the SUBSTRATE, the three denominators and the reading of `§4.2`. Nothing below is
+edited in substance and no recorded figure moves: **authority, not behaviour.**
+`trials/humility/l7/` with its mandatory `IMPOSSIBILITY.md`,
+`trials/inheritance/l7/` and `trials/strain/l7/` are Stage B's, and the engine is
+Stage C's, under `R2`'s standing step.
 """
 
 import inspect
@@ -42,6 +92,24 @@ def trial_no_frozen_artifact_carries_a_generation_required_query():
 
     A corpus frozen later that DID force a composition would go red here rather
     than pass unnoticed, which is the point of measuring it in a trial.
+
+    **Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded).** What this trial
+    measures is now the recorded cause of a clause of law. `R8` clause 1 carries
+    the verdict **verbatim** from `ATTAINABILITY.md §2` and records it as a
+    **REFUSAL TO BIND**, in the form `R4` clause 1 used for the chronicle family
+    — *nothing is demoted*, because nothing here was ever a Layer-7 candidate, so
+    no artifact loses an authority it had, no byte moves and no generator moves.
+    `§8.7`'s *dirt is always paired with the answer key* is the cause the entry
+    quotes, and it is a **virtue** of these artifacts rather than a defect: an
+    answer key that names the `t`s it touches cannot force a composition.
+
+    The assertion is unchanged and is not weakened by ratification — it is what
+    keeps the kill from being a claim about corpora nobody re-checked. Its
+    registry counterpart is
+    `laws/t_rulings.py::trial_the_refused_stock_cannot_acquire_a_layer_7_binding`,
+    which forbids a Layer-7 gate constant to name any artifact in this table as
+    the substrate it binds on; the two together are the refusal's teeth, one over
+    the frozen bytes and one over the authority.
     """
     survey = T.substrate_survey()
     require(len(survey) >= 10, "the survey must reach every frozen artifact")
@@ -59,7 +127,13 @@ def trial_no_frozen_artifact_carries_a_generation_required_query():
 
 
 def trial_the_same_instrument_reads_the_new_artifact_at_the_generation_class():
-    """ONE INSTRUMENT, TWO VERDICTS — the kill and its remedy by one ruler."""
+    """ONE INSTRUMENT, TWO VERDICTS — the kill and its remedy by one ruler.
+
+    `R8` clause 1 rests on both readings being the same measurement: the survey
+    above returns `absent = 0` on every artifact the entry refuses, and returns
+    `absent = 160` on the artifact it binds. A kill measured with one instrument
+    and a binding measured with another would be two claims, not one finding.
+    """
     answerable, absent = T.l7compose_under_the_same_instrument()
     require_equal(answerable, 2000, "the answerable core")
     require_equal(absent, len(T.generation_class()),
@@ -76,6 +150,15 @@ def trial_the_exhibited_witness_attains_every_clause_of_the_layer_7_gate():
     never the artifact's declared class table and never an answer key — and it
     attains `validity = novelty = tagging = 1000`, `promotion = 0` three deep,
     `F = 1000` against a gate of 950, `ECE = 0` against 40, `B = 1000`.
+
+    Two authorities meet here and are kept distinct. **`R5` clause 1** is the
+    READING under which an identity clause's upper obligation is discharged by
+    an attaining witness rather than by a strict inequality — it governs how
+    these five numbers count as evidence. **`R8` clause 1** is the SUBSTRATE:
+    what this witness attains, it attains on `corpora/l7compose`, which is where
+    the entry binds both sides of the gate. `R8` clause 3(b) supplies the
+    denominators the three ratios are computed over, without which `1000` is not
+    a number at all.
     """
     figures = T.score(T.policy_by_name("witness"))
     require_equal(figures["class"], "E", "the witness must be class E")
@@ -173,7 +256,8 @@ def trial_no_capability_free_baseline_clears_more_than_three_of_seven_clauses():
 
     The bound is asserted at three so that a fourth would reopen the corpus
     binding rather than pass unnoticed — the discipline `R5` clause 2 and `R6`
-    clause 1 established at Layer 5 and Layer 6.
+    clause 1 established at Layer 5 and Layer 6, and the binding it would reopen
+    is `R8` clause 1's.
     """
     for name, want in (("retrieval-only", 3), ("blanket-hedger", 3)):
         figures = T.score(T.policy_by_name(name))
@@ -184,7 +268,14 @@ def trial_no_capability_free_baseline_clears_more_than_three_of_seven_clauses():
 
 
 def _clauses_cleared(figures):
-    """How many of `§5 L7`'s seven clauses a policy clears. `n/a` DISQUALIFIES."""
+    """How many of `§5 L7`'s seven clauses a policy clears.
+
+    `n/a` DISQUALIFIES — `R8` clause 3(c), on `R7` clause 3(a)'s instrument-range
+    ground: a gate is an instrument, an instrument has a range, and outside it
+    the honest output is a refusal to certify rather than a pass. `R7` ruled that
+    shape for `AUROC`'s empty domain; `R8` extends the ground to any ratio clause
+    whose denominator `§5` does not state, which is what a `None` here is.
+    """
     cleared = 0
     for key, gate in (("validity", Fraction(T.GATE_VALIDITY, 1000)),
                       ("novelty", Fraction(T.GATE_NOVELTY, 1000)),
@@ -207,7 +298,7 @@ def trial_the_three_clauses_a_capability_free_policy_ties_are_the_recorded_three
     `PRE-READ.md §1.1` predicted three ties and named them
     `{validity, promotion, B}` with `ECE` non-discriminating besides. The
     measurement disagrees on the membership and agrees on the count: under the
-    denominator `RULING-R8-DRAFT.md` clause 3 binds, `validity` does NOT tie —
+    denominator `R8` clause 3 binds, `validity` does NOT tie —
     it reports `n/a` on an empty denominator and DISQUALIFIES — and the three
     that tie are `{promotion, B, ECE}`.
     """
@@ -230,6 +321,15 @@ def trial_the_untagged_generator_is_correct_on_every_value_and_dies_on_tagging()
     demonstration that `§3.0`'s averaging is not what governs this layer: the
     identity clauses do not average, and one untagged generation ends the
     ascension whatever the fidelity.
+
+    `R8` clause 8(a) is what this measurement settles rather than merely
+    illustrates. `R7` clause 7 bequeathed the `§3.0`/`§3.4` tension *"for
+    Layer 7's eyes"*; the settlement is that the price list **rewards
+    attempting** — a flagged guess beats silence whenever
+    `P(correct ∧ validly tagged) > 1/10` — while **the gate forbids attempting
+    badly**, and this row is the second half of that sentence with a number on
+    it. `§3.0` is not amended and `R7` clause 8's reserve commitment clause is
+    not called for.
     """
     figures = T.score(T.policy_by_name("always-observed"))
     require_equal(figures["F_core"], Fraction(1), "it is right about every value")
@@ -248,6 +348,15 @@ def trial_the_over_tagger_is_killed_by_novelty_and_not_by_tagging():
     lower obligation rests on, at `8/13 -> 615` against an identity of 1000. It
     is why the instrument is a CONFUSION MATRIX over the two declared classes and
     not a single rate (`PRE-READ.md §3.1` item 3).
+
+    `R8` clause 3(b) is what makes the matrix rather than the rate the
+    instrument, and this row is its other diagonal: `novelty`'s denominator is
+    the set the engine TAGS `generated`, every member checked by the harness
+    over frozen bytes, and that set is admissible as a self-report precisely
+    because it **cannot be shrunk without failing `tagging`**, whose denominator
+    is the artifact's. A policy that over-tags pays here; one that under-tags
+    pays there; and one that reports nothing at all reaches `n/a`, which
+    clause 3(c) disqualifies.
     """
     figures = T.score(T.policy_by_name("always-generated"))
     require_equal(figures["tagging"], Fraction(1), "it tags every generation")
@@ -275,6 +384,14 @@ def trial_the_generation_share_clears_the_hedgers_window():
     all-answerable hard class. `R7` clause 3(c)'s LOWER bound is NOT inherited:
     it came from a forced error under a withheld coin, and nothing is withheld
     from a correct generator here.
+
+    `R8` clause 8(b) makes this arithmetic a PRECONDITION ON AN ARTIFACT rather
+    than a fact about this one: a gate citing a Layer-7 capability ratio binds
+    only where the generation-required class exceeds `1/18` of the answerable
+    core, so the escape `§3.0` offers is priced out **before** a gate binds. The
+    two authorities meet here and stay distinct: `R7` clause 3(c) is where the
+    constant was first derived, at Layer 6 and for a two-sided window; `R8`
+    clause 8(b) inherits the upper bound only, and says so.
     """
     g = T.generation_share()
     require_equal(g, Fraction(2, 25), "the generation share")
@@ -296,6 +413,13 @@ def trial_the_hedging_ladder_leaves_tagging_a_denominator_at_every_affordable_k(
     `R7` clause 4's exact-not-permille reading has its Layer-7 instance right
     here: `k = 112` scores `F = 1187/1250 = 0.9496`, which is 950 in permille and
     fails the exact reading. It moves the affordable `k` by one and no verdict.
+
+    `R8` clause 3(e) is what this ladder discharges: on the bound artifact `n/a`
+    is unreachable, so clause 3(c)'s disqualifying reading locks out nothing a
+    policy could actually reach. The entry records it as a property of a
+    **sizing** and not of a law — an artifact whose generation class were a
+    smaller share of its core would reopen it exactly — which is why clause 8(b)
+    puts `g > 1/18` on the artifact rather than on this measurement.
     """
     ladder = T.hedging_ladder()
     require_equal(len(ladder), 161, "k runs 0..|G|")
@@ -341,7 +465,12 @@ def trial_the_capped_engine_measures_the_conjunction_at_zero():
     """The humility side MEASURED and NOT APPLIED — the Layer-6 Stage-A shape.
 
     `trials/humility/l7/` is Stage B's under `R2`'s standing order, so nothing
-    here installs a ceiling. What is recorded is the number a ceiling would read:
+    here installs a ceiling — `R8` clause 1 binds it to this artifact and
+    clause 7 DEFINES the measure `§5 L7` states only on the capped side (a
+    per-item conjunction over the artifact's declared generation class, whose
+    denominator is the whole 160 so no policy can empty it — clause 3 applied to
+    the ceiling as well as to the gate), and neither makes this session the one
+    that applies it. What is recorded is the number a ceiling would read:
     `make_engine(6)` scores the conjunction at **0 of 160**, `F_core 883`,
     `F_all 894`, `A 1740`, `ECE 0`, `B 1000`, `wrong 0`, `fabricated 0`, and it
     abstains on all 460 queries it cannot parse — `§7.3`'s scored abstention and
@@ -427,7 +556,12 @@ def trial_the_witness_promotes_nothing_at_any_rung_and_the_ledger_blind_promotes
     """`§5 L7`'s `promotion = 0` three deep, scored AT EACH RUNG.
 
     A strain that checked only depth 3 could not say where a break occurred
-    (`PRE-READ.md §5.1(d)`), so the ladder is scored at 1, 2 and 3. The teeth are
+    (`PRE-READ.md §5.1(d)`), so the ladder is scored at 1, 2 and 3. `R8`
+    clause 5(c) is why the ladder and not the provenance law is where this
+    clause lives: `§4.2` accepts a tag citing a re-ingested generation, because
+    under `R6` clause 2 such a `t` is an actually-ingested event, so the law is
+    blind to the failure the layer that activates it exists to prevent. The
+    teeth are
     DEMONSTRATED rather than assumed, in the shape `strain/l3`'s naive reference
     count and `strain/l5`'s ledger-blind firing policy established: a reference
     policy identical to the witness but for keeping no lineage ledger promotes
@@ -480,7 +614,7 @@ def trial_the_provenance_law_cannot_see_that_a_support_is_entirely_generated():
     activating `§4.2` exists to prevent, and the law as written is blind to it:
     `promotion = 0` cannot be enforced by `laws/t_provenance_schema.py` and must
     be enforced by the battery and the strain, keyed on lineage
-    (`RULING-R8-DRAFT.md` clause 5(c)).
+    (`R8` clause 5(c)).
     """
     from laws.t_provenance_schema import validate_provenance
     report = T.support_on_generated(T.policy_by_name("witness"))
@@ -503,7 +637,7 @@ def trial_the_provenance_law_cannot_see_whether_a_support_is_relevant():
 
     `autopsy/GAPMAP.md §2`'s *recorded but never binding* thesis — the one this
     project convicted four engines and every evaluator of — available as a defect
-    of OUR OWN law. So `RULING-R8-DRAFT.md` clause 5(b) binds relevance on the
+    of OUR OWN law. So `R8` clause 5(b) binds relevance on the
     ARTIFACT: for a generated answer the support must be exactly the `t`s the
     declared composition rule reads, which the harness checks against frozen
     bytes. The witness satisfies it; a decoy tag does not, and `§4.2` cannot tell.
@@ -535,7 +669,7 @@ def trial_support_recoverability_is_reported_beside_the_gated_number():
     """BLINDNESS (a): the SHAPE-ONLY reading, with the weaker claim said out loud.
 
     `§4.2.3` asks whether a `t` was ever ASSIGNED, never whether `read(t)` still
-    answers. `RULING-R8-DRAFT.md` clause 5(a) takes the shape-only reading and
+    answers. `R8` clause 5(a) takes the shape-only reading and
     pays for it with an ungated diagnostic — a support-recoverability rate
     reported on every run beside the gated `tagging` number, in the exact shape
     `R3` gave `F_strict` and `R4` clause 4 gave `F_corruption`.
@@ -551,15 +685,36 @@ def trial_support_recoverability_is_reported_beside_the_gated_number():
                   "the diagnostic, in permille")
 
 
-# ---- §8. no gate binds -----------------------------------------------------
+# ---- §8. the binding, and what still comes after it ------------------------
 
-def trial_no_layer_7_gate_binds_on_anything():
-    """`R2`'s standing order, asserted rather than promised.
+def trial_the_layer_7_gate_binds_on_this_artifact_under_r8_clause_1():
+    """The binding, asserted in code rather than promised in prose.
 
-    Stage A computes and records. The engine, the adapter, the humility class
-    with its mandatory `IMPOSSIBILITY.md` and the inheritance row are Stage B's
-    and Stage C's, and `RULING-R8-DRAFT.md` is a DRAFT — appending is what
-    freezes, and this session does not append.
+    Until `R8` this trial asserted the opposite fact — that no ruling had been
+    appended and therefore no Layer-7 gate bound on anything. A human ratified
+    `RULING-R8-DRAFT.md` and a `RULING` session appended it, so what it asserts
+    now is the state that replaced it: `R8` exists, and clause 1 binds **both
+    sides** of the Layer-7 gate to `corpora/l7compose` while recording the
+    whole-stock refusal that forced the artifact into existence.
+
+    **The two facts are checked together on purpose**, and the reason differs
+    from `R7`'s. There a binding whose entry did not also record the demotion
+    would have left two artifacts carrying one `§5 L6` clause with no way to tell
+    which gates. Here the refusal is what makes the binding *necessary* rather
+    than convenient: an entry that bound `corpora/l7compose` without recording
+    that 85 954 answerable queries across the whole existing stock contain not
+    one absent answer would read as a corpus preference, which is exactly what
+    `R2` warns its arithmetic does not authorize.
+
+    **What `R8` does not do is asserted here too**, because it is the boundary
+    this session stops at. `R2`'s standing order is *attainability arithmetic →
+    trials → engine*, so `trials/humility/l7/` with its mandatory
+    `IMPOSSIBILITY.md` (`§6`), `trials/inheritance/l7/`, `§6`'s mandatory
+    Layer-7 self-pollution strain in `trials/strain/l7/`, and only then
+    `core/layers/l7_generation.py` and `trials/adapters/l7.py`, are still ahead.
+    A later session flips these as Stage B and Stage C flipped Layer 5's and
+    Layer 6's — the assertion advanced one step along `R2`'s order rather than
+    weakened, which is the form `t_attainability_b.py`'s took at Layer 6.
     """
     for relative in ("core/layers/l7_generation.py",
                      "trials/adapters/l7.py",
@@ -568,16 +723,31 @@ def trial_no_layer_7_gate_binds_on_anything():
                      "trials/strain/l7"):
         path = os.path.join(ROOT, relative)
         require(not os.path.exists(path),
-                "%s exists — Stage A does not build it" % (relative,))
+                "%s exists — R8 binds the gate and R2's standing order puts "
+                "Stage B and Stage C AFTER this entry, not inside it"
+                % (relative,))
 
     with open(os.path.join(ROOT, "BOUNDARY-RULINGS.md"), "r",
               encoding="utf-8") as fh:
         rulings = fh.read()
-    require("\n# R8 " not in rulings and not rulings.startswith("# R8 "),
-            "BOUNDARY-RULINGS.md carries an R8 — no Layer-7 gate binds yet")
+    require("\n# R8 — " in rulings,
+            "R8 is not in BOUNDARY-RULINGS.md — the eight §5 L7 constants cite "
+            "it as their authority, so without the entry the gate they state is "
+            "applied without one")
+    entry = rulings[rulings.index("\n# R8 — ") + 1:]
+    require("corpora/l7compose" in entry,
+            "R8 must name the artifact it binds")
+    require("85 954" in entry and "refusal to bind" in entry,
+            "R8 clause 1 binds corpora/l7compose and records the FIFTH "
+            "SUBSTRATE KILL in the SAME clause; an entry carrying only the "
+            "binding would read as a corpus preference rather than as the "
+            "refusal that forced the artifact")
 
     draft = os.path.join(ROOT, "trials/ascension/l7/RULING-R8-DRAFT.md")
-    require(os.path.exists(draft), "the draft this session owes must exist")
+    require(os.path.exists(draft),
+            "the ratified draft is retained beneath a dated note; the frozen "
+            "entry is the binding text and this file is the record of what it "
+            "was appended from")
     attainability = os.path.join(ROOT, "trials/ascension/l7/ATTAINABILITY.md")
     require(os.path.exists(attainability),
             "R2 obligation 3: the arithmetic must be recorded")

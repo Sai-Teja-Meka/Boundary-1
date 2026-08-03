@@ -380,3 +380,39 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
   blindnesses; `ECE` over `§3.4`'s own denominator; the humility conjunction
   defined; **`R7` clause 7's bequest settled pre-claim**; and the record that
   nothing else is added.
+
+> **Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded). The two entries
+> above are where *"no Layer-7 gate binds on anything"* stops holding.**
+>
+> A human ratified `l7/RULING-R8-DRAFT.md` and a `RULING` session appended it to
+> `BOUNDARY-RULINGS.md` as **`R8`**, **as drafted** — all nine clauses in the
+> draft's order with their normative text unaltered, and the question, the
+> rationale and the *"what this ruling does not do"* list carried across
+> byte-for-byte and checked mechanically. **`R8` clause 1 binds BOTH sides of the
+> Layer-7 gate — ascension and humility — on `corpora/l7compose`**, in one
+> clause, for `R6` clause 1's reason, and in the same clause records the **fifth
+> substrate kill** as a **refusal to bind** rather than a demotion: nothing is
+> demoted, no byte moves, and every trial that scores the refused stock keeps
+> running.
+>
+> The index entries above are **not rewritten**. What changes under them is
+> authority and one trial name: the eight `§5 L7` constants now carry `R8` in
+> `laws/t_rulings.py` where they carried no companion ruling, a new registry
+> check there forbids that authority to be moved to any artifact the fifth kill
+> refused, and `l7/t_attainability.py`'s closing trial is **advanced one step
+> rather than weakened** —
+> `trial_no_layer_7_gate_binds_on_anything` becomes
+> `trial_the_layer_7_gate_binds_on_this_artifact_under_r8_clause_1`, which
+> requires the entry to bind the artifact **and** record the refusal in the same
+> clause, and goes on requiring the engine, the adapter and the `humility/l7`,
+> `inheritance/l7` and `strain/l7` directories to be **absent**, because `R2`'s
+> standing step orders Stage B and Stage C after this entry and not inside it.
+> That is the form `l6/t_attainability_b.py`'s closing trial took at `R7`.
+>
+> `R5`, `R7` and `R8` are kept **distinct**: `R5` authorizes the readings of
+> `R2`'s obligations (the identities, the direction-aware conjunction, the
+> declared policy class, the pricing) and is in force here without an entry of
+> its own; `R7` authorizes the `n/a` law's instrument-range ground and the two
+> `§3.4` readings `R8` clause 6 applies unchanged; `R8` authorizes the
+> substrate, the three denominators `§5` does not state, and the reading of
+> `§4.2`.

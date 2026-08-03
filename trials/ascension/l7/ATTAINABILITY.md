@@ -1,5 +1,45 @@
 # ATTAINABILITY.md — Layer 7 (Generation), Stage A
 
+> **Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded). The paragraph below
+> is where *"No Layer-7 gate binds on anything"* stops holding.**
+>
+> A human ratified `RULING-R8-DRAFT.md` and a `RULING` session appended it to
+> `BOUNDARY-RULINGS.md` as **`R8`**, **as drafted**. **`R8` clause 1 binds BOTH
+> sides of the Layer-7 gate — ascension and humility — to `corpora/l7compose`**,
+> in one clause, for `R6` clause 1's reason, and in the same clause records the
+> **FIFTH SUBSTRATE KILL** this document's `§2` measured: 85 954 answerable
+> queries across the whole existing stock, not one answer absent from its own
+> stream, recorded as a **refusal to bind** in `R4` clause 1's form rather than
+> as a demotion. The eight `§5 L7` constants now carry `R8` in
+> `laws/t_rulings.py`, where until today they carried a `§5` clause and no
+> companion ruling.
+>
+> **This document's Stage-A text is unedited**, including its forward-looking
+> sentences, which are **answered here rather than rewritten** (`R6` clause 3;
+> the form `R4` clause 2 established). Point by point:
+>
+> * `§1`'s table said Stage A owed a substrate, three denominators, an exhibited
+>   witness, the baselines, the humility conjunction, `§4.2` as it wakes and
+>   `R7` clause 7's bequest. Every row is now a clause of `R8`: clause 1 the
+>   substrate and the kill, clause 2 the `generate` reading, clause 3 the
+>   denominators with `n/a` disqualifying, clauses 4 and 5 `§4.2`, clause 6
+>   `ECE`'s denominator, clause 7 the conjunction, clause 8 the bequest.
+> * `§4`'s *"NO LAYER-7 GATE BINDS ON IT"* and `§12`'s *"No gate binds"* are
+>   answered by clause 1. `§12`'s other sentences still hold exactly: no
+>   threshold moved in either direction on any layer, no frozen artifact was
+>   edited, and no engine exists.
+> * `§8`'s note that `trials/humility/l7/` and its mandatory `IMPOSSIBILITY.md`
+>   are **Stage B's** still holds. `R8` binds a ceiling; it does not apply one,
+>   and `R2`'s standing order puts the trials after the arithmetic.
+> * `§11`'s scoring of the `PRE-READ.md` — two confirmations and **two misses**,
+>   plus the half it named as most likely wrong being wrong — is carried into the
+>   entry's evidence section, so the misses survive in the frozen record rather
+>   than only in the document the entry rests on.
+>
+> Where this document and the frozen entry differ, **`R8` governs**; where this
+> document and a trial differ, the trial's value is the enforced one, which is
+> what `§1`'s own last paragraph already said.
+
 `[L6] [ASCEND]`, 2026-08-03. **No Layer-7 gate binds on anything.**
 `core/layers/l7_generation.py` does not exist, `trials/adapters/l7.py` does not
 exist, `trials/humility/l7/` and `trials/inheritance/l7/` do not exist, and
