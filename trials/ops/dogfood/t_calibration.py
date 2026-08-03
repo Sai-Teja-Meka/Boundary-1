@@ -35,6 +35,7 @@ from core.serialize import decode, encode
 from core.layers import l2_recall as ledger
 from core.layers import l5_prospection as l5
 from core.layers import l6_meta_memory as l6
+from core.layers import l7_generation as l7
 from shell.dogfood import cli, consolidate as co
 from shell.dogfood import event as ev
 from shell.dogfood import store as st
@@ -105,20 +106,31 @@ def trial_the_shell_declares_a_narrowing_of_the_engines_set_once_reading():
 
 # ---- 2. the upgrade is zero-state -------------------------------------------
 
-def trial_the_derived_replay_is_layer_6_and_adds_no_state():
+def trial_the_derived_replay_carries_layer_6s_zero_state_identity_forward():
     """`README-l6 §0` on this project's own memory: the number moved, not the state.
 
-    The same records are folded twice — once through the frozen Layer-5 engine
-    and once through the Layer-6 one — and the two states are compared through
-    their canonical snapshots (§2.4). They must agree in **every branch but the
-    recorded `layer_cap`**, which is the cap and not the content; and every
-    answer must agree in `status` and `value`, because Layer 6 attaches a number
-    and does not answer differently.
+    The claim this trial was written to pin is that **Layer 6 adds no state** —
+    the derived view a Layer-6 replay builds is the one a Layer-5 replay builds,
+    branch for branch, so a confidence model that cost a cell would show up as a
+    divergence in these bytes.
+
+    **Note added 2026-08-03 (`[L7] [DOGFOOD]`).** The shell's replay moved on to
+    `l7_generation`, so the trial is ADVANCED rather than relaxed and its name
+    with it: the Layer-6 identity is now asserted **through** the layer above it.
+    `L7State` adds exactly one field — the lineage ledger — and this reading
+    emits nothing it can record, so the comparison is the Layer-7 body with its
+    (empty) `lineage` branch removed against the Layer-5 body, which is a
+    STRICTLY STRONGER statement than the original: it pins Layer 6's zero state
+    and Layer 7's zero cost at once. `t_generation.py` owns the Layer-7 half on
+    its own terms; this file keeps the Layer-6 one, which is its subject.
     """
     records = _records()
-    six, origin, _s, entities, refused = co.derive(records)
+    seven, origin, _s, entities, refused = co.derive(records)
     require(refused is None, "the default cap must admit the whole stream")
-    require_equal(six.layer_cap, l6.LAYER, "the derived replay must be Layer 6")
+    require_equal(seven.layer_cap, l7.LAYER, "the derived replay must be Layer 7")
+    require_equal(seven.lineage, {},
+                  "this reading emits no `profile`, so the ledger has nothing to "
+                  "record and Layer 7 costs this store nothing (README-l7 §0)")
 
     five = l5.make_engine(l5.LAYER, budget_cap=co.DERIVED_BUDGET)
     for record in records:
@@ -126,27 +138,30 @@ def trial_the_derived_replay_is_layer_6_and_adds_no_state():
             five, t = l5.write(five, derived)
             require(t is not None, "the Layer-5 control replay must not refuse")
 
-    body6 = decode(l6.snapshot(six))["body"]
+    body7 = decode(l7.snapshot(seven))["body"]
     body5 = decode(l5.snapshot(five))["body"]
-    require_equal(body6["layer_cap"], 6, "the Layer-6 body records its own cap")
+    require_equal(body7["layer_cap"], 7, "the Layer-7 body records its own cap")
     require_equal(body5["layer_cap"], 5, "the Layer-5 body records its own cap")
-    body6["layer_cap"] = body5["layer_cap"]
-    require_equal(encode(body6), encode(body5),
-                  "a Layer-6 replay of this store must hold EXACTLY what the "
-                  "Layer-5 replay held — `L6State` adds no field (README-l6 §0), "
-                  "so a confidence model that cost a cell here would be visible "
-                  "as a divergence in these bytes")
+    require_equal(body7.pop("lineage"), [],
+                  "the serialized ledger must be empty")
+    body7["layer_cap"] = body5["layer_cap"]
+    require_equal(encode(body7), encode(body5),
+                  "the shell's derived state must hold EXACTLY what the Layer-5 "
+                  "replay held — `L6State` adds no field (README-l6 §0) and "
+                  "Layer 7's one field is empty on this fuel (README-l7 §0), so "
+                  "a confidence model that cost a cell would be visible here")
 
     entity = entities["trial-project"]
     for key in co.ASSERTED_KEYS:
-        a6 = l6.query(six, {"op": "current", "entity": entity, "key": key})
+        a7 = l7.query(seven, {"op": "current", "entity": entity, "key": key})
         a5 = l5.query(five, {"op": "current", "entity": entity, "key": key})
-        require_equal(a6["status"], a5["status"], "status moved at key %r" % key)
-        require_equal(encode(a6["value"]), encode(a5["value"]),
-                      "the ANSWER moved at key %r — Layer 6 attaches a number, "
-                      "it does not answer differently (README-l6 §1.1)" % key)
-        _permille(a6["confidence"], "current(%s)" % key)
-    require_equal(co.current_fact(six, entity, "layer", origin)[2], l6.CERTAIN,
+        require_equal(a7["status"], a5["status"], "status moved at key %r" % key)
+        require_equal(encode(a7["value"]), encode(a5["value"]),
+                      "the ANSWER moved at key %r — Layer 6 attaches a number and "
+                      "Layer 7 a tag; neither answers differently (README-l6 "
+                      "§1.1, README-l7 §1.2)" % key)
+        _permille(a7["confidence"], "current(%s)" % key)
+    require_equal(co.current_fact(seven, entity, "layer", origin)[2], l6.CERTAIN,
                   "a key that admits updates is answered by its latest "
                   "assertion, and the engine has proved that")
 

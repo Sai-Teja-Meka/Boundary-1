@@ -4,7 +4,7 @@
     recall       associative recall over the store from free cue tokens
     intend       declare a promise: a condition over future sessions, and what
                  to surface when one satisfies it
-    consolidate  the store's Layer-6 derived view, for a session preamble
+    consolidate  the store's Layer-7 derived view, for a session preamble
     status       event count, budget occupancy, checksum, the last three events
 
 Exit codes:
@@ -300,7 +300,7 @@ def cmd_recall(args, out, err):
         print(line, file=out)
     promises = promise_footer(state)
     if promises:
-        print("promises (replayed through Layer 5; `consolidate` for the whole view)",
+        print("promises (replayed through Layer 7; `consolidate` for the whole view)",
               file=out)
         for line in promises:
             print(line, file=out)
@@ -406,7 +406,7 @@ def cmd_intend(args, out, err):
 
 
 def cmd_consolidate(args, out, err):
-    """The derived view: fold the store through Layer 4, ask, and format.
+    """The derived view: fold the store through Layer 7, ask, and format.
 
     The fold is recomputed from the episodes every time and never written back
     (`consolidate.py`'s module docstring says why), so this command is read-only
@@ -495,7 +495,7 @@ def build_parser():
                         help="validate and render it; write nothing")
 
     consolidate = subs.add_parser(
-        "consolidate", help="the store's Layer-6 derived view of this project")
+        "consolidate", help="the store's Layer-7 derived view of this project")
     consolidate.add_argument("--budget", type=int, metavar="UNITS",
                              help="replay the fold under a reduced cap "
                                   "(default %d) to observe demotion"
