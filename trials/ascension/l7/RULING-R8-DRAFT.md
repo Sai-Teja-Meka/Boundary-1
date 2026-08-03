@@ -1,5 +1,58 @@
 # RULING-R8-DRAFT.md — Layer 7's binding, the self-reported denominator, and `§4.2` as it wakes
 
+> **RATIFIED — 2026-08-03 (`[L6] [RULING]`).** A `RULING` session appended the
+> draft below to `BOUNDARY-RULINGS.md` as **`R8`**, **as drafted**: all nine
+> clauses, in this order, with their normative text unaltered — the question, the
+> rationale and the *"what this ruling does not do"* list carried across
+> **byte-for-byte**, and checked mechanically against this file rather than by
+> eye (six spans of 2 100 / 2 371 / 22 998 / 2 248 / 1 332 / 478 bytes, each
+> asserted identical inside the committed entry, the nine clause headings present
+> and in order). **The frozen entry is the binding text and this file is not**;
+> where the two differ, `R8` governs.
+>
+> `R8` carries three things this file does not, and each is named so the
+> difference is on the record rather than in a diff nobody runs:
+>
+> * **the entry envelope** — the `# R8 — …` heading and the
+>   `Status`/`Binds`/`Authority`/`Holding` block that `BOUNDARY-RULINGS.md`'s own
+>   *Entry format* section requires and `laws/t_rulings.py` enforces. This file
+>   supplied its own block in **draft voice**, so the adjustment is exactly two
+>   labels — `**Status:** DRAFT — frozen on commit if a human appends it` becomes
+>   `**Status:** FROZEN on commit.`, and `**Binds (if ratified):**` becomes
+>   `**Binds:**` — with the `Binds` text itself, the `Authority` block and the
+>   `Holding` block carried unchanged. The one other adjustment of that kind is
+>   the section heading *"The ruling (proposed)"*, which is *"The ruling"* in a
+>   frozen entry. **No clause text moves**, which is what the carriage check
+>   asserts;
+> * **one section of its own — the Stage-A evidence, carried verbatim**: the
+>   whole-stock verdict at 85 954 answerable queries and 0 absent answers with
+>   its refusal-to-bind form, both theorems (the twins, and novelty by exhaustive
+>   canonical-byte comparison), the six-labeller bench, the witness on all seven
+>   clauses with the promotion ladder and its ledger-blind reference, every
+>   baseline including the two deliberate crimes (`always-observed` at
+>   `tagging 0/160` while right about every value, `always-generated` at
+>   `novelty 615`) and `retrieval-only` disqualified by `n/a` under the very
+>   holding being ratified, the price and the two disclaimed items, the hedging
+>   ladder and the one-sided window, the humility conjunction measured at 0 of
+>   160 and not applied, `§4.2`'s three blindnesses measured on the frozen
+>   validator (30 of 30 invented-warrant tags accepted), the `ECE` residual's
+>   explicit **non-closure**, and the `PRE-READ.md` scored with **both misses**.
+>   It is the `R6` and `R7` form: the drafted text is carried and the evidence is
+>   gathered in one place beside it;
+> * **an `Enforcement` section** adapted from this file's *"Enforcement, if
+>   ratified"*. It differs in **two places, both additions**, and both are named
+>   in that section rather than left to be discovered:
+>   `corpora/l7compose/README.md` gains a dated ratification note this file's
+>   list did not name (`R7` named `corpora/l6batteryb/README.md` in the same
+>   position), and `laws/t_rulings.py` gains
+>   `trial_the_refused_stock_cannot_acquire_a_layer_7_binding` — **the refusal's
+>   teeth**, the converse of the re-promotion check `R7` clause 1 needed, which
+>   this file's mutation list did not anticipate because a refusal demotes
+>   nothing and so leaves no absence for that check to assert. Nothing else in
+>   that section was departed from.
+>
+> Nothing below this note is edited.
+
 > **DRAFT. NOT APPENDED.** This file is not part of `BOUNDARY-RULINGS.md` and
 > binds nothing. **Appending is what freezes an entry**, and a session does not
 > append its own ruling — `R4`'s draft refused to, `R5`'s and `R6`'s refused to,

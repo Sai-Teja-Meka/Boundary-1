@@ -8,6 +8,21 @@ that makes the promotion failure reachable at all.
 Nothing here applies a `§5 L7` gate to anything — that is
 `trials/ascension/l7/`'s, and **no Layer-7 gate binds on anything** (asserted
 there). This file is the artifact checking its own arithmetic.
+
+---
+
+**Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded).** *"No Layer-7 gate
+binds on anything"* stops holding above: `R8` clause 1 binds both sides of the
+Layer-7 gate to `corpora/l7compose`. The first half of that sentence is
+unchanged and is the point of this file — **nothing here applies a gate**, and
+ratification adds nothing to either theorem, because both were already trials
+before the entry existed. That is what `R8` clause 1 rests on rather than the
+other way round: a forcing region that stopped forcing — a broken twin, an
+unbalanced coin, a query set that stopped being identical under the coin's
+complement, a composed item that appeared in the stream — turns this file **RED
+before any gate reaches any engine**, which is `R7` clause 3(b)'s pattern of
+putting the guarantee on the artifact so that it holds against an arbitrary
+engine and not against the one a session had in mind.
 """
 
 import json

@@ -1,5 +1,34 @@
 # corpora/l7compose — the Layer-7 generation artifact
 
+> **Note added 2026-08-03 (`[L6] [RULING]`, `R8` recorded). This artifact is now
+> the BINDING SUBSTRATE for both sides of the Layer-7 gate, and the *"NO
+> LAYER-7 GATE BINDS ON IT"* paragraph below is where that stops holding.**
+>
+> A human ratified `trials/ascension/l7/RULING-R8-DRAFT.md` and a `RULING`
+> session appended it as **`R8`**. **`R8` clause 1 binds the Layer-7 ascension
+> gate AND the Layer-7 humility ceiling on `corpora/l7compose`**, in one clause,
+> for `R6` clause 1's reason: a ceiling measured on one artifact beside a gate
+> cleared on another is two facts about two worlds. The same clause records the
+> **fifth substrate kill** this artifact exists because of — 85 954 answerable
+> queries across the whole existing stock with not one answer absent from its own
+> stream — as a **refusal to bind** and not a demotion, so nothing else moves:
+> no byte, no generator, no trial.
+>
+> **Nothing below is edited and no figure moves.** The two theorems were already
+> trials before the entry existed (`trials/ops/l7/t_l7compose.py`), so
+> ratification adds nothing to them: a broken twin, an unbalanced coin, a query
+> set that stopped being identical under the coin's complement, or an item that
+> appeared in the stream turns that file red **before** any gate reaches any
+> engine. What ratification adds is authority — the eight `§5 L7` constants now
+> carry `R8` in `laws/t_rulings.py`, and
+> `trial_the_refused_stock_cannot_acquire_a_layer_7_binding` there forbids that
+> authority to be moved to any artifact the fifth kill refused.
+>
+> Still true, and `R2`'s standing order is why: `trials/humility/l7/` with its
+> mandatory `IMPOSSIBILITY.md`, `trials/inheritance/l7/`, `§6`'s mandatory
+> Layer-7 self-pollution strain and the engine itself are **Stage B's and
+> Stage C's**, and none of them exists.
+
 `[L6] [ASCEND]`, Layer-7 Stage A, 2026-08-03. Seed **10010**, 12 000 events,
 2 200 queries, one canonical JSON object. Admitted to `registry.GENERATED`, so
 `§8.3`'s byte-match law covers it.

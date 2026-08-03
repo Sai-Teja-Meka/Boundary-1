@@ -166,6 +166,37 @@ strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
   l6battery seam recorded above applies to this member identically (one line, no
   `intend` payload, the frozen Layer-5 theorem still true and still checked).
 
+  Note added 2026-08-03 ([L6] [RULING], R8 recorded). The paragraph above is
+  where "NO LAYER-7 GATE BINDS ON IT" stops holding. A human ratified
+  RULING-R8-DRAFT.md and a RULING session appended it as R8, as drafted, so it
+  does what that paragraph left to a human. Clause 1 binds BOTH sides of the
+  Layer-7 gate -- ascension and humility together, for R6 clause 1's reason --
+  to corpora/l7compose, where the upper side is EXHIBITED (a class-E policy
+  reading the stream and its own lineage ledger, at validity = novelty =
+  tagging = 1000, promotion 0 at all three rungs, F 1000 against 950, ECE 0
+  against 40, B 1000) and no capability-free policy clears more than three of
+  the seven clauses.
+
+  AND THE SAME CLAUSE RECORDS THE FIFTH SUBSTRATE KILL described above, with its
+  cause carried verbatim -- 85 954 answerable queries, not one answer absent
+  from its own stream -- as a REFUSAL TO BIND and not a demotion. The difference
+  matters in this file: nothing here was ever a Layer-7 candidate, so no member
+  of GENERATED or REAL loses an authority it had, none joins l6battery as a
+  demoted diagnostic, and the entry for every one of them is unchanged. What
+  records the refusal instead is laws/t_rulings.py's
+  trial_the_refused_stock_cannot_acquire_a_layer_7_binding: the eight §5 L7
+  constants must cite R8, must name corpora/l7compose as the substrate they bind
+  on, and must name NO member of the refused stock -- so a registry edit that
+  bound one of these artifacts reopens a kill a human ruled on, and goes red
+  instead. It is the converse of the re-promotion check R7 clause 1 needed, in
+  the direction a refusal points.
+
+  NOTHING ABOUT ANY ARTIFACT MOVED: same seeds, same bytes, same generators,
+  same trials, and l7compose's own two theorems were trials before the entry
+  existed. R2's standing order still puts trials/humility/l7/ with its mandatory
+  IMPOSSIBILITY.md, trials/inheritance/l7/, §6's mandatory Layer-7
+  self-pollution strain and the engine AFTER this entry, and none of them exists.
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
