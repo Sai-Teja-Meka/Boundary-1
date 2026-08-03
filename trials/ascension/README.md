@@ -336,3 +336,47 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
   defect that killed `corpora/l6battery` one session after it was frozen.
   R2's standing step is untouched: a Layer-7 `ASCEND` still owes its own
   `ATTAINABILITY.md` before any Layer-7 gate has authority.
+
+- `l7/ATTAINABILITY.md` + `l7/t_attainability.py` — Layer 7, Generation,
+  **Stage A**. The `R2` arithmetic, computed and machine-checked with **no
+  Layer-7 engine in existence**, and **NO LAYER-7 GATE BINDS ON ANYTHING**:
+  `trial_no_layer_7_gate_binds_on_anything` asserts it from the other side
+  (no `core/layers/l7_generation.py`, no `trials/adapters/l7.py`, no
+  `humility/l7/`, no `inheritance/l7/`, no `strain/l7/`, and no `R8` in
+  `BOUNDARY-RULINGS.md`), and `laws/t_rulings.py` carries the eight `§5 L7`
+  constants with a `§5` clause and no companion ruling, which is the same
+  absence said in the registry's own structure.
+
+  **THE FIFTH SUBSTRATE KILL, measured.** Across every artifact in
+  `corpora/registry.py` and `§8.8`'s one `REAL` entry — 85 954 answerable
+  queries drawn from the frozen batteries those artifacts already carry — **not
+  one answer is absent from its own stream**, so on all of them the
+  generation-required class is empty and a gate citing `novelty` or `tagging`
+  measures nothing. `§8.7`'s *dirt is always paired with the answer key* is the
+  cause. It is the first kill to fall on the whole existing stock rather than on
+  one artifact, and nothing is demoted, because nothing here was ever a Layer-7
+  candidate: what is recorded is a refusal to bind, in `R4` clause 1's form.
+
+  **The artifact it forces:** `corpora/l7compose` — a closed compositional
+  grammar with a withheld item, 100 mirror pairs under a balanced coin, the
+  three-generation self-pollution ladder, and 100 generation-shaped
+  unanswerable probes. Theorem 1 (the class is not readable from the query —
+  every labeller that does not consult the store mislabels exactly one member
+  of every pair, exhibited against a bench of six) and Theorem 2 (novelty, by
+  exhaustive canonical-byte comparison) are asserted in `ops/l7/t_l7compose.py`.
+
+  **The witness** is class E and attains `validity = novelty = tagging = 1000`,
+  `promotion = 0` at all three rungs, `F 1000` against 950, `ECE 0` against 40,
+  `B 1000`. No capability-free baseline clears more than **three of the seven**
+  clauses; the untagged generator is correct on every value it returns and dies
+  at `tagging = 0/160`; the over-tagger clears six and dies at `novelty 615`.
+
+- `l7/RULING-R8-DRAFT.md` — the draft, **not appended** to
+  `BOUNDARY-RULINGS.md`, because appending is what freezes. Nine clauses: the
+  binding and the fifth substrate kill; `generate` as a `query` op; **the
+  self-reported denominator**, the fourth species, with `R7` clause 3(a)'s
+  instrument-range ground extended to a general holding; `generated` as
+  item-lineage orthogonal to `§4.2.3`'s closed kinds; `§4.2`'s three
+  blindnesses; `ECE` over `§3.4`'s own denominator; the humility conjunction
+  defined; **`R7` clause 7's bequest settled pre-claim**; and the record that
+  nothing else is added.
