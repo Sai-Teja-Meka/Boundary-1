@@ -61,4 +61,23 @@ Once a layer is claimed its code is **frozen**: it is never edited (§9). A newe
 layer builds on the frozen layers beneath it.
 
 Per `CLAUDE.md §1`, every session reads the most recent layer's README
-(currently `README-l6.md`) before acting.
+(currently `README-l7.md`) before acting.
+
+- **Layer 7 — Generation** — `l7_generation.py` (`README-l7.md`). The first layer
+  that returns an item **the store never held**, and the first that has to say so
+  about itself. `generate(cue)` is a `query` **op** and not a fourth verb (`§7.1`
+  declares three; `R8` clause 2), and its `Answer` is the only one that carries a
+  `lineage` field — a property of the **item** (`observed` / `generated`),
+  orthogonal to `§4.2.3`'s closed four `kind`s, which say how an answer reached
+  the caller (`R8` clause 4). Composition is a **second declared reading** of the
+  frozen grammar beside `ASSERTION_FORMS`, because `part` and `profile` have no
+  Layer-4 facet: the layer below can hold those events and cannot read them.
+  `L7State` adds **one** field to the frozen `L6State` — a lineage ledger of 2
+  cells an entry, written by `ingest` because `§7.1` makes `query` pure, so an
+  engine can only record what it **received** and never what it answered — priced
+  by name at `ATTAINABILITY.md §7`'s 320 cells and costing **0** on any stream
+  with no composition in it. The ledger is outside every eviction phase, for
+  `README-l5 §0.1`'s reason applied one tier on: an entry an engine dropped is a
+  generation it could promote. `make_engine(6)` **is** the Layer-6 engine (§7.4),
+  and measures the `§5 L7` conjunction at **0 of 160** — absent generativity, the
+  fourth kind of impossibility in the ladder.

@@ -893,6 +893,26 @@ AUTHORIZED_GATES = (
      "§5 L6 fidelity under the literal §3.0 table, re-applied at layer_cap = 7 "
      "on corpora/l6batteryb over the answerable core — the stricter of the two "
      "denominators and the one R7 clause 3(c)'s window arithmetic is stated in"),
+
+    # Layer 7, Stage D — §6's MANDATORY LAYER-7 SELF-POLLUTION STRAIN, the one
+    # trial the constitution names by procedure in its own frozen text. The
+    # clause it applies is a §5 L7 clause and it is APPLIED here (at every rung,
+    # to an engine) rather than merely stood at, which is why this file declares
+    # a constant where `strain/l5`'s blocking seam declared none. R8 clause 5(c)
+    # is the authority for it being enforced here at all: `promotion = 0` is the
+    # battery's and this strain's, keyed on lineage, and NEVER
+    # laws/t_provenance_schema.py, which accepts a tag citing a re-ingested
+    # generation because under R6 clause 2 such a `t` is an actually-ingested
+    # event.
+    ("strain/l7/t_self_pollution.py", "GATE_PROMOTION", 0,
+     (_s5("self-pollution promotion=0"), _ruling("R8")),
+     "§5 L7, unchanged, applied at every rung of the three-generation ladder "
+     "corpora/l7compose declares — the substrate R8 clause 1 binds. §6 names "
+     "this strain in the strain class by procedure and §5 L7 gates the same "
+     "clause, so the number appears in two trial classes at once; the battery "
+     "applies it and this attacks it, with a ledger-blind fixture (a trial "
+     "fixture, never engine code) promoting 100, then 130, then all 160 to show "
+     "the guard is load-bearing rather than assumed"),
 )
 
 
