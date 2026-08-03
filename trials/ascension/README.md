@@ -442,3 +442,23 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
 > `trials/inheritance/l7/` move from its absence list to its presence list, and
 > the engine, the adapter and `trials/strain/l7/` stay on the absence list. No
 > historical line above is rewritten, and nothing frozen moved.
+
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer-7 Stages C+D+E).** The last
+> step of `R2`'s standing order is taken and **Layer 7 is claimed**: the ratified
+> `§5 L7` gate CLEARS on `corpora/l7compose` per `R8` clause 1 at
+> `validity/novelty/tagging = 1000` on clause 3's bound denominators,
+> `promotion = 0` three deep, `F_core 1000`, `ECE 0` exactly and `B = 1000` with
+> `refused = 0` — clause for clause at the figures `l7/ATTAINABILITY.md`
+> exhibited before any engine existed, which is `R2` obligation 1 discharged
+> rather than a coincidence. Every trial in `l7/t_generation.py` is flipped from
+> an engine-gated skip.
+>
+> **The sentence above that says the engine, the adapter and `trials/strain/l7/`
+> "stay on the absence list" is where that stops holding**, and it stops holding
+> in the direction it predicted: `core/layers/l7_generation.py`,
+> `trials/adapters/l7.py` and `trials/strain/l7/` — `§6`'s mandatory Layer-7
+> self-pollution strain — all exist, so `l7/t_attainability.py`'s closing trial is
+> **advanced one step rather than weakened** for the third and last time and its
+> **absence list is now empty**. No historical line above is rewritten, no
+> Stage-A or Stage-B figure moves, and `l7/ATTAINABILITY.md`, `l7/STAGE-B.md` and
+> `l7/RULING-R8-DRAFT.md` are untouched.

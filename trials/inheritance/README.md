@@ -90,3 +90,15 @@ passed one.
 > prospection would have been caught here; this one had nothing to pay with.
 
 > **Note added 2026-08-03 (`[L6] [ASCEND]`, Layer-7 Stage B).** The class now carries **six layers of history per replay**, and it is worth stating because it is what the rows silently stand on: the Layer-3 rows run above an aggregated forgetting record, the Layer-4 rows above an interval table and a demotion counter, the **Layer-5 rows above a two-tier prospection ledger** — a pending set and a fired ledger, both outside every eviction phase on purpose — and the **Layer-6 rows above a zero-state confidence view**, a model that adds no field to the state it reads (`README-l6 §0`). A Layer-7 engine inherits all of it at once, and a lineage ledger (`ATTAINABILITY.md §7` prices it at 320 cells) is new state beside all of it. Every row in `l7/` is one of those histories being asked to still be true. The whole cap-7 class was verified attainable before being frozen, by running it against a mock `§7` engine in the scratchpad — the Layer-5 and Layer-6 Stage-B discipline, repeated.
+
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer-7 Stages C+D+E).** The `l7/`
+> rows are flipped and green at `layer_cap = 7`, including the **Layer-6
+> calibration row** the note above calls the one generation could actually break:
+> `Brier 23 / ECE 0 / AUROC 976 / F 955` on `corpora/l6batteryb`, unchanged from
+> what the Layer-6 engine measures there. It is green for a **structural** reason
+> and not a lucky one — the Layer-7 engine replaced no confidence
+> (`README-l6 §4`'s `CERTAIN`-by-fall-through residual is named OPEN rather than
+> closed, because on `corpora/l7compose` composition is deterministic and correct
+> so `1000‰` on a composed item *is* right), and its one new field, the lineage
+> ledger, costs **0 cells** on any stream with no composition in it, so it never
+> competed with the pending set and the fired ledger for room.

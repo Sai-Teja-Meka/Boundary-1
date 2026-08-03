@@ -303,5 +303,30 @@ ever run, append-only).
 
 ---
 
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer 7 claimed).** Two layers are
+> unbuilt now — self-description and birth — and both still receive laws but
+> **no thresholds** until `BOUNDARY-HIGH.md` is written at the Phase 3→4 gate.
+> The `L1`–`L4` scorecard table above does not move; the `L5`, `L6` and `L7`
+> tiers remain deliberately deferred to a later `PACKAGE` move, and this note
+> adds no row rather than publishing one a docs-are-checked trial has not been
+> written against.
+>
+> What a later `PACKAGE` move should carry from this layer, recorded so it is not
+> re-derived: the flagship claim `autopsy/GAPMAP.md §4` axis (b) was written for
+> — **self-tagged recall-versus-generation, with the denominator on the artifact
+> and not on the engine's own testimony** — is now measured rather than
+> positioned. `R8` clause 3 names the **fourth species** of gate clause (the
+> self-reported denominator, after the identity, the minimizing clause and the
+> empty domain) and rules that a denominator the engine reports about itself is
+> checkable against the artifact or it does not count; the instrument is a
+> **confusion matrix** over two declared classes and never a single rate, because
+> both directions cost; and the contrast with `autopsy/writ` at `3c0900a` is
+> sharper than the positioning claimed, since there `cited_sources` is read by
+> **zero** lines of scoring and `checkHallucination` scores a tagged generation as
+> a **defect**. Cite it with the commit, the artifact and the store the novelty
+> was measured against, as this document's citation discipline already requires.
+
+---
+
 *This project keeps a cultivation metaphor, quarantined in exactly one file:*
 [`LORE.md`](../LORE.md).
