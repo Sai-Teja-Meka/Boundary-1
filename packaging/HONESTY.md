@@ -261,3 +261,24 @@ number exists.
 * Nothing here has been **peer-reviewed, replicated externally, or run against
   another live system**. Four layers of a nine-layer specification are built and
   certified against corpora this project wrote. That is the whole of it.
+
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer 7 claimed).** The count above
+> is superseded again: **two** layers are unbuilt, not three — self-description
+> and birth — and both still have *no thresholds at all* until `BOUNDARY-HIGH.md`
+> is written at the Phase 3→4 gate, which is unchanged and is the more important
+> half of the sentence. The scorecard tiers this document points at are still
+> deliberately deferred to a later `PACKAGE` move.
+>
+> **And the limitation this layer adds, stated in the shape the Layer-6 one
+> was.** Layer 6 made this repository ship an engine that is **wrong on purpose**;
+> Layer 7 makes it ship one that **returns items no event ever carried**, and two
+> citation rules follow. (1) `novelty = 1000` is a canonical-byte comparison
+> against the store **at the moment of the run**, and `strain/l7` measures the
+> byte-novel share of the engine's own generations falling `60 → 30 → 0` as the
+> caller writes them back — so quoting `novelty 1000` without saying which store
+> it was measured against is the citation error this document exists to forbid.
+> (2) The lineage ledger is an **upper bound** and not a census: a structural
+> coincidence would mark an observation as generated, which can only make the
+> engine refuse to promote, and the measurement that the bound is *tight* is a
+> property of `corpora/l7compose` that `ops/l7` checks and that no other artifact
+> inherits. Both are in `core/layers/README-l7.md §1.4` and `§2.2`.

@@ -55,3 +55,23 @@ layer replays at its own `layer_cap`, so a new layer never perturbs the ones bel
   together they are what the fourth substrate kill was for — `AUROC 976` on the
   binding artifact against **1000** on the demoted diagnostic, where the ties the
   engine reads are exactly its errors.
+
+- `l7.json` / `t_l7.py` — replay at `layer_cap = 7`, and the first anchor file
+  that pins **what an engine made** rather than only what it holds or how sure it
+  is. Its `corpora` entries pin the same **negative** `l6.json` pins, one layer
+  on: `sessions`, `murk` and `l5stream` carry no `profile` payload, so the ledger
+  is empty and costs nothing, every shared shape figure equals `anchors/l6.json`'s
+  own frozen figure for the same corpus, and the canonical bodies differ in
+  exactly two branches — the recorded `layer_cap`, and an **empty** `lineage`.
+  Its `generation` entry carries `corpora/l7compose` at `DEFAULT_BUDGET`: all
+  three capability ratios and every `§3` measure as an exact `Fraction` **and** a
+  permille rendering, the confidence vocabulary, the whole three-rung ladder with
+  the ledger it leaves (`{1: 100, 2: 30, 3: 30}`, 320 cells) — and **three
+  hashes**, because at this layer a score cannot stand in for any of them:
+  `trace_sha256` over `(qid, status, lineage, confidence)`, since `tagging = 1000`
+  says how many and not **which**; `support_sha256` over
+  `(qid, kind, support, t_asof)`, since `R8` clause 5(b) binds relevance to
+  *exactly* the `t`s the rule reads and a tag citing a different set of the same
+  size clears every `§5 L7` clause; and a state hash **after** the three
+  generations, since the ledger is the layer and its content is not any rung's
+  number.

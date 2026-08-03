@@ -136,3 +136,17 @@ lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 > after `l4`'s absent bits, `l5`'s absent machinery and `l6`'s absent order:
 > **absent generativity** — *an engine that can only find cannot make, and no
 > reading of held state produces an item the store never contained.*
+
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer-7 Stages C+D+E).** `l7/`'s
+> engine-gated confirmation is now **engaged and green**: the Layer-7 engine
+> *built and then capped to 6* measures what the Layer-6 engine capped to 6
+> measures, field for field, and reports `n/a` on all three capability ratios —
+> `§7.4` satisfied **by construction** rather than by imitation, because
+> `l7_generation.new_state` returns the frozen Layer-6 state below its own layer,
+> so `make_engine(6)` **is** the meta-memory engine and has no lineage field to
+> leak. That leak was the one thing a Layer-7 engine was most likely to fail by
+> accident, and it is the check that would have caught it. The primary ceiling
+> against `adapters/l6` is unchanged at a conjunction of **0 of 160**, and
+> `l7/IMPOSSIBILITY.md`'s fourth kind — **absent generativity** — completes the
+> taxonomy: absent bits (L4), absent machinery (L5), absent order (L6), absent
+> generativity (L7).

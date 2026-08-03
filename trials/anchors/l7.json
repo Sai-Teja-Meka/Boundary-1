@@ -1,0 +1,207 @@
+{
+ "corpora": {
+  "l5stream": {
+   "assertions": 16827,
+   "demotions": 945,
+   "episodes": 19820,
+   "fired": 765,
+   "forgotten": 0,
+   "index_atoms": 400,
+   "keys": 16,
+   "lineage": 0,
+   "lineage_cells": 0,
+   "n": 20000,
+   "next_t": 20765,
+   "occupancy": 149098,
+   "pairs": 2924,
+   "pending": 180,
+   "seed": 7007,
+   "state_sha256": "444df27e6d2042d20c1aa1e4a2c3b265550f23685ed60c0f1091492d58c8d691",
+   "ties": 0
+  },
+  "murk": {
+   "assertions": 9810,
+   "demotions": 0,
+   "episodes": 10000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 2652,
+   "keys": 18,
+   "lineage": 0,
+   "lineage_cells": 0,
+   "n": 10000,
+   "next_t": 10000,
+   "occupancy": 74981,
+   "pairs": 7519,
+   "pending": 0,
+   "seed": 3003,
+   "state_sha256": "7b087fc9b7dc179a01588db9b463812b84d6bbc4da7acda05333ad6e8cdaf85b",
+   "ties": 158
+  },
+  "sessions": {
+   "assertions": 0,
+   "demotions": 0,
+   "episodes": 5000,
+   "fired": 0,
+   "forgotten": 0,
+   "index_atoms": 712,
+   "keys": 0,
+   "lineage": 0,
+   "lineage_cells": 0,
+   "n": 5000,
+   "next_t": 5000,
+   "occupancy": 24538,
+   "pairs": 0,
+   "pending": 0,
+   "seed": 2002,
+   "state_sha256": "23f301b2886026666f9face475097f4e7c74e9d3805727d86f4f400373a7759b",
+   "ties": 0
+  }
+ },
+ "default_budget": 1000000000,
+ "generation": {
+  "l7compose": {
+   "A": 2000,
+   "F_all": [
+    1,
+    1
+   ],
+   "F_all_permille": 1000,
+   "F_core": [
+    1,
+    1
+   ],
+   "F_core_permille": 1000,
+   "N": 2200,
+   "abstentions": 200,
+   "auroc": null,
+   "brier": [
+    0,
+    1
+   ],
+   "confidences": [
+    1000
+   ],
+   "conjunction": [
+    1,
+    1
+   ],
+   "conjunction_permille": 1000,
+   "ece": [
+    0,
+    1
+   ],
+   "ece_permille": 0,
+   "fabricated": 0,
+   "ladder": {
+    "ledger": [
+     [
+      1,
+      100
+     ],
+     [
+      2,
+      30
+     ],
+     [
+      3,
+      30
+     ]
+    ],
+    "ledger_cells": 320,
+    "next_t": 12160,
+    "occupancy": 92826,
+    "rungs": [
+     [
+      1,
+      100,
+      0,
+      160,
+      12100
+     ],
+     [
+      2,
+      30,
+      0,
+      160,
+      12130
+     ],
+     [
+      3,
+      30,
+      0,
+      160,
+      12160
+     ]
+    ],
+    "state_sha256": "5a2673cfa6dde6fef8f518ef887a9e71ecff861f5053dc170c2879f2d1a1fd3b"
+   },
+   "lineage": 0,
+   "n_events": 12000,
+   "n_neg": 0,
+   "n_pos": 2000,
+   "next_t": 12000,
+   "novel_items": 160,
+   "novelty": [
+    1,
+    1
+   ],
+   "novelty_permille": 1000,
+   "occupancy": 91226,
+   "refused": 0,
+   "state_sha256": "258e240215c2b55e5af7e8da3bc4732ceb57fb69f4ecd191c04cad6d234e7de5",
+   "support_sha256": "5ffbcc98af9611e02fda5f37e9a0ff2c1305d9b54728c30e731f81caf9f580d2",
+   "tagged_generated": 160,
+   "tagging": [
+    1,
+    1
+   ],
+   "tagging_all": [
+    1,
+    1
+   ],
+   "tagging_denominator": 160,
+   "tagging_permille": 1000,
+   "trace_sha256": "65e21cb9a9b4b577f0f24d72575117b98faa67b1b1eee834217c9c37f9ad7ffa",
+   "untagged_generations": 0,
+   "valid_items": 160,
+   "validity": [
+    1,
+    1
+   ],
+   "validity_permille": 1000,
+   "wrong": 0
+  }
+ },
+ "grades": [
+  "crude",
+  "fine",
+  "keen",
+  "pure",
+  "rare",
+  "vivid"
+ ],
+ "hues": [
+  "amber",
+  "cobalt",
+  "jade",
+  "ochre",
+  "rose",
+  "slate",
+  "teal",
+  "umber"
+ ],
+ "layer": 7,
+ "lineage_entry_cells": 2,
+ "lineage_vocab": [
+  "observed",
+  "generated"
+ ],
+ "profile_form": [
+  "kind",
+  "entity",
+  "grade",
+  "hue",
+  "mass"
+ ]
+}

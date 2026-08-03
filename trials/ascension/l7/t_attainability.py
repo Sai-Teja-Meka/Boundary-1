@@ -726,26 +726,35 @@ def trial_the_layer_7_gate_binds_on_this_artifact_under_r8_clause_1():
     `trials/strain/l7/` — `§6`'s mandatory Layer-7 self-pollution strain — is
     Stage D's by the constitution's own schedule, and this trial goes on saying
     so about all three. No historical line above is rewritten.
+
+    **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer-7 Stages C+D+E). The last
+    step is now taken, exactly as the note above said it would be.** Stage C
+    wrote `core/layers/l7_generation.py` and `trials/adapters/l7.py`, and Stage D
+    wrote `trials/strain/l7/` — `§6`'s mandatory self-pollution strain. All three
+    move from the absence list to the presence list below, so the **absence list
+    is now empty** and the assertion is what it has been at every step: an
+    inventory of where `R2`'s order has got to, advanced rather than weakened. No
+    historical line above is rewritten, and what the trial still checks is
+    unchanged in substance — the entry exists, it binds `corpora/l7compose`, and
+    it records the whole-stock refusal in the same clause.
     """
-    for relative in ("core/layers/l7_generation.py",
-                     "trials/adapters/l7.py",
-                     "trials/strain/l7"):
-        path = os.path.join(ROOT, relative)
-        require(not os.path.exists(path),
-                "%s exists — R8 binds the gate and R2's standing order puts "
-                "Stage C AFTER Stage B, not inside it; §6's mandatory Layer-7 "
-                "self-pollution strain follows the engine it attacks"
-                % (relative,))
     for relative in ("trials/humility/l7/t_generation.py",
                      "trials/humility/l7/IMPOSSIBILITY.md",
                      "trials/inheritance/l7/t_inheritance.py",
                      "trials/ascension/l7/t_generation.py",
-                     "trials/ascension/l7/STAGE-B.md"):
+                     "trials/ascension/l7/STAGE-B.md",
+                     "core/layers/l7_generation.py",
+                     "core/layers/README-l7.md",
+                     "trials/adapters/l7.py",
+                     "trials/strain/l7/t_self_pollution.py",
+                     "trials/anchors/l7.json"):
         require(os.path.exists(os.path.join(ROOT, relative)),
-                "%s is missing — Stage B wrote it under this entry's authority, "
-                "and `§6` requires an IMPOSSIBILITY.md beside every humility "
-                "trial. A Layer-7 gate whose batteries had gone away would be "
-                "bound to an artifact nothing measures" % (relative,))
+                "%s is missing — Stages B, C and D wrote it under this entry's "
+                "authority, and `§6` requires an IMPOSSIBILITY.md beside every "
+                "humility trial and names the Layer-7 self-pollution strain in "
+                "its own frozen text. A Layer-7 gate whose batteries, engine or "
+                "mandated strain had gone away would be bound to an artifact "
+                "nothing measures" % (relative,))
 
     with open(os.path.join(ROOT, "BOUNDARY-RULINGS.md"), "r",
               encoding="utf-8") as fh:

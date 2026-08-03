@@ -118,3 +118,50 @@ sessions ~5k, murk ~10k, l3stream / l3streamb ~10k each):
   shed** would leave a confident engine behind — the `damaged` flag Layer 4
   already carries is what stops it, and the strain asserts its own scope, since
   neither Layer-6 artifact reaches the seam at all.
+
+- `l7/t_self_pollution.py` — **`§6`'S MANDATORY LAYER-7 SELF-POLLUTION STRAIN**,
+  the one trial the constitution names by procedure in its own frozen text
+  (*"the engine re-ingests its own generations three deep, provenance/lineage
+  chains must survive, and consolidation must never promote generated-lineage
+  content to observed fact"*). **Suggestibility**, the seventh Schacter sin and
+  the last uncovered one — structurally L7's, because its literal form requires
+  an act no layer below 7 performs: the **caller** re-ingesting the engine's own
+  output as ordinary fuel (`BOUNDARY.log` line 42). Run over
+  `corpora/l7compose`'s own three-generation ladder, scored **at each rung**
+  because a ladder checked only at depth 3 cannot say where a break occurred:
+  `promotion = 0` at 1, 2 and 3, with 160 of 160 still reported generated and the
+  store growing by exactly what the caller wrote (12 100 / 12 130 / 12 160). The
+  engine's ledger is read through `§7` alone (`{"op":"lineage"}`) and required to
+  agree **entity by entity** with the depth the artifact declares — `{1: 100}`,
+  `{1: 100, 2: 30}`, `{1: 100, 2: 30, 3: 30}` at 200 / 260 / 320 cells under rule
+  P — so an engine keeping a ledger of the right size and the wrong content goes
+  red. The teeth are demonstrated on an **engine**: a ledger-blind fixture
+  (`trials/_l7fixtures.py`, never engine code) that writes the ledger and refuses
+  to read it promotes **100, then 130, then all 160**, the same triple
+  `ATTAINABILITY.md §5.1` measured for the ledger-blind *policy*. And the finding
+  no `§5 L7` clause states: measured against the store as it now is, the
+  **byte-novel** share of the engine's own generations falls `60 -> 30 -> 0`
+  while `tagging` holds and `promotion` stays 0 — at rung 3 a byte comparison
+  would call this engine a liar about every item it made, which is why `R8`
+  clause 3 binds novelty's denominator to what the engine **tags** and clause
+  5(c) puts the capital crime on lineage.
+
+- `l7/t_generation_seam.py` — the two seams `§4.2` opens when it wakes, on
+  `corpora/l7compose`. **The inversion**: after the caller re-ingests generation
+  1, all **30** depth-2 answers cite a `t` that is one of the engine's own items
+  and the FROZEN `laws/t_provenance_schema.py` accepts all 30 — `R6` clause 2
+  makes such a `t` an actually-ingested event — while **0** of them is reported
+  as observed fact, the ledger-blind fixture reporting 100 at the same rung.
+  `30` and `0` are the two halves of one finding (`R8` clause 5(c)), and a later
+  session finding that validator green must not conclude the capital crime is
+  covered. **The warrant the budget takes**, the question live since the kept
+  promise (`BOUNDARY.log` line 34, `R7` clause 7, settled shape-only by `R8`
+  clause 5(a)): on a declared ladder of six caps over a 6 000-event prefix where
+  the engine loses up to 1 934 events and sheds chains, **not one cited `t` is
+  unreadable at any cap** — the composition reading can only cite what it can
+  still read, so the engine loses the *answer* before the *warrant* and
+  generation degrades from 160 answers to 0 **by abstention**, with `forgotten`
+  exactly the set of `t` it abstains on. The stronger property is stated as a
+  fact about this engine and **not gated**: `R8` clause 5(a) demands *ingested*,
+  and the support-recoverability rate is reported and binds nothing, so this file
+  declares no `§5` constant and says why.

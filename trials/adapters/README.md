@@ -122,3 +122,25 @@ system is a separate, human-supervised step.
 The scorecard will place it on the same rows as ours, against the same ratified
 gates, measured by the same scorers. That is the whole design: the benchmark
 does not know whose engine it is holding.
+
+> **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer-7 Stages C+D+E).** The portable
+> list gains **one** requirement, and it is the field `R8` clause 2 puts on a
+> `generate` Answer: `lineage`, **absent or one of `{observed, generated}`**
+> (`R8` clause 4 — a property of the **item**, orthogonal to `§4.2.3`'s closed
+> four `kind`s, which say how an answer reached the caller, so no fifth `kind` is
+> minted). An **absent** lineage is a lawful Answer that makes no claim and is
+> scored as untagged, which is exactly what `§5 L7` prices when it says *an
+> untagged generation is a fabrication*; a value **outside** the vocabulary is a
+> contract violation refused at the read, in the shape the integer-permille
+> confidence check above already takes (`§7.3`'s categorical distinction — a
+> harness-level failure and not a low score).
+>
+> Two things a foreign engine should read together with it. `generate` is a
+> **`query` op** and not a fourth verb (`R8` clause 2), so `INTERFACE.md`'s three
+> doors are unchanged and this document adds no verb. And the field is attached
+> to a `generate` Answer **and to nothing else** in this project's own engine —
+> `read`, `read_range`, `recall`, `current`, `asof`, `fired` and `profile` return
+> the Layer-6 Answer byte for byte — which is why five older shared scorers never
+> see a key they were not written against. A foreign adapter that decorated every
+> Answer would still be lawful here; it would simply be carrying a claim nothing
+> asks it for.
