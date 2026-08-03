@@ -126,6 +126,46 @@ strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
   copies carry the §5 clause and NO ruling -- and a registry edit that gave them
   one back turns that file red.
 
+  Note added 2026-08-03 ([L6] [ASCEND], Layer-7 Stage A). GENERATED now holds
+  TEN: corpora/l7compose joins it, and the header's "currently holds eight" and
+  the "now NINE" note above both stop holding here rather than being rewritten.
+  It exists because of a limit this session MEASURED across every other member
+  of this list. §5 L7's novelty clause is *"provably never-stored"*, so a gate
+  citing it can only bind where some query's correct answer is NOT in the
+  stream; and across 85 954 answerable queries drawn from the frozen batteries
+  these artifacts already carry — chronicle, sessions, murk, l3stream,
+  l3streamb, l4stream, l5stream, l6battery, l6batteryb, and §8.8's
+  real-sessions/v1 — NOT ONE answer is absent from its own stream. §8.7's *dirt
+  is always paired with the answer key* is exactly why: an answer key that names
+  the t's it touches cannot force a composition. So on every existing artifact
+  the generation-required class is EMPTY, tagging's denominator is empty, and a
+  gate citing it measures nothing. That is the FIFTH SUBSTRATE KILL — after
+  l3stream (R1 clause 1), the chronicle family (R4 clause 1) and l6battery (R7
+  clause 1) — and it is the first that falls on the WHOLE existing stock rather
+  than on one artifact. NOTHING IS DEMOTED and no byte moves: nothing here was
+  ever a Layer-7 candidate, so what is recorded is a refusal to bind, in the
+  form R4 clause 1 used for the chronicle family.
+
+  corpora/l7compose is what that forces: a closed compositional grammar with a
+  WITHHELD ITEM. A compound is formed from two components by two `part`
+  assertions, a declared rule determines its `profile` from their material, and
+  for half the mirror pairs the generator emits that profile while for the other
+  half it withholds it — under a BALANCED COIN, with both members asked by the
+  same cue in the same shape. So the class is not readable from the query
+  (Theorem 1: every labeller that does not consult the store mislabels exactly
+  one member of every pair, exhibited against a bench of six), the composed item
+  is provably never stored (Theorem 2: exhaustive canonical-byte comparison
+  against all 12 000 payloads), and the two members compose to the SAME item but
+  for its `entity` field, so the value is never the signal. It also carries the
+  three-generation ladder §6's mandatory self-pollution strain will stand on,
+  with lineage depth decidable from the frozen bytes.
+
+  NO LAYER-7 GATE BINDS ON IT. trials/ascension/l7/ATTAINABILITY.md computes the
+  arithmetic and trials/ascension/l7/RULING-R8-DRAFT.md asks a human to bind it;
+  appending a ruling is what freezes, and that session does not append. The
+  l6battery seam recorded above applies to this member identically (one line, no
+  `intend` payload, the frozen Layer-5 theorem still true and still checked).
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
@@ -136,6 +176,7 @@ from corpora import real_sessions
 from corpora.chronicle import generator as chronicle_gen
 from corpora.l6battery import generator as l6battery_gen
 from corpora.l6batteryb import generator as l6batteryb_gen
+from corpora.l7compose import generator as l7compose_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
 from corpora.l3stream import generator as l3stream_gen
@@ -144,7 +185,8 @@ from corpora.l4stream import generator as l4stream_gen
 from corpora.l5stream import generator as l5stream_gen
 
 GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen,
-             l4stream_gen, l5stream_gen, l6battery_gen, l6batteryb_gen]
+             l4stream_gen, l5stream_gen, l6battery_gen, l6batteryb_gen,
+             l7compose_gen]
 
 MURK = murk_gen
 

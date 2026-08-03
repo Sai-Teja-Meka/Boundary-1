@@ -609,6 +609,65 @@ AUTHORIZED_GATES = (
      "a breach cannot be a pressure consequence. The Layer-5 row it now carries "
      "declares no constant of its own: §5 L5's clauses are identities in budget, "
      "and an in-budget identity is not a gate this registry governs"),
+
+    # Layer 7, Stage A. The ratified §5 L7 numbers, declared so the attainability
+    # arithmetic can be stated in the constitution's own figures — and carrying a
+    # §5 clause and NO COMPANION RULING, which is what "no gate binds on
+    # anything" looks like in this registry. It is the shape BOUNDARY.log line 28
+    # left behind at Layer 5 and line 36 at Layer 6, and
+    # ascension/l7/t_attainability.py::trial_no_layer_7_gate_binds_on_anything
+    # asserts the same absence from the other side (no engine, no adapter, no
+    # humility or inheritance directory, and no R8 in BOUNDARY-RULINGS.md).
+    #
+    # THE CONSTANTS LIVE IN THE SHARED TASK MODULE, quoted once, because the
+    # Stage-A arithmetic and the drift trial must apply the same figures and this
+    # registry's completeness check reaches `_`-prefixed modules as well as trial
+    # files — so quoting them anywhere under trials/ is what makes them
+    # discoverable, and there is no cheaper place to hide one.
+    #
+    # R5 IS ALREADY IN FORCE ON THESE CLAUSES AND IS DELIBERATELY NOT CITED HERE,
+    # exactly as at Layer 6: clause 1 carries the five identities and clause 2 the
+    # two minimizing clauses, both forward-binding in their own text, so R5
+    # governs how these constants are READ while the absence of a ruling here
+    # records that none authorizes a SUBSTRATE.
+    ("_l7tasks.py", "GATE_VALIDITY", 1000, (_s5("validity=1000"),),
+     "§5 L7 generation validity, unchanged; an identity discharged by an "
+     "exhibited attainment under R5 clause 1. Its denominator is the one §5 does "
+     "not state, which is the whole subject of RULING-R8-DRAFT.md clause 3"),
+    ("_l7tasks.py", "GATE_NOVELTY", 1000, (_s5("novelty=1000"),),
+     "§5 L7, unchanged; the clause R2 obligation 2 rests on — a retrieval-only "
+     "policy misses it by the maximum possible margin, and it is the clause a "
+     "self-reported denominator could let evaporate"),
+    ("_l7tasks.py", "GATE_TAGGING", 1000, (_s5("tagging=1000"),),
+     "§5 L7, unchanged; the constitution's named capital crime as a number — "
+     "*an untagged generation is a fabrication* — and the clause the forcing "
+     "region exists to make cost something"),
+    ("_l7tasks.py", "GATE_PROMOTION", 0,
+     (_s5("self-pollution promotion=0"),),
+     "§5 L7, unchanged; MINIMIZING as well as an identity, read direction-aware "
+     "under R5 clause 2. It is also the one clause §6 names in a second trial "
+     "class in its own text (the mandatory Layer 7 self-pollution strain), and "
+     "Stage A measures it on the three-generation ladder without owning it"),
+    ("_l7tasks.py", "GATE_F", 950, (_s5("F≥950"),),
+     "§5 L7 fidelity under the literal §3.0 table; the ordinary graded clause, "
+     "ceiling 1000, and the one that prices hedging out at 900 per abstention — "
+     "the g > 1/18 window"),
+    ("_l7tasks.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "the budget law, absolute at every layer (§4.1); §5 L7 states no footprint "
+     "clause, so the artifact is scored at DEFAULT_BUDGET where refused = 0"),
+    ("_l7tasks.py", "GATE_ECE", 40, (_s5("ECE≤40"),),
+     "§5 L7 calibration, unchanged; MINIMIZING with ceiling 0, read "
+     "direction-aware under R5 clause 2. Layer 6 MEASURED this clause to "
+     "discriminate against nothing and Layer 7 inherits it as its sole "
+     "calibration clause, which ATTAINABILITY.md §6 states rather than lets a "
+     "reader assume"),
+    ("_l7tasks.py", "CEILING_CONJUNCTION", 50,
+     (_s5("capped (novel∧valid∧tagged) ≤ 50"),),
+     "§5 L7's humility ceiling, unchanged. It is stated in a measure the "
+     "ascension gate never states, so Stage A DEFINES it (a per-item conjunction "
+     "over the artifact's declared G class) and MEASURES the capped engine at 0 "
+     "— and does NOT apply it: trials/humility/l7/ is Stage B's under R2's "
+     "standing order"),
 )
 
 
