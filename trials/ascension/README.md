@@ -416,3 +416,29 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
 > `§3.4` readings `R8` clause 6 applies unchanged; `R8` authorizes the
 > substrate, the three denominators `§5` does not state, and the reading of
 > `§4.2`.
+
+> **Note added 2026-08-03 (`[L6] [ASCEND]`, Layer-7 Stage B).** The middle step
+> of `R2`'s standing order is taken: `l7/t_generation.py` is the ratified `§5 L7`
+> gate — `validity = 1000`, `novelty = 1000`, `tagging = 1000`, self-pollution
+> `promotion = 0` three deep, `F ≥ 950`, `B = 1000`, `ECE ≤ 40` — applied to an
+> **engine** on `corpora/l7compose` per `R8` clause 1, and **every trial in it is
+> an engine-gated skip**. `core/layers/l7_generation.py`, `trials/adapters/l7.py`
+> and `trials/strain/l7/` still do not exist; the standing checkpoint this
+> session leaves is the one Layers 4, 5 and 6 left at the same point — **humility
+> green + ascension skipped**. `l7/STAGE-B.md` is the record: the declared query
+> vocabulary, the three denominators applied with `R8` clause 3(a)'s holding
+> asserted as law, `ECE` under both of clause 6's readings with the declined one
+> computed and gating nothing, the **three over-tightenings caught and removed**
+> before freezing, and the mock-engine validation that shows the battery
+> clearable — including that the lawful `k = 111` hedger `R8` clause 3(e) admits
+> clears the whole battery while `k = 112` dies on `F` alone, at `R7` clause 4's
+> exact-reading seam. Its `§7` reports **no `R9`**: every question Stage B had to
+> answer was already settled, and the two items left open are engine-design
+> questions no in-budget battery can decide.
+>
+> `l7/t_attainability.py`'s closing trial is **advanced one step rather than
+> weakened**, in the form `l6/t_attainability_b.py`'s took at Stage B:
+> `trials/humility/l7/` (with its mandatory `IMPOSSIBILITY.md`) and
+> `trials/inheritance/l7/` move from its absence list to its presence list, and
+> the engine, the adapter and `trials/strain/l7/` stay on the absence list. No
+> historical line above is rewritten, and nothing frozen moved.

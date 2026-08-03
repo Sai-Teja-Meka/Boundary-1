@@ -721,6 +721,178 @@ AUTHORIZED_GATES = (
      "reason; the capped engine measures 0 of 160 there, and clause 7 reads the "
      "50 permille of headroom as eight items of slack for a partially capable "
      "engine §7.4 does not produce"),
+
+    # Layer 7, Stage B — the ascension battery. The SAME §5 L7 clauses and the
+    # SAME ruling the Stage-A copies above carry, so the two files cannot drift
+    # apart; what is new is that they are applied to an ENGINE, through §7's
+    # three operations and nothing else.
+    #
+    # ONE SCOPE NOTE, recorded rather than left for a later session to discover:
+    # trial_the_refused_stock_cannot_acquire_a_layer_7_binding scopes itself to
+    # LAYER_7_CONSTANTS_FILE — the eight Stage-A copies — because that is the file
+    # the R8 session could see. The Stage-B copies below carry R8 and name
+    # corpora/l7compose by the same convention, and the completeness check reaches
+    # them (no constant escapes this registry); what a later ruling could usefully
+    # broaden is the refusal check's own scope.
+    ("ascension/l7/t_generation.py", "GATE_VALIDITY", 1000,
+     (_s5("validity=1000"), _ruling("R8")),
+     "§5 L7 generation validity, unchanged, APPLIED TO AN ENGINE on "
+     "corpora/l7compose. An identity under R5 clause 1, so the battery asserts "
+     "it with require_equal and not as a threshold — an identity has no margin "
+     "and there is no inequality here for a later session to widen. Its "
+     "denominator is the engine's OWN REPORT (the items it tags generated), "
+     "admissible under R8 clause 3(a) only because the harness checks every "
+     "member and the set cannot shrink without failing tagging; an empty one is "
+     "n/a and clause 3(c) DISQUALIFIES"),
+    ("ascension/l7/t_generation.py", "GATE_NOVELTY", 1000,
+     (_s5("novelty=1000"), _ruling("R8")),
+     "§5 L7, unchanged, applied to an engine on corpora/l7compose — the clause "
+     "R2 obligation 2 rests on, and the other off-diagonal of the confusion "
+     "matrix: a RECALLED item tagged generated fails here exactly as an untagged "
+     "generation fails tagging, which is why R8 clause 3(b) makes the instrument "
+     "a matrix and never a single rate. Checked by the HARNESS over frozen "
+     "bytes, where Theorem 2 makes `provably never-stored` a property of the "
+     "artifact"),
+    ("ascension/l7/t_generation.py", "GATE_TAGGING", 1000,
+     (_s5("tagging=1000"), _ruling("R8")),
+     "§5 L7, unchanged, applied to an engine on corpora/l7compose — the "
+     "constitution's named capital crime as a number. It carries the one "
+     "ARTIFACT-BOUND denominator of the three (R8 clause 3(b): the declared "
+     "generation-required queries the engine ANSWERS), which is what fences the "
+     "other two, and the battery states the untagged-generation count beside the "
+     "ratio because the two say different things when an engine hedges. The "
+     "stricter tagging_all is computed and REPORTED and binds nothing (clause "
+     "3(d))"),
+    ("ascension/l7/t_generation.py", "GATE_PROMOTION", 0,
+     (_s5("self-pollution promotion=0"), _ruling("R8")),
+     "§5 L7, unchanged, applied to an engine on corpora/l7compose and scored AT "
+     "EACH RUNG of the three-generation ladder, because a ladder checked only at "
+     "depth 3 cannot say where a break occurred. MINIMIZING as well as an "
+     "identity, read direction-aware under R5 clause 2. The caller does the "
+     "re-ingesting through §7.1's `ingest`, which is what makes it "
+     "suggestibility in GAPMAP §6's literal sense; R8 clause 5(c) rules that "
+     "this clause is enforced by the battery and by §6's mandatory self-pollution "
+     "strain, keyed on lineage, and NEVER by laws/t_provenance_schema.py"),
+    ("ascension/l7/t_generation.py", "GATE_F", 950,
+     (_s5("F≥950"), _ruling("R8")),
+     "§5 L7 fidelity under the literal §3.0 table — which from this layer has "
+     "FIVE rows and not four, §4.2.2 scoring a correct-but-untagged answer 0 "
+     "regardless of whether its value is correct (R8 clause 8(a)). The ordinary "
+     "graded clause, ceiling 1000, and the one that prices hedging out at 900 "
+     "per abstention: corpora/l7compose sits at g = 80 permille against R8 "
+     "clause 8(b)'s 1/18 precondition, so the blanket hedger dies here. R3 does "
+     "not reach Layer 7 and no extension is requested"),
+    ("ascension/l7/t_generation.py", "GATE_B", 1000,
+     (_s5("B=1000"), _ruling("R8")),
+     "the budget law, absolute at every layer (§4.1); the identity in this "
+     "registry since Layer 1, carried by R5 clause 1's regularization. Asserted "
+     "after EVERY write because §4.1.2 refuses mid-stream and a lineage ledger "
+     "is state — ATTAINABILITY.md §7 prices it by name at 320 cells. §5 L7 "
+     "states no footprint clause and R8 creates none, so corpora/l7compose is "
+     "scored at DEFAULT_BUDGET where a refusal is a defect and not a price"),
+    ("ascension/l7/t_generation.py", "GATE_ECE", 40,
+     (_s5("ECE≤40"), _ruling("R7"), _ruling("R8")),
+     "§5 L7 calibration, unchanged; MINIMIZING with ceiling 0, read "
+     "direction-aware under R5 clause 2, EXACT under R7 clause 4 and binned "
+     "under its clause 5 — the two readings R8 clause 6 applies unchanged. That "
+     "clause also rules the DENOMINATOR: §3.4's own answered queries, so hedging "
+     "one class cannot empty it, and the declined reading (over generated "
+     "answers alone) is computed beside it and gates nothing. R8 clause 6 "
+     "records what the clause is FOR — a floor against incoherence and not a "
+     "discriminator, R2 obligation 2 resting on novelty and F. Bound to "
+     "corpora/l7compose with the rest of the gate"),
+
+    # Layer 7, Stage B — the humility side, GREEN this session against
+    # adapters/l6. R8 clause 1 binds this ceiling to corpora/l7compose in the
+    # SAME clause as the gate, for R6 clause 1's reason, and clause 7 DEFINES the
+    # measure §5 states only here. The four gate clauses beside it are declared
+    # because the trial records the capped engine's fate CLAUSE BY CLAUSE — three
+    # ties, three disqualifications and one failure — and a fate is not a
+    # measurement unless the clauses it is stated against are the ratified ones.
+    ("humility/l7/t_generation.py", "CEILING_CONJUNCTION", 50,
+     (_s5("capped (novel∧valid∧tagged) ≤ 50"), _ruling("R8")),
+     "§5 L7's humility ceiling, unchanged and now APPLIED — the clause Stage A "
+     "declared without applying, R2's standing order having put the trials after "
+     "the arithmetic. make_engine(6) measures 0 of 160 on corpora/l7compose, by "
+     "arithmetic rather than by margin: novelty requires an item provably never "
+     "stored and every value that engine can return is one it holds. R8 clause 7 "
+     "reads the 50 permille as EIGHT ITEMS of slack for a partially capable "
+     "engine §7.4 does not produce, and puts the denominator on the artifact so "
+     "no engine can empty it"),
+    ("humility/l7/t_generation.py", "GATE_F", 950,
+     (_s5("F≥950"), _ruling("R8")),
+     "§5 L7, unchanged; declared here as the clause the capped engine FAILS, at "
+     "883 against 950 on corpora/l7compose. It is the one §5 L7 clause that "
+     "separates this ceiling from a measurement of retention — the capped engine "
+     "answers every retrieval query correctly and is 67 permille short anyway, "
+     "because §3.0 pays 100 for each of the 260 answerable cues it cannot parse"),
+    ("humility/l7/t_generation.py", "GATE_ECE", 40,
+     (_s5("ECE≤40"), _ruling("R8")),
+     "§5 L7, unchanged; declared here as one of the three clauses the capped "
+     "engine TIES on corpora/l7compose (measured 0). R8 clause 6 records why "
+     "that is the clause's point rather than an embarrassment: ECE≤40 is a floor "
+     "against incoherence and not a discriminator, and R2 obligation 2 does not "
+     "rest on it"),
+    ("humility/l7/t_generation.py", "GATE_B", 1000,
+     (_s5("B=1000"), _ruling("R8")),
+     "the budget law (§4.1); declared here as the second clause the capped "
+     "engine ties on corpora/l7compose. A ceiling measured on a run that breached "
+     "the budget would be measuring a different engine"),
+    ("humility/l7/t_generation.py", "GATE_PROMOTION", 0,
+     (_s5("self-pollution promotion=0"), _ruling("R8")),
+     "§5 L7, unchanged; the third clause the capped engine ties on "
+     "corpora/l7compose, and the sharpest of the three — it promotes nothing "
+     "because it GENERATES nothing, emitting 0 at every rung of the ladder. Read "
+     "alone that row says a memory with no generation construct satisfies the "
+     "self-pollution clause of the generation layer, which is true and is exactly "
+     "the sentence R8 clause 3(c)'s n/a disqualification exists to stop anyone "
+     "ending on"),
+
+    # Layer 7, Stage B — the inheritance class at cap 7. Older layers' gates
+    # only; the class introduces no measure and no threshold of its own, and no
+    # §5 L7 clause appears in it — the three capability ratios whose denominators
+    # R8 clause 3 had to bind are nowhere in that file, an inherited battery that
+    # scored one being the class introducing a measure of its own.
+    ("inheritance/l7/t_inheritance.py", "GATE_L2_CUE_C", 900,
+     (_s5("cue-C≥900"),),
+     "§5 L2 cue coverage, re-applied at layer_cap = 7"),
+    ("inheritance/l7/t_inheritance.py", "GATE_L2_F", 950, (_s5("F≥950"),),
+     "§5 L2 fidelity, re-applied at layer_cap = 7"),
+    ("inheritance/l7/t_inheritance.py", "GATE_B", 1000, (_s5("B=1000"),),
+     "the budget law, absolute at every layer (§4.1); asserted in budget, where "
+     "a breach cannot be a pressure consequence. The Layer-3, Layer-4 and "
+     "Layer-5 rows declare no constant of their own: their inherited clauses are "
+     "identities in budget, and an in-budget identity is not a gate this "
+     "registry governs"),
+    ("inheritance/l7/t_inheritance.py", "GATE_L6_BRIER", 40,
+     (_s5("Brier≤40"), _ruling("R7")),
+     "§5 L6 calibration, re-applied at layer_cap = 7 on corpora/l6batteryb — the "
+     "artifact R7 clause 1 binds that gate to, and R7 clause 4's exact reading "
+     "is how it is compared. THE FIRST INHERITED ROW WHOSE CLAUSES ARE "
+     "THRESHOLDS AND NOT IN-BUDGET IDENTITIES: the forcing region makes the "
+     "engine wrong exactly 100 times BY THEOREM (R7 clause 3(b)), whatever the "
+     "budget, so no cap turns these numbers into identities the way it does for "
+     "retention, reconstruction and firing"),
+    ("inheritance/l7/t_inheritance.py", "GATE_L6_ECE", 30,
+     (_s5("ECE≤30"), _ruling("R7")),
+     "§5 L6, re-applied at layer_cap = 7 on corpora/l6batteryb; binned under R7 "
+     "clause 5's index. Note the difference from §5 L7's own ECE clause, which "
+     "is 40 and is computed over a different battery — this row inherits Layer "
+     "6's number on Layer 6's artifact"),
+    ("inheritance/l7/t_inheritance.py", "GATE_L6_AUROC", 900,
+     (_s5("AUROC≥900"), _ruling("R7")),
+     "§5 L6, re-applied at layer_cap = 7 on corpora/l6batteryb — and THE ONLY "
+     "PLACE THE RANKING IS STILL ASKED FOR, because §5 L7 keeps ECE alone of "
+     "§3.4's triple. README-l6 §4 records the residual a Layer-7 engine must "
+     "replace (a generated item has no chain, so confidence_for falls through to "
+     "CERTAIN), and an engine that replaced it by widening the tie reading would "
+     "move confidences on chains that have nothing to do with generation. R7 "
+     "clause 3(a)'s n/a law applies here, this row citing AUROC"),
+    ("inheritance/l7/t_inheritance.py", "GATE_L6_F", 950,
+     (_s5("F≥950"), _ruling("R7")),
+     "§5 L6 fidelity under the literal §3.0 table, re-applied at layer_cap = 7 "
+     "on corpora/l6batteryb over the answerable core — the stricter of the two "
+     "denominators and the one R7 clause 3(c)'s window arithmetic is stated in"),
 )
 
 
