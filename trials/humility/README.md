@@ -110,3 +110,29 @@ lower layer to cap against. Its null-engine (`layer_cap = 0`) baseline lives in
 > imitation: `l6_meta_memory.new_state` returns the **frozen Layer-5 state**
 > below its own layer, so the capped engine is the prospection engine and has no
 > confidence model to leak.
+
+> **Note added 2026-08-03 (`[L6] [ASCEND]`, Layer-7 Stage B).** The class gains
+> `l7/t_generation.py` + `l7/IMPOSSIBILITY.md` — the capped `layer_cap = 6`
+> Meta-memory engine run through Layer 7's own battery (`_l7score` over
+> `corpora/l7compose`, the artifact `R8` clause 1 binds **both** sides of that
+> gate to) against `§5 L7`'s ceiling of capped `(novel ∧ valid ∧ tagged) ≤ 50`.
+> **GREEN this session against `adapters/l6`**, with the `§7.4` confirmation
+> engine-gated until Stage C.
+>
+> Two things are new in kind here. First, **the measure had to be DEFINED before
+> it could be applied**: the conjunction appears nowhere in the ascension gate,
+> which states its three conjuncts separately and each as an identity — the first
+> break in a pattern every previous layer keeps — so `R8` clause 7 rules it a
+> per-item conjunction over the artifact's **declared** generation-required
+> class, denominator the whole 160 so no engine can empty it. The capped engine
+> measures **0**, by arithmetic rather than by margin, and the 50 permille is
+> **read** rather than reported: eight items of slack for a partially capable
+> engine `§7.4` does not produce. Second, **three of the seven clauses are TIED
+> and three are DISQUALIFIED**: `validity`, `novelty` and `tagging` report `n/a`
+> on empty denominators, which `R8` clause 3(c) rules a disqualification and not
+> an excuse — `autopsy/writ`'s null-exemption met head-on — while `promotion`,
+> `B` and `ECE` are tied and only `F` is failed, at 883 against 950. Its
+> `IMPOSSIBILITY.md` argues the **fourth** kind of impossibility in the ladder,
+> after `l4`'s absent bits, `l5`'s absent machinery and `l6`'s absent order:
+> **absent generativity** — *an engine that can only find cannot make, and no
+> reading of held state produces an item the store never contained.*

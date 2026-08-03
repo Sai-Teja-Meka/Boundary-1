@@ -715,17 +715,37 @@ def trial_the_layer_7_gate_binds_on_this_artifact_under_r8_clause_1():
     A later session flips these as Stage B and Stage C flipped Layer 5's and
     Layer 6's — the assertion advanced one step along `R2`'s order rather than
     weakened, which is the form `t_attainability_b.py`'s took at Layer 6.
+
+    **Note added 2026-08-03 (`[L6] [ASCEND]`, Layer-7 Stage B). The first step of
+    that last sentence is now taken, exactly as it said it would be.** Stage B
+    wrote `trials/humility/l7/` with its mandatory `IMPOSSIBILITY.md` (`§6`) and
+    `trials/inheritance/l7/`, so the two of them move from the absence list to
+    the presence list below — the assertion is not weakened, it is **advanced one
+    step** along the order `R2` fixes. What still must NOT exist is the engine:
+    `core/layers/l7_generation.py` and `trials/adapters/l7.py` are Stage C's, and
+    `trials/strain/l7/` — `§6`'s mandatory Layer-7 self-pollution strain — is
+    Stage D's by the constitution's own schedule, and this trial goes on saying
+    so about all three. No historical line above is rewritten.
     """
     for relative in ("core/layers/l7_generation.py",
                      "trials/adapters/l7.py",
-                     "trials/humility/l7",
-                     "trials/inheritance/l7",
                      "trials/strain/l7"):
         path = os.path.join(ROOT, relative)
         require(not os.path.exists(path),
                 "%s exists — R8 binds the gate and R2's standing order puts "
-                "Stage B and Stage C AFTER this entry, not inside it"
+                "Stage C AFTER Stage B, not inside it; §6's mandatory Layer-7 "
+                "self-pollution strain follows the engine it attacks"
                 % (relative,))
+    for relative in ("trials/humility/l7/t_generation.py",
+                     "trials/humility/l7/IMPOSSIBILITY.md",
+                     "trials/inheritance/l7/t_inheritance.py",
+                     "trials/ascension/l7/t_generation.py",
+                     "trials/ascension/l7/STAGE-B.md"):
+        require(os.path.exists(os.path.join(ROOT, relative)),
+                "%s is missing — Stage B wrote it under this entry's authority, "
+                "and `§6` requires an IMPOSSIBILITY.md beside every humility "
+                "trial. A Layer-7 gate whose batteries had gone away would be "
+                "bound to an artifact nothing measures" % (relative,))
 
     with open(os.path.join(ROOT, "BOUNDARY-RULINGS.md"), "r",
               encoding="utf-8") as fh:

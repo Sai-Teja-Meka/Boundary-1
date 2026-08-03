@@ -40,6 +40,26 @@
 > document and a trial differ, the trial's value is the enforced one, which is
 > what `§1`'s own last paragraph already said.
 
+> **Note added 2026-08-03 (`[L6] [ASCEND]`, Layer-7 Stage B). ONE FIGURE IN `§7`
+> DIVERGES FROM THE ENGINE, and under `R6` clause 3 the divergence is recorded
+> here rather than edited there.**
+>
+> `§7` states the capped engine's measured occupancy over the same 12 000 events
+> as **91 233 cells**. Stage B measured it through `§7` alone on `adapters/l6`
+> and it is **91 226**. Stage A's own trial computed the figure without asserting
+> it, so nothing was wrong and nothing was checked; it is asserted now, by
+> `trials/humility/l7/t_generation.py::trial_the_capped_run_is_in_budget_and_the_lineage_ledger_cost_nothing`,
+> and **the trial's value is the enforced one while this prose stands as
+> written** — the rule `R6` clause 3 generalized from the 270/271 seam, whose
+> second instance was `corpora/l5stream/grammar.md`'s closing block and whose
+> third this is.
+>
+> **No claim moves with it.** The only thing `§7` derives from that number is the
+> lineage ledger's share of it, and 320 cells is **3.5 permille** of 91 226
+> exactly as it is of 91 233. The 320-cell price, the declined 800-cell
+> alternative and both disclaimed items are untouched, and `BOUNDARY.log` records
+> the divergence as this session found it.
+
 `[L6] [ASCEND]`, 2026-08-03. **No Layer-7 gate binds on anything.**
 `core/layers/l7_generation.py` does not exist, `trials/adapters/l7.py` does not
 exist, `trials/humility/l7/` and `trials/inheritance/l7/` do not exist, and
