@@ -201,6 +201,21 @@ Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
 Each REAL entry is: {"name": str, "path": str (absolute), "sha256": hex str}.
+
+Note added 2026-08-07 ([L7] [PACKAGE]) — why REAL is STILL one entry.
+  Nothing below is corrected and no byte moves; this records a REFUSAL, because
+  after five more claimed layers a reader is entitled to ask why the REAL family
+  did not grow. `[L7] [PACKAGE]` repeated v1's freeze procedure at current scale
+  — the store is 50 events now against v1's 25, and it carries a SECOND declared
+  kind (3 `intend` payloads, the first intentions any REAL corpus would have
+  held) — and the freeze STOPPED where v1's own README says a freeze stops: the
+  scrub found one thing, and *"a finding stops a freeze and a human decides."*
+  The finding is v1's OWN corpus checksum, quoted in full inside the [L4]
+  [PACKAGE] summary that recorded the freeze — a true positive of the `long_hex`
+  pattern and a false positive of its purpose, and not a session's to wave away.
+  The whole record, with the numbers v2 would have had and the second cost a
+  freeze would carry, is corpora/real-sessions/V2-FREEZE-STOPPED.md;
+  trials/ops/packaging/t_real_sessions_v2.py keeps it true on every run.
 """
 
 from corpora import real_sessions
