@@ -352,6 +352,39 @@ than a hash apart.
 
 ## §4. What Layer 5 CANNOT express (the boundary for Layer 6+)
 
+> **Note added 2026-08-07 (`[L7] [PULSE]`, the lateness theorem).** Nothing below
+> is corrected, no ratified number, ceiling or corpus binding moves, and no trial
+> turns on this note (`R6` clause 3: the historical text stands as written and
+> the finding is recorded beside it). It is placed at the head of this section
+> because it is a **non-capability of prospection** — a fact about what a
+> condition in §1.2's closed six-predicate vocabulary can *name* — and because it
+> has now been measured three times on this project's own store, once as a cost
+> and twice as a design input.
+>
+> **A condition over a layer fires when the layer is CLAIMED; the store can watch
+> for a fact, not for the moment before it.** The vocabulary is six predicates
+> over *asserted content* (`kind`/`entity`/`key`/`val_ge`/`loc`/`count_ge`), so
+> the earliest moment a condition can name is the moment some write asserts the
+> fact. A *stage* — Stage A, Stage B, the session before a claim — is not a fact
+> any reading asserts, so it is not addressable, and no enrichment of the
+> condition grammar is proposed here: `§5 L5` names none and `R2`'s Stage-A
+> discipline is to compute against the ratified gate, not to enrich it.
+>
+> Three applications, in the order they happened:
+>
+> | # | promise | what the theorem did |
+> |---|---|---|
+> | 1 | **`iid 1`**, armed `[L5] [DOGFOOD]` at store `t=31` on `val ≥ 6`, fired `[L6] [ASCEND]` at store `t=39` | **measured, as a cost.** Its payload asked that the `INTERFACE.md` attribute gap be stated *before the sixth shared scorer assumed it* — but a scorer is written at **Stage B**, one session before a condition on a claimed layer can fire, so `trials/_l6score.py` existed before the promise could land and `trials/adapters/README.md` states the contract **after** the assumption, with the lateness recorded in it. Right about the session, wrong about the order. |
+> | 2 | **`R7` clause 7's bequest** (*must a `§4.2` support entry be RECOVERABLE or only INGESTED?*) — **no intention armed**, `[L6] [DOGFOOD]` | **applied as a refusal, and the refusal was the useful half.** The question had to be settled at Layer 7's **Stage A**, which is before the claim any condition of this reading can see, so arming it would have bought a reminder arriving after the decision it existed to inform. It was carried by a document instead and settled on time: `R8` clause 5(a), shape-only, before the Layer-7 claim. |
+> | 3 | **`iid 2`** (`[L6] [DOGFOOD]`, store `t=40`, `val ≥ 7`, fired `[L7] [ASCEND]` at store `t=46`) and **`iid 3`** (`[L7] [DOGFOOD]`, store `t=47`, `val ≥ 8`, **pending**) | **applied at arming, to choose the payload rather than whether to arm.** A dogfood surface is upgraded **after** a claim, so the *shell* half of a question lands with a claim-conditioned promise — which is why `iid 2` landed where `iid 1` did not. `iid 3` carries only the shell half of the untagged-diagnostic seam (§5 below, and `README-l7 §5`); the engine half of the same question would be settled at Layer 8's Stage A, so it is deliberately **not** what that promise says. |
+>
+> The rule as it is now applied at arming time, from `FIELD.md` (2026-08-03):
+> **a promise worth arming is one whose right moment is a fact this reading can
+> assert, and its payload must be the half that arrives with the fact.** The
+> engine is unchanged and correct in all three: `§5 L5` scores *firings*, every
+> one of these fired exactly where its condition was satisfied, and what the
+> theorem governs is which conditions are worth writing.
+
 - **No calibrated confidence — the Layer-6 humility seam.** This is the precise
   statement, and it is structural rather than a promise. Every answer this engine
   returns carries `confidence = 1000`, and it is **ungated** (§3.4: calibration is
