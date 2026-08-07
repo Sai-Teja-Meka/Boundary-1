@@ -149,9 +149,23 @@ def trial_the_derived_view_answers_the_battery_through_the_query_interface():
     # confidence, and 1000 here is a claim and not a formality — neither key is
     # set-once under the frozen reading, so the value in force is the latest
     # assertion and that is a thing the engine has proved (README-l6 §1.3).
-    require_equal(co.current_fact(state, entity, "layer", origin), (2, 2, 1000),
+    #
+    # **Note added 2026-08-03 (`[L7] [DOGFOOD]`).** `current_fact` gained a
+    # fourth and fifth element — the answer's own `§4.2` tag and the store `t`s
+    # it cites — because `§4.2` binds from Layer 7 and a surface that rendered a
+    # value without its tag would be rendering something that scores 0. They are
+    # APPENDED, so the three fields this trial has always asserted are asserted
+    # unchanged below and the two new ones are checked beside them: the claim is
+    # advanced, not relaxed.
+    layer_now = co.current_fact(state, entity, "layer", origin)
+    require_equal(layer_now[:3], (2, 2, 1000),
                   "current(layer) must be the last assertion, at its own store t")
-    require_equal(co.current_fact(state, entity, "move", origin),
+    require_equal(layer_now[3], "derive",
+                  "and it must say how it reached the caller: a value read off a "
+                  "supersession chain is regenerated, not held (§4.2.3)")
+    require_equal(layer_now[4], (2,),
+                  "and cite the store t of the assertion that carries it")
+    require_equal(co.current_fact(state, entity, "move", origin)[:3],
                   ("DOGFOOD", 2, 1000),
                   "current(move) must be the last session's move")
     require(co.current_fact(state, entity, "no-such-key", origin) is None,

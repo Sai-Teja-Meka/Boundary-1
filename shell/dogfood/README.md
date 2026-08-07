@@ -14,7 +14,7 @@ python3 -m shell.dogfood remember --json -        # a summary as JSON on stdin
 python3 -m shell.dogfood recall graphiti bitemporal
 python3 -m shell.dogfood intend --when-kind attr --when-key layer --when-val-ge 6 \
     --about trials/adapters/INTERFACE.md --surface "…"   # a promise
-python3 -m shell.dogfood consolidate              # the Layer-6 derived view
+python3 -m shell.dogfood consolidate              # the Layer-7 derived view
 python3 -m shell.dogfood consolidate --budget 8000 --cue "graphiti bitemporal"
 python3 -m shell.dogfood status
 ```
@@ -468,6 +468,105 @@ plain attributes, found at `[L4] [PACKAGE]` by writing
 in `trials/adapters/README.md` because §7 is frozen. Layer 6 is where the next
 shared scorer is written, which is exactly when someone needs to be told.
 
+## provenance — where the answer came from (`[L7] [DOGFOOD]`)
+
+`remember` writes, `recall` finds, `consolidate` sums up, `intend` waits and
+Layer 6 says how sure the store is. Layer 7 is the first layer at which an answer
+has to say **where it came from**, and it says it in two currencies at once:
+
+* `§4.2`'s **provenance tag** — dormant before Layer 7 and *binding, never
+  un-bindable*, from it. A non-abstaining answer carries a valid tag or scores
+  **wrong (0) however correct its value is** (`§4.2.2`). `kind` is drawn from a
+  closed four — `recall`, `aggregate`, `derive`, `absent` — and says how the
+  answer reached the caller;
+* `R8` clause 4's **lineage** — `observed` or `generated`, a property of the
+  **item** rather than of the channel, so no fifth `kind` is minted and a
+  composed item travels on `derive` wearing the other claim beside it.
+
+**Still three verbs into the engine, and still no new one here** (§7.1). The
+derived replay moves from `l6_meta_memory` to `l7_generation`; `generate` is a
+`query` op like `current` and `fired` before it (`README-l7 §1.1`), and the shell
+reads it back the way it reads everything else.
+
+**Zero-cost, on this store's fuel.** `L7State` adds exactly one field — the
+lineage ledger, written by `ingest` because `query` is pure (`README-l7 §0`) —
+and it only ever records a `profile` payload the engine recognises as its own.
+This reading emits none, so the ledger stays empty, the derived state is the
+Layer-6 state **to the cell**, and the two canonical bodies differ in exactly two
+branches: the recorded `layer_cap`, which is the cap and not the content, and an
+empty `lineage`. `t_generation.py` asserts that as an identity, which is
+`README-l7 §0`'s *"where there is nothing to record it costs nothing"* measured
+on this project's own history instead of on a corpus.
+
+### Three sections the report gains
+
+**`provenance`** — per key: the tag the answer carries, the store `t`s it cites,
+and whether each of those can **still be shown**. That last column is `R8` clause
+5(a)'s ungated diagnostic and it is ungated here too: the clause settled the
+support reading **shape-only** — a support entry must be *ingested*, not
+*recoverable* — said the weaker claim out loud (*provenance certifies that an
+answer had a source, and not that the source can be shown*) and paid for it with
+a rate reported beside the gated numbers. On this store it reads all-recoverable
+at every cap, for `README-l7 §2.3`'s reason one reading over: `current` cites the
+assertion that **answers** it, so the reading loses the answer before it can lose
+the warrant.
+
+**`generation`** — the census on real fuel, and its finding is a negative
+rendered as rows rather than as a sentence:
+
+```
+generation — what this store composes, and what it only recalls
+  this reading emits   session_summary, attr, intend
+  composition needs    part, profile  (COMPOSITION_FORM: a `profile` item …)
+    part                0 derived  (never derived — the engine's counter abstains)
+    profile             0 derived  (never derived — the engine's counter abstains)
+    generate(boundary-1-memory)  ABSTAIN
+  lineage ledger       0 generated items, 0 cells
+```
+
+No answer over this project's own history **requires composition** and none
+carries the `generated` tag, and that is a property of the **reading**, not a
+defect of the layer: `COMPOSITION_FORM` determines a `profile` from two `part`
+assertions and this shell emits neither, exactly as it emits no `origin` and
+therefore has no set-once key. The shell narrows and never widens; the same
+engine composes 160 items on `corpora/l7compose` (`README-l7 §3`). The emptiness
+is a **row and not a silence**, which is the shape the `[L6]` census fixed for
+`origin` one layer down.
+
+**`certainty`** — where every `‰` above came from, tallied over the answers the
+report actually rendered (`ask` records each one as it hands it over, so the
+census cannot disagree with the view above it). Four warrants, and they are a
+reading of the engine's own `confidence_for` rather than a second model:
+
+| warrant | what it means |
+|---|---|
+| `measured` | the engine **counted** this answer's evidence — a set-once chain, `permille(1/d)` — so the number is a function of the evidence and could have been below 1000 |
+| `default:not-set-once` | `confidence_for` returned `CERTAIN` on its **first line**, before looking at the chain |
+| `default:no-model` | an op Layer 6 attaches `CERTAIN` to by construction: it returns content regenerated exactly, or it abstains |
+| `default:no-chain` | a **composed** item — no chain, no claimant count, no set-once status: `README-l6 §4`'s residual proper |
+
+On this store **not one `‰` is measured**. That is what `iid 2` was armed to
+surface, and it turns out to be larger than the promise's own words: the residual
+`README-l6 §4` named for a *generated* item is reached one branch earlier on
+**every ordinary key**, so it covers the whole surface rather than a corner of it.
+`README-l7 §4` leaves the residual OPEN and states what would close it — an
+artifact on which composition can be *wrong* — and this reading is not that
+artifact, so the surface **shows** the fall-through and does not pretend to fix
+it. `FIELD.md` (2026-08-03) carries the measurement.
+
+### And what carries no tag at all
+
+The same census counts the answers that come back with `provenance: null`. They
+are the layers' own **diagnostic** ops — `consolidation`, `prospection`,
+`calibration`, `lineage`, `profile`, `count` — and `§4.2.2` has no exception for
+a diagnostic, so read literally each is an answer that scores 0 however correct
+it is. No `§5 L7` denominator contains a diagnostic query, so **no gated number
+moves**; what a surface can honestly do is print `UNTAGGED` rather than launder it
+into a kind, and that is what it does. `forgetting`, by contrast, carries a valid
+`absent` tag — so this is an uneven seam and not a blanket property, which is why
+it is reported as a count and a list of ops rather than as a claim about the
+engine.
+
 ## Backfill
 
 `python3 -m shell.dogfood.backfill` parses `BOUNDARY.log` into one summary per
@@ -499,7 +598,7 @@ store is committed with the move it records.
 |------|------------|
 | `event.py`    | the session-summary schema, the tokenizer, the cue surface |
 | `store.py`    | the budget, the state-file location, load/save, corruption |
-| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-6 replay, the confidence census, the derived-view report |
+| `consolidate.py` | the declared reading of a session into `attr` assertions, the Layer-7 replay, the confidence census, the provenance / generation / certainty censuses, the derived-view report |
 | `intend.py`   | the declared condition vocabulary, the promise's schema, guardedness |
 | `cli.py`      | `remember` / `recall` / `intend` / `consolidate` / `status`, and all rendering |
 | `backfill.py` | `BOUNDARY.log` → session summaries (writes nothing) |
@@ -523,5 +622,14 @@ surface — the computed set-once narrowing, the zero-state identity between the
 Layer-5 and Layer-6 replays of this store, an integer permille on every rendered
 answer including an abstention, a contradicted chain rendering less certain than
 a clean one (and an as-of before the contradiction rendering certain), and the
-committed store's own census. Shell code is testable; it is only `core/` that
-must stay pure.
+committed store's own census; `t_generation.py` covers the `[L7]` provenance
+surface — the zero-state identity between the Layer-6 and Layer-7 replays of this
+store (same occupancy, two branches apart), a `§4.2` tag on every rendered answer
+with the untagged diagnostics named rather than laundered, the support-citation
+walk and its ungated recoverability rate, the generation census as a **row** at
+zero with the reading's inability to compose asserted as a property of the
+reading, a fixture on which the same surface **does** compose and tags the item
+`generated`, the four warrants classified against the engine's own
+`confidence_for`, and the committed store's measured finding that not one `‰` it
+prints is `measured`. Shell code is testable; it is only `core/` that must stay
+pure.

@@ -1,13 +1,14 @@
-"""shell/dogfood/consolidate.py — the store's derived view, at Layer 6.
+"""shell/dogfood/consolidate.py — the store's derived view, at Layer 7.
 
-`[L4] [DOGFOOD]`, upgraded to prospection at `[L5] [DOGFOOD]` and to meta-memory
-at `[L6] [DOGFOOD]`. `remember` writes episodes and `recall` finds one of them.
-This module answers the third question a memory owes its owner — *what does all
-of it add up to?* — by folding the store's session summaries through
-`core/layers/l6_meta_memory.py` and reading the result back through the
-**ordinary query interface** (§7.1): `current`, `asof`, `profile`, `count`,
-`consolidation`, `forgetting`, `recall`, `read`. The shell computes no answer of
-its own; it asks, labels, and formats.
+`[L4] [DOGFOOD]`, upgraded to prospection at `[L5] [DOGFOOD]`, to meta-memory at
+`[L6] [DOGFOOD]` and to generation at `[L7] [DOGFOOD]`. `remember` writes
+episodes and `recall` finds one of them. This module answers the third question a
+memory owes its owner — *what does all of it add up to?* — by folding the store's
+session summaries through `core/layers/l7_generation.py` and reading the result
+back through the **ordinary query interface** (§7.1): `current`, `asof`,
+`profile`, `count`, `consolidation`, `forgetting`, `recall`, `read`, `fired`,
+`prospection`, `calibration`, `lineage`, `generate`. The shell computes no answer
+of its own; it asks, labels, and formats.
 
 ## The shell declares a reading, exactly as the engine does
 
@@ -82,9 +83,42 @@ and not about the layer in general:
     latest assertion and the engine has proved it. A set-once key whose chain
     holds `d` mutually exclusive claimants is answered at `permille(1/d)` — 500
     at `d = 2` — and `FIELD.md` records what this project's own history measures.
+
+## What `[L7]` changes: the store confesses its origins
+
+The replay runs through `core/layers/l7_generation.py`, and the upgrade is a
+claim about *where every answer came from*, made in three places and through
+`§7.1`'s three verbs unchanged:
+
+  * **every answer is rendered with its provenance tag.** `§4.2` is dormant
+    before Layer 7 and **binding, never un-bindable, from it** (`§4.2.1-2`): a
+    non-abstaining answer carries a valid tag or scores **wrong (0) however
+    correct its value is**. So a tag this report used to mention in two places
+    is now printed beside every answer it renders — `recall` for content the
+    store still holds, `derive` for content it regenerated, `generated` for an
+    item it composed (`R8` clause 4's item-lineage, orthogonal to `§4.2.3`'s
+    four answer-channel kinds) — and an answer that carries **no** tag is
+    printed as `UNTAGGED` rather than laundered into one;
+  * **lineage is displayed where it exists.** A derived or generated answer's
+    `support` is the `t`s the engine says carry it, so the report translates
+    them to store `t` and asks `read` whether each can still be shown. `R8`
+    clause 5(a) settled the support reading **shape-only** — a support entry
+    must be *ingested*, not *recoverable* — and paid for the weaker claim with
+    an **ungated** recoverability rate. This is that rate, on real fuel;
+  * **`CERTAIN` is split by its warrant.** `confidence_for` states
+    `permille(1/d)` on a declared set-once chain and `CERTAIN` **everywhere
+    else**, and `README-l6 §4` recorded the residual that leaves: *a generated
+    item has no chain, no distinct-value count and no set-once status, so it
+    falls through to `CERTAIN`*. A surface that printed only the number could
+    not tell a `1000` the engine **counted** from a `1000` it **defaulted** to.
+    So every rendered answer is classified by where its number came from
+    (`warrant_of` below), and the closing census prints the tally. On this
+    store the finding is total: **no key of this reading is set-once, so not one
+    `‰` it prints is measured** — which is the residual `iid 2` was armed to
+    surface, one tier in from the generated case it named.
 """
 
-from core.layers import l6_meta_memory as l6
+from core.layers import l7_generation as l7
 from core.serialize import encode
 from shell.dogfood import event as ev
 
@@ -109,16 +143,67 @@ SUMMARY_KIND = ev.KIND
 ASSERTION_KIND = "attr"
 
 # The engine's own name for the confidence of an answer it has proved. Imported
-# rather than typed: `1000` appears in this module only as `l6.CERTAIN`, so the
+# rather than typed: `1000` appears in this module only as `l7.CERTAIN`, so the
 # report cannot state a certainty the engine does not.
-CERTAIN = l6.CERTAIN
+CERTAIN = l7.CERTAIN
 
 # The engine's frozen kind for an intention. A stored intention is replayed
 # UNCHANGED — the shell's reading of it is the identity, because the payload is
 # already in the engine's own grammar and `README-l5 §1.2` admits it only if it
 # rebuilds from `(iid, cond, fire)` byte-for-byte. `shell/dogfood/intend.py` is
 # where that reading is declared; nothing here may add a field to it.
-INTENTION_KIND = l6.INTENTION_KIND
+INTENTION_KIND = l7.INTENTION_KIND
+
+# The three payload kinds THIS reading emits into the derived stream, and the two
+# the ENGINE's composition reading needs. Both are read off the engine rather
+# than typed beside it, for `SET_ONCE_KEYS`' reason: the shell narrows, it never
+# widens, and a typed copy is a second reading waiting to drift.
+#
+# They are disjoint, and that disjointness IS the generation census's finding:
+# `COMPOSITION_FORM` determines a `profile` item from two `part` assertions, and
+# a store whose fuel is session prose contains neither — so under this reading no
+# answer requires composition and none can carry the `generated` tag. That is a
+# property of the READING and not a defect of the layer: the same engine composes
+# 160 items on `corpora/l7compose` (`README-l7 §3`).
+DECLARED_KINDS = (SUMMARY_KIND, ASSERTION_KIND, INTENTION_KIND)
+COMPOSITION_KINDS = (l7.PART_KIND, l7.PROFILE_KIND)
+
+# `R8` clause 4's closed lineage vocabulary — a property of the ITEM, orthogonal
+# to `§4.2.3`'s four answer-channel kinds. Read off the engine, never typed.
+OBSERVED = l7.OBSERVED
+GENERATED = l7.GENERATED
+
+# What the report prints for an answer that carries no `§4.2` tag at all. It is
+# NOT one of `§4.2.3`'s kinds and is deliberately not made to look like one: from
+# Layer 7 an untagged non-abstaining answer is what `§4.2.2` prices at 0, so the
+# surface names it and does not launder it into `derive`.
+UNTAGGED = "UNTAGGED"
+
+# Where the `‰` on an answer came from. The classification is a reading of the
+# ENGINE's own model (`README-l6 §1.3`, `l6.confidence_for`) and computes no
+# number of its own:
+#
+#   MEASURED  — `confidence_for` COUNTED this answer's evidence. Reachable only
+#               on a set-once key, where the number is `permille(1/d)` over the
+#               chain's claimants and would have been below 1000 had the chain
+#               held a rival. The number is a function of the evidence.
+#   NOT_SET_ONCE — `confidence_for` returned `CERTAIN` on its FIRST line, before
+#               looking at the chain, because the declared reading does not call
+#               the key set-once. Defensible (`the latest assertion is what is in
+#               force`) and still a fall-through: no evidence could move it.
+#   NO_MODEL  — an op Layer 6 attaches `CERTAIN` to by construction (`read`,
+#               `recall`, `profile`, `count`, `fired`, the diagnostics): it
+#               returns content regenerated exactly, or it abstains.
+#               `README-l6 §4` calls that a non-capability by construction.
+#   NO_CHAIN  — a **composed** item: no chain, no distinct-value count, no
+#               set-once status, so `confidence_for` is never consulted at all.
+#               `README-l6 §4`'s residual proper, `README-l7 §4` states it OPEN,
+#               and `iid 2` was armed to make it visible here.
+MEASURED = "measured"
+NOT_SET_ONCE = "default:not-set-once"
+NO_MODEL = "default:no-model"
+NO_CHAIN = "default:no-chain"
+WARRANTS = (MEASURED, NOT_SET_ONCE, NO_MODEL, NO_CHAIN)
 
 # The keys of this reading that the ENGINE's frozen reading calls set-once — the
 # only keys on which a Layer-6 confidence can be anything but `CERTAIN`.
@@ -135,7 +220,7 @@ INTENTION_KIND = l6.INTENTION_KIND
 # key the frozen reading calls set-once is `origin`, and a session summary states
 # no origin. `FIELD.md` (2026-08-02) carries the census and what follows from it.
 SET_ONCE_KEYS = tuple(k for k in tuple(ASSERTED_KEYS) + (QUESTION_KEY,)
-                      if l6.set_once(k))
+                      if l7.set_once(k))
 
 # The keys the calibration census ASKS about: every key this reading asserts,
 # plus every key the engine calls set-once whether this reading asserts it or
@@ -145,7 +230,7 @@ SET_ONCE_KEYS = tuple(k for k in tuple(ASSERTED_KEYS) + (QUESTION_KEY,)
 # vocabulary rather than the store's certainty. Where the key is never asserted
 # the row says so and the engine abstains, which is the honest empty answer.
 CENSUS_KEYS = tuple(dict.fromkeys(tuple(ASSERTED_KEYS) + (QUESTION_KEY,)
-                                  + tuple(l6.SET_ONCE_KEYS)))
+                                  + tuple(l7.SET_ONCE_KEYS)))
 
 
 # ---- parsing the facts a log line states ------------------------------------
@@ -287,9 +372,19 @@ def derive(records, budget_cap=DERIVED_BUDGET):
     `l5_prospection` returned yesterday — `L6State` adds no field (`README-l6
     §0`), so nothing above this line changes and every answer below it carries a
     confidence.
+
+    `[L7]`: the engine is `l7_generation`, which adds exactly one field — the
+    lineage ledger, written by `ingest` because `query` is pure (`README-l7 §0`).
+    On this store's fuel it stays **empty**: the ledger only ever records a
+    `profile` payload the engine recognises as its own, and this reading emits
+    none, so the derived state is the Layer-6 state to the cell and the canonical
+    body differs in exactly two branches — the recorded `layer_cap`, which is the
+    cap and not the content, and an empty `lineage`. `README-l7 §0`'s *"where
+    there is nothing to record it costs nothing"*, on this project's own history
+    rather than on a corpus, and asserted in `t_generation.py`.
     """
     entities = project_entities(records)
-    state = l6.make_engine(l6.LAYER, budget_cap=budget_cap)
+    state = l7.make_engine(l7.LAYER, budget_cap=budget_cap)
     origin = {}
     sessions = []
     refused = None
@@ -297,7 +392,7 @@ def derive(records, budget_cap=DERIVED_BUDGET):
         payload = record["payload"]
         first = state.next_t
         for derived in derived_stream(payload, entities):
-            state, t = l6.write(state, derived)
+            state, t = l7.write(state, derived)
             if t is None:
                 refused = (record["t"], derived)
                 break
@@ -314,9 +409,116 @@ def derive(records, budget_cap=DERIVED_BUDGET):
 
 # ---- reading the state back, only through query() ---------------------------
 
-def ask(state, q):
-    """One query through the generic interface (§7.1). Never raises (§7.3)."""
-    return l6.query(state, q)
+def ask(state, q, seen=None):
+    """One query through the generic interface (§7.1). Never raises (§7.3).
+
+    `seen`, when given, is the list every answer this report renders is recorded
+    in as it is rendered — its `§4.2` tag, its `R8` clause 4 lineage where it has
+    one, and the warrant of its `‰`. The closing census is a tally of that list
+    and NOT a second pass over the state, so what it counts is exactly what the
+    reader was shown. `[L7]`.
+    """
+    answer = l7.query(state, q)
+    if seen is not None:
+        seen.append(observation(q, answer))
+    return answer
+
+
+# ---- provenance, lineage and the warrant of a number ------------------------
+
+def warrant_of(op, key=None, lineage=None):
+    """Where the `‰` on an answer came from — counted evidence, or a fall-through.
+
+    A reading of the engine's OWN model (`l6.confidence_for`) and not a second
+    model: the shell states no number, it says which branch of the engine's
+    function produced the one it was handed.
+
+      * a **composed** item never reaches `confidence_for` at all — no chain, no
+        distinct-value count, no set-once status (`README-l6 §4`);
+      * `current` / `asof` on a **set-once** key COUNTS the chain's claimants, so
+        the number is a function of this answer's evidence and could be below
+        1000;
+      * `current` / `asof` on any other key returns `CERTAIN` on the function's
+        first line, before the chain is looked at;
+      * every other op carries `CERTAIN` by construction.
+    """
+    if lineage == GENERATED:
+        return NO_CHAIN
+    if op in ("current", "asof"):
+        return MEASURED if l7.set_once(key) else NOT_SET_ONCE
+    return NO_MODEL
+
+
+def tag_of(answer):
+    """The `§4.2` provenance kind an answer carries, or why it carries none.
+
+    Three outcomes and each is printed rather than smoothed: an abstention
+    (`§4.2` requires no tag of one — it is the one non-answer `§3.0` pays 1000
+    for), a kind from `§4.2.3`'s closed four, or `UNTAGGED` — a non-abstaining
+    answer with `provenance: null`, which is exactly what `§4.2.2` prices at 0
+    however correct its value is.
+    """
+    if answer.get("status") != "answer":
+        return "abstain"
+    prov = answer.get("provenance")
+    if not isinstance(prov, dict) or prov.get("kind") is None:
+        return UNTAGGED
+    return prov["kind"]
+
+
+def tag_text(answer):
+    """The tag as the report prints it: the channel, and the lineage beside it.
+
+    `R8` clause 4 keeps the two claims orthogonal — `kind` says how the answer
+    reached the caller and `lineage` says what the item is — so the surface shows
+    both rather than collapsing them, which is what makes `derive+generated`
+    (a composed item) distinguishable from `derive` (one the engine regenerated
+    from a chain it holds).
+    """
+    tag = tag_of(answer)
+    lineage = answer.get("lineage")
+    if lineage is None:
+        return tag
+    return "%s+%s" % (tag, lineage)
+
+
+def support_of(answer):
+    """The `t`s an answer's tag cites, as a tuple. Empty for an untagged answer."""
+    prov = answer.get("provenance")
+    if not isinstance(prov, dict):
+        return ()
+    support = prov.get("support")
+    return tuple(support) if isinstance(support, list) else ()
+
+
+def observation(q, answer):
+    """One rendered answer, reduced to what the closing census counts."""
+    op = q.get("op") if isinstance(q, dict) else None
+    key = q.get("key") if isinstance(q, dict) else None
+    lineage = answer.get("lineage")
+    return {"op": op, "key": key, "status": answer.get("status"),
+            "tag": tag_of(answer), "lineage": lineage,
+            "confidence": answer.get("confidence"),
+            "warrant": warrant_of(op, key, lineage),
+            "support": support_of(answer)}
+
+
+def recoverable(state, support, seen=None):
+    """`(shown, cited)` — how many of a tag's cited `t`s the engine can still produce.
+
+    `R8` clause 5(a) settled `§4.2`'s support reading **shape-only**: a support
+    entry must be an **ingested** `t` and need not be a **recoverable** one, with
+    the weaker claim said out loud — *provenance certifies that an answer had a
+    source, and not that the source can be shown* — and paid for by an **ungated**
+    recoverability rate reported beside the gated numbers. This is that rate, and
+    it is ungated here too: an answer citing a `t` the budget has taken breaches
+    no clause, and the surface reports it rather than gating it.
+    """
+    shown = 0
+    for t in support:
+        if ask(state, {"op": "read", "t": t}, seen)["status"] == "answer":
+            shown += 1
+    return (shown, len(support))
 
 
 def _store_t(origin, replay_t):
@@ -339,8 +541,8 @@ def _replay_t(origin, store_t):
     return found
 
 
-def current_fact(state, entity, key, origin):
-    """`(value, store_t, confidence)` for `(entity, key)` now, or `None`.
+def current_fact(state, entity, key, origin, seen=None):
+    """`(value, store_t, confidence, tag, support)` for `(entity, key)` now, or `None`.
 
     `[L6]`: the third element is the engine's own `§7.2` confidence in integer
     permille — read off the answer, never computed here. It is `1000` on a key
@@ -348,17 +550,25 @@ def current_fact(state, entity, key, origin):
     the latest assertion and that is a thing the engine has proved; it is
     `permille(1/d)` where a set-once chain holds `d` mutually exclusive
     claimants (`README-l6 §1.3`).
+
+    `[L7]`: the fourth and fifth are the answer's own `§4.2` tag and the store
+    `t`s it cites. They are appended rather than substituted so that every
+    earlier reader of this tuple keeps reading what it read — the value, where it
+    was decided, and how sure the engine is — and the provenance is new
+    information beside them and not a rearrangement of them.
     """
-    answer = ask(state, {"op": "current", "entity": entity, "key": key})
+    answer = ask(state, {"op": "current", "entity": entity, "key": key}, seen)
     if answer["status"] != "answer":
         return None
-    support = answer["provenance"]["support"]
+    support = support_of(answer)
     return (answer["value"],
             _store_t(origin, support[0] if support else None),
-            answer["confidence"])
+            answer["confidence"],
+            tag_text(answer),
+            tuple(_store_t(origin, t) for t in support))
 
 
-def history(state, entity, key, origin, upto):
+def history(state, entity, key, origin, upto, seen=None):
     """The whole chain for `(entity, key)`, as `[(store_t, value, confidence)]`.
 
     Reconstructed by walking `asof` forward and reading each answer's own
@@ -373,16 +583,17 @@ def history(state, entity, key, origin, upto):
     later one a coin flip, and the walk shows where certainty was lost.
     """
     out = []
-    seen = set()
+    stamps = set()
     for t in range(upto + 1):
-        answer = ask(state, {"op": "asof", "entity": entity, "key": key, "t": t})
+        answer = ask(state, {"op": "asof", "entity": entity, "key": key, "t": t},
+                     seen)
         if answer["status"] != "answer":
             continue
-        support = answer["provenance"]["support"]
+        support = support_of(answer)
         stamp = support[0] if support else None
-        if stamp is None or stamp in seen:
+        if stamp is None or stamp in stamps:
             continue
-        seen.add(stamp)
+        stamps.add(stamp)
         out.append((_store_t(origin, stamp), answer["value"], answer["confidence"]))
     return out
 
@@ -422,7 +633,7 @@ def claimants_seen(chain):
     return len({encode(value) for _t, value, _c in chain})
 
 
-def calibration(state, entity, origin, upto):
+def calibration(state, entity, origin, upto, seen=None):
     """The per-key calibration census: what the store is certain of, and why.
 
     One row per key the declared reading asserts, each carrying the value in
@@ -434,19 +645,21 @@ def calibration(state, entity, origin, upto):
     """
     rows = []
     for key in CENSUS_KEYS:
-        now = current_fact(state, entity, key, origin)
-        chain = history(state, entity, key, origin, upto)
+        now = current_fact(state, entity, key, origin, seen)
+        chain = history(state, entity, key, origin, upto, seen)
         rows.append({"key": key,
-                     "set_once": l6.set_once(key),
+                     "set_once": l7.set_once(key),
                      "asserts": len(chain),
                      "claimants": claimants_seen(chain),
                      "value": None if now is None else now[0],
                      "since": None if now is None else now[1],
-                     "confidence": None if now is None else now[2]})
-    return rows, ask(state, {"op": "calibration"})
+                     "confidence": None if now is None else now[2],
+                     "tag": None if now is None else now[3],
+                     "warrant": warrant_of("current", key)})
+    return rows, ask(state, {"op": "calibration"}, seen)
 
 
-def channels(state, ts=None):
+def channels(state, ts=None, seen=None):
     """`{held, derived, gone}` over `ts` (default: the whole derived stream).
 
     The discriminator is the engine's own, not the shell's: `read`'s provenance
@@ -461,7 +674,7 @@ def channels(state, ts=None):
     counts = {"held": 0, "derived": 0, "gone": 0}
     span = range(state.next_t) if ts is None else ts
     for t in span:
-        answer = ask(state, {"op": "read", "t": t})
+        answer = ask(state, {"op": "read", "t": t}, seen)
         if answer["status"] != "answer":
             counts["gone"] += 1
         elif answer["provenance"]["kind"] == "recall":
@@ -471,7 +684,7 @@ def channels(state, ts=None):
     return counts
 
 
-def reachability(state, records, sessions, entity, origin):
+def reachability(state, records, sessions, entity, origin, seen=None):
     """Per session: is its episode still readable, and still reachable by cue?
 
     Two channels, asked separately because Layer 4 separates them: `read(t)` is
@@ -484,20 +697,21 @@ def reachability(state, records, sessions, entity, origin):
     summaries = [r for r in records if r["payload"].get("kind") == SUMMARY_KIND]
     for (store_t, summary_t, _last), record in zip(sessions, summaries):
         payload = record["payload"]
-        read = ask(state, {"op": "read", "t": summary_t})
+        read = ask(state, {"op": "read", "t": summary_t}, seen)
         cue = {"entity": entity, "tok": dict(payload["tok"])}
-        found = ask(state, {"op": "recall", "cue": cue})
+        found = ask(state, {"op": "recall", "cue": cue}, seen)
         hit = None
         if found["status"] == "answer":
             hit = _store_t(origin, found["value"]["t"])
         out.append({"store_t": store_t,
                     "readable": read["status"] == "answer",
                     "recallable": found["status"] == "answer",
-                    "recall_t": hit})
+                    "recall_t": hit,
+                    "tag": tag_text(read)})
     return out
 
 
-def promises(state, records, origin):
+def promises(state, records, origin, seen=None):
     """What the engine did with every intention the store declared.
 
     Read through the **ordinary query interface** and nothing else (§7.1), which
@@ -533,10 +747,10 @@ def promises(state, records, origin):
                  "cond": payload["cond"], "fire": payload["fire"],
                  "fired": [], "readable": False, "regenerated": False,
                  "provenance": None, "confidence": None}
-        answer = ask(state, {"op": "fired", "iid": iid})
+        answer = ask(state, {"op": "fired", "iid": iid}, seen)
         if answer["status"] == "answer":
             for rec in answer["value"]:
-                read_back = ask(state, {"op": "read", "t": rec["t"]})
+                read_back = ask(state, {"op": "read", "t": rec["t"]}, seen)
                 entry["fired"].append({
                     "replay_t": rec["t"],
                     "store_t": _store_t(origin, rec["t"]),
@@ -544,13 +758,13 @@ def promises(state, records, origin):
                     "provenance": (read_back["provenance"] or {}).get("kind"),
                     "confidence": read_back["confidence"]})
         armed_at = _replay_t(origin, record["t"])
-        seen = ask(state, {"op": "read", "t": armed_at})
-        entry["readable"] = seen["status"] == "answer"
-        entry["confidence"] = seen["confidence"]
-        entry["provenance"] = (seen["provenance"] or {}).get("kind")
+        back = ask(state, {"op": "read", "t": armed_at}, seen)
+        entry["readable"] = back["status"] == "answer"
+        entry["confidence"] = back["confidence"]
+        entry["provenance"] = (back["provenance"] or {}).get("kind")
         if entry["readable"]:
             entry["regenerated"] = (
-                encode(seen["value"]["payload"]) == encode(payload))
+                encode(back["value"]["payload"]) == encode(payload))
         out.append(entry)
     return out
 
@@ -593,14 +807,14 @@ def describe_fire(fire, width=72):
     return "%s about %s — %s" % (fire.get("kind"), fire.get("about"), text)
 
 
-def prospection_lines(state, records, origin, indent="  "):
+def prospection_lines(state, records, origin, indent="  ", seen=None):
     """The promises section: what is pending, what fired, and what it said.
 
     Every number and every payload here comes back through `§7.1` (`promises`
     above); this function only labels and wraps them.
     """
-    entries = promises(state, records, origin)
-    shape = ask(state, {"op": "prospection"})
+    entries = promises(state, records, origin, seen)
+    shape = ask(state, {"op": "prospection"}, seen)
     lines = []
     if shape["status"] == "answer":
         counts = shape["value"]
@@ -669,7 +883,7 @@ def _fmt(value, width=60):
     return text if len(text) <= width else text[:width - 1] + "…"
 
 
-def calibration_lines(state, entity, origin, upto, indent="  "):
+def calibration_lines(state, entity, origin, upto, indent="  ", seen=None):
     """The calibration census: what the store is certain of, and why it is.
 
     A confidence surface that only ever printed `1000‰` would be indistinguishable
@@ -681,7 +895,7 @@ def calibration_lines(state, entity, origin, upto, indent="  "):
     is the only condition under which a claimant is a rival rather than an
     update.
     """
-    rows, engine_view = calibration(state, entity, origin, upto)
+    rows, engine_view = calibration(state, entity, origin, upto, seen)
     declared = engine_view["value"]["set_once_keys"] \
         if engine_view["status"] == "answer" else []
     ties = engine_view["value"]["ties"] if engine_view["status"] == "answer" else 0
@@ -702,17 +916,23 @@ def calibration_lines(state, entity, origin, upto, indent="  "):
                     "" if not levels
                     else "  (%s)" % ", ".join("d=%d -> %d‰" % (d, c)
                                               for d, c in levels)))
-    lines.append("%s%-16s %-10s %-9s %-26s %s"
-                 % (indent, "key", "asserted", "claimants", "in force", "states"))
+    lines.append("%s%-16s %-10s %-9s %-26s %-6s %-8s %s"
+                 % (indent, "key", "asserted", "claimants", "in force", "states",
+                    "tag", "warrant"))
     for row in rows:
         if row["confidence"] is None:
-            lines.append("%s%-16s %-10s %-9s %-26s %s"
+            # An abstaining row still states its warrant, in the conditional: on
+            # this store the ONE key whose ‰ could ever be measured is the one
+            # this reading never asserts, and that sentence is the census's
+            # sharpest row rather than an empty one.
+            lines.append("%s%-16s %-10s %-9s %-26s %-6s %-8s would be %s"
                          % (indent, row["key"], "0", "0", "(never asserted)",
-                            "ABSTAIN"))
+                            "ABSTAIN", "abstain", row["warrant"]))
             continue
-        lines.append("%s%-16s %-10d %-9d %-26s %4d‰%s"
+        lines.append("%s%-16s %-10d %-9d %-26s %4d‰ %-8s %s%s"
                      % (indent, row["key"], row["asserts"], row["claimants"],
-                        _fmt(row["value"], 26), row["confidence"],
+                        _fmt(row["value"], 26), row["confidence"], row["tag"],
+                        row["warrant"],
                         "  SET-ONCE" if row["set_once"] else ""))
     contradicted = [r for r in rows if r["set_once"] and r["claimants"] > 1]
     if contradicted:
@@ -731,15 +951,214 @@ def calibration_lines(state, entity, origin, upto, indent="  "):
     return lines
 
 
+# ---- [L7] provenance, lineage, generation, and the warrant of a number -------
+
+def provenance_lines(state, entity, origin, indent="  ", seen=None):
+    """What every answer of the decision history cites, and whether it can be shown.
+
+    `§4.2` is dormant before Layer 7 and binding — never un-bindable — from it,
+    so from this layer on a tag is not decoration: an answer without a valid one
+    scores **wrong (0) regardless of whether its value is correct** (`§4.2.2`).
+    This section is that law made visible on the store's own facts.
+
+    The **recoverability** column is `R8` clause 5(a)'s ungated diagnostic, and
+    it is ungated here too. That clause settled the support reading **shape-only**
+    — a support entry must be an *ingested* `t`, not a *recoverable* one — said
+    the weaker claim out loud (*provenance certifies that an answer had a source,
+    and not that the source can be shown*) and paid for it with a rate reported
+    beside the gated numbers rather than a gate of its own. On this store it
+    reads all-recoverable **at every cap**, and the reason is stated rather than
+    left looking like a generous budget: `README-l7 §2.3`'s finding one reading
+    over, that `current` cites the assertion which ANSWERS it, so the reading
+    loses the answer before it can lose the warrant.
+    """
+    lines = ["", "provenance — what each answer cites, and whether the citation "
+                 "can still be shown"]
+    lines.append("%s§4.2 binds from Layer 7 and can never be un-bound: a "
+                 "non-abstaining answer carries a valid tag or scores 0 however "
+                 "correct it is (§4.2.2)." % indent)
+    lines.append("%s%-16s %-14s %-22s %s"
+                 % (indent, "key", "tag", "cites store t", "still readable"))
+    shown = cited = 0
+    for key in ASSERTED_KEYS:
+        answer = ask(state, {"op": "current", "entity": entity, "key": key}, seen)
+        if answer["status"] != "answer":
+            lines.append("%s%-16s %-14s %-22s %s"
+                         % (indent, key, "abstain", "(nothing to cite)", "n/a"))
+            continue
+        support = support_of(answer)
+        ok, total = recoverable(state, support, seen)
+        shown += ok
+        cited += total
+        lines.append("%s%-16s %-14s %-22s %s"
+                     % (indent, key, tag_text(answer),
+                        " ".join(str(_store_t(origin, t)) for t in support)
+                        or "(none)",
+                        "%d of %d" % (ok, total)))
+    lines.append("%ssupport recoverable  %d of %d cited t — UNGATED (R8 clause "
+                 "5(a) demands INGESTED, not RECOVERABLE)" % (indent, shown, cited))
+    if shown == cited:
+        lines.append("%s  and it reads all-recoverable at every cap this store "
+                     "can be replayed at, for README-l7 §2.3's reason one reading "
+                     "over: `current` cites the assertion that ANSWERS it, so the "
+                     "reading loses the answer before it can lose the warrant — "
+                     "where a chain is shed the answer abstains and there is no "
+                     "citation left to be unrecoverable." % indent)
+    return lines
+
+
+def generation(state, entities, seen=None):
+    """The generation census: what this store composes, and what it only recalls.
+
+    Read through `§7.1` alone — `{"op":"lineage"}` is the engine's own ledger
+    diagnostic in the shape `consolidation` (L4), `prospection` (L5) and
+    `calibration` (L6) established, and `{"op":"generate", ...}` is the one op
+    Layer 7 adds. The shell asks; it composes nothing itself.
+
+    Returns `(ledger_answer, kind_rows, probes)`, where `kind_rows` is one row
+    per kind the ENGINE's composition reading needs — printed even at zero,
+    because an emptiness that is not a row is a silence, which is the shape the
+    `[L6]` census fixed for `origin` one layer down.
+    """
+    ledger = ask(state, {"op": "lineage"}, seen)
+    rows = []
+    for kind in COMPOSITION_KINDS:
+        answer = ask(state, {"op": "count", "kind": kind}, seen)
+        rows.append((kind, answer["value"] if answer["status"] == "answer" else 0,
+                     answer["status"]))
+    probes = []
+    for name, entity in sorted(entities.items(), key=lambda kv: kv[1]):
+        answer = ask(state, {"op": "generate",
+                             "cue": {"kind": l7.PROFILE_KIND, "entity": entity}},
+                     seen)
+        probes.append((name, entity, answer))
+    return ledger, rows, probes
+
+
+def generation_lines(state, entities, indent="  ", seen=None):
+    """The mandatory `[L7]` measurement, rendered as rows and not as a sentence.
+
+    The question is `FIELD.md`'s: under this shell's declared reading, does any
+    answer over this project's own history **require composition**, and does any
+    carry the `generated` tag? The answer is no, twice, and the reason is a
+    property of the READING rather than a defect of the layer — which is why the
+    rows below are the engine's own counts of the two kinds `COMPOSITION_FORM`
+    needs, and not a sentence asserting their absence.
+    """
+    ledger, rows, probes = generation(state, entities, seen)
+    body = ledger["value"] if ledger["status"] == "answer" else {
+        "generated": 0, "cells": 0, "by_rung": []}
+    lines = ["", "generation — what this store composes, and what it only recalls"]
+    lines.append("%sthis reading emits   %s" % (indent, ", ".join(DECLARED_KINDS)))
+    lines.append("%scomposition needs    %s  (COMPOSITION_FORM: a `profile` item "
+                 "determined by two `part` assertions)"
+                 % (indent, ", ".join(COMPOSITION_KINDS)))
+    for kind, count, status in rows:
+        lines.append("%s  %-14s %6d derived%s"
+                     % (indent, kind, count,
+                        "  (never derived — the engine's counter abstains)"
+                        if status != "answer" else ""))
+    for name, entity, answer in probes:
+        lines.append("%s  generate(%s)  %s%s"
+                     % (indent, name, answer["status"].upper(),
+                        "" if answer["status"] != "answer"
+                        else "  %s  %d‰" % (tag_text(answer),
+                                            answer["confidence"])))
+    lines.append("%slineage ledger       %d generated item%s, %d cells%s"
+                 % (indent, body["generated"], "" if body["generated"] == 1
+                    else "s", body["cells"],
+                    "" if not body["by_rung"]
+                    else "  " + ", ".join("rung %d: %d" % (r, n)
+                                          for r, n in body["by_rung"])))
+    if body["generated"] == 0:
+        lines.append("%sTHE READING CANNOT COMPOSE, and that is a property of the "
+                     "reading and not of the layer: the two kinds the rule needs "
+                     "are outside the three this shell emits, exactly as `origin` "
+                     "is outside its set-once reading — the shell narrows and "
+                     "never widens. The same engine composes 160 items on "
+                     "corpora/l7compose (README-l7 §3)." % indent)
+    return lines
+
+
+def certainty_lines(seen, indent="  "):
+    """Where every `‰` above came from: counted evidence, or a fall-through.
+
+    A tally of the answers this report ACTUALLY rendered — `ask` records each one
+    as it is handed over, so this is not a second pass that could disagree with
+    the view above it.
+
+    `iid 2`, armed at `[L6] [DOGFOOD]` and fired at `[L7] [ASCEND]`, asked for
+    exactly this: *every permille this surface prints over generated content is a
+    certainty nobody computed*, and *the 2026-08-02 census measured the blind
+    spot — no key of the shell's reading is set-once, so every number the surface
+    prints today is 1000 and a fall-through would be invisible in it.* It is
+    invisible no longer: the generated case is unreachable under this reading
+    (`generation_lines` above), and the residual it named turns out to cover the
+    **whole surface** and not a corner of it, because the same `CERTAIN` is
+    reached one branch earlier on every ordinary key.
+    """
+    total = len(seen)
+    answered = [row for row in seen if row["status"] == "answer"]
+    tally = {w: 0 for w in WARRANTS}
+    for row in answered:
+        tally[row["warrant"]] = tally.get(row["warrant"], 0) + 1
+    tags = {}
+    for row in answered:
+        tags[row["tag"]] = tags.get(row["tag"], 0) + 1
+    untagged_ops = sorted({row["op"] for row in answered
+                           if row["tag"] == UNTAGGED})
+
+    lines = ["", "certainty — where every ‰ above came from"]
+    lines.append("%s%d answers read back through §7.1 while rendering this view; "
+                 "%d abstained" % (indent, total, total - len(answered)))
+    lines.append("%s  %-22s %6d   the engine COUNTED this answer's evidence "
+                 "(a set-once chain, permille(1/d))"
+                 % (indent, MEASURED, tally[MEASURED]))
+    lines.append("%s  %-22s %6d   current/asof on a key this reading does not "
+                 "call set-once: CERTAIN before the chain is looked at"
+                 % (indent, NOT_SET_ONCE, tally[NOT_SET_ONCE]))
+    lines.append("%s  %-22s %6d   an op Layer 6 attaches CERTAIN to by "
+                 "construction — regenerated exactly, or abstained"
+                 % (indent, NO_MODEL, tally[NO_MODEL]))
+    lines.append("%s  %-22s %6d   a COMPOSED item: no chain, no claimant count, "
+                 "no set-once status (README-l6 §4's residual)"
+                 % (indent, NO_CHAIN, tally[NO_CHAIN]))
+    if not tally[MEASURED]:
+        lines.append("%sNOT ONE ‰ ABOVE IS MEASURED. Every number this surface "
+                     "prints is CERTAIN by fall-through — the residual README-l6 "
+                     "§4 named for a generated item, reached one branch earlier "
+                     "on every ordinary key. README-l7 §4 leaves it OPEN and this "
+                     "is what it looks like on real fuel." % indent)
+    lines.append("%s§4.2 tags         %s"
+                 % (indent, "  ".join("%s %d" % (tag, tags[tag])
+                                      for tag in sorted(tags))))
+    if untagged_ops:
+        lines.append("%sUNTAGGED answers come from the diagnostic ops (%s). "
+                     "§4.2.2 has no exception for a diagnostic, so read literally "
+                     "each is an answer that scores 0 however correct it is; no "
+                     "§5 L7 denominator contains a diagnostic query, so no gated "
+                     "number moves. The surface names them rather than laundering "
+                     "them into a kind."
+                     % (indent, ", ".join(op for op in untagged_ops if op)))
+    return lines
+
+
 def report(state, origin, sessions, entities, records,
-           refused=None, cues=(), all_questions=False):
-    """The consolidated view, as lines meant to be pasted into a preamble."""
+           refused=None, cues=(), all_questions=False, seen=None):
+    """The consolidated view, as lines meant to be pasted into a preamble.
+
+    `seen` is the collector every rendered answer is recorded in (`ask` above).
+    A caller that passes its own list gets the exact rows the closing census
+    tallied, which is how `t_generation.py` checks the census against the view
+    rather than against a second replay.
+    """
     lines = []
+    seen = [] if seen is None else seen
     total = state.next_t
     summaries = [r for r in records if r["payload"].get("kind") == SUMMARY_KIND]
     declared = [r for r in records if r["payload"].get("kind") == INTENTION_KIND]
     lines.append("consolidated view — %s" % ", ".join(sorted(entities)))
-    lines.append("  derived by core/layers/l6_meta_memory.py (Layer 6) from "
+    lines.append("  derived by core/layers/l7_generation.py (Layer 7) from "
                  "%d stored session summaries and %d declared intentions"
                  % (len(summaries), len(declared)))
     lines.append("  %d derived events, %d / %d work units, "
@@ -747,29 +1166,32 @@ def report(state, origin, sessions, entities, records,
                  % (total, state.occupancy, state.budget_cap))
     lines.append("  every ‰ below is the engine's own §7.2 confidence, derived "
                  "at read time from state it already held and never stored")
+    lines.append("  every answer below carries its §4.2 provenance tag — `recall` "
+                 "held, `derive` regenerated, `+generated` composed — because from "
+                 "Layer 7 an untagged answer scores 0 however correct it is")
     if refused is not None:
         lines.append("  TRUNCATED — the budget refused an event of store t=%d; "
                      "everything below covers only what was admitted." % refused[0])
 
-    shape = ask(state, {"op": "consolidation"})["value"]
+    shape = ask(state, {"op": "consolidation"}, seen)["value"]
 
     for name, entity in sorted(entities.items(), key=lambda kv: kv[1]):
         lines.append("")
         lines.append("per-project summary — %s (entity %d)" % (name, entity))
-        profile = ask(state, {"op": "profile", "entity": entity})
+        profile = ask(state, {"op": "profile", "entity": entity}, seen)
         if profile["status"] != "answer":
             lines.append("  profile          ABSTAIN — the fold is no longer exact "
                          "(a chain of this entity was shed)")
         else:
             for kind in sorted(profile["value"]):
-                count = ask(state, {"op": "count", "kind": kind})
+                count = ask(state, {"op": "count", "kind": kind}, seen)
                 globally = count["value"] if count["status"] == "answer" else "n/a"
                 lines.append("  %-16s %6d for this project, %s derived in all"
                              % (kind, profile["value"][kind], globally))
-            lines.append("  fold             %d‰ — a fold is regenerated exactly "
-                         "or abstained on, so there is nothing here for a "
+            lines.append("  fold             %d‰  tag %s — a fold is regenerated "
+                         "exactly or abstained on, so there is nothing here for a "
                          "confidence to vary with (README-l6 §4)"
-                         % profile["confidence"])
+                         % (profile["confidence"], tag_text(profile)))
         lines.append("  derived schema   %d keys, %d pairs, %d assertions"
                      % (shape["keys"], shape["pairs"], shape["assertions"]))
         lines.append("  episodes held    %d of %d   demotions %d   damaged %d"
@@ -778,16 +1200,15 @@ def report(state, origin, sessions, entities, records,
 
         lines.append("")
         lines.append("decision history — the value in force, how sure of it, "
-                     "and where it changed")
+                     "what it is tagged, and where it changed")
         for key in ASSERTED_KEYS:
-            now = current_fact(state, entity, key, origin)
+            now = current_fact(state, entity, key, origin, seen)
             if now is None:
                 lines.append("  %-16s (never asserted)" % key)
                 continue
-            value, decided, conf = now
-            lines.append("  %-16s %-38s  %4d‰  since store t=%s"
-                         % (key, _fmt(value, 38), conf, decided))
-            changes = collapse(history(state, entity, key, origin, total - 1))
+            lines.append("  %-16s %-38s  %4d‰  %-8s since store t=%s"
+                         % (key, _fmt(now[0], 38), now[2], now[3], now[1]))
+            changes = collapse(history(state, entity, key, origin, total - 1, seen))
             if len(changes) > 1:
                 # A step is annotated with its own as-of confidence only where
                 # that confidence is not CERTAIN: the walk then shows exactly
@@ -798,19 +1219,20 @@ def report(state, origin, sessions, entities, records,
                                      "" if c == CERTAIN else ", %d‰" % c)
                     for st, v, _n, c in changes))
 
-        lines.extend(calibration_lines(state, entity, origin, total - 1))
+        lines.extend(calibration_lines(state, entity, origin, total - 1, seen=seen))
+        lines.extend(provenance_lines(state, entity, origin, seen=seen))
 
         lines.append("")
-        questions = history(state, entity, QUESTION_KEY, origin, total - 1)
+        questions = history(state, entity, QUESTION_KEY, origin, total - 1, seen)
         silent = sum(1 for r in summaries if not r["payload"]["open_questions"])
         lines.append("open questions — aggregate over the whole store")
         lines.append("  recorded         %d across %d sessions  "
                      "(%d sessions recorded none)"
                      % (len(questions), len(sessions), silent))
-        asked = current_fact(state, entity, "open_questions", origin)
+        asked = current_fact(state, entity, "open_questions", origin, seen)
         if asked is not None:
-            lines.append("  latest session   %s open at store t=%s  (%d‰)"
-                         % (asked[0], asked[1], asked[2]))
+            lines.append("  latest session   %s open at store t=%s  (%d‰, %s)"
+                         % (asked[0], asked[1], asked[2], asked[3]))
         shown = questions if all_questions else [
             q for q in questions if sessions and q[0] == sessions[-1][0]]
         for store_t, text, _conf in shown:
@@ -820,14 +1242,17 @@ def report(state, origin, sessions, entities, records,
                          "`consolidate --questions` prints them all)"
                          % (len(questions) - len(shown)))
 
+    if entities:
+        lines.extend(generation_lines(state, entities, seen=seen))
+
     if declared:
         lines.append("")
         lines.append("prospection — the promises this store is keeping")
-        lines.extend(prospection_lines(state, records, origin))
+        lines.extend(prospection_lines(state, records, origin, seen=seen))
 
     lines.append("")
     lines.append("what the budget did")
-    forgot = ask(state, {"op": "forgetting"})["value"]
+    forgot = ask(state, {"op": "forgetting"}, seen)["value"]
     lines.append("  demotions        %d  (an episode a chain regenerates — "
                  "content kept, cue lost)" % shape["demotions"])
     if declared:
@@ -837,7 +1262,7 @@ def report(state, origin, sessions, entities, records,
         # intention's emitted event (the fired ledger does). Reporting only the
         # first would leave a demotion unattributed at a cap under no pressure
         # at all, which is how this line read before iid 1 fired.
-        counts = ask(state, {"op": "prospection"})["value"]
+        counts = ask(state, {"op": "prospection"}, seen)["value"]
         lines.append("    of which       ARMED INTENTIONS %d, FIRED EVENTS %d — "
                      "released at the door because the pending set and the "
                      "fired ledger regenerate them (README-l5 §1.3), not pressure"
@@ -845,7 +1270,7 @@ def report(state, origin, sessions, entities, records,
     lines.append("  forgotten        %d events, importance mass %d  (gone)"
                  % (forgot["count"], forgot["mass"]))
 
-    whole = channels(state)
+    whole = channels(state, seen=seen)
     lines.append("  content channel  read(t) answers for %d of %d derived events "
                  "— %d still episodes, %d regenerated from the chains"
                  % (whole["held"] + whole["derived"], total,
@@ -855,9 +1280,9 @@ def report(state, origin, sessions, entities, records,
                  % (whole["held"], whole["derived"]))
 
     entity = min(entities.values()) if entities else 1
-    reach = reachability(state, records, sessions, entity, origin)
+    reach = reachability(state, records, sessions, entity, origin, seen)
     summary_ts = [s[1] for s in sessions]
-    summary = channels(state, summary_ts)
+    summary = channels(state, summary_ts, seen)
     readable = sum(1 for r in reach if r["readable"])
     recallable = sum(1 for r in reach if r["recallable"])
     lines.append("  session summaries  %d of %d readable, %d reachable by cue, "
@@ -872,14 +1297,16 @@ def report(state, origin, sessions, entities, records,
         tokens = raw.split()
         cue = ev.cue_payload(tokens)
         cue["entity"] = entity
-        answer = ask(state, {"op": "recall", "cue": cue})
+        answer = ask(state, {"op": "recall", "cue": cue}, seen)
         if answer["status"] == "answer":
             hit = _store_t(origin, answer["value"]["t"])
             payload = answer["value"]["payload"]
-            lines.append("  cue %-24s MATCH  %4d‰  store t=%s  %s"
-                         % (raw, answer["confidence"], hit,
+            lines.append("  cue %-24s MATCH  %4d‰  %-8s store t=%s  %s"
+                         % (raw, answer["confidence"], tag_text(answer), hit,
                             _fmt(payload.get("log_line", ""), 48)))
         else:
-            lines.append("  cue %-24s ABSTAIN  %4d‰"
-                         % (raw, answer["confidence"]))
+            lines.append("  cue %-24s ABSTAIN  %4d‰  %s"
+                         % (raw, answer["confidence"], tag_text(answer)))
+
+    lines.extend(certainty_lines(seen))
     return lines
