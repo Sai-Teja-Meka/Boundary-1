@@ -488,6 +488,56 @@ text alone, and none of them is a number.
   the *humility* side needs one, and the honest prediction is that whoever writes
   `BOUNDARY-HIGH.md` will find that question before they find a threshold.
 
+> **Note added 2026-08-07 (`[L7] [PULSE]`, the untagged diagnostics — a fourth
+> seam, recorded and not fixed).** The list above says *three* and that sentence
+> stands as written; this is a fourth, found at `[L7] [DOGFOOD]` by **rendering
+> every tag** rather than by measuring anything (`BOUNDARY.log` line 47), and it
+> is recorded here under `R6` clause 3 because it lands on exactly the ops §5 L8
+> is about.
+>
+> **Six `query` ops answer non-abstaining with `provenance: null`** —
+> `consolidation` (L4), `count` (L4), `profile` (L4), `prospection` (L5),
+> `calibration` (L6) and `lineage` (L7), the layers' own diagnostics — while
+> **`forgetting` carries a valid `absent` tag** beside them
+> (`l4_consolidation.py:1473-1476`). `§4.2.2` has no exception for a diagnostic, so
+> read literally each of those six is an answer that scores **0 however correct
+> it is**. It is an **uneven** seam and not a blanket property of the engine,
+> which is why it is reported as a list of ops and never as a claim about `query`.
+>
+> **THE SCOPE, stated first because it bounds everything else: no `§5 L7`
+> denominator contains a diagnostic query, so no gated number moves** — not
+> `validity`, `novelty`, `tagging`, `promotion`, `F_core`/`F_all`, `ECE` or `B`,
+> whose classes are the artifact's declared `K*` query classes and nothing else.
+> No score in §3, no anchor, no ceiling and no corpus binding is touched by this
+> note.
+>
+> **The cause is structural and the engine says so in its own source, which is
+> what makes this debt rather than an oversight.** `l4_consolidation.py`'s
+> `profile` branch carries the comment in as many words — *"A fold over the whole
+> stream has no bounded support to cite … `§4.2`'s schema has no form for
+> 'supported by everything', which is a seam Layer 7 will have to close."*
+> `§4.2.3` admits an **empty `support` only when `kind == "absent"`**, so the
+> schema offers exactly one bearer for *"no bounded support"*: `forgetting` takes
+> it and the other six decline to. Which of the two is right is not a question
+> `§5 L7` asks, and answering it would mean either editing a frozen layer (`§9.2`)
+> or minting a schema form the frozen `§4.2.3` does not have — an amendment
+> wearing a fix's clothes.
+>
+> **So it is Layer 8's, and squarely so.** `§5 L8` is *introspection answered FROM
+> STATE via the ordinary query interface*, and these six ops **are** that sentence
+> already: at Layer 8 the untagged class and the layer's own subject are the same
+> class, which is item 3 of `§5` above (*what an answer about the engine cites is
+> not obvious*) meeting the first seam of this list (*the ledger is a
+> self-description already*) at one point. `[L7] [DOGFOOD]` armed **`iid 3`** on
+> `val ≥ 8` carrying the **shell** half of it, and deliberately not the engine
+> half, for the reason `README-l5 §4`'s lateness note records. What is already in
+> place and is not this note's to repeat: the surface prints `UNTAGGED` rather
+> than laundering it into a kind, and
+> `trials/ops/dogfood/t_generation.py::trial_every_rendered_answer_carries_a_provenance_tag_or_is_named_untagged`
+> pins the untagged set at **exactly those six** with `forgetting`'s `absent` tag
+> asserted beside them — so an *ordinary verb* losing its tag is a different
+> finding and cannot pass as this one.
+
 Every number in this section is absent on purpose. `§5` defers them, `R2` orders
 them after an arithmetic nobody has computed, and no session may bind a gate that
 the constitution has reserved for a document that does not exist.
