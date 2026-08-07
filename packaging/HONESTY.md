@@ -258,9 +258,55 @@ number exists.
   events is 25 events.
 * Do not attribute the lenient LLM judge to **LoCoMo**. The in-repo judge is
   token-F1; the model judge is a downstream addition.
+* Do not quote **`novelty 1000`** without naming the **store** it was measured
+  against. It is a canonical-byte comparison, and `strain/l7` measures the
+  byte-novel share of the engine's own generations falling `60 → 30 → 0` as the
+  caller writes them back. It is the one measure here whose *referent moves*, and
+  `packaging/CATALOG.md §2.2` is the note.
+* Do not quote **`F 955`** at Layer 6 beside the `F 1000` of the layers below
+  without the theorem. That engine is wrong 100 times **by construction**, and
+  saying so first is the entire capability.
 * Nothing here has been **peer-reviewed, replicated externally, or run against
-  another live system**. Four layers of a nine-layer specification are built and
-  certified against corpora this project wrote. That is the whole of it.
+  another live system**. Seven layers of a nine-layer specification are built and
+  certified against corpora this project wrote; the last two have **no thresholds
+  at all**. That is the whole of it.
+
+> **Note added 2026-08-07 (`[L7] [PACKAGE]`).** The three notes below and the
+> paragraph they qualify stand as written (`R6` clause 3); what changes here is
+> that the **counts they correct are now correct in the document itself** —
+> `README-public.md` states seven of nine and publishes the `L5`, `L6` and `L7`
+> rows, and this move owned that rewrite. Two limitations are **added** rather
+> than corrected, and both are uncomfortable in the direction that matters.
+>
+> **(1) The transfer corpus could not be re-frozen, and the blocker is our own
+> memory.** `corpora/real-sessions` is still `v1` at 25 events, three claimed
+> layers stale, because this move repeated the freeze procedure at 50 events and
+> **the scrub stopped it**: the store carries `v1`'s own corpus checksum in full,
+> quoted inside the `[L4] [PACKAGE]` summary that recorded the freeze. It is a
+> true positive of the pattern and a false positive of its purpose, and no
+> session may resolve it — freezing over a live finding is irreversible (§9.2),
+> editing the corpus contradicts *"the scrub reports; it never edits"*, and
+> narrowing the pattern is relaxing an instrument to admit a finding.
+> `corpora/real-sessions/V2-FREEZE-STOPPED.md` is the record. So **the single
+> mitigation for "the corpora are ours" is still 25 events**, and the 50-event
+> re-run published beside it is explicitly **out of suite** and unfrozen.
+>
+> **(2) The one place the store grew, it grew worse.** On the 50-event store four
+> events are **not uniquely cueable at all**, where at 25 every one was. Three
+> are the intentions, which carry no cue surface by construction. The fourth is a
+> session summary — store `t = 12`, the `[L2] [ASCEND] recall` line — whose every
+> token is now carried in full by some other event. **The session that built
+> recall is the one the store can no longer find by cue.** Nothing broke; the
+> corpus grew. It is blocking (`CATALOG.md §1`) arriving on real fuel by growth
+> alone, and it is the clearest evidence in this repository that a memory's cue
+> surface saturates.
+>
+> One thing this move did **not** do, recorded because it would have been easy:
+> `laws/t_rulings.py::REFUSED_STOCK` was left untouched. The live store measures
+> `absent = 0` through `R8` clause 1's own instrument and would join the refused
+> class — but extending a ruling's holding to an artifact a human never ruled on
+> is a ruling's business, so what this session produced is the measurement such a
+> ruling would be taken on, and not the ruling.
 
 > **Note added 2026-08-03 (`[L7] [ASCEND]`, Layer 7 claimed).** The count above
 > is superseded again: **two** layers are unbuilt, not three — self-description
