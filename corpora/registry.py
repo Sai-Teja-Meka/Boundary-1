@@ -197,6 +197,40 @@ strictly-below obligation, and RULING-R5-DRAFT.md awaits human ratification.
   IMPOSSIBILITY.md, trials/inheritance/l7/, §6's mandatory Layer-7
   self-pollution strain and the engine AFTER this entry, and none of them exists.
 
+Note added 2026-08-08 ([L7] [ASCEND] layer-8 stage A) -- l8describe joins, and
+it is the first member of this list that is NOT one object.
+
+  corpora/l8describe is the first Layer-8 artifact and BOUNDARY-HIGH.md §3 says
+  what one IS: a TRIPLE, of which only the first member is a corpus in §8's
+  sense. The frozen event stream (seed 11011, 3200 events) is an ordinary §8
+  corpus and byte-matches like every other member here. The frozen query set and
+  its declared class table ship in the SAME canonical object, for l6batteryb's
+  reason carried forward -- the guarantees are a JOINT property and three
+  separately byte-matched files could be paired across generations while every
+  individual check stayed green. The third member, the FROZEN DERIVATION
+  PROCEDURE, is trials/_l8derive.py and is not in this directory at all: it is
+  committed source, engine-free, mapping (the stream, an engine's ingestion
+  trace, an engine's canonical snapshot) to the expected answer, because a
+  self-description's correct answers are a function of the ENGINE UNDER TEST and
+  not of frozen bytes, so §8.3 cannot reach them for want of a seeded generator
+  for an engine's behaviour. THE ANSWER KEY IS A PROCEDURE AND NOT A TABLE: it
+  is recomputed every run and its canonical bytes carry a recorded sha256 that
+  trials/ops/l8/t_l8describe.py re-derives and compares. What this list gets is
+  the byte-match law over the stream and the class table, unchanged and
+  unrelaxed; what it does not get, and what §8 has no doctrine for, is the key.
+
+  NO LAYER-8 GATE BINDS ON IT. trials/ascension/l8/ATTAINABILITY.md computes the
+  arithmetic and RULING-R9-DRAFT.md awaits human ratification -- the same
+  sentence l5stream, l6battery and l7compose each carried at their own Stage A,
+  and it is true here for the same reason: R2's standing step puts the ruling
+  between the arithmetic and any authority. The artifact also freezes its
+  DECLARED SUBSTRATE CONFIGURATION (budget_cap = raw_cells // 3 = 5313), which
+  no earlier member of this list does, because two properties a Layer-8 gate
+  needs -- which questions are forced, and which questions no single field
+  carries -- turn out to be properties of the (artifact, engine, cap) triple and
+  not of the bytes. That is the Stage-A session's central finding and it is why
+  the configuration is frozen beside the stream rather than chosen by a caller.
+
 Nothing is edited; a corpus is retired only by ceasing to gate on it, never by
 changing its bytes.
 
@@ -223,6 +257,7 @@ from corpora.chronicle import generator as chronicle_gen
 from corpora.l6battery import generator as l6battery_gen
 from corpora.l6batteryb import generator as l6batteryb_gen
 from corpora.l7compose import generator as l7compose_gen
+from corpora.l8describe import generator as l8describe_gen
 from corpora.sessions import generator as sessions_gen
 from corpora.murk import generator as murk_gen
 from corpora.l3stream import generator as l3stream_gen
@@ -232,7 +267,7 @@ from corpora.l5stream import generator as l5stream_gen
 
 GENERATED = [chronicle_gen, sessions_gen, murk_gen, l3stream_gen, l3streamb_gen,
              l4stream_gen, l5stream_gen, l6battery_gen, l6batteryb_gen,
-             l7compose_gen]
+             l7compose_gen, l8describe_gen]
 
 MURK = murk_gen
 

@@ -502,3 +502,48 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
 > exist, and `trials/laws/t_boundary_high.py` asserts that it does not, pins the
 > SPEC's committed hash, walks git history for its append-only property, and
 > enforces the no-number property mechanically.
+
+> **Note added 2026-08-08 (`[L7] [ASCEND]` layer-8 stage A — the SPEC's Stage-A
+> row is executed).** *"`trials/ascension/l8/` does not exist"* above is where
+> the paragraph before this one stops holding, and only there.
+>
+> - `l8/ATTAINABILITY.md` + `l8/t_attainability.py` — Layer 8, Self-description,
+>   Stage A under `BOUNDARY-HIGH.md §6.1`. **NO GATE BINDS**: not one
+>   module-level `GATE_*` / `CEILING_*` name exists under `ascension/l8/` or
+>   `ops/l8/`, `trials/laws/t_rulings.py`'s registry carries no Layer-8 row, and
+>   `RULING-R9-DRAFT.md` is deliberately not appended, because appending is what
+>   freezes.
+> - **The artifact** is `corpora/l8describe`, the first **triple** in `§3`'s
+>   sense: a frozen stream, a frozen query set with its class table in the same
+>   canonical object, and a **frozen derivation procedure** (`trials/_l8derive.py`)
+>   whose output is recomputed every run and hash-pinned. The answer key is a
+>   PROCEDURE and not a table.
+> - **Six of Layer 8's seven cells are measured** and proposed in
+>   `RULING-R9-DRAFT.md` clause 2; the witness (class **E**, reading the engine's
+>   snapshot bytes and nothing else) attains coverage 514 / `F_core` 711 /
+>   groundedness 1000 / tagging 1000 / `B` 1000 and a capability quantity of 38
+>   of 74, against a capped-7 engine measuring **0**.
+> - **The seventh REFUSES**, and it is the session's finding: no artifact of
+>   `§3`'s shape can force a self-descriptive error, because the subject IS the
+>   state, `§7.3` always allows abstention and `§3.0` prices it at 100 against 0.
+>   So `n_neg = 0` for the witness and for the oracle alike, `R7` clause 3(b)'s
+>   domain guarantee cannot be a theorem the artifact carries, and a Layer-8
+>   clause may not cite `AUROC`.
+> - **The SPEC's two predicted stop points are SCORED, misses included**
+>   (`ATTAINABILITY.md §5`): the sixth substrate kill is a PARTIAL HIT landing
+>   engine-relatively (a named field-reader bench reaches 9 of 38 determined
+>   questions, 29 fold-only); `§5.4`'s sizing precondition is SATISFIED and its
+>   reasoning MISSES, because at Layer 8 the hedger and the correct describer are
+>   the same policy on the hard class; and `§2.4`'s aside that `make_engine(N−1)`
+>   is the strongest baseline is a MISS — here it is the weakest, tying the
+>   blanket abstainer exactly.
+> - **Layer 9's five cells stay deferred.** `§2.4` clause 2 puts each number at
+>   that layer's own Stage A and `§6.1` says a Layer-8 ruling does not reach
+>   them; `successor conformance` is a quantity over an emitter built on a
+>   Layer-8 engine that does not exist.
+> - `trials/laws/t_boundary_high.py`'s inventory is **advanced by one step and
+>   not weakened**, in the form its own docstring asks for: `ascension/l8` and
+>   `ops/l8` move from its absence tuple to a presence tuple under a dated note,
+>   and the ten Stage-B-and-later paths — `humility/l8` with its mandatory
+>   `IMPOSSIBILITY.md`, `inheritance/l8`, `strain/l8`, the adapter, and every
+>   Layer-9 path — stay absent and still go red if a session writes one early.
