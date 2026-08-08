@@ -132,12 +132,31 @@ BINDING_RULINGS = ("R2", "R4", "R5", "R7", "R8")
 # R2's standing step orders every one of these after Stage A's arithmetic, and
 # Stage A has not run. Each is an inventory line, advanced when the order does.
 LAYER_8_9_ABSENT = (
-    "trials/ascension/l8", "trials/ascension/l9",
+    "trials/ascension/l9",
     "trials/humility/l8", "trials/humility/l9",
     "trials/inheritance/l8", "trials/inheritance/l9",
     "trials/strain/l8", "trials/strain/l9",
-    "trials/ops/l8", "trials/ops/l9",
+    "trials/ops/l9",
     "trials/adapters/l8.py", "trials/adapters/l9.py",
+)
+
+# Note added 2026-08-08 ([L7] [ASCEND] layer-8 stage A). THE INVENTORY IS
+# ADVANCED BY EXACTLY ONE STEP, in the form this trial's own docstring asks for
+# ("when Stage A runs, `trials/ascension/l8/` will exist and its absence
+# assertion moves to a presence assertion under a dated note, in the form
+# `l6/t_attainability_b.py` and `l7/t_attainability.py` each took three times —
+# an inventory of where R2's order has got to, never a claim that is quietly
+# dropped"). Two paths move from the absence tuple to the presence tuple below:
+# `trials/ascension/l8` and `trials/ops/l8`, which are what BOUNDARY-HIGH.md
+# §6.1's Stage-A row authorizes and nothing else. TEN PATHS STAY ABSENT and are
+# the ones §6.1 puts at Stage B and later — humility/l8 with its mandatory
+# IMPOSSIBILITY.md, inheritance/l8, strain/l8, the adapter, and every Layer-9
+# path — so a session that wrote a battery before the ruling still goes red
+# here. The two halves the no-number property rests on are UNCHANGED: no
+# core/layers/l8_* or l9_* engine file exists, and no gate constant anywhere
+# under trials/ cites this document or §5's deferral cell as its authority.
+LAYER_8_9_PRESENT_SINCE_STAGE_A = (
+    "trials/ascension/l8", "trials/ops/l8",
 )
 
 
@@ -326,6 +345,14 @@ def trial_no_layer_8_or_9_gate_exists_anywhere():
     in the form `l6/t_attainability_b.py` and `l7/t_attainability.py` each took —
     advanced one step, never weakened.
     """
+    for rel in LAYER_8_9_PRESENT_SINCE_STAGE_A:
+        path = os.path.join(PROJECT_ROOT, *rel.split("/"))
+        require(os.path.exists(path),
+                "%s does not exist. BOUNDARY-HIGH.md §6.1's Stage-A row was "
+                "executed at [L7] [ASCEND] layer-8 stage A and this inventory "
+                "records it; a path that disappeared is a Stage A that was "
+                "undone, which is not something a later session may do quietly"
+                % (rel,))
     for rel in LAYER_8_9_ABSENT:
         path = os.path.join(PROJECT_ROOT, *rel.split("/"))
         require(not os.path.exists(path),
