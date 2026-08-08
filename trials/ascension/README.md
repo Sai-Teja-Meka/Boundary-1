@@ -462,3 +462,43 @@ Layers 1–2 predate it and are not retroactively invalidated by it.
 > **absence list is now empty**. No historical line above is rewritten, no
 > Stage-A or Stage-B figure moves, and `l7/ATTAINABILITY.md`, `l7/STAGE-B.md` and
 > `l7/RULING-R8-DRAFT.md` are untouched.
+
+> **Note added 2026-08-08 (`[L7] [ASCEND-SPEC]`, the Phase 3→4 gate — the index
+> carries the link).** `BOUNDARY-HIGH.md` exists, at the repository root beside
+> `BOUNDARY.md` and `BOUNDARY-RULINGS.md`: the **structural law for Layers 8 and
+> 9**, written under the concession `§5` makes in its own frozen text when it
+> defers those two rows' thresholds to the Phase 3→4 gate. It is linked from here
+> because `§9.2` forbids annotating `BOUNDARY.md`'s own table, so the SPEC stands
+> alone and this index is where an ascension session finds it.
+>
+> **It binds no gate and declares no number.** Every threshold in it reads
+> `DEFERRED — Stage A + ruling`, and that is `R2` honoured rather than dodged:
+> at the moment the constitution schedules the document there is no Layer-8
+> artifact, no Layer-8 measure and therefore no arithmetic to record, so a
+> threshold written there would be *"a number in a table, not a test"*. What it
+> settles is the part that can be settled first — **the measures before the
+> thresholds** (what is measured, over what denominator, through which `§7`
+> surface, for every Layer-8 and Layer-9 clause-to-be), **the substrate
+> doctrine** (a Layer-8 artifact is a frozen stream + a frozen query set with its
+> declared class table + a frozen *derivation procedure* over the engine's own
+> trace and state; the answer key is recomputed and hash-pinned rather than
+> byte-matched, because `§8.3` is about a generator and an engine has none),
+> **the humility axes** (the ceiling is stated over a capability quantity and
+> never over `F`, since `§7.3` hands a capped engine a *scored* abstention; and
+> the fifth impossibility kind is **not** minted — it is named at the layer's own
+> Stage B, from measurement, per the `l4`–`l7` precedent), **four law seams**
+> (`§4.2` support that is a fact about state, and `§5 L7`'s `promotion = 0`
+> reaching a self-model, both **reserved to a named ruling**; introspection as a
+> `query` op and `§3.0`'s price list over self-descriptive queries, both
+> **settled**), and **the schedule**.
+>
+> So `R2`'s standing step is untouched and the order for Layer 8 is the one every
+> layer since Layer 3 has followed: **this document → Stage A (the arithmetic,
+> the artifact, the exhibited ceiling, the named baselines, a drafted ruling
+> nobody appends) → the ruling → Stage B → Stage C**. A Stage-A **stop is
+> expected** and the SPEC says so in advance, naming the two places it is
+> likeliest — a predicted sixth substrate kill, and the sizing that has to make
+> blanket abstention break the fidelity clause. `trials/ascension/l8/` does not
+> exist, and `trials/laws/t_boundary_high.py` asserts that it does not, pins the
+> SPEC's committed hash, walks git history for its append-only property, and
+> enforces the no-number property mechanically.

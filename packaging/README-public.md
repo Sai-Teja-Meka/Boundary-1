@@ -360,6 +360,20 @@ physics, `§7`'s three doors — and their gate cells read *specified at the Pha
 3→4 gate*, where every other row states a number. `BOUNDARY-HIGH.md` has not
 been written. Six rulings already bind it sight-unseen.
 
+> **Note added 2026-08-08 (`[L7] [ASCEND-SPEC]`).** *"`BOUNDARY-HIGH.md` has not
+> been written"* is where the paragraph above stops holding, and it is the only
+> sentence in it that moves. The document exists; **the two layers still have no
+> thresholds at all**, and that is the document's own holding rather than an
+> omission in it — it declares no number, and defers every one, by name, to that
+> layer's Stage A plus a ruling, because `R2` binds it in its own text and
+> requires a gate's discrimination arithmetic recorded *before* the gate binds.
+> What it settles is structural: the measures and their denominators, what a
+> Layer-8 artifact **is** when the answer key is a function of the engine rather
+> than of frozen bytes, what the humility side stands on, two law seams settled
+> and two reserved to a ruling, and the schedule. **No scorecard row moves, no
+> gate binds, and the seven claimed layers are unaffected.** Recorded under `R6`
+> clause 3; no historical line rewritten, and this note adds no row.
+
 **Ordering is a design commitment, not a finding.** That memory capability is
 ladder-shaped is asserted by this constitution and is established by nothing
 here. An architecture reaching Layer 5 without Layer 3 would not be caught by

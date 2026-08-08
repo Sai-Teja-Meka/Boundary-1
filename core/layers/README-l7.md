@@ -542,6 +542,33 @@ Every number in this section is absent on purpose. `§5` defers them, `R2` order
 them after an arithmetic nobody has computed, and no session may bind a gate that
 the constitution has reserved for a document that does not exist.
 
+> **Note added 2026-08-08 (`[L7] [ASCEND-SPEC]`, the document now exists).**
+> **`It has not been written.`** above is where this section stops holding, and
+> only there: `BOUNDARY-HIGH.md` was written at the Phase 3→4 gate and is the
+> structural law for Layers 8 and 9. **Every number in this section is still
+> absent, and so is every number in that one** — the SPEC declares no threshold
+> at all and defers each one, by name and in its own text, to that layer's
+> Stage A plus a ruling, because `R2` binds it sight-unseen and attainability
+> precedes authority. So the closing sentence's *"a document that does not
+> exist"* is now *"a document that exists and has bound no gate"*, and nothing
+> else in this section moves.
+>
+> Recorded under `R6` clause 3, no historical line rewritten. The SPEC takes up
+> all four seams this section hands upward — item 3's *"what an answer about the
+> engine cites"* and the fourth seam's six untagged diagnostics at its `§5.1`
+> (three candidate readings stated exhaustively, the choice **reserved to Layer
+> 8's Stage A ruling**, and one thing ruled: no Layer-8 gate may be cleared by
+> an engine whose self-descriptive answers are untagged); *"the ledger is a
+> self-description already"* at its `§2` and `§3`; the four `IMPOSSIBILITY.md`
+> arguments and *"the humility ceiling has nowhere obvious to stand"* at its
+> `§4`, which answers the seam by observing that **the verb is not the
+> vocabulary** — `§7.3` makes an unsupported introspective op a *scored*
+> abstention — and which therefore states the ceiling over a capability quantity
+> and never over `F`. Item 1's reading — **introspection is a `query` op** — is
+> the one this section derives and the SPEC **ratifies** (`§5.2` there), for the
+> fourth time by the same argument. No number in this file moves and no trial
+> turns on this note.
+
 ---
 
 ## Reading list for the next session
